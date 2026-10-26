@@ -34,7 +34,21 @@
   #dashboard .d-bottom{margin-top:2px}
   #dashboard .d-table{width:100%;border-collapse:collapse}
   #dashboard .d-table th,#dashboard .d-table td{font-size:12px;padding:10px 8px}
-  #dashboard .d-link{background:none;border:0;text-align:left;color:var(--copper);cursor:pointer;font:600 12px var(--font-body);padding:0}
+  #dashboard .d-link{white-space:nowrap;background:none;border:0;text-align:left;color:var(--copper);cursor:pointer;font:600 12px var(--font-body);padding:0}
+  #dashboard .d-action{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--copper);background:var(--copper-soft);border-radius:12px;padding:13px 16px;margin-bottom:14px}
+  #dashboard .d-action b{font:700 11px var(--font-data);color:var(--copper);letter-spacing:.08em;white-space:nowrap;padding-top:2px}
+  #dashboard .d-action p{margin:0;font-size:14px;line-height:1.55;color:var(--ink)}
+  #dashboard .d-fx{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0}
+  #dashboard .d-fxi{padding:2px 12px;border-left:1px solid var(--line);min-width:0}
+  #dashboard .d-fxi:first-child{border-left:0;padding-left:0}
+  #dashboard .d-fxi .d-value{font-size:19px;margin:5px 0 2px}
+  #dashboard .d-issues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}
+  #dashboard .d-issue{padding:10px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.5;color:var(--ink-2)}
+  #dashboard .d-issue strong{color:var(--ink);margin-right:6px}
+  #dashboard .d-sp{margin-bottom:16px}
+  @media(max-width:900px){#dashboard .d-fx{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 0}#dashboard .d-fxi:nth-child(4){border-left:0;padding-left:0}#dashboard .d-issues{grid-template-columns:1fr}}
+  @media(max-width:600px){#dashboard .d-table{min-width:520px}}
+  @media(max-width:470px){#dashboard .d-fx{grid-template-columns:repeat(2,minmax(0,1fr))}#dashboard .d-fxi{border-left:0;padding-left:0}#dashboard .d-action{flex-direction:column;gap:4px}}
   #dashboard .d-error{padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--sunk)}
   @media(max-width:780px){#dashboard .d-grid{grid-template-columns:1fr}#dashboard .d-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
   @media(max-width:470px){#dashboard .d-metrics{grid-template-columns:1fr}#dashboard .d-card{padding:12px}#dashboard .d-table th,#dashboard .d-table td{font-size:11px;padding:8px 5px}}
@@ -48,13 +62,13 @@
   pane.innerHTML = `
     <div class="d-intro"><div><div class="d-kicker">PROCUREMENT INTELLIGENCE / OVERVIEW</div><h2>Market Dashboard</h2><div class="d-muted" id="d-updated">데이터 확인 중…</div></div>
       <div class="d-actions"><button type="button" class="btn" id="d-reload">↻ 데이터 새로고침</button><button type="button" class="btn primary" id="d-print">PDF / 인쇄</button></div></div>
-    <div class="d-metrics" id="d-metrics" aria-live="polite"></div>
+    <div class="d-action" id="d-action" hidden><b>이번 주 구매 액션</b><p id="d-action-t"></p></div><div class="d-metrics" id="d-metrics" aria-live="polite"></div><div class="d-card d-sp"><div class="d-h"><h3>환율 현황</h3><span class="d-muted">현재가 · 전월 대비는 월평균 비교 · <button type="button" class="d-link" data-go="fx">환율 정보 보기</button></span></div><div class="d-fx" id="d-fx"></div></div>
     <div class="d-grid"><div class="d-card"><div class="d-h"><h3>주요 원자재 가격지수 비교</h3><div class="d-chipset" id="d-period"><button class="d-chip" data-months="3" aria-pressed="false">3개월</button><button class="d-chip" data-months="6" aria-pressed="true">6개월</button><button class="d-chip" data-months="12" aria-pressed="false">12개월</button></div></div><div id="d-chart" aria-label="월별 가격 지수 추이"></div><div class="d-legend" id="d-legend"></div><div class="d-muted" style="margin-top:9px">각 원자재의 조회 시작월 = 100 · 월평균 기준 · 서로 다른 단위 비교용</div></div>
       <div class="d-card"><div class="d-h"><h3>구매 관점 체크포인트</h3></div><div class="d-list" id="d-points"></div><div class="d-muted" style="margin-top:12px">전월 대비 가격 변화에 따른 자동 점검 항목이며, 실제 발주·협상 판단은 계약조건과 BP 원가구조 확인이 필요합니다.</div></div></div>
+    <div class="d-card d-sp"><div class="d-h"><h3>시장 주요 이슈</h3><span class="d-muted" id="d-issue-src"></span></div><div class="d-issues" id="d-issues"></div><div style="margin-top:10px;display:flex;gap:14px;flex-wrap:wrap"><button type="button" class="d-link" data-go="ai">AI 뉴스요약 보기</button><button type="button" class="d-link" data-go="analysis">시장분석 보기</button><button type="button" class="d-link" data-go="implication">구매시사점 보기</button><button type="button" class="d-link" data-go="bp">BP 논의점 보기</button></div></div>
     <div class="d-card d-bottom"><div class="d-h"><h3>원자재 현황 및 전월 대비 변동</h3><span class="d-muted">가격은 최신 수집값 · 증감률은 월평균 비교</span></div><div style="overflow-x:auto"><table class="d-table"><thead><tr><th>원자재 / 지표</th><th>현재가</th><th>전월 대비 월평균</th><th>기준일</th><th>상세</th></tr></thead><tbody id="d-rows"></tbody></table></div></div>`;
   main.insertBefore(pane, main.firstElementChild);
-  // The existing app reads this key on startup. Explicit deep links still take precedence.
-  try { if (!location.hash || location.hash === '#dashboard') localStorage.setItem('psk-mi-tab','dashboard'); } catch (_) {}
+  // Dashboard is the default page, independent of previously selected tabs.
 
   const materials = [
     {id:'cu',name:'구리',unit:'$/lb',color:'#7754cc'},
@@ -114,6 +128,19 @@
       return `<tr><td><strong>${safe(m.name)}</strong><div class="d-muted">${safe(m.unit)}</div></td><td>${p&&Number.isFinite(+p.price)?'$'+num(p.price,m.id==='cu'?4:2):'—'}</td><td>${change}</td><td>${safe(p?.asOf||'—')}</td><td><button type="button" class="d-link" data-go="prices">상세 보기</button></td></tr>`;
     });
     byId('d-rows').innerHTML=rows.join('');
+    const momOf=id=>{const h=histFor(data,id),a=h.at(-1)?.value,b=h.at(-2)?.value;return a&&b?(a/b-1)*100:NaN;};
+    const FXS=[['fx','USD/KRW','원',1,2],['eurkrw','EUR/KRW','원',1,2],['jpykrw','JPY/KRW','원 (100엔)',100,2],['cnykrw','CNY/KRW','원',1,2],['eurusd','EUR/USD','$',1,4]];
+    byId('d-fx').innerHTML=FXS.map(([id,lab,u,k,dg])=>{const p=px[id],m=momOf(id);return `<div class="d-fxi"><div class="d-label">${lab}</div><div class="d-value">${p&&Number.isFinite(+p.price)?num(p.price*k,dg):'—'}<span class="d-muted" style="font-size:11px;font-weight:500"> ${u}</span></div><div class="d-change ${tone(m)}">${Number.isFinite(m)?'전월 '+signed(m):'—'}</div></div>`;}).join('');
+    let issues=[],action='',src='';
+    if(typeof data.ai==='string'&&data.ai.trim()){
+      data.ai.split('\n').map(x=>x.trim()).filter(Boolean).forEach(l=>{ if(/^→/.test(l)) action=l.replace(/^→\s*(이번 주 구매 액션\s*:\s*)?/,''); else { const m=l.replace(/^[•\-·*]\s*/,'').split(/\s+[—–-]\s+/); if(m.length>1) issues.push({name:m[0],text:m.slice(1).join(' — ')}); } });
+      src=`${data.aiAt||''} AI 요약 기준`;
+    }
+    if(!issues.length){ document.querySelectorAll('#aiStatic li').forEach(li=>{ const b=li.querySelector('b'); const name=b?b.textContent.trim():''; const text=li.textContent.replace(name,'').replace(/^\s*[—–-]\s*/,'').trim(); if(name) issues.push({name,text}); }); src='AI 뉴스요약 기준'; }
+    const short=t=>{const f=String(t).split(/(?<=\.)\s/)[0]; return f.length>90?f.slice(0,88)+'…':f;};
+    byId('d-issues').innerHTML=issues.slice(0,6).map(i=>`<div class="d-issue"><strong>${safe(i.name)}</strong>${safe(short(i.text))}</div>`).join('')||'<div class="d-muted">요약된 이슈가 없습니다.</div>';
+    byId('d-issue-src').textContent=src;
+    byId('d-action').hidden=!action; byId('d-action-t').textContent=action;
     const fxhist=histFor(data,'fx'),a=fxhist.at(-1)?.value,b=fxhist.at(-2)?.value;
     if(b&&a){const mom=(a/b-1)*100;if(Math.abs(mom)>=2)points.push({name:'USD/KRW',mom,kind:mom>0?'달러 결제 원가 상승 영향 점검':'달러 결제 원가 절감 여지 점검'});}
     points.sort((a,b)=>Math.abs(b.mom)-Math.abs(a.mom));
@@ -122,11 +149,12 @@
   async function load(){
     byId('d-updated').textContent='최신 데이터 불러오는 중…';
     try{const res=await fetch(`./data.json?t=${Date.now()}`,{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);const obj=await res.json();if(!obj.prices||!obj.history)throw Error('필수 데이터 없음');draw(obj);}
-    catch(e){byId('d-updated').textContent='불러오기 실패';byId('d-metrics').innerHTML=`<div class="d-error">data.json을 불러올 수 없습니다. GitHub Pages에 dashboard.js와 data.json이 같은 폴더인지 확인하세요. (${safe(e.message)})</div>`;}
+    catch(e){try{const embedded=JSON.parse(byId('snap').textContent||'{}');if(embedded.prices&&embedded.history){draw(embedded);byId('d-updated').textContent+=' · HTML 내 저장 데이터 사용';return;}}catch(_){}byId('d-updated').textContent='불러오기 실패';byId('d-metrics').innerHTML=`<div class="d-error">데이터를 불러올 수 없습니다. data.json 위치를 확인하세요. (${safe(e.message)})</div>`;}
   }
   byId('d-period').addEventListener('click',e=>{const b=e.target.closest('button[data-months]');if(!b)return;months=Number(b.dataset.months);byId('d-period').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));if(cache)chart(cache);});
-  byId('d-rows').addEventListener('click',e=>{if(e.target.closest('[data-go]'))move('prices');});
+  pane.addEventListener('click',e=>{const g=e.target.closest('[data-go]'); if(g) move(g.dataset.go||'prices');});
   byId('d-reload').addEventListener('click',load);
   byId('d-print').addEventListener('click',()=>window.print());
   load();
 })();
+
