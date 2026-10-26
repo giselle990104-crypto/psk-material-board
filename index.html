@@ -679,6 +679,7 @@ footer a{color:var(--ink-2)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
+const STANDALONE=!window.claude;
 let KRW = 1323.1;
 const fmt = (n, d=0) => Number(n).toLocaleString('ko-KR',{minimumFractionDigits:d,maximumFractionDigits:d});
 const $ = id => document.getElementById(id);
@@ -908,6 +909,10 @@ async function requestUpdate(items, history, from){
 }
 $('updRun').onclick=()=>{ const items=UPD_ITEMS.filter(i=>updSel.has(i.id)).map(i=>i.id); if(items.length) requestUpdate(items,false,'시세 패널'); };
 $('topUpd').onclick=()=>requestUpdate(ALL_IDS,true,'상단 업데이트 버튼');
+if(STANDALONE){
+  const sbUpd=()=>{ const m='시세는 평일 8~18시 매시 47분에 자동으로 업데이트됩니다. 방금 데이터를 다시 불러왔습니다.'; $('updNote').textContent=m; $('barSt').textContent=`${SNAP_AT||''} 기준 데이터 · 다음 업데이트 매시 47분`; reloadData(); };
+  $('topUpd').onclick=sbUpd; $('updRun').onclick=sbUpd; $('updCopy').hidden=true;
+}
 renderTiles(); renderUpdList();
 
 /* ---------- chart ---------- */
@@ -1490,7 +1495,47 @@ function setGateMode(m){
 }
 function showGate(){ $('app').hidden=true; $('gate').hidden=false; closePops(); startGlobe(); setTimeout(()=>{ if(!$('gId').disabled) $('gId').focus(); },50); }
 function enterApp(){ $('gate').hidden=true; $('app').hidden=false; stopGlobe(); renderAcct(); }
-const STANDALONE=!window.claude;
+const SB_URL='https://bmheoocphdomdvhmskee.supabase.co', SB_KEY='sb_publishable_63Jy7CW2uHLy8vtdqX6k2w_4gh_tlv-';
+let TOKEN=null; const TKEY='psk-mi-token';
+const sbSaveToken=t=>{ try{ t?localStorage.setItem(TKEY,t):localStorage.removeItem(TKEY); }catch(e){} };
+const sbLoadToken=()=>{ try{ return localStorage.getItem(TKEY); }catch(e){ return null; } };
+async function rpc(fn,args){
+  const r=await fetch(`${SB_URL}/rest/v1/rpc/${fn}`,{method:'POST',headers:{'apikey':SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(args||{})});
+  const t=await r.text(); let j=null; try{ j=t?JSON.parse(t):null; }catch(e){}
+  if(!r.ok) throw {code:(j&&(j.message||j.code))||('http_'+r.status)}; return j;
+}
+const SB_ERR={invalid_login:'ID 또는 비밀번호가 맞지 않습니다.',inactive:'사용이 중지된 계정입니다. 관리자에게 문의하세요.',not_logged_in:'로그인이 만료됐습니다. 다시 로그인해 주세요.',not_admin:'관리자만 할 수 있습니다.',
+  bad_password:'현재 비밀번호가 맞지 않습니다.',weak_password:'비밀번호는 8자 이상이어야 합니다.',same_password:'임시 비밀번호와 다른 비밀번호로 정해 주세요.',exists:'이미 있는 ID입니다.',bad_id:'ID는 영문 소문자·숫자·.-_ 3~32자로 정해 주세요.',
+  last_admin:'관리자가 최소 한 명은 있어야 합니다.',self:'자기 계정은 중지하거나 삭제할 수 없습니다.',not_found:'계정을 찾지 못했습니다.'};
+const sbMsg=e=>SB_ERR[e?.code]||(String(e?.code||'').startsWith('http_')||e instanceof TypeError?'서버에 연결하지 못했습니다. 잠시 후 다시 시도해 주세요.':'처리하지 못했습니다. 다시 시도해 주세요.');
+async function sbInit(){
+  showGate(); setGateMode('login'); $('gReset').hidden=true; $('gGo').disabled=true; $('gGo').textContent='불러오는 중…';
+  $('barSt').textContent=`${SNAP_AT||''} 기준 데이터`;
+  let st=null; try{ st=await rpc('board_status'); }catch(e){}
+  $('gGo').disabled=false; $('gGo').textContent='로그인';
+  if(!st){ setGateMode('blocked'); gateErr('로그인 서버에 연결하지 못했습니다. 잠시 후 새로고침해 주세요.'); return; }
+  if(!st.has_accounts){ setGateMode('blocked'); gateErr('아직 관리자 계정이 없습니다. 관리자가 서버 설정을 마치면 로그인할 수 있습니다.'); return; }
+  const t=sbLoadToken();
+  if(t){ try{ const me=await rpc('board_me',{p_token:t}); if(me && !me.must_change){ TOKEN=t; ME={id:me.id,name:me.name,role:me.role}; enterApp(); return; } }catch(e){} sbSaveToken(null); }
+}
+async function sbSubmit(){
+  const id=normId($('gId').value), pw=$('gPw').value, btn=$('gGo'), label=btn.textContent; btn.disabled=true; btn.textContent='확인 중…';
+  try{
+    if(gateMode==='change'){
+      if(pw.length<8) return gateErr('새 비밀번호는 8자 이상이어야 합니다.');
+      if(pw!==$('gPw2').value) return gateErr('새 비밀번호 확인이 일치하지 않습니다.');
+      await rpc('board_set_password',{p_token:PENDING.token,p_old:PENDING.pw,p_new:pw});
+      TOKEN=PENDING.token; sbSaveToken(TOKEN); ME={id:PENDING.id,name:PENDING.name,role:PENDING.role}; PENDING=null;
+      $('gPw').value=''; $('gPw2').value=''; setGateMode('login'); enterApp(); return;
+    }
+    if(!id||!pw) return gateErr('ID와 비밀번호를 입력하세요.');
+    if(/[^\x00-\x7f]/.test($('gId').value)) return gateErr('ID는 이름이 아니라 영문 ID입니다.');
+    const r=await rpc('board_login',{p_id:id,p_pw:pw});
+    if(r.must_change){ PENDING={token:r.token,pw,id:r.id,name:r.name,role:r.role}; $('gPw').value=''; setGateMode('change'); $('gPw').focus(); return; }
+    TOKEN=r.token; sbSaveToken(TOKEN); ME={id:r.id,name:r.name,role:r.role}; $('gPw').value=''; enterApp();
+  }catch(e){ gateErr(sbMsg(e)); }
+  finally{ btn.disabled=false; if(btn.textContent==='확인 중…') btn.textContent=label; }
+}
 function enterStandalone(){
   $('gate').hidden=true; $('app').hidden=false; stopGlobe();
   ['acctBtn','hello','topUpd','barSt','updPanel','sideReq','aiRow'].forEach(id=>{ const el=$(id); if(el) (id==='acctBtn'?el.closest('.acct-wrap'):el).hidden=true; });
@@ -1498,7 +1543,7 @@ function enterStandalone(){
   $('updNote') && ($('updNote').textContent='');
 }
 async function initAuth(){
-  if(STANDALONE){ enterStandalone(); return; }
+  if(STANDALONE){ return sbInit(); }
   showGate(); setGateMode('login'); $('gGo').disabled=true; $('gGo').textContent='불러오는 중…';
   try{ authDb=await window.claude?.use?.('db'); }catch(e){}
   try{ authUser=await window.claude?.use?.('user'); }catch(e){}
@@ -1522,6 +1567,7 @@ async function initAuth(){
 $('gReset').onclick=()=>{ gateErr(''); $('gPw').value=''; $('gPw2').value=''; setGateMode(gateMode==='reset'?'login':'reset'); $('gId').focus(); };
 $('loginForm').addEventListener('submit', async e=>{
   e.preventDefault(); gateErr(''); if(gateMode==='blocked') return;
+  if(STANDALONE) return sbSubmit();
   const id=normId($('gId').value), pw=$('gPw').value;
   const btn=$('gGo'), label=btn.textContent; btn.disabled=true; btn.textContent='확인 중…';
   try{
@@ -1583,13 +1629,14 @@ $('acctBtn').onclick=e=>{ e.stopPropagation(); const open=$('acctPop').hidden; $
 document.addEventListener('click',e=>{ if(!$('acctPop').hidden && !e.target.closest('.acct-wrap')){ $('acctPop').hidden=true; $('acctBtn').setAttribute('aria-expanded','false'); } });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ $('acctPop').hidden=true; ['mPw','mAdmin','mInbox'].forEach(id=>$(id).hidden=true); } });
 document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>{ $(b.dataset.close).hidden=true; });
-$('acctLogout').onclick=()=>{ try{ inboxUnsub?.(); }catch(e){} inboxUnsub=null; $('acctDot').hidden=true; saveSess(null); ME=null; $('gReset').hidden=!IS_OWNER; $('gId').value=''; $('gPw').value=''; gateErr(''); setGateMode('login'); showGate(); };
+$('acctLogout').onclick=()=>{ if(STANDALONE){ if(TOKEN) rpc('board_logout',{p_token:TOKEN}).catch(()=>{}); TOKEN=null; sbSaveToken(null); } try{ inboxUnsub?.(); }catch(e){} inboxUnsub=null; $('acctDot').hidden=true; saveSess(null); ME=null; $('gReset').hidden=!IS_OWNER; $('gId').value=''; $('gPw').value=''; gateErr(''); setGateMode('login'); showGate(); };
 $('acctPw').onclick=()=>{ $('acctPop').hidden=true; ['pwOld','pwNew','pwNew2'].forEach(id=>$(id).value=''); $('pwMsg').textContent=''; $('pwMsg').className='mmsg'; $('mPw').hidden=false; $('pwOld').focus(); };
 $('pwSave').onclick=async()=>{
   const m=$('pwMsg'), say=(t,c)=>{ m.textContent=t; m.className='mmsg '+(c||''); };
   const o=$('pwOld').value, n=$('pwNew').value;
   if(n.length<8) return say('새 비밀번호는 8자 이상이어야 합니다.','err');
   if(n!==$('pwNew2').value) return say('새 비밀번호 확인이 일치하지 않습니다.','err');
+  if(STANDALONE){ try{ await rpc('board_set_password',{p_token:TOKEN,p_old:o,p_new:n}); return say('비밀번호를 변경했습니다.','ok'); }catch(e){ return say(sbMsg(e),'err'); } }
   try{
     const ref=authDb.doc('accounts/'+ME.id), d=await ref.get(), a=d.data();
     if(await hashPw(o,a.salt)!==a.hash) return say('현재 비밀번호가 맞지 않습니다.','err');
@@ -1601,7 +1648,7 @@ $('pwSave').onclick=async()=>{
 /* 관리자: 계정 관리 */
 let ACC=[];
 const adSay=(t,c)=>{ $('adMsg').textContent=t; $('adMsg').className='mmsg '+(c||''); };
-async function loadAccounts(){ const s=await authDb.collection('accounts').get(); ACC=s.docs.map(d=>({...d.data(), id:d.id})); renderAccounts(); }
+async function loadAccounts(){ if(STANDALONE){ ACC=(await rpc('board_admin_list',{p_token:TOKEN}))||[]; renderAccounts(); return; } const s=await authDb.collection('accounts').get(); ACC=s.docs.map(d=>({...d.data(), id:d.id})); renderAccounts(); }
 const activeAdmins=()=>ACC.filter(a=>a.role==='admin'&&a.active!==false);
 function renderAccounts(){
   $('accRows').innerHTML = ACC.map(a=>{ const me=a.id===ME.id, off=a.active===false;
@@ -1619,36 +1666,38 @@ $('accRows').addEventListener('change',async e=>{
   if(e.target.dataset.act!=='role') return;
   const id=e.target.closest('tr').dataset.id, a=ACC.find(x=>x.id===id), role=e.target.value;
   if(a.role==='admin' && role!=='admin' && activeAdmins().length<=1){ e.target.value='admin'; return adSay('관리자가 최소 한 명은 있어야 합니다.','err'); }
-  try{ await authDb.doc('accounts/'+id).update({role}); if(id===ME.id){ ME.role=role; renderAcct(); if(role!=='admin') $('mAdmin').hidden=true; } adSay(`${id} 권한을 ${role==='admin'?'관리자':'사용자'}로 바꿨습니다.`,'ok'); await loadAccounts(); }
-  catch(err){ adSay('권한을 바꾸지 못했습니다.','err'); }
+  try{ await (STANDALONE?rpc('board_admin_update',{p_token:TOKEN,p_id:id,p_role:role}):authDb.doc('accounts/'+id).update({role})); if(id===ME.id){ ME.role=role; renderAcct(); if(role!=='admin') $('mAdmin').hidden=true; } adSay(`${id} 권한을 ${role==='admin'?'관리자':'사용자'}로 바꿨습니다.`,'ok'); await loadAccounts(); }
+  catch(err){ adSay(STANDALONE?sbMsg(err):'권한을 바꾸지 못했습니다.','err'); if(STANDALONE) await loadAccounts().catch(()=>{}); }
 });
 $('accRows').addEventListener('click',async e=>{
   const b=e.target.closest('button[data-act]'); if(!b) return;
-  const tr=b.closest('tr'), id=tr.dataset.id, a=ACC.find(x=>x.id===id), act=b.dataset.act, ref=authDb.doc('accounts/'+id);
+  const tr=b.closest('tr'), id=tr.dataset.id, a=ACC.find(x=>x.id===id), act=b.dataset.act, ref=STANDALONE?null:authDb.doc('accounts/'+id);
   try{
     if(act==='toggle'){
       if(id===ME.id) return adSay('자기 계정은 중지할 수 없습니다.','err');
       if(a.active!==false && a.role==='admin' && activeAdmins().length<=1) return adSay('마지막 관리자 계정은 중지할 수 없습니다.','err');
-      await ref.update({active:a.active===false}); adSay(`${id} 계정을 ${a.active===false?'사용':'중지'} 상태로 바꿨습니다.`,'ok'); await loadAccounts();
+      await (STANDALONE?rpc('board_admin_update',{p_token:TOKEN,p_id:id,p_active:a.active===false}):ref.update({active:a.active===false})); adSay(`${id} 계정을 ${a.active===false?'사용':'중지'} 상태로 바꿨습니다.`,'ok'); await loadAccounts();
     } else if(act==='reset'){ tr.querySelector('.rst').hidden=false; tr.querySelector('.rst input').focus();
     } else if(act==='resetSave'){
       const pw=tr.querySelector('.rst input').value; if(pw.length<8) return adSay('임시 비밀번호는 8자 이상이어야 합니다.','err');
-      const salt=newSalt(), hash=await hashPw(pw,salt); await ref.update({salt,hash,pwChangedAt:nowStr(),mustChange:id!==ME.id});
-      if(id===ME.id) saveSess(sessFor(id,hash));
+      if(STANDALONE){ await rpc('board_admin_update',{p_token:TOKEN,p_id:id,p_pw:pw}); }
+      else { const salt=newSalt(), hash=await hashPw(pw,salt); await ref.update({salt,hash,pwChangedAt:nowStr(),mustChange:id!==ME.id});
+      if(id===ME.id) saveSess(sessFor(id,hash)); }
       adSay(`${id} 비밀번호를 초기화했습니다. 임시 비밀번호를 전달하세요. 다음 로그인 때 새 비밀번호를 정하게 됩니다.`,'ok'); await loadAccounts();
     } else if(act==='del'){
       if(id===ME.id) return adSay('자기 계정은 삭제할 수 없습니다.','err');
       if(a.role==='admin' && activeAdmins().length<=1) return adSay('마지막 관리자 계정은 삭제할 수 없습니다.','err');
       if(b.dataset.confirm!=='1'){ b.dataset.confirm='1'; b.textContent='삭제 확인'; return adSay(`한 번 더 누르면 ${id} 계정을 삭제합니다.`); }
-      await ref.delete(); adSay(`${id} 계정을 삭제했습니다.`,'ok'); await loadAccounts();
+      await (STANDALONE?rpc('board_admin_delete',{p_token:TOKEN,p_id:id}):ref.delete()); adSay(`${id} 계정을 삭제했습니다.`,'ok'); await loadAccounts();
     }
-  }catch(err){ adSay('처리하지 못했습니다. 다시 시도해 주세요.','err'); }
+  }catch(err){ adSay(STANDALONE?sbMsg(err):'처리하지 못했습니다. 다시 시도해 주세요.','err'); }
 });
 $('naAdd').onclick=async()=>{
   const id=normId($('naId').value), name=$('naName').value.trim(), role=$('naRole').value, pw=$('naPw').value;
   if(!validId(id)) return adSay('ID는 영문 소문자·숫자·.-_ 3~32자로 정해 주세요.','err');
   if(!name) return adSay('이름을 입력하세요.','err');
   if(pw.length<8) return adSay('임시 비밀번호는 8자 이상이어야 합니다.','err');
+  if(STANDALONE){ try{ await rpc('board_admin_create',{p_token:TOKEN,p_id:id,p_name:name,p_role:role,p_pw:pw}); ['naId','naName','naPw'].forEach(x=>$(x).value=''); adSay(`${id} 계정을 추가했습니다. 임시 비밀번호를 본인에게 전달하세요. 첫 로그인 때 새 비밀번호를 정하게 됩니다.`,'ok'); await loadAccounts(); }catch(e){ adSay(sbMsg(e),'err'); } return; }
   try{
     const ref=authDb.doc('accounts/'+id); if((await ref.get()).exists) return adSay('이미 있는 ID입니다.','err');
     const salt=newSalt(), hash=await hashPw(pw,salt);
@@ -1694,9 +1743,8 @@ let REQS=[], inboxUnsub=null, inFilter='all';
 $('reqBody').addEventListener('input',()=>{ $('reqCnt').textContent=`${$('reqBody').value.length} / 2000`; });
 const reqSay=(t,c)=>{ $('reqMsg').textContent=t; $('reqMsg').className='mmsg '+(c||''); };
 async function loadMyRequests(){
-  if(!authDb||!ME) return;
-  try{ const sn=await authDb.collection('requests').get();
-    const mine=sn.docs.map(d=>({...d.data(),_id:d.id})).filter(r=>r.by===ME.id).sort((a,b)=>(b.atMs||0)-(a.atMs||0));
+  if(!ME||(!STANDALONE&&!authDb)) return;
+  try{ const mine = STANDALONE ? ((await rpc('board_request_mine',{p_token:TOKEN}))||[]) : (await authDb.collection('requests').get()).docs.map(d=>({...d.data(),_id:d.id})).filter(r=>r.by===ME.id).sort((a,b)=>(b.atMs||0)-(a.atMs||0));
     $('reqMine').innerHTML = mine.length ? mine.map(r=>`<li><div class="rt"><b>${esc(r.title)}</b><span class="rs ${esc(r.status||'new')}">${RS[r.status]||'새 요청'}</span></div>
       <div class="rm">${esc(r.at||'')}</div><div class="rb">${esc(r.body)}</div>${r.reply?`<div class="ra"><b>관리자 답변</b> · ${esc(r.replyAt||'')}<br>${esc(r.reply)}</div>`:''}</li>`).join('')
       : '<li class="req-empty">아직 보낸 요청이 없습니다.</li>';
@@ -1708,17 +1756,21 @@ $('reqForm').addEventListener('submit',async e=>{
   const title=$('reqTitle').value.trim(), body=$('reqBody').value.trim();
   if(!title) return reqSay('제목을 입력하세요.','err');
   if(!body) return reqSay('내용을 입력하세요.','err');
-  if(!authDb||!ME) return reqSay('로그인 상태를 확인할 수 없습니다. 다시 로그인해 주세요.','err');
+  if((!authDb&&!STANDALONE)||!ME) return reqSay('로그인 상태를 확인할 수 없습니다. 다시 로그인해 주세요.','err');
   const btn=$('reqSend'); btn.disabled=true; btn.textContent='보내는 중…';
   try{
-    await authDb.collection('requests').add({title,body,by:ME.id,byName:ME.name||ME.id,at:nowStr(),atMs:Date.now(),status:'new'});
+    if(STANDALONE) await rpc('board_request_create',{p_token:TOKEN,p_title:title,p_body:body});
+    else await authDb.collection('requests').add({title,body,by:ME.id,byName:ME.name||ME.id,at:nowStr(),atMs:Date.now(),status:'new'});
     $('reqTitle').value=''; $('reqBody').value=''; $('reqCnt').textContent='0 / 2000';
     reqSay('관리자에게 요청을 보냈습니다. 답변은 아래 "내가 보낸 요청"에서 볼 수 있습니다.','ok'); await loadMyRequests();
   }catch(err){ reqSay(err?.code==='quota_exceeded'?'저장 공간이 가득 차 보낼 수 없습니다. 관리자에게 알려 주세요.':'보내지 못했습니다. 잠시 후 다시 시도해 주세요.','err'); }
   finally{ btn.disabled=false; btn.textContent='제출하기'; }
 });
 /* 관리자 요청함 */
+function inboxBadge(){ const n=REQS.filter(r=>(r.status||'new')==='new').length; $('acctDot').hidden=!n; $('acctDot').textContent=n>9?'9+':String(n); $('inboxCnt').textContent=n?String(n):''; }
+async function sbInboxTick(){ try{ REQS=(await rpc('board_inbox',{p_token:TOKEN}))||[]; inboxBadge(); if(!$('mInbox').hidden) renderInbox(); }catch(e){} }
 function watchInbox(){
+  if(STANDALONE){ if(!ME||ME.role!=='admin'||inboxUnsub) return; sbInboxTick(); const h=setInterval(sbInboxTick,60000); inboxUnsub=()=>clearInterval(h); return; }
   if(!authDb||!ME||ME.role!=='admin'||inboxUnsub) return;
   inboxUnsub=authDb.collection('requests').onSnapshot(sn=>{
     REQS=sn.docs.map(d=>({...d.data(),_id:d.id})).sort((a,b)=>(b.atMs||0)-(a.atMs||0));
@@ -1742,15 +1794,17 @@ $('inFilter').addEventListener('click',e=>{ const b=e.target.closest('button[dat
 $('inList').addEventListener('click',async e=>{
   const b=e.target.closest('button[data-act="save"]'); if(!b) return;
   const item=b.closest('.inbox-item'), id=item.dataset.id, status=item.querySelector('select').value, reply=item.querySelector('input').value.trim();
-  try{ await authDb.doc('requests/'+id).update(reply?{status,reply,replyAt:nowStr(),replyBy:ME.id}:{status}); $('inMsg').textContent='저장했습니다.'; $('inMsg').className='mmsg ok'; }
+  try{ if(STANDALONE){ await rpc('board_inbox_update',{p_token:TOKEN,p_id:Number(id),p_status:status,p_reply:reply||null}); await sbInboxTick(); } else await authDb.doc('requests/'+id).update(reply?{status,reply,replyAt:nowStr(),replyBy:ME.id}:{status}); $('inMsg').textContent='저장했습니다.'; $('inMsg').className='mmsg ok'; }
   catch(err){ $('inMsg').textContent='저장하지 못했습니다.'; $('inMsg').className='mmsg err'; }
 });
 
 let SNAP_AT='';
 function applySnap(j){ if(!j) return; if(j.history) applyHistory(j.history); if(j.prices){ applyRemote(j.prices); SNAP_AT=j.prices.finishedAt||SNAP_AT; }
+  if(j.ai && $('aiOut')){ $('aiOut').textContent=j.ai; $('aiOut').hidden=false; $('aiStatic').hidden=true; $('aiSub').textContent=`${j.aiAt||SNAP_AT} 자동 요약 (구매팀 관점)`; }
   if(STANDALONE && $('barSt')){ $('barSt').textContent=`${SNAP_AT||''} 기준 데이터`; } }
 (function applySnapshot(){ try{ applySnap(JSON.parse(document.getElementById('snap').textContent||'{}')); }catch(e){ console.warn('snapshot',e); }
-  if(STANDALONE && location.protocol.startsWith('http')){ fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applySnap).catch(()=>{}); } })();
+  reloadData(); if(STANDALONE) setInterval(reloadData, 10*60*1000); })();
+function reloadData(){ if(STANDALONE && location.protocol.startsWith('http')) fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applySnap).catch(()=>{}); }
 initAuth();
 </script>
 
