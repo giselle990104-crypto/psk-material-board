@@ -57,6 +57,7 @@ a{color:inherit}
 .btn:disabled{opacity:.55;cursor:not-allowed}
 .btn:focus-visible,input:focus-visible,select:focus-visible,.side button:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
 
+.brand-home{appearance:none;border:0;background:none;padding:0;margin:0;color:inherit;text-align:left;cursor:pointer;font:inherit}.brand-home:hover b{opacity:.8}.brand-home:focus-visible{outline:2px solid var(--copper);outline-offset:4px;border-radius:3px}
 /* header strip */
 .head{padding-block:20px 16px;margin-left:28px}
 .head .eyebrow{font-family:var(--font-data);font-size:13.5px;color:var(--copper);letter-spacing:.08em;margin-bottom:2px}
@@ -389,7 +390,7 @@ footer a{color:var(--ink-2)}
 
 <header class="bar">
   <div class="wrap">
-    <div class="brand"><b>PSK <span>Material</span> Intelligence Board</b><small class="tagline">원자재 시세 확인 및 동향 정리</small></div>
+    <div class="brand"><button id="brandHome" type="button" class="brand-home" aria-label="PSK Material Intelligence Board — Dashboard로 이동"><b>PSK <span>Material</span> Intelligence Board</b></button><small class="tagline">원자재 시세 확인 및 동향 정리</small></div>
     <div class="right no-pdf">
       <div class="r-top"><span class="hello" id="hello"></span>
         <div class="acct-wrap" style="position:relative">
@@ -865,6 +866,7 @@ function showPane(id){
   handle.setAttribute('aria-label',`섹션 메뉴 열기 (현재 ${SECS[i].dataset.label})`);
   try{ localStorage.setItem('psk-mi-tab', id); }catch(e){}
 }
+document.getElementById('brandHome').addEventListener('click',()=>{showPane('dashboard');setDrawer(false);window.scrollTo({top:0,behavior:'smooth'});});
 function showRequest(){
   SECS.forEach(s=>s.hidden=true); $('request').hidden=false;
   side.querySelectorAll('button[data-id]').forEach(b=>b.setAttribute('aria-selected','false')); $('sideReq').setAttribute('aria-selected','true');
