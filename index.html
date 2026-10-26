@@ -849,7 +849,7 @@ const $ = id => document.getElementById(id);
 /* ---------- left drawer tabs ---------- */
 const SECS=[...document.querySelectorAll('section.pane:not(.xpane)')];
 const side=$('side'), handle=$('tabHandle');
-side.innerHTML = `<div class="ttl">섹션 이동</div>` + SECS.map((s,i)=>`<button type="button" role="tab" id="tab-${s.id}" data-id="${s.id}" aria-controls="${s.id}"><span class="n">${String(i+1).padStart(2,'0')}</span>${s.dataset.label}</button>`).join('')
+side.innerHTML = `<div class="ttl">섹션 이동</div>` + SECS.map((s,i)=>`<button type="button" role="tab" id="tab-${s.id}" data-id="${s.id}" aria-controls="${s.id}"><span class="n">${s.id==='dashboard'?'':String(i).padStart(2,'0')}</span>${s.dataset.label}</button>`).join('')
   + `<div class="sep"></div><div class="foot">출처는 페이지 하단</div><button type="button" class="side-req" id="sideReq">관리자에게 요청하기</button>`;
 function setDrawer(open){
   side.classList.toggle('open',open); handle.setAttribute('aria-expanded',open);
@@ -860,7 +860,7 @@ function showPane(id){
   $('request').hidden=true; $('sideReq')?.setAttribute('aria-selected','false');
   SECS.forEach(s=>{ s.hidden = s.id!==id; });
   side.querySelectorAll('button[data-id]').forEach(b=>b.setAttribute('aria-selected', b.dataset.id===id));
-  const i=SECS.findIndex(s=>s.id===id); $('headNo').textContent=String(i+1).padStart(2,'0'); $('headTitle').textContent=SECS[i].dataset.label; $('headDesc').textContent=SECS[i].dataset.desc||'';
+  const i=SECS.findIndex(s=>s.id===id); $('headNo').textContent= id==='dashboard' ? 'Dashboard' : String(i).padStart(2,'0'); $('headTitle').textContent=SECS[i].dataset.label; $('headDesc').textContent=SECS[i].dataset.desc||'';
   handle.setAttribute('aria-label',`섹션 메뉴 열기 (현재 ${SECS[i].dataset.label})`);
   try{ localStorage.setItem('psk-mi-tab', id); }catch(e){}
 }
