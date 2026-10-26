@@ -852,7 +852,7 @@ function applyRemote(d){
 }
 (async()=>{
   try{ db = await window.claude?.use?.('db'); }catch(e){}
-  if(!db){ $('updNote').textContent='시세 업데이트는 claude.ai에 로그인해 이 보드를 열었을 때 동작합니다. 지금은 10/26 조사 기준값을 보여드립니다.'; return; }
+  if(!db){ if(STANDALONE) return; $('updNote').textContent='시세 업데이트는 claude.ai에 로그인해 이 보드를 열었을 때 동작합니다. 지금은 10/26 조사 기준값을 보여드립니다.'; return; }
   priceRef=db.doc('board/prices');
   priceRef.onSnapshot(snap=>{ if(snap.exists) applyRemote(snap.data()||{}); },
     ()=>{ $('updNote').textContent='보드 데이터 연결이 끊겼습니다. 페이지를 새로고침해 주세요.'; });
@@ -910,8 +910,29 @@ async function requestUpdate(items, history, from){
 $('updRun').onclick=()=>{ const items=UPD_ITEMS.filter(i=>updSel.has(i.id)).map(i=>i.id); if(items.length) requestUpdate(items,false,'시세 패널'); };
 $('topUpd').onclick=()=>requestUpdate(ALL_IDS,true,'상단 업데이트 버튼');
 if(STANDALONE){
-  const AUTO_NOTE='시세는 Investing.com 기준으로 30분마다(매시 7분·37분) 자동 업데이트되고, 화면은 10분마다 새 데이터를 불러옵니다.';
-  const sbUpd=()=>{ $('updNote').textContent=AUTO_NOTE+' 방금 최신 데이터를 다시 불러왔습니다.'; $('barSt').textContent=`${SNAP_AT||''} 기준 데이터 · 30분마다 자동 업데이트`; reloadData(); };
+  const AUTO_NOTE='시세는 Investing.com 기준으로 30분마다(매시 7분·37분) 자동 업데이트되고, 화면은 10분마다 새 데이터를 불러옵니다. 업데이트 버튼을 누르면 바로 가져옵니다.';
+  let updBusy=false;
+  const updMsg=(m,run)=>{ $('updNote').textContent=m; $('barSt').textContent=m; $('barSt').className=run?'barst run':'barst'; };
+  const updBtns=on=>{ ['topUpd','updRun'].forEach(id=>{ $(id).disabled=on; }); $('topUpd').textContent=on?'업데이트 중…':'업데이트'; };
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  const fetchSnap=()=>fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null);
+  const sbUpd=async()=>{
+    if(updBusy) return;
+    if(!TOKEN){ reloadData(); updMsg(AUTO_NOTE); return; }
+    updBusy=true; updBtns(true); const before=SNAP_AT;
+    try{
+      const r=await rpc('board_trigger_update',{p_token:TOKEN});
+      if(!r||!r.ok){ updMsg(`방금 다른 업데이트가 실행됐습니다. ${r&&r.wait?Math.ceil(r.wait/60)+'분 뒤 ':''}다시 누를 수 있어요. 결과는 1~2분 안에 화면에 반영됩니다.`); return; }
+      updMsg('Investing.com에서 최신 시세를 가져오는 중… (보통 1~3분)',true);
+      await sleep(4000);
+      try{ const c=await rpc('board_update_result',{p_token:TOKEN,p_req:r.req}); if(c&&c.done&&c.status!==204){ updMsg(`업데이트를 시작하지 못했습니다 (GitHub ${c.status||c.error||'오류'}). 관리자에게 GitHub 토큰 확인을 요청해 주세요. 시세는 30분마다 자동으로도 업데이트됩니다.`); return; } }catch(e){}
+      for(let i=0;i<24;i++){ await sleep(10000); const j=await fetchSnap(); if(j&&j.prices&&j.prices.finishedAt&&j.prices.finishedAt!==before){ applySnap(j); updMsg(`업데이트 완료 · ${SNAP_AT} 기준 데이터`); return; } }
+      updMsg('업데이트가 조금 늦어지고 있습니다. 잠시 뒤 화면이 자동으로 새 데이터를 불러옵니다.');
+    }catch(e){
+      if(/not_configured|Could not find the function/.test(e?.code||'')){ reloadData(); updMsg(AUTO_NOTE+' 방금 최신 데이터를 다시 불러왔습니다.'); }
+      else updMsg(sbMsg(e));
+    }finally{ updBusy=false; updBtns(false); }
+  };
   $('updNote').textContent=AUTO_NOTE;
   $('topUpd').onclick=sbUpd; $('updRun').onclick=sbUpd; $('updCopy').hidden=true;
 }
