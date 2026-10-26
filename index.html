@@ -910,7 +910,9 @@ async function requestUpdate(items, history, from){
 $('updRun').onclick=()=>{ const items=UPD_ITEMS.filter(i=>updSel.has(i.id)).map(i=>i.id); if(items.length) requestUpdate(items,false,'시세 패널'); };
 $('topUpd').onclick=()=>requestUpdate(ALL_IDS,true,'상단 업데이트 버튼');
 if(STANDALONE){
-  const sbUpd=()=>{ const m='시세는 평일 8~18시 매시 47분에 자동으로 업데이트됩니다. 방금 데이터를 다시 불러왔습니다.'; $('updNote').textContent=m; $('barSt').textContent=`${SNAP_AT||''} 기준 데이터 · 다음 업데이트 매시 47분`; reloadData(); };
+  const AUTO_NOTE='시세는 Investing.com 기준으로 30분마다(매시 7분·37분) 자동 업데이트되고, 화면은 10분마다 새 데이터를 불러옵니다.';
+  const sbUpd=()=>{ $('updNote').textContent=AUTO_NOTE+' 방금 최신 데이터를 다시 불러왔습니다.'; $('barSt').textContent=`${SNAP_AT||''} 기준 데이터 · 30분마다 자동 업데이트`; reloadData(); };
+  $('updNote').textContent=AUTO_NOTE;
   $('topUpd').onclick=sbUpd; $('updRun').onclick=sbUpd; $('updCopy').hidden=true;
 }
 renderTiles(); renderUpdList();
