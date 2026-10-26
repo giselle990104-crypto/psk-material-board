@@ -1086,7 +1086,7 @@ if(STANDALONE){
     try{
       const r=await rpc('board_trigger_update',{p_token:TOKEN});
       if(!r||!r.ok){ updMsg(`방금 다른 업데이트가 실행됐습니다. ${r&&r.wait?Math.ceil(r.wait/60)+'분 뒤 ':''}다시 누를 수 있어요. 결과는 1~2분 안에 화면에 반영됩니다.`); return; }
-      updMsg('Investing.com에서 최신 시세를 가져오는 중… (보통 1~3분)',true);
+      updMsg('최신 시세를 가져오는 중… (보통 1~3분)',true);
       await sleep(4000);
       try{ const c=await rpc('board_update_result',{p_token:TOKEN,p_req:r.req}); if(c&&c.done&&c.status!==204){ updMsg(`업데이트를 시작하지 못했습니다 (GitHub ${c.status||c.error||'오류'}). 관리자에게 GitHub 토큰 확인을 요청해 주세요. 시세는 30분마다 자동으로도 업데이트됩니다.`); return; } }catch(e){}
       for(let i=0;i<24;i++){ await sleep(10000); const j=await fetchSnap(); if(j&&j.prices&&j.prices.finishedAt&&j.prices.finishedAt!==before){ applySnap(j); updMsg(`업데이트 완료 · ${SNAP_AT} 기준 데이터`); return; } }
