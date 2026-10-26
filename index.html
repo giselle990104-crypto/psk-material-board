@@ -1370,7 +1370,16 @@ async function refreshScheduledNews(){
     if(!Array.isArray(data.items)||!data.items.length)throw Error('뉴스 데이터 없음');
     const incoming=data.items.filter(x=>x && typeof x.title==='string' && /^https:\/\//.test(x.url||'') && MATS.includes(x.category));
     if(!incoming.length)throw Error('표시할 뉴스 없음');
-    NEWS.splice(0,NEWS.length,...incoming.map(x=>({d:formatNewsDate(x.date),m:x.category,t:x.title,s:x.source||'Google News',u:x.url})));
+    // Keep the originally curated headlines and all newly collected history.
+    const combined=[...incoming.map(x=>({d:formatNewsDate(x.date),m:x.category,t:x.title,s:x.source||'Google News',u:x.url})),...NEWS];
+    const deduped=[],seen=new Set();
+    combined.forEach(n=>{
+      const key=n.m+'|'+n.t.toLowerCase().replace(/[^a-z0-9가-힣]/g,'').slice(0,100);
+      if(!seen.has(key)){seen.add(key);deduped.push(n);}
+    });
+    const iso=n=> /^\d{4}\.\d{2}\.\d{2}$/.test(n.d)?n.d:'2026.'+n.d;
+    deduped.sort((a,b)=>iso(b).localeCompare(iso(a)));
+    NEWS.splice(0,NEWS.length,...deduped);
     // renderNews handles both archived MM.DD and new YYYY.MM.DD.
     renderNews([...nf.children].find(b=>b.getAttribute('aria-pressed')==='true')?.textContent||'전체');
     updateNewsBrief(data);
