@@ -1,10 +1,24 @@
 {
-  "updatedAt": "2026-10-26T23:28+09:00",
+  "updatedAt": "2026-10-27T08:16+09:00",
   "timezone": "Asia/Seoul",
-  "source": "기존 사이트에 등록된 기사 (초기 데이터)",
-  "status": "seed",
+  "source": "Google News RSS",
+  "status": "ok",
   "errors": [],
   "items": [
+    {
+      "date": "2026-10-27",
+      "category": "철강",
+      "title": "Nucor Profit Beats Estimates as Higher Steel Prices Lift Results - Bloomberg.com",
+      "source": "Bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQQzNpQ0NmYkNLOUdmc3JpTzBqQ0JuRS1GUzAxMjhlWnpmSVdnMFBqbG13NWRicWRveVcxZzVERmlHMHZ6Q1VBX1MyajdWazBLSE91bDczeDA4ZTBqS1ZJZjA0eXhNRERQOUZfNWFJZ21KS3pSYkNDeWRSRm9reV9oaU0wZFQ3aWhGZmdVLVlpQnlDb3lNdkZTWmFnUGttZGdUNFdsd01hdnk2TFFBOFR4ZzdQaXcwZw?oc=5"
+    },
+    {
+      "date": "2026-10-26",
+      "category": "환율",
+      "title": "South Korea's Won Nominal Effective Exchange Rate Hits 94.83, Two-Year High as USD-KRW Enters 1,310 Range - BigGo Finance",
+      "source": "BigGo Finance",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBzVHBYVUlWc3M4SUdLTTJaaFZ1N3pKZnRrZjB3SWlfZ0w1Z3dHNHMxUzh5WXNoaEJRUUh1cXl0YWRleC0tQTEzdGUxcF9oM25LRDY5eThkNDVEelZJN3ZjMW5XRDFtekxiSjhxWDJCT3FMeGtWbEE?oc=5"
+    },
     {
       "date": "2026-10-26",
       "category": "환율",
@@ -32,6 +46,55 @@
       "title": "알루미늄 $3,043, 4주간 -7.3%로 연중 저점권 유지",
       "source": "Investing.com",
       "url": "https://kr.investing.com/commodities/aluminum-historical-data"
+    },
+    {
+      "date": "2026-10-25",
+      "category": "환율",
+      "title": "Why Kospi and Korean won have parted ways - The Korea Herald",
+      "source": "The Korea Herald",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE96RHFUNGJZbHJRNUV4QXB0UUpMLW1Lejhwal9BLV8zSFl5aUppcDA3NnZnb1NwanVjM1VaS3FrZ19HYkRIdlk2ZWJkZEN4YUVTcDdnNGg5VQ?oc=5"
+    },
+    {
+      "date": "2026-10-24",
+      "category": "니켈",
+      "title": "Nickel Price Rises Above $16,000 as Chinese Producers Weigh Indonesia Output Cuts - CarbonCredits.com",
+      "source": "CarbonCredits.com",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOeURoYk1RNFNLNzdxUm1ReFFCYWp6UEhiWU42ekhDUXZEYkVpeDhQSnkxVV91ZXNxWWZMTDhtb0FnVVBMSnQwTnlVd1R1a0pITFc1cTZGMGdfcFFWVHY0VHB6YVVWc2xIQVhUVVNkTkhyb1VyQ1c3UmlINVV1VXNKdmJxOXM0TkJrcVFqRm5pUHdONVZxVjM4MkZRY0xtbE5uS24zam5oTUZTUQ?oc=5"
+    },
+    {
+      "date": "2026-10-24",
+      "category": "반도체",
+      "title": "U.S. Designates Helium as Critical Material, Citing Semiconductor Importance - Industrial Equipment News",
+      "source": "Industrial Equipment News",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOOXFLRGo2TVBLRVhTNTZnZ3lKWFlXajF6bkpxbElKY1BKNU1rcFUzN0luOW1FbUo5eUR2SXliQmNsenRDSDZtamNhbXZ0cFZueWE3aHdHaEtvYTFqNHprYW15cGxVZ2dCY0xZTzQ3R2ZST1pad0RES29ZVmdSbHhET3NnRXZTTmFjdDd4RnhjRVFmbHdwQ1Y4LXExalhlcmlQNF80SW9DMGFyNG9Hd0ZFYTZFSkIxejdnZnZzeg?oc=5"
+    },
+    {
+      "date": "2026-10-24",
+      "category": "반도체",
+      "title": "Micron Invests in US Critical Minerals Supply Chain for Semiconductor Production - Thomasnet",
+      "source": "Thomasnet",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQTGE2dUxvQlFkOGI2eTlhZW5fRTBMdEJPcmJjbS1xbFpTbFRVSDZJWlRiNzlWZXRkOXlrOGZsZlRJRHhVa19jd21jY2lzX2tET1JJMjE2TGJiRVUxUWw5TGQ0ZzdDMUdpajg5QThwcE9HZ1M4a2xkRm5FbUp3SjZ6RXhaUDd1djNuVzE4b1EtVlBJa0JmMV9N?oc=5"
+    },
+    {
+      "date": "2026-10-23",
+      "category": "니켈",
+      "title": "LME Week: Indonesia eyes next commodity boom after dominating global nickel - S&P Global",
+      "source": "S&P Global",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOM01Fem1sRVVaZUVzN24ya2lqY0hVYnRLaXdqZ0pDVjRvdHlKS3FCckUtLTI5Mm1Yc05Iak9HNERTQ1ZHVTU3UzM2MlU1N1MtMDJJYkRrSG92SzFmZm9ud2x1elpObFRYWUkyMHE4LVFNNUlQbWlaR3N1eFN1dkNDaURYMmhDWTZSMlBjQUdwTFlqMFc2Z0lNTnVRSWlfMi1wa1RDZER4LVZ2dkc4LXhNWnpfY1NRMC1lU0I2OHZWcGVQV0hldElhX01kNENkTnZjQjAwUzJoajJnOWowcVlLNnJFZw?oc=5"
+    },
+    {
+      "date": "2026-10-23",
+      "category": "철강",
+      "title": "U.S. sheet prices jump as supply tightens further - CME Group",
+      "source": "CME Group",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNT2JOOVNnTjRGMEIwbFlidDZVNmJRZHpsbTBWZnVMejY2XzBmY0JjUG0zNjY5Y3QzR01pbEREY3VzeVJqS0FUR25maWk0dUF4eHFOVG1palZEMjlSSnRoeVB6S2Z3cnEzQzJ0MURYT1JvSXQxYzJRSXduQXlaSHZobTFWa0VuZw?oc=5"
+    },
+    {
+      "date": "2026-10-23",
+      "category": "반도체",
+      "title": "Chip stocks fall as equipment maker Lam Research cites 'supply chain constraints' - Yahoo Finance",
+      "source": "Yahoo Finance",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPNTFRUEdPVXNMUm5MbFhpU0ltTkZDam0wSXU0R292ZDBvVGhlT3hlOWxJbk1jZjBJeFhZUWNXbmgtemF0TTFrak1fRnNxOFlsaGJJa0xMWEUtZUZ3LTEtcHh6OXl4d1hPaVlPcjJlbDl1NlQwZC1CN2VIcmQyOVlQczVpdVotR2pjZGI5MWJyWk1pVFdjLURHS1ZmeFY0VGd6ajMtRGxWTkRkY2xUVS04cnRSZ1ltQl9UMnRCOWpBTGpIbVJBX0pnZ29jRlp3NUhXdmc?oc=5"
     },
     {
       "date": "2026-10-23",
@@ -62,11 +125,158 @@
       "url": "https://www.mysteel.net/"
     },
     {
+      "date": "2026-10-22",
+      "category": "구리",
+      "title": "Copper price falls as inventories rise, supply worries ease; nickel climbs - Mining.com",
+      "source": "Mining.com",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOVXlzT0xXYVUzeDVyaWxSYTdldjJGNVI4ZHFnZjV2aEJNaDN5dTZKTGtZR2V5WFN0aVdoTHAwZDY2Zkdad1R0OHhrNkl4dk9KVWFPRDNqZTZ2RGpwNW9HSE9ZRXBNQzBPdHRUNEZ6U0xuUzg3QTc3QW5UWFlleFJ2Z0ZqWUhfRXBpVlpyUnJqOXlJVlFGWjB6cUtkSHlfYjU4b2c?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "구리",
+      "title": "Copper Declines as Tech-Stock Selloff Dulls Appetite for Risk - Bloomberg.com",
+      "source": "Bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPZEljYmU3djMyLWxYRlJTdU9XX2dkZUxlQXg4Rkw2eUd0aHctRkwwbTNlN1RxTU1xRV93ZVhFY2x6WElUX0Fxc0RGODYwNXkxNUtNdjVKS0RJd0dnc2VQX0dkTmU1VE9qa3EtZkFNR0JaQWNzVFBWa2RadmNBYUw2RmptQzg2UkZJVWFOcklWeXl5RkFPaVdiSnZRSDJlTGViYlM4cHV5SUcwbEYxTnJYMjRB?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "알루미늄",
+      "title": "The US faces national security risks without aluminum smelters: report - Manufacturing Dive",
+      "source": "Manufacturing Dive",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPNFJaU0x2UUlXbDloWXZQN256UVhrd0xIWnluMjhRNHBwUjVscTFQUXJVd1lBNG55NEgtLXVONE91aEs5MnItUkE1Uk1Pb0ZKc29ZY0ZIWG52eWhqVUNQaW1NcWsxRGtyWG1iWTAwaWhYRlZ5M1JmVXpuSlpTcjZvYzVxQjlIMW1ZRVBpazJDdXpiWHRIaGJNT1RoV3pWOUd0U0pSVnJwVkdsMlg0RjY2d0l3?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "알루미늄",
+      "title": "China’s Rising Aluminum Output Cushions Gulf Supply Shock - WSJ",
+      "source": "WSJ",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPTzBPQTlqTGpoMWp0Y2pSaUE4UC16cERjdW00VmhESFhWaXU5M3JlRmNFN05ndERhUTlNY1RNMkxWMGdIclo0dkszNlRCTVowc3pNUlRtYmhESVdwckFmSTZRc05zcWVEYXJyQnBLME1IQk5MWHQ0REgwVXFhejZMZnhjaUZxTF9ZVzU4c3pETWdHZ2cxLUxJOF81Yi1URUQ5cS1yT2ZRS0VjVTgzUXpxT3JnRQ?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "알루미늄",
+      "title": "Aluminium Gives Up Its War Premium, Copper Stays Elevated - Crude Oil Prices Today | OilPrice.com",
+      "source": "Crude Oil Prices Today | OilPrice.com",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNWWRNcEFodF9pZi0zZFRaMmdjZjJaRmpNNkIxOG8yS3drYlc4QnlRTFRhUllfTFBBejFRb0ZPb3llOEpHbjk2UUotZ2JqNWN5NU44aks0QWQxVjZOV2x6bFFhSS1UbGxlUGZOb0VFUnZoYzRFV3dUTEVTS1JHQ284YVBhUXg5SERjcDVYZHh3Q3VFZzg1emUxdHptUjRxUWM1cUNj0gGoAUFVX3lxTE5ZOS05U0RFYUxRdWpMLXUzNlExOVNYc3djU0NTMFZraXJoZ2J1TjN2c3I3bFNZMHNqQnVnV3VEUE0zWEJGeTFxMFhqenYxUFpLcTVCSFUxZ2h5UnRRRWdXY3VLc3VsalJxNFFCVGZvVG9iSjRvU1ZvczVES1NWM0tlOW1NemVfcURZTWxMLVlqWjdjSlV1QS1oT3hkUHlpN1pUd1A5VklYUw?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "알루미늄",
+      "title": "Aluminum Market 2027: Capacity Expansion, Tariffs and Supply Outlook - News and Statistics - IndexBox",
+      "source": "IndexBox",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQLVN5Z3VfTndXTVpZY0k0QjlJUlh0RDJ6MDgwRWR3U2ZtOHRrMlZXYmFpWjVscVFubnNiS2NucWh0ZmYtNDVvelM0RXI2UkxoUGZael9GSVB1U0RsZmJiRUtYMmRneU9NS3FEaXN1QktqUVlIaHVXODdrbUR6R1J1eG5tc0hWMHJMc1hwdGdaQ1lMNTNyZTlxX3puajVrYl9Oem1TWGI3V0cwOU9j?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "환율",
+      "title": "South Korean Won: Losses risks building toward 1400 against US Dollar – TD Securities - FXStreet",
+      "source": "FXStreet",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPUVJUamowaVFWUjhFUGtILTM0Nzl0eTR0bENIRFRoaXNxMUhHNU5BNExpNjkyUzVpdEJ0OWE4ZnhqSldxWUR4Y1h1VXcyWTlWRFJOSWNhOGU0U0kwbmFOdy14QlpUcmZYQ0hENWMyRjZyQS1YVWE1eXE5ZlZNQkJ2RG51bW1KZnNucWFRQ29zNkFHZlh6eEZ2T2lfQUxuMU5YSTBteVpqX1U0WUx0dGlFUGZDa25ZSnZXOVlaTThOYXdGWTQ?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "환율",
+      "title": "Korean won strengthens against US dollar after BOK holds key rate - The Korea Times",
+      "source": "The Korea Times",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQa1hUM09zMlAxM0p2azBzSi1EdzdUcjdHYlVhVjR5M1ZUU0VZVFd0QUhEcnhVVDlweFM4VW01Rzg5MGtMcUIyTEZYeUpOLXdBVnktem4xUTB1QTRwNkF1LXZKd3BjZTZYMEtDQWtScUhxaEROck9uZEYtX0w0RFZOVkhUcER1QlBYRjV6cG9WS25CR0xTbzlBUm1mUk04NmwxbVBDOVNwSk9fbHhGUkJ1atIBtgFBVV95cUxNaXJTY2tEb0hneUFkRE85a3N0Qm1PRmpwRkdNOThFWVhTRkdCUkJpUDhKUmdNUXY3LVI2NDY4emFqNVJteFlBZExFRzF4OFhJbEhudUVrdXN1bk9GX21MRHhsLTd4TGRvTHAyZmNlT0pVZVBBWGszUTF6YXdPX2o4SlR3MFhlcm9IZWpsckFOZE5VWFZTTEk4alhNX2kxbElpTzdMaUVjM2Y1bVc3MGN4WENlYjZSdw?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "반도체",
+      "title": "Department of Commerce Announces Letters of Intent With 4 Companies for $389 Million of R&D Awards to Strengthen America’s Energy Semiconductor Supply Chain - National Institute of Standards and Technology (.gov)",
+      "source": "National Institute of Standards and Technology (.gov)",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOdEdiaElUdmdRUmROa1VJN00tV3M0SmpBSzRacktERVIyb2FwT2xiT1ZBazFtcGZaX2V2TmtiZ0ZLdWNVNDdKWUhGVFNkaVlQYWlQTVhSWGxtdFdUVlpkMURSc3dmWEVqRHMyZzdEZ0JXdHVEWjZicTlvUV9CU1FWeG1NdlgtVG9VbEwwYnNPbzJpM203VVl6cC0ySzRhZVBveXc4UnRJaXZqUFc0aXVfMVpHa29uMDZV?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "반도체",
+      "title": "TechInsights Acquires IC Knowledge LLC - TechInsights",
+      "source": "TechInsights",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQS1FYeURrQWx1ay1aUXVtR1JIQWxvY1gyd1hXTXQyTEZLcm04VEVzWXRablNaWXBGRTdUdEFXdmhWYXlDMy1WdExBS1p5dGF2ajE1S1FMcjgzUUdIUXV2UG5WclRjRnVLNmd1cW5GQkNZd1ZwYU42OGN3MDgza3Uxc3V5aVUwTE1i?oc=5"
+    },
+    {
+      "date": "2026-10-21",
+      "category": "구리",
+      "title": "LME Copper Options Open Interest Climbs as Futures Prove Too Volatile - StoneX",
+      "source": "StoneX",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNUURBVXVmTXJQOUdQTW5PSEJ5eHN0bjAySEdPWjhBYU1YdEtaeGpEV2V3Z3BSdEsyMW5xQkZWaDFZOVRJamJBdEthQks5WjdFMXJIX2NVOC04aTl1a2RzVl9jRk9QYlU3ZDNNa2l0VUp3SzRWTnhpblo3amFFbWZoNDd2QjNDSlRYWUxDUmkzUEZ3NkZ5eUx4am42Y3JmLWMzbmwwcVFGN18?oc=5"
+    },
+    {
+      "date": "2026-10-21",
+      "category": "니켈",
+      "title": "Nickel Price Trends: Q2 2026 Review and Forecast - Investing News Network",
+      "source": "Investing News Network",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPRHJDNV91UFM3bnhsbkJJM2c5dWl5cmpWbDZOa3VHMWl0ZmtnZHp0U1B4Q3l4ZkNBeHJGVmVoVzNNa0hvVC1kRGdZSEMxNjh6YkUwekY2QUtFQlJsVTB1VFNKckVabm5VX2pIRWkyY0RmZW9KdEJKc2tWZm5sS3IxVjlZZ2ZsUkZNNndFdTRWcDNmQmRGUTRhdzNyMGhZTl9waWJwbjZZU0NfUQ?oc=5"
+    },
+    {
+      "date": "2026-10-21",
+      "category": "니켈",
+      "title": "Nickel Extends Rebound on Prospect of Indonesian Production Cuts - Bloomberg.com",
+      "source": "Bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNZDNiNWdVYk9DcWJHTkVzOHFtLWk3bFE4aEFUU1dlOHhuc3FPM25GM0N1azN1aEhwYmo3M3J3M2VPdmJrLVpoSlNfTTBjYjctNnZ5MXFvdk5NVmRiTUxFTjM2ME9wRjlVcF9zSXhCTVVJYkw5Q2k4UjUycUxpbVo1Q0xiLU9oZWgzZm1XNGxVX0pNV3N6TmVuakwxN0VJazVSYVowMkdDSEVBT2Jja00tdndiN0NVUQ?oc=5"
+    },
+    {
+      "date": "2026-10-21",
+      "category": "니켈",
+      "title": "Nickel brands listed on the London Metal Exchange tied to deforestation in Indonesia - Eia-international.org",
+      "source": "Eia-international.org",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNdEtLVmhtME5QTmlsa2o4NUYwd0xPU1h1cC1ybU1sSjRMYWUzTWplVXFmTUdpTHhXbUpVMEMyNGpMUDZ3QlRfbGMxbXM3VGk5Nmw1QzJVd0M3YUktWGJjckc0TUI2SFprdkpjZC1mTGN3ck1lQzVrWjlKTHNEaXh6bS1RX1lOakhSQ09TdjlwRm96YzBsQk9KZF9vVVkxeUJMcVRqYjFrczJ6T0VsRXFXVXFQZENLWkJQQWNleA?oc=5"
+    },
+    {
+      "date": "2026-10-21",
+      "category": "철강",
+      "title": "[Europe] European domestic hot-rolled coil (HRC) steel prices edged sl - Shanghai Metals Market",
+      "source": "Shanghai Metals Market",
+      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNX1ZWWFlQUVZWVTFaOXFESEJDNXRVdVFlNVM1cXpPSWhhX2hCVkJGR092SEdBVjRaT2JWUGhrQ1dQeFBSUkxCaGZIX1hnTzZubkZqc1BpaGFzOWE2NGoyV2QzOGZTeTJGN3ZVdkwzUlZlQW85RmEzQm5WMURDRTVPbVE4NDhJOW5JR3RnLWk3a3dtNVNHOGNVMGNtUjk2R0ZzdVNUY0t2QzUyTWxBVzF0WTk0RXR5aDdkUmhMYi1UbzR3SDN1Y0hTNWlFNHRsamVMRnZ5WE1UV3BXU0YyenhiOHJJbEw?oc=5"
+    },
+    {
+      "date": "2026-10-21",
+      "category": "환율",
+      "title": "CAD/USD - CME Group",
+      "source": "CME Group",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1VbVl4UmZ0VXRTR2ZHV2ZDLXpJeTZzRHVKMG1pQWlsOUNCdmlqNWFUQTNOV245U1FzQlJBdFJubmVSWnUzemFSU21Iam1YTW00SUtWXzhnRi05b3drUWJvbzJldlRQUQ?oc=5"
+    },
+    {
       "date": "2026-10-21",
       "category": "구리",
       "title": "TD Cowen, 올해 구리 전망 $4.40 → $5.25/lb 상향…공급차질 세계 5% 규모",
       "source": "SMM",
       "url": "https://www.metal.com/en/newscontent/103582423"
+    },
+    {
+      "date": "2026-10-20",
+      "category": "구리",
+      "title": "LME Week: Copper supply struggles to keep pace with electrification demand - S&P Global",
+      "source": "S&P Global",
+      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNLXRmRWZCaW5zRnlvVmlEVzlzakMzMFpPRGJubDZFejlKYkgycUkwRmc4eW1SY1A4QnA5NHdPSWdlVzJNb3lYak9NT0JxaXBfdlhLTjVSWnI5dHZjbU1JM21mX0E3SjVyR3lzUEhmU3BKWGVJMTFxYmpDZU1RcjRoekF3RHhiSG9XOW5pd09ybXB2SzZHcjZ5cktjU3A5QWgwTWZabWZqZWFaZ0ZrUlVyTzc3eEl3em1qQTYzWGU1T1pzMk9HZjV2OGRIc3JndlhNNzdENktXMWlWTW5kRnl0Q2d3?oc=5"
+    },
+    {
+      "date": "2026-10-20",
+      "category": "구리",
+      "title": "Antofagasta stays out of smelting: LME Week 2026 - Fastmarkets",
+      "source": "Fastmarkets",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPUWxfLUJPV0lpajNtRk5ZVzQ1Q1U1WFZGd21BSjgzRU8wNDJadkhxUFluazduRWhpZGE5aFpLSGdpS1VFYXhPWjdMQy1Jb3daNXEtRjJ4Sl83OWxUblJ1MzZRUThoSXUtUXJZTmNNZmFxZURUQWFzLW13MGExMXRhUGNuU3BCMGYzTFlEaVZn?oc=5"
+    },
+    {
+      "date": "2026-10-20",
+      "category": "알루미늄",
+      "title": "US produced 339kt aluminum in H1 2026: Can new projects change the outlook? - AL Circle",
+      "source": "AL Circle",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPSXRONnpXNGotQjBnVVVRVVh1Nmlob2pJZnliZ0lkQkNaZk1lYUpOcW5SdXV4VGlTenVsbTRuQ3N6OEZDM0UxamcwZWZvRnphaENob25rcy1hbjRndFRmSkZ5bEZBY1BVMkhCaU9SYUNZaW9DeDc1SjNQT1h4LWtPb0ZuS0tfU3hSZ0ZCY01qRnhXM2M4cXotWGZSdzBfSS1ySVlBX1pFMWczQXdzbDJZ?oc=5"
+    },
+    {
+      "date": "2026-10-20",
+      "category": "철강",
+      "title": "Nucor has increased prices for hot-rolled coils by $15/t - GMK Center",
+      "source": "GMK Center",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQaVVZMU9hd2I2eFRjVVoxY0w0QUVQNkV4NmJfaGFuSEU0dnoxMUdpMFFUZ3gwdGpIYk5JWnZNbzhSckwxS1Z2eWtWVE9JRWt0bEFsQnJySmw5N3pzSEtMTTNoX0xFNXNxZHVfVEE1S3Z4M21IbjRDVU5sRnNCSHh4QUtMMlBSQzhoTENB0gGQAUFVX3lxTE9uSjM0c3BfcnR6Z00wT2szYjdldzFSel80b0o2dEdpUS1lNXVLRERaMEhpZTJCYUdhLVZ2Smpic1lCYTZ3aFAzRkhkS3JIOF92ZjVSSWRzdXR2bnVZTHF0SmlCLWoweVdfMThZY1ZNcDF2d2UwNHhadS1WLUlUclBuRDdHbXJpbVB2VGxvUlg4Wg?oc=5"
+    },
+    {
+      "date": "2026-10-20",
+      "category": "철강",
+      "title": "PT Krakatau Steel signs agreement to supply HRC and HRS to Australia and New Zealand - SteelOrbis",
+      "source": "SteelOrbis",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOZXlRamlxOUNaaC1oTUc2RHlUV0FURFgzY1loSUd1Z1JNUE82YXZHcUI3ZGRuT21yNUJmUUpGUXozQWpDRUpBSldjYnBWb0xJeWxaaDU5LXdELWhsTUtsbGc4S0Jub0tHa3lqb1FrQ1lNQTBzUDR2UThIZlR3Ymk3dzlmUGN6dlFNWU5QUUdzNE00YzBqOUZFTFpZdFotRlpHYXV3RDJHTFRmLU1GTkw1UFRzNzZvdWxpc0dMZzJkZEV6OEdjdHRpa1ZnbUEzb05COFdaeV9rLWtJbmlzTW1Z?oc=5"
     },
     {
       "date": "2026-10-17",
@@ -134,53 +344,61 @@
   ],
   "brief": [
     {
-      "category": "환율",
+      "category": "구리",
       "headlines": [
-        "원/달러 1,323.1원 마감, 연저점 또 경신",
-        "원/달러 1,334~1,346원 전망, 반도체 업황 따른 달러 공급 우위"
+        "구리 선물 10/22 -2.76% 급락 후 10/23 +1.71% 반등, 변동성 확대",
+        "중국 9월 정련동 수입 전월비 반등, 수출은 감소",
+        "Copper price falls as inventories rise, supply worries ease; nickel climbs - Mining.com"
       ]
     },
     {
       "category": "니켈",
       "headlines": [
         "니켈 선물 $15,735, 3거래일 연속 하락(-0.70%)",
-        "니켈 반등, 숏커버와 인도네시아 감산 공조 기대"
-      ]
-    },
-    {
-      "category": "플라스틱",
-      "headlines": [
-        "브렌트유 $110.2로 숨 고르기…10/7 $100.2 대비 3주 새 약 10% 상승",
-        "유가 3.5% 급등해 5개월 고점, 공급 리스크 확대"
+        "Nickel Price Rises Above $16,000 as Chinese Producers Weigh Indonesia Output Cuts - CarbonCredits.com",
+        "LME Week: Indonesia eyes next commodity boom after dominating global nickel - S&P Global"
       ]
     },
     {
       "category": "알루미늄",
       "headlines": [
         "알루미늄 $3,043, 4주간 -7.3%로 연중 저점권 유지",
-        "알루미늄 연중 저점 $3,020, 중동 제련소 재가동 가속"
-      ]
-    },
-    {
-      "category": "구리",
-      "headlines": [
-        "구리 선물 10/22 -2.76% 급락 후 10/23 +1.71% 반등, 변동성 확대",
-        "중국 9월 정련동 수입 전월비 반등, 수출은 감소"
+        "The US faces national security risks without aluminum smelters: report - Manufacturing Dive",
+        "China’s Rising Aluminum Output Cushions Gulf Supply Shock - WSJ"
       ]
     },
     {
       "category": "철강",
       "headlines": [
-        "미국 열연코일 선물 $1,292/st, 10월 들어 소폭 상승세",
-        "중국 열연 $422로 추가 하락, 미국은 $1,310로 상승"
+        "Nucor Profit Beats Estimates as Higher Steel Prices Lift Results - Bloomberg.com",
+        "U.S. sheet prices jump as supply tightens further - CME Group",
+        "미국 열연코일 선물 $1,292/st, 10월 들어 소폭 상승세"
+      ]
+    },
+    {
+      "category": "플라스틱",
+      "headlines": [
+        "브렌트유 $110.2로 숨 고르기…10/7 $100.2 대비 3주 새 약 10% 상승",
+        "유가 3.5% 급등해 5개월 고점, 공급 리스크 확대",
+        "中 PE 선물 주간 +7.0% ¥8,781, 호르무즈 상황이 수급 좌우"
+      ]
+    },
+    {
+      "category": "환율",
+      "headlines": [
+        "South Korea's Won Nominal Effective Exchange Rate Hits 94.83, Two-Year High as USD-KRW Enters 1,310 Range - BigGo Finance",
+        "원/달러 1,323.1원 마감, 연저점 또 경신",
+        "Why Kospi and Korean won have parted ways - The Korea Herald"
       ]
     },
     {
       "category": "반도체",
       "headlines": [
-        "SEMI, 올해 메모리 300mm 장비투자 $52B(+29%) 전망"
+        "U.S. Designates Helium as Critical Material, Citing Semiconductor Importance - Industrial Equipment News",
+        "Micron Invests in US Critical Minerals Supply Chain for Semiconductor Production - Thomasnet",
+        "Chip stocks fall as equipment maker Lam Research cites 'supply chain constraints' - Yahoo Finance"
       ]
     }
   ],
-  "briefMethod": "기존 뉴스 제목 기반 분류 (AI 분석 아님)"
+  "briefMethod": "기사 제목 기반 자동 분류 요약 (AI 분석 아님)"
 }
