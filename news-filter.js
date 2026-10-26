@@ -22,7 +22,7 @@ if(entries.some(x=>x[0]===previous))node.value=previous;
 };
 function populate(){
 const prev=year.value||'all';
-const years=[...new Set(dates().map(x=>x.slice(0,4)).filter(x=>/^\\d{4}$/.test(x)))].sort().reverse();
+const years=[...new Set(dates().map(x=>x.slice(0,4)).filter(x=>/^\d{4}$/.test(x)))].sort().reverse();
 select(year,[['all','전체 연도'],...years.map(y=>[y,y])],prev);
 if(!month.options.length)select(month,[['all','전체 월'],...Array.from({length:12},(_,i)=>[String(i+1).padStart(2,'0'),String(i+1).padStart(2,'0')])],'all');
 }
