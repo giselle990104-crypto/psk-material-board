@@ -1,0 +1,1969 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PSK Material Intelligence Board</title>
+<meta name="description" content="원자재 시세 확인 및 동향 정리 · PSK Material Intelligence Board">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap">
+<style>
+/* Layout: 조달 콘솔 — 상단 바(우측 PDF) + 좌측 탭 레일 + 한 번에 한 섹션. 구리색 하나만 강조. */
+:root{
+  --bg:#f5f4fa; --panel:#ffffff; --sunk:#eeebf6; --line:#dcd7ea; --ink:#19162b; --ink-2:#4b4763; --ink-3:#7d7894;
+  --copper:#6b3fc4; --copper-soft:#efe8fc;
+  --up:#c0392b; --down:#1f6fb8; --flat:#7b8293;
+  --good:#2e7d4f; --warn:#b7791f; --bad:#b83232; --up-soft:rgba(192,57,43,.12); --down-soft:rgba(31,111,184,.12); --good-soft:rgba(46,125,79,.13); --warn-soft:rgba(183,121,31,.15); --bad-soft:rgba(184,50,50,.12);
+  --font-display:"Sora","IBM Plex Sans KR",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --font-data:"IBM Plex Mono",ui-monospace,"SFMono-Regular",monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#110e19; --panel:#191523; --sunk:#221d2f; --line:#302a42; --ink:#ece9f4; --ink-2:#b9b3cc; --ink-3:#8a849e;
+  --copper:#ab8cf2; --copper-soft:#2b2143; --up:#ef6b5e; --down:#5aa3e6; --flat:#848b9a;
+  --good:#5cc489; --warn:#e0a948; --bad:#ef6b5e; --up-soft:rgba(239,107,94,.16); --down-soft:rgba(90,163,230,.16); --good-soft:rgba(92,196,137,.16); --warn-soft:rgba(224,169,72,.18); --bad-soft:rgba(239,107,94,.16); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#110e19; --panel:#191523; --sunk:#221d2f; --line:#302a42; --ink:#ece9f4; --ink-2:#b9b3cc; --ink-3:#8a849e;
+  --copper:#ab8cf2; --copper-soft:#2b2143; --up:#ef6b5e; --down:#5aa3e6; --flat:#848b9a;
+  --good:#5cc489; --warn:#e0a948; --bad:#ef6b5e; --up-soft:rgba(239,107,94,.16); --down-soft:rgba(90,163,230,.16); --good-soft:rgba(92,196,137,.16); --warn-soft:rgba(224,169,72,.18); --bad-soft:rgba(239,107,94,.16); color-scheme:dark}
+:root.pdf-mode.pdf-mode{
+  --bg:#ffffff; --panel:#ffffff; --sunk:#f2f0f8; --line:#dcd7ea; --ink:#19162b; --ink-2:#4b4763; --ink-3:#7d7894;
+  --copper:#6b3fc4; --copper-soft:#efe8fc; --up:#c0392b; --down:#1f6fb8; --flat:#7b8293;
+  --good:#2e7d4f; --warn:#b7791f; --bad:#b83232; --up-soft:rgba(192,57,43,.12); --down-soft:rgba(31,111,184,.12); --good-soft:rgba(46,125,79,.13); --warn-soft:rgba(183,121,31,.15); --bad-soft:rgba(184,50,50,.12); color-scheme:light}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15.5px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
+a{color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--panel);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:16px;padding-block:16px}
+.brand{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0}
+.brand b{font-family:var(--font-display);font-size:clamp(20px,2.6vw,28px);letter-spacing:.01em;font-weight:700;line-height:1.15}
+.brand b span{color:var(--copper)}
+.brand small{font-size:15px;color:var(--ink-3)}
+
+.bar .right{margin-left:auto;display:flex;flex-direction:column;gap:8px;align-items:flex-end;position:relative}
+.r-top,.r-bot{display:flex;gap:8px;align-items:center}
+.r-bot{position:relative}
+.hello{font-size:15px;font-weight:600;color:var(--ink-2)}
+@media (max-width:560px){.hello{display:none}}
+.btn{font:inherit;font-weight:600;font-size:14.5px;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:7px 12px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--ink-3)}
+.btn.primary{background:var(--copper);border-color:var(--copper);color:#fff}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn:focus-visible,input:focus-visible,select:focus-visible,.side button:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+
+/* header strip */
+.head{padding-block:20px 16px;margin-left:28px}
+.head .eyebrow{font-family:var(--font-data);font-size:13.5px;color:var(--copper);letter-spacing:.08em;margin-bottom:2px}
+.head h1{font-family:var(--font-display);font-weight:600;font-size:clamp(26px,3.4vw,34px);margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance}
+.head p{margin:0;color:var(--ink-2);max-width:70ch}
+.asof{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{font-family:var(--font-data);font-size:13px;padding:4px 9px;border-radius:999px;background:var(--sunk);color:var(--ink-2);border:1px solid var(--line)}
+.chip.c{background:var(--copper-soft);color:var(--copper);border-color:transparent}
+
+/* shell: content + left drawer opened by an edge tab */
+.shell{padding-bottom:48px;margin-left:28px;min-width:0}
+.tabhandle{position:fixed;left:env(safe-area-inset-left,0px);top:calc(env(safe-area-inset-top,0px) + 128px);z-index:16;background:var(--copper);color:#fff;border:0;border-radius:0 10px 10px 0;width:34px;height:46px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.15);transition:left .22s ease}
+.burger{display:grid;gap:4px}
+.burger i{display:block;width:16px;height:2px;border-radius:2px;background:#fff}
+.tabhandle:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.tabhandle[aria-expanded="true"]{left:calc(env(safe-area-inset-left,0px) + 240px)}
+.side{position:fixed;left:env(safe-area-inset-left,0px);top:calc(env(safe-area-inset-top,0px) + 104px);bottom:16px;width:240px;z-index:15;display:flex;flex-direction:column;gap:2px;background:var(--panel);border:1px solid var(--line);border-left:0;border-radius:0 12px 12px 0;padding:12px 8px;box-shadow:0 18px 50px rgba(0,0,0,.18);transform:translateX(-102%);transition:transform .22s ease;overflow-y:auto}
+.side.open{transform:none}
+.side .ttl{font-size:12.5px;letter-spacing:.08em;color:var(--ink-3);padding:2px 12px 8px;font-family:var(--font-data)}
+.side button{font:inherit;text-align:left;border:0;background:none;color:var(--ink-2);padding:9px 12px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px;font-size:15px}
+.side button .n{font-family:var(--font-data);font-size:12.5px;color:var(--ink-3);width:18px}
+.side button:hover{background:var(--sunk);color:var(--ink)}
+.side button[aria-selected="true"]{background:var(--copper-soft);color:var(--copper);font-weight:600}
+.side button[aria-selected="true"] .n{color:var(--copper)}
+.side .sep{height:1px;background:var(--line);margin:6px 4px}
+.side .foot{font-size:12.5px;color:var(--ink-3);padding:4px 12px 2px;line-height:1.45}
+@media (prefers-reduced-motion:reduce){.side,.tabhandle{transition:none}}
+section.pane{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+.pane-h{display:none;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.pdf-mode .pane-h{display:flex}
+.pane-h h2{font-family:var(--font-display);font-size:19px;font-weight:600;margin:0;letter-spacing:.01em}
+.pane-h .tag{font-family:var(--font-data);font-size:12.5px;color:var(--ink-3);letter-spacing:.08em}
+.pane-h .sub{font-size:13.5px;color:var(--ink-3)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:1000px){.two{grid-template-columns:1fr}}
+
+/* price tiles */
+.tiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+@media (max-width:1180px){.tiles{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:420px){.tiles{grid-template-columns:1fr}}
+.tile{border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0;background:var(--panel)}
+.tile .top{display:flex;justify-content:flex-end}
+.tile .nm{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.tile .nm b{font-size:15.5px}
+.tile .nm i{font-style:normal;font-family:var(--font-data);font-size:12.5px;color:var(--ink-3)}
+.tile .px{font-family:var(--font-data);font-variant-numeric:tabular-nums;font-size:24.5px;font-weight:600;letter-spacing:-.01em}
+.tile .px small{font-size:12.5px;color:var(--ink-3);font-weight:400;margin-left:3px}
+.tile .krw{font-family:var(--font-data);font-size:13.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.tile .sub{font-family:var(--font-data);font-size:13px;color:var(--ink-3)}
+.tile .ref{font-size:13px;color:var(--ink-2);font-family:var(--font-data)}
+.tile .src{font-size:12.5px;color:var(--ink-3);margin-top:auto;line-height:1.4}
+.tile .src a{color:var(--ink-2)}
+.delta{font-family:var(--font-data);font-size:13.5px;font-variant-numeric:tabular-nums;display:flex;gap:10px;flex-wrap:wrap}
+.up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--flat)}
+.stock{font-size:13px;color:var(--ink-2);font-family:var(--font-data)}
+.st{font-size:12px;font-weight:600;padding:2px 7px;border-radius:999px;white-space:nowrap}
+.st.fresh{color:var(--good);background:var(--good-soft)}
+.st.lag{color:var(--warn);background:var(--warn-soft)}
+.st.na{color:var(--ink-3);background:var(--sunk)}
+.st.new{color:var(--copper);background:var(--copper-soft)}
+.st.err{color:var(--bad);background:var(--bad-soft)}
+.chart-note{font-size:13px;color:var(--ink-3);margin-top:8px}
+
+/* update panel */
+.upd{margin-top:16px;border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:12px;background:var(--sunk)}
+.upd-h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.upd-h b{font-size:15.5px}
+.upd-h span{font-size:13.5px;color:var(--ink-3)}
+.upd-h .links{margin-left:auto;display:flex;gap:12px}
+.upd-h .links button{font:inherit;font-size:13.5px;background:none;border:0;color:var(--copper);cursor:pointer;padding:0}
+.upd-list{display:grid;gap:0;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.upd-item{display:grid;grid-template-columns:22px 104px minmax(0,1fr) 150px;gap:10px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--line)}
+.upd-item:last-child{border-bottom:0}
+.upd-item input{accent-color:var(--copper);width:15px;height:15px}
+.upd-item label{font-weight:600;font-size:14.5px;cursor:pointer}
+.upd-item a{font-size:13.5px;color:var(--ink-2);overflow-wrap:anywhere}
+.upd-item .res{font-family:var(--font-data);font-size:13px;text-align:right;color:var(--ink-2)}
+.upd-item .res.ok{color:var(--good)} .upd-item .res.bad{color:var(--bad)} .upd-item .res.run{color:var(--copper)}
+@media (max-width:640px){.upd-item{grid-template-columns:22px 1fr}.upd-item a,.upd-item .res{grid-column:2;text-align:left}}
+.upd-acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.upd-note{margin:0;font-size:13.5px;color:var(--ink-2);max-width:90ch}
+
+/* trend */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.tabs button{font:inherit;font-size:14px;padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.chart{width:100%;overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:520px;height:auto}
+.period{margin-top:16px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:var(--sunk);display:grid;gap:10px}
+.period-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.plbl{font-weight:600;font-size:14.5px;margin-right:4px}
+.pgrp{display:inline-flex;gap:6px;align-items:center}
+.pw{font-size:14px;color:var(--ink-2);margin-left:2px}
+.period .quick button{font:inherit;font-size:13.5px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);cursor:pointer}
+.period .quick button[aria-pressed="true"]{background:var(--copper-soft);color:var(--copper);border-color:var(--copper)}
+.period #pNote{margin:0}
+.pdf-trend h4{margin:14px 0 4px;font-size:14.5px}
+
+/* fx */
+.fx-main{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+.fx-main .px{font-family:var(--font-data);font-size:38px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.fx-main .lbl{font-family:var(--font-data);font-size:12.5px;color:var(--ink-3)}
+table{border-collapse:collapse;width:100%}
+.tbl-wrap{overflow-x:auto}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);font-size:14.5px;vertical-align:top}
+th{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+td.num{font-family:var(--font-data);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+th.num{text-align:right}
+
+/* news */
+.news ul{margin:0;padding:0}
+.news li{list-style:none;display:grid;grid-template-columns:84px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.news li:last-child{border-bottom:0}
+.news time{font-family:var(--font-data);font-size:13.5px;color:var(--ink-3);padding-top:2px}
+.news .t{font-weight:600;font-size:15px;min-width:0}
+.news .t a{text-decoration:none}
+.news .t a:hover{text-decoration:underline;text-decoration-color:var(--copper)}
+.news .meta{font-size:13.5px;color:var(--ink-3);display:flex;gap:8px;flex-wrap:wrap;margin-top:3px}
+.mat{font-family:var(--font-data);font-size:12px;padding:1px 7px;border-radius:4px;background:var(--sunk);color:var(--ink-2);letter-spacing:.03em}
+
+/* ai summary */
+.ai-box{background:var(--sunk);border-radius:10px;padding:16px 18px}
+.ai-box ul{margin:0;padding-left:18px;display:grid;gap:8px}
+.ai-box li{max-width:80ch}
+.ai-out{white-space:pre-wrap;max-width:80ch}
+.ai-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.ai-row .note{font-size:13.5px;color:var(--ink-3)}
+select{font:inherit;font-size:14.5px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+
+/* analysis */
+.ana{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.ana .card{border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.ana .card h3{margin:0;font-size:15.5px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ana .card p{margin:0;font-size:14.5px;color:var(--ink-2)}
+.pill{font-size:12.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.pill.bull{color:var(--up);background:var(--up-soft)}
+.pill.bear{color:var(--down);background:var(--down-soft)}
+.pill.side{color:var(--warn);background:var(--warn-soft)}
+.drivers{font-size:13.5px;color:var(--ink-3);margin:0;padding-left:16px}
+
+/* implications */
+.imp{display:grid;gap:10px}
+.imp .row{display:grid;grid-template-columns:110px 92px 1fr;gap:14px;padding:12px 14px;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:8px;align-items:start}
+.imp .row.hi{border-left-color:var(--bad)} .imp .row.md{border-left-color:var(--warn)} .imp .row.lo{border-left-color:var(--good)}
+.imp .row b{font-size:15px}
+.imp .row .lvl{font-size:13px;font-weight:600}
+.imp .row.hi .lvl{color:var(--bad)} .imp .row.md .lvl{color:var(--warn)} .imp .row.lo .lvl{color:var(--good)}
+.imp .row p{margin:0;font-size:14.5px;color:var(--ink-2);min-width:0}
+.imp .row p strong{color:var(--ink)}
+@media (max-width:640px){.imp .row{grid-template-columns:1fr;gap:4px}}
+.req-form{display:grid;gap:8px;max-width:760px}
+.req-form label{font-size:14.5px;font-weight:600;color:var(--ink-2);margin-top:6px}
+.req-form input,.req-form textarea{font:inherit;font-size:16px;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);width:100%;resize:vertical}
+.req-form textarea::placeholder{font-family:var(--font-body);font-style:italic;font-size:16px;color:var(--ink-3);opacity:.9}
+.req-form textarea:focus::placeholder{color:transparent}
+.req-form input:focus-visible,.req-form textarea:focus-visible{outline:2px solid var(--copper);outline-offset:1px}
+.req-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:4px}
+.req-cnt{font-size:13px;color:var(--ink-3);font-family:var(--font-data)}
+.req-mine{margin-top:26px;max-width:760px}
+.req-mine h3{font-size:16px;margin:0 0 10px}
+.req-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.req-list li{border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:4px}
+.req-list .rt{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.req-list .rt b{font-size:15px}
+.req-list .rm{font-size:12.5px;color:var(--ink-3)}
+.req-list .rb{font-size:14px;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.req-list .ra{font-size:14px;background:var(--sunk);border-radius:8px;padding:8px 10px;white-space:pre-wrap}
+.req-empty{color:var(--ink-3);font-size:14px;border-style:dashed!important}
+.rs{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px}
+.rs.new{background:var(--copper-soft);color:var(--copper)} .rs.seen{background:var(--warn-soft);color:var(--warn)} .rs.done{background:var(--good-soft);color:var(--good)}
+.side .side-req{margin-top:auto;font-size:13.5px;color:var(--ink-3);padding:8px 12px;justify-content:flex-start}
+.side .side-req:hover{color:var(--copper);background:none;text-decoration:underline}
+.side .side-req[aria-selected="true"]{color:var(--copper);background:none;font-weight:600}
+.ctip{position:fixed;z-index:30;pointer-events:none;background:var(--ink);color:var(--panel);border-radius:8px;padding:8px 11px;font-size:13.5px;line-height:1.4;box-shadow:0 8px 24px rgba(0,0,0,.2);max-width:240px;transform:translate(-50%,calc(-100% - 12px))}
+.ctip b{display:block;font-family:var(--font-data);font-size:16px;font-variant-numeric:tabular-nums}
+.ctip span{opacity:.8;font-size:12.5px}
+.chart circle.pt{cursor:pointer}
+.chart circle.hit{fill:transparent;stroke:none;cursor:pointer}
+.acct{position:relative}
+.acct .dot{position:absolute;top:-2px;right:-2px;min-width:18px;height:18px;border-radius:9px;background:var(--bad);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 4px}
+.inbox-item{border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:8px;margin-top:10px}
+.inbox-item .ib-top{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.inbox-item .ib-top b{font-size:15.5px}
+.inbox-item .ib-meta{font-size:12.5px;color:var(--ink-3)}
+.inbox-item .ib-body{font-size:14.5px;white-space:pre-wrap;overflow-wrap:anywhere}
+.inbox-item .ib-ctl{display:grid;grid-template-columns:140px 1fr auto;gap:8px;align-items:center}
+.inbox-item .ib-ctl select,.inbox-item .ib-ctl input{font:inherit;font-size:14px;padding:7px 9px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);min-width:0}
+@media (max-width:640px){.inbox-item .ib-ctl{grid-template-columns:1fr}}
+.inbox-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.bp-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.bp-bar select{font-size:15px;padding:7px 10px;min-width:150px}
+.bp-hint{font-size:13.5px;color:var(--ink-3)}
+.bp-card{border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:14px}
+.bp-card + .bp-card{margin-top:14px}
+.pdf-mode .bp-card[hidden]{display:grid!important}
+.bp-top{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.bp-top h3{margin:0;font-size:18px;font-family:var(--font-display)}
+.bp-top .pill{font-size:12.5px}
+.bp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.bp-fact{background:var(--sunk);border-radius:8px;padding:10px 12px}
+.bp-fact b{display:block;font-family:var(--font-data);font-size:17px;font-variant-numeric:tabular-nums}
+.bp-fact span{font-size:12.5px;color:var(--ink-3)}
+.bp-meta{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px}
+.bp-meta dt{color:var(--ink-3)}
+.bp-meta dd{margin:0}
+.bp-goal{font-weight:600;color:var(--copper)}
+.bpq{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+.bpq h3{font-size:15.5px;margin:0 0 10px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.bpq h3 span{font-size:13.5px;color:var(--ink-3);font-weight:400}
+.bpq ol{margin:0;padding-left:0;list-style:none;display:grid;gap:10px;counter-reset:q}
+.bpq li{counter-increment:q;display:grid;grid-template-columns:28px 1fr;gap:10px;padding:12px 14px;background:var(--sunk);border-radius:8px}
+.bpq li::before{content:"Q" counter(q);font-family:var(--font-data);font-weight:600;color:var(--copper);font-size:14.5px}
+.bpq .q{font-weight:600;font-size:15px;margin:0 0 4px}
+.bpq .why{font-size:14px;color:var(--ink-2);margin:0}
+.bpq .to{font-size:13px;color:var(--ink-3);margin:4px 0 0}
+
+/* PDF picker (top-right popover) */
+.barst{font-size:13px;color:var(--ink-3);max-width:260px;text-align:right;line-height:1.3}
+.barst.run{color:var(--copper)}
+@media (max-width:700px){.barst{display:none}}
+#topUpd[disabled]{opacity:.7;cursor:progress}
+.picker{position:absolute;right:0;top:calc(100% + 10px);width:min(360px,calc(100vw - 32px));background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 50px rgba(0,0,0,.18);padding:16px;z-index:20;max-height:calc(100vh - 120px);overflow-y:auto}
+.picker h3{margin:0 0 2px;font-family:var(--font-display);font-size:17px}
+.picker > p{margin:0 0 10px;font-size:14px;color:var(--ink-2)}
+.picker .links{display:flex;gap:12px;font-size:13.5px;margin-bottom:8px}
+.picker .links button{font:inherit;font-size:13.5px;background:none;border:0;color:var(--copper);cursor:pointer;padding:0}
+.picker .grp{border-top:1px solid var(--line);padding:8px 0}
+.picker label{display:flex;gap:8px;align-items:center;font-size:14.5px;cursor:pointer;padding:3px 0}
+.picker label input{accent-color:var(--copper);width:15px;height:15px}
+.picker .subs{display:flex;flex-wrap:wrap;gap:2px 14px;padding-left:23px}
+.picker .subs label{font-size:13.5px;color:var(--ink-2)}
+.picker .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.status{font-size:13.5px;color:var(--ink-2);margin-top:10px;min-height:1.2em}
+
+footer{color:var(--ink-3);font-size:13.5px;padding-bottom:40px}
+footer ol{padding-left:18px;margin:6px 0 0;display:grid;gap:2px}
+footer a{color:var(--ink-2)}
+.pdf-only{display:none}
+.pdf-mode .pdf-only{display:block}
+.pdf-mode .no-pdf{display:none!important}
+.pdf-mode .tile.pdf-skip{display:none}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+/* ---------- login gate ---------- */
+#gate{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:radial-gradient(1200px 700px at 70% 20%, #2b1d5c 0%, #140f2a 45%, #0b0918 100%);color:#ece9f6;overflow:auto;padding-block:max(24px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#gate canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.gate-in{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,420px);gap:48px;align-items:center;width:min(1080px,100%)}
+@media (max-width:860px){.gate-in{grid-template-columns:1fr;gap:28px}}
+.gate-copy .k{font-family:var(--font-data);font-size:13px;letter-spacing:.18em;color:#b9a6f5;text-transform:uppercase}
+.gate-copy h1{font-family:var(--font-display);font-size:clamp(30px,4.6vw,52px);line-height:1.08;margin:12px 0 14px;letter-spacing:-.015em;text-wrap:balance}
+.gate-copy h1 span{color:#b39af7}
+.gate-copy p{font-size:16.5px;color:#c9c2e0;max-width:46ch;margin:0}
+.gate-tick{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.gate-tick span{font-family:var(--font-data);font-size:13px;padding:5px 11px;border:1px solid rgba(185,166,245,.35);border-radius:999px;color:#d9d1f5;background:rgba(255,255,255,.04)}
+.gate-card{background:rgba(22,17,40,.78);border:1px solid rgba(185,166,245,.28);border-radius:16px;padding:28px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.gate-card h2{margin:0 0 4px;font-size:21px;font-family:var(--font-display)}
+.gate-card .sub{margin:0 0 20px;font-size:14px;color:#a9a1c4}
+.gate-card label{display:block;font-size:13.5px;color:#c9c2e0;margin:14px 0 6px}
+.gate-card input{width:100%;font:inherit;font-size:16px;padding:11px 13px;border-radius:10px;border:1px solid rgba(185,166,245,.3);background:rgba(255,255,255,.06);color:#fff}
+.gate-card input:focus-visible{outline:2px solid #b39af7;outline-offset:1px}
+.gate-card .go{width:100%;margin-top:20px;justify-content:center;padding:12px;font-size:16px;background:#7b4fe0;border-color:#7b4fe0;color:#fff}
+.gate-card .go:hover{filter:brightness(1.08)}
+.gate-err{min-height:1.3em;margin-top:12px;font-size:14px;color:#ff9b9b}
+.gate-link{display:block;margin-top:12px;background:none;border:0;padding:0;font:inherit;font-size:13.5px;color:#c4b2fb;text-decoration:underline;cursor:pointer}
+.gate-foot{margin-top:16px;font-size:12.5px;color:#8f88ab;line-height:1.5}
+/* ---------- account menu ---------- */
+.acct{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--sunk);color:var(--ink-2);display:grid;place-items:center;cursor:pointer;padding:0}
+.acct:hover{border-color:var(--copper);color:var(--copper)}
+.acct svg{width:22px;height:22px}
+.acct-pop{position:absolute;right:0;top:calc(100% + 10px);width:min(280px,calc(100vw - 32px));background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 50px rgba(0,0,0,.18);padding:8px;z-index:21}
+.acct-who{padding:10px 12px 12px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.acct-who b{display:block;font-size:16px}
+.acct-who span{font-size:13px;color:var(--ink-3)}
+.role{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--copper-soft);color:var(--copper);margin-left:6px}
+.role.user{background:var(--sunk);color:var(--ink-2)}
+.acct-pop button{display:flex;width:100%;text-align:left;font:inherit;font-size:15px;border:0;background:none;color:var(--ink);padding:9px 12px;border-radius:8px;cursor:pointer}
+.acct-pop button:hover{background:var(--sunk)}
+.acct-pop button.out{color:var(--bad)}
+/* ---------- modals ---------- */
+.modal{position:fixed;inset:0;z-index:40;background:rgba(10,8,20,.55);display:grid;place-items:center;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px}
+.modal-box{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:14px;width:min(560px,100%);max-height:calc(100vh - 48px);overflow:auto;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.modal-box.wide{width:min(980px,100%)}
+.modal-box h3{margin:0 0 4px;font-family:var(--font-display);font-size:19px}
+.modal-box .desc{margin:0 0 16px;font-size:14px;color:var(--ink-3)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;align-items:end}
+.fgrid label{display:grid;gap:5px;font-size:13.5px;color:var(--ink-2)}
+.fgrid input,.fgrid select,.acc-tbl select,.acc-tbl input{font:inherit;font-size:14.5px;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);width:100%;min-width:0}
+.mrow{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}
+.mmsg{font-size:14px;margin-top:10px;min-height:1.2em;color:var(--ink-2)}
+.mmsg.err{color:var(--bad)} .mmsg.ok{color:var(--good)}
+.acc-tbl{width:100%;border-collapse:collapse;margin-top:6px}
+.acc-tbl th,.acc-tbl td{padding:9px 8px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:middle;text-align:left}
+.acc-tbl td.act{white-space:nowrap}
+.acc-tbl .mini{font:inherit;font-size:13px;padding:5px 9px;border-radius:7px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.acc-tbl .mini.danger{color:var(--bad)}
+.acc-tbl .off td{opacity:.55}
+.acc-sec{margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.acc-sec h4{margin:0 0 10px;font-size:15.5px}
+</style>
+<style>html,body{margin:0}body{font-size:14px}[hidden]{display:none!important}img{max-width:100%}</style>
+</head>
+<body>
+<div id="gate" role="dialog" aria-label="로그인">
+  <canvas id="globe" aria-hidden="true"></canvas>
+  <div class="gate-in">
+    <div class="gate-copy">
+      <div class="k">PSK · Global Procurement Intelligence</div>
+      <h1>PSK Material<br><span>Intelligence Board</span></h1>
+      <p>LME·COMEX 원자재와 주요 통화 환율을 한 곳에서 확인하고,<br>구매 의사결정을 돕습니다.</p>
+      <div class="gate-tick"><span>Cu</span><span>Ni</span><span>Al</span><span>HRC</span><span>Brent</span><span>USD/KRW</span><span>EUR/KRW</span><span>JPY/KRW</span></div>
+    </div>
+    <div class="gate-card">
+      <form id="loginForm" autocomplete="on" novalidate>
+        <h2 id="gateTitle">로그인</h2>
+        <p class="sub" id="gateSub">계정 ID와 비밀번호를 입력하세요.</p>
+        <div id="setupName" hidden><label for="gName">이름</label><input id="gName" autocomplete="name" placeholder="예: 신현경"></div>
+        <label for="gId">ID</label><input id="gId" autocomplete="username" autocapitalize="off" spellcheck="false" placeholder="아이디">
+        <label for="gPw">비밀번호</label><input id="gPw" type="password" autocomplete="current-password" placeholder="비밀번호">
+        <div id="setupPw2" hidden><label for="gPw2">비밀번호 확인</label><input id="gPw2" type="password" autocomplete="new-password" placeholder="비밀번호 다시 입력"></div>
+        <button class="btn go" id="gGo" type="submit">로그인</button>
+        <div class="gate-err" id="gErr" role="alert"></div>
+        <div class="gate-foot" id="gFoot">계정이 없으면 관리자에게 요청하세요.</div>
+        <button type="button" class="gate-link" id="gReset" hidden>비밀번호를 잊으셨나요? (보드 소유자 재설정)</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="app" hidden>
+
+
+<header class="bar">
+  <div class="wrap">
+    <div class="brand"><b>PSK <span>Material</span> Intelligence Board</b><small class="tagline">원자재 시세 확인 및 동향 정리</small></div>
+    <div class="right no-pdf">
+      <div class="r-top"><span class="hello" id="hello"></span>
+        <div class="acct-wrap" style="position:relative">
+        <button class="acct" id="acctBtn" type="button" aria-label="계정 메뉴" aria-expanded="false" aria-controls="acctPop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8.6" r="3.7"/><path d="M4.9 19.4c1.4-3.3 4-5 7.1-5s5.7 1.7 7.1 5"/></svg><span class="dot" id="acctDot" hidden></span></button>
+        <div class="acct-pop" id="acctPop" hidden>
+          <div class="acct-who"><b id="acctName"></b><span id="acctId"></span><span class="role" id="acctRole"></span></div>
+          <button type="button" id="acctPw">비밀번호 변경</button>
+          <button type="button" id="acctAdmin" hidden>계정 관리</button>
+          <button type="button" id="acctInbox" hidden>요청함 <span id="inboxCnt" style="margin-left:6px;color:var(--bad);font-weight:700"></span></button>
+          <button type="button" id="acctLogout" class="out">로그아웃</button>
+        </div>
+      </div>
+      </div>
+      <div class="r-bot">
+      <span class="barst" id="barSt" role="status"></span>
+      <button class="btn" id="topUpd" type="button" title="원자재·환율 현재가와 2024년 이후 월평균을 Investing에서 다시 가져옵니다">업데이트</button>
+      <button class="btn primary" id="openExport" type="button" aria-expanded="false" aria-controls="picker">PDF 추출</button>
+      <div class="picker" id="picker" hidden role="dialog" aria-label="PDF에 넣을 정보 선택">
+        <h3>PSK Material Report</h3>
+        <p>체크한 정보로 A4 보고서를 만듭니다.</p>
+        <div class="links"><button type="button" id="selAll">전체 선택</button><button type="button" id="selNone">전체 해제</button></div>
+        <div id="pickList"></div>
+        <div class="acts">
+          <button class="btn primary" id="makePdf" type="button">PDF 만들기</button>
+          <button class="btn" id="closeExport" type="button">닫기</button>
+        </div>
+        <div class="status" id="pdfStatus" role="status"></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="head">
+    <div class="eyebrow" id="headNo">01</div>
+    <h1 id="headTitle">원자재 가격</h1>
+    <p id="headDesc">구리·니켈·알루미늄·철강·플라스틱 현재가와 원화 환산, Investing 시세 업데이트</p>
+  </div>
+
+  <div class="shell">
+    <button class="tabhandle no-pdf" id="tabHandle" type="button" aria-expanded="false" aria-controls="side" aria-label="섹션 메뉴 열기"><span class="burger" aria-hidden="true"><i></i><i></i><i></i></span></button>
+    <nav class="side no-pdf" role="tablist" aria-label="섹션" id="side" inert></nav>
+
+    <main id="panes" style="min-width:0;display:grid;gap:18px">
+      <!-- 1. 원자재 가격 -->
+      <section class="pane" id="prices" data-desc="구리·니켈·알루미늄·철강·플라스틱 현재가와 원화 환산, Investing 시세 업데이트" data-label="원자재 가격" role="tabpanel">
+        <div class="pane-h"><span class="tag">01</span><h2>원자재 가격</h2><span class="sub" id="pricesSub">구리·니켈·알루미늄·철강·플라스틱</span></div>
+        <div class="asof">
+          <span class="chip c">기준일 2026.10.26 (월)</span>
+          <span class="chip" id="asofInv">Investing.com 10/26 19:31 확인</span>
+          <span class="chip">LME 10/23 공식가</span>
+          <span class="chip">출처는 페이지 하단</span>
+        </div>
+        <div class="tiles" id="tiles"></div>
+        <p class="chart-note">원화 환산 = USD 가격 × 원/달러 환율(<span id="krwNote">1,323.1원, 10/26 서울 종가</span>). 구리는 COMEX $/lb를 $/t(×2,204.62)로 환산했습니다.</p>
+
+        <div class="upd no-pdf" id="updPanel">
+          <div class="upd-h"><b>시세 업데이트</b><span id="updCount"></span>
+            <span class="links"><button type="button" id="updAll">전체 선택</button><button type="button" id="updNone">전체 해제</button></span></div>
+          <div class="upd-list" id="updList"></div>
+          <div class="upd-acts">
+            <button class="btn primary" id="updRun" type="button">전체 시세 업데이트</button>
+            <button class="btn" id="updStop" type="button" hidden>중지</button>
+            <button class="btn" id="updCopy" type="button">Claude 요청문 복사</button>
+          </div>
+          <p class="upd-note" id="updNote">평일 8시~18시 매시 47분에 Claude가 MacBook 브라우저로 Investing 시세와 2024년 이후 월평균을 가져와 반영합니다(Claude 데스크톱 앱이 켜져 있어야 함). 버튼을 누르면 바로 실행을 시도하고, 컴퓨터에 연결되지 못하면 다음 정시 47분 업데이트에 반영됩니다.</p>
+        </div>
+      </section>
+
+      <!-- 2. 가격 추이 -->
+      <section class="pane" id="trend" data-desc="품목별 가격 흐름과 데이터 기준" data-label="가격 추이" role="tabpanel" hidden>
+        <div class="pane-h"><span class="tag">02</span><h2>가격 추이</h2></div>
+        <div class="tabs no-pdf" id="trendTabs" role="group" aria-label="원자재 선택"></div>
+        <div class="no-pdf"><div class="chart" id="trendChart"></div><p class="chart-note" id="trendNote"></p></div>
+        <div class="period no-pdf" id="period">
+          <div class="period-row">
+            <span class="plbl">조회 기간</span>
+            <span class="pgrp"><select id="pFromY" aria-label="시작 연도"></select><select id="pFromM" aria-label="시작 월"></select><span class="pw">부터</span></span>
+            <span class="pgrp"><select id="pToY" aria-label="종료 연도"></select><select id="pToM" aria-label="종료 월"></select><span class="pw">까지</span></span>
+            <button class="btn primary" id="pApply" type="button">조회</button>
+          </div>
+          <div class="period-row quick" role="group" aria-label="빠른 기간 선택">
+            <button type="button" data-q="3">최근 3개월</button><button type="button" data-q="6">최근 6개월</button><button type="button" data-q="ytd">올해 초부터</button><button type="button" data-q="y1">최근 1년</button><button type="button" data-q="all">전체 (2024~)</button>
+          </div>
+          <p class="chart-note" id="pNote"></p>
+        </div>
+        <div class="pdf-only pdf-trend" id="pdfTrend"></div>
+      </section>
+
+      <!-- 3. 환율 -->
+      <section class="pane" id="fx" data-desc="통화별 환율 추이를 기간을 정해 조회하고, 주요 통화 시세와 전망을 확인" data-label="환율 정보" role="tabpanel" hidden>
+        <div class="pane-h"><span class="tag">03</span><h2>환율 정보</h2></div>
+        <div class="tabs no-pdf" id="fxTabs" role="group" aria-label="통화 선택"></div>
+        <div class="two">
+          <div style="min-width:0">
+            <div class="fx-main">
+              <div><div class="lbl" id="fxLbl">USD/KRW · Investing 10/26</div>
+              <div class="px"><span id="fxPx">1,323.57</span><small style="font-size:15.5px;color:var(--ink-3)" id="fxUnit"> 원</small></div></div>
+              <div class="delta" id="fxDelta"></div>
+            </div>
+            <div class="chart" id="fxChart"></div>
+            <p class="chart-note" id="fxNote"></p>
+            <div class="period no-pdf" id="fxPeriod">
+              <div class="period-row">
+                <span class="plbl">조회 기간</span>
+                <span class="pgrp"><select id="fxFromY" aria-label="시작 연도"></select><select id="fxFromM" aria-label="시작 월"></select><span class="pw">부터</span></span>
+                <span class="pgrp"><select id="fxToY" aria-label="종료 연도"></select><select id="fxToM" aria-label="종료 월"></select><span class="pw">까지</span></span>
+                <button class="btn primary" id="fxApply" type="button">조회</button>
+              </div>
+              <div class="period-row quick" role="group" aria-label="빠른 기간 선택">
+                <button type="button" data-q="3">최근 3개월</button><button type="button" data-q="6">최근 6개월</button><button type="button" data-q="ytd">올해 초부터</button><button type="button" data-q="y1">최근 1년</button><button type="button" data-q="all">전체 (2024~)</button>
+              </div>
+              <p class="chart-note" id="fxPNote" style="margin:0"></p>
+            </div>
+          </div>
+          <div class="tbl-wrap" style="min-width:0">
+            <table>
+              <thead><tr><th>통화</th><th class="num">환율</th><th>기준</th></tr></thead>
+              <tbody>
+                <tr><td>USD/KRW</td><td class="num">1,323.10</td><td>10/26 서울 종가</td></tr>
+                <tr><td>USD/KRW (Investing)</td><td class="num" id="fxInv">1,323.57</td><td id="fxInvAsOf">10/26, -0.05%</td></tr>
+                <tr><td>EUR/KRW</td><td class="num">1,483.62</td><td>10/26 Investing, -0.08%</td></tr>
+                <tr><td>JPY(100)/KRW</td><td class="num">841.36</td><td>10/26 Investing, -0.35%</td></tr>
+                <tr><td>CNY/KRW</td><td class="num">198.50</td><td>10/26 Investing, -0.01%</td></tr>
+                <tr><td>EUR/USD</td><td class="num">1.1199</td><td>10/26 Investing, -0.16%</td></tr>
+              </tbody>
+            </table>
+            <table style="margin-top:14px">
+              <thead><tr><th>USD/KRW 전망</th><th class="num">수준</th><th>출처</th></tr></thead>
+              <tbody>
+                <tr><td>2026 Q4 말</td><td class="num">1,325</td><td>Trading Economics</td></tr>
+                <tr><td>12개월 후</td><td class="num">1,290</td><td>Trading Economics</td></tr>
+                <tr><td>2026 연평균(1~10월)</td><td class="num">1,448</td><td>Investing 월평균의 평균</td></tr>
+              </tbody>
+            </table>
+            <p class="chart-note">원/달러는 6월 월평균 1,530원(연고점)에서 10월 1,336원까지 약 13% 내렸습니다. 수출업체 달러 매도와 반도체 업황 호조에 따른 달러 공급 우위가 배경입니다.</p>
+          </div>
+        </div>
+        <div class="pdf-only" id="pdfFx"></div>
+      </section>
+
+      <!-- 4. 글로벌 뉴스 -->
+      <section class="pane" id="news" data-desc="품목별 최신 뉴스와 출처" data-label="글로벌 뉴스" role="tabpanel" hidden>
+        <div class="pane-h"><span class="tag">04</span><h2>글로벌 뉴스</h2></div>
+        <div class="no-pdf tabs" id="newsFilter" role="group" aria-label="뉴스 필터"></div>
+        <div class="news"><ul id="newsList"></ul></div>
+      </section>
+
+      <!-- 5. AI 뉴스요약 -->
+      <section class="pane" id="ai" data-desc="시세와 뉴스를 원하는 관점으로 요약" data-label="AI 뉴스요약" role="tabpanel" hidden>
+        <div class="pane-h"><span class="tag">05</span><h2>AI 뉴스요약</h2><span class="sub" id="aiSub">10/26 조사 기준</span></div>
+        <div class="ai-box">
+          <div id="aiStatic">
+            <ul>
+              <li><b>구리</b> — 그라스버그 사고 등 광산 차질(세계 공급 약 5%)로 타이트한 흐름. COMEX 6.5 $/lb(약 $14,400/t) 고원 구간에서 10/22 -2.8% 급락 후 반등하는 등 변동성이 커졌고, TD Cowen은 올해 전망을 $5.25/lb로 올렸습니다.</li>
+              <li><b>알루미늄</b> — 중동 제련소 재가동이 예상보다 빨라 10월 중순 연중 저점($3,020) 근처까지 밀렸습니다. 전쟁 이후 상승분을 모두 반납했습니다.</li>
+              <li><b>니켈</b> — 10/26 $15,735로 3거래일 연속 하락. 인도네시아 RKAB 축소가 하단을 받치지만 연간 공급과잉 전망이 우세합니다.</li>
+              <li><b>철강</b> — 중국 HRC는 신규 설비 증가로 약세. 중국 HRB $422로 추가 하락했고 미국($1,310)과 격차가 큽니다.</li>
+              <li><b>플라스틱</b> — 브렌트가 3주 새 약 10% 올라 $110대이고 호르무즈 리스크도 남아 원가 부담. 中 PE 선물이 한 주 +7% 올랐고, 수요는 실수요 위주입니다.</li>
+              <li><b>환율</b> — 원/달러 1,323.1원으로 2년여 만의 저점. 달러 결제 원자재의 원화 매입단가에 우호적입니다.</li>
+            </ul>
+          </div>
+          <div class="ai-out" id="aiOut" hidden></div>
+          <div class="ai-row no-pdf" id="aiRow" hidden>
+            <select id="aiFocus" aria-label="요약 관점">
+              <option value="반도체 장비 구매팀">관점: 구매팀</option>
+              <option value="경영진 보고용 3줄">관점: 경영진 보고</option>
+              <option value="리스크 중심">관점: 리스크</option>
+            </select>
+            <button class="btn" id="aiRun" type="button">AI로 다시 요약</button>
+            <button class="btn" id="aiStop" type="button" hidden>중지</button>
+            <span class="note" id="aiNote">현재 시세와 뉴스 목록을 Claude가 선택한 관점으로 요약합니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. 시장분석 -->
+      <section class="pane" id="analysis" data-desc="품목별 1~3개월 방향과 주요 변수" data-label="시장분석" role="tabpanel" hidden>
+        <div class="pane-h"><span class="tag">06</span><h2>시장분석</h2><span class="sub">1~3개월 시각</span></div>
+        <div class="ana" id="anaGrid"></div>
+      </section>
+
+      <!-- 7. 구매시사점 -->
+      <section class="pane" id="implication" data-desc="우선순위별 구매 대응 방안" data-label="구매시사점" role="tabpanel" hidden>
+        <div class="pane-h"><span class="tag">07</span><h2>구매시사점</h2></div>
+        <div class="imp" id="impList"></div>
+        <p class="chart-note">우선순위: <span style="color:var(--bad)">■</span> 즉시 검토 <span style="color:var(--warn)">■</span> 분기 내 <span style="color:var(--good)">■</span> 모니터링. 구매 판단 참고용이며 투자 권유가 아닙니다.</p>
+      </section>
+      <!-- 8. BP 논의점 -->
+      <section class="pane" id="bp" data-desc="반도체 장비 부품 단가 인하를 위해 협력사에 확인할 질문 · 품목별 · Investing 월평균 기준" data-label="BP 논의점" role="tabpanel" hidden>
+        <div class="pane-h"><span class="tag">08</span><h2>BP 논의점</h2><span class="sub">반도체 장비 부품 단가 인하 관점</span></div>
+        <div class="bp-bar no-pdf">
+          <label for="bpSel" class="plbl">품목</label>
+          <select id="bpSel" aria-label="BP 논의 품목 선택"></select>
+          <span class="bp-hint">반도체장비팀 입장에서 부품 단가를 낮출 근거와 질문입니다.</span>
+        </div>
+        <div id="bpWrap"></div>
+        <p class="chart-note">수치는 Investing 일별 종가의 월평균(10월은 26일까지)입니다. 목표 인하율은 부품 원가에서 원소재가 차지하는 비중을 가정한 추정치라, 협력사별 원가 구조를 받아 조정하세요.</p>
+      </section>
+      <!-- 관리자에게 요청하기 (번호 없는 페이지) -->
+      <section class="pane xpane" id="request" data-label="관리자에게 요청하기" data-desc="보고 싶은 자재, 필요한 기능, 데이터 오류를 관리자에게 알려 주세요" hidden>
+        <form id="reqForm" class="req-form" novalidate>
+          <label for="reqTitle">제목</label>
+          <input id="reqTitle" maxlength="80" placeholder="요청 제목" autocomplete="off">
+          <label for="reqBody">내용</label>
+          <textarea id="reqBody" rows="8" maxlength="2000" placeholder="ex. OO 자재의 시세를 볼 수 있었으면 좋겠어요."></textarea>
+          <div class="req-row"><span class="req-cnt" id="reqCnt">0 / 2000</span><button class="btn primary" id="reqSend" type="submit">제출하기</button></div>
+          <div class="mmsg" id="reqMsg" role="status"></div>
+        </form>
+        <div class="req-mine">
+          <h3>내가 보낸 요청</h3>
+          <ul id="reqMine" class="req-list"><li class="req-empty">아직 보낸 요청이 없습니다.</li></ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer id="sources">
+    <b>출처</b>
+    <ol>
+      <li><a href="https://kr.investing.com/commodities/nickel-historical-data" target="_blank" rel="noopener">Investing.com — 니켈 선물 일별 (10/26)</a></li>
+      <li><a href="https://kr.investing.com/commodities/copper-historical-data" target="_blank" rel="noopener">Investing.com — 구리 선물 일별 (10/26)</a></li>
+      <li><a href="https://kr.investing.com/commodities/aluminum-historical-data" target="_blank" rel="noopener">Investing.com — 알루미늄 일별 (10/26)</a></li>
+      <li><a href="https://kr.investing.com/currencies/usd-krw-historical-data" target="_blank" rel="noopener">Investing.com — USD/KRW 일별 (10/26)</a></li>
+      <li><a href="https://kr.investing.com/commodities/brent-oil-historical-data" target="_blank" rel="noopener">Investing.com — 브렌트유 일별 (10/26)</a></li>
+      <li><a href="https://kr.investing.com/commodities/us-steel-coil-futures-historical-data" target="_blank" rel="noopener">Investing.com — 미국 열연코일 선물 (10/23)</a></li>
+      <li><a href="https://www.westmetall.com/en/markdaten.php" target="_blank" rel="noopener">Westmetall — LME 공식가·재고 (10/23)</a></li>
+      <li><a href="https://tradingeconomics.com/commodity/nickel" target="_blank" rel="noopener">Trading Economics — 니켈·알루미늄 (10/23)</a></li>
+      <li><a href="https://cbonds.fr/indexes/79109/" target="_blank" rel="noopener">Cbonds — LME 월말 현물가 (7·8월)</a></li>
+      <li><a href="https://www.mt.co.kr/economy/2026/10/26/2026102615362391860" target="_blank" rel="noopener">머니투데이 — 원/달러 10/26 종가</a></li>
+      <li><a href="https://ycharts.com/indicators/south_korean_won_to_us_dollar_exchange_rate" target="_blank" rel="noopener">YCharts(FRB H.10) — 원/달러 6~7월</a></li>
+      <li><a href="https://ko.tradingeconomics.com/south-korea/currency" target="_blank" rel="noopener">Trading Economics — 원화 교차환율·전망</a></li>
+      <li><a href="https://steelbenchmarker.com/history.pdf" target="_blank" rel="noopener">SteelBenchmarker — HRB 가격 (10/14)</a></li>
+      <li><a href="https://www.procurementresource.com/resource-center/polypropylene-pp-price-trends" target="_blank" rel="noopener">Procurement Resource — PP 가격 추이</a></li>
+      <li><a href="https://flexiblepoly.com/pe-market-brief-week-of-october-11-2026/" target="_blank" rel="noopener">Flexible Poly — 中 PE 선물 (10/11)</a></li>
+      <li><a href="https://www.metal.com/en/newscontent/103582423" target="_blank" rel="noopener">SMM — TD Cowen 구리 전망</a></li>
+      <li><a href="https://www.alcircle.com/news/aluminium-falls-to-3-050-t-hits-lowest-level-since-february-as-supply-outlook-improves-121529" target="_blank" rel="noopener">AL Circle — 알루미늄 저점</a></li>
+      <li><a href="https://www.argusmedia.com/en/news-and-insights/latest-market-news/2787275-indonesia-to-cut-nickel-mining-quota-in-2026" target="_blank" rel="noopener">Argus — 인도네시아 니켈 RKAB</a></li>
+      <li><a href="https://www.utusan.com.my/?p=1381016" target="_blank" rel="noopener">SEMI — 메모리 장비투자 전망</a></li>
+    </ol>
+  </footer>
+</div>
+
+</div><!-- /app -->
+<div class="modal" id="mPw" hidden role="dialog" aria-modal="true" aria-labelledby="mPwT">
+  <div class="modal-box">
+    <h3 id="mPwT">비밀번호 변경</h3><p class="desc">8자 이상으로 정해 주세요.</p>
+    <div class="fgrid">
+      <label>현재 비밀번호<input id="pwOld" type="password" autocomplete="current-password"></label>
+      <label>새 비밀번호<input id="pwNew" type="password" autocomplete="new-password"></label>
+      <label>새 비밀번호 확인<input id="pwNew2" type="password" autocomplete="new-password"></label>
+    </div>
+    <div class="mmsg" id="pwMsg" role="status"></div>
+    <div class="mrow"><button class="btn" type="button" data-close="mPw">닫기</button><button class="btn primary" type="button" id="pwSave">변경</button></div>
+  </div>
+</div>
+<div class="modal" id="mInbox" hidden role="dialog" aria-modal="true" aria-labelledby="mInT">
+  <div class="modal-box wide">
+    <h3 id="mInT">요청함</h3><p class="desc">사용자가 '관리자에게 요청하기'로 보낸 내용입니다. 상태와 답변을 남기면 요청한 사람의 화면에 보입니다.</p>
+    <div class="inbox-filter tabs" id="inFilter" role="group" aria-label="요청 상태 필터"><button type="button" data-f="all" aria-pressed="true">전체</button><button type="button" data-f="new">새 요청</button><button type="button" data-f="seen">확인 중</button><button type="button" data-f="done">완료</button></div>
+    <div id="inList"></div>
+    <div class="mmsg" id="inMsg" role="status"></div>
+    <div class="mrow"><button class="btn" type="button" data-close="mInbox">닫기</button></div>
+  </div>
+</div>
+<div class="modal" id="mAdmin" hidden role="dialog" aria-modal="true" aria-labelledby="mAdT">
+  <div class="modal-box wide">
+    <h3 id="mAdT">계정 관리</h3><p class="desc">보드에 로그인할 수 있는 계정을 추가하고 권한·상태·비밀번호를 관리합니다.</p>
+    <div class="tbl-wrap"><table class="acc-tbl"><thead><tr><th>ID</th><th>이름</th><th>권한</th><th>상태</th><th>마지막 로그인</th><th>관리</th></tr></thead><tbody id="accRows"></tbody></table></div>
+    <div class="acc-sec">
+      <h4>계정 추가</h4>
+      <div class="fgrid">
+        <label>ID<input id="naId" autocapitalize="off" spellcheck="false" placeholder="영문·숫자 3자 이상"></label>
+        <label>이름<input id="naName" placeholder="예: 구매팀 김대리"></label>
+        <label>권한<select id="naRole"><option value="user">사용자</option><option value="admin">관리자</option></select></label>
+        <label>임시 비밀번호<input id="naPw" type="password" autocomplete="new-password" placeholder="8자 이상"></label>
+      </div>
+      <div class="mrow" style="justify-content:flex-start"><button class="btn primary" type="button" id="naAdd">계정 추가</button></div>
+    </div>
+    <div class="mmsg" id="adMsg" role="status"></div>
+    <div class="mrow"><button class="btn" type="button" data-close="mAdmin">닫기</button></div>
+  </div>
+</div>
+
+<script id="snap" type="application/json">{"prices":{"cu":{"asOf":"10/26","at":"10/26 20:13","chg":0.4,"price":6.518},"ni":{"asOf":"10/26","at":"10/26 20:13","chg":-0.42,"price":15779.75},"al":{"asOf":"10/26","at":"10/26 20:13","chg":-0.16,"price":3042.45},"st":{"asOf":"10/23","at":"10/26 20:13","chg":0.47,"price":1292},"pl":{"asOf":"10/26","at":"10/26 20:13","chg":-0.77,"price":109.79},"fx":{"asOf":"10/26","at":"10/26 20:13","chg":-0.05,"price":1323.5699},"eurkrw":{"asOf":"10/26","at":"10/26 20:13","chg":-0.08,"price":1483.62},"jpykrw":{"asOf":"10/26","at":"10/26 20:13","chg":-0.35,"price":8.4136},"cnykrw":{"asOf":"10/26","at":"10/26 20:13","chg":-0.01,"price":198.4966},"eurusd":{"asOf":"10/26","at":"10/26 20:13","chg":-0.16,"price":1.1199},"finishedAt":"10/26 20:13","message":"원자재 5종·환율 5종 현재가와 2024년 이후 월평균 (Investing.com)","status":"done"},"history":{"al":{"avg":[2238.6364,2213.881,2272.225,2532.5,2613.5714,2548.9,2406.0435,2384.6429,2474.5,2620.6522,2612.4286,2576.1,2589.3295,2645.505,2645.5738,2411.2035,2456.755,2529.1738,2610.563,2601.4075,2654.5227,2791.587,2848.6975,2913.3395,3151.9205,3095.9975,3335.6695,3547.461,3598.0568,3428.1514,3155.8348,3252.41,3275.1855,3053.4555],"m0":"2024-01"},"cnykrw":{"avg":[184.7943,185.1071,184.8643,189.105,188.5157,190.128,190.2504,188.8005,187.7829,191.9426,193.2924,197.7864,198.9213,198.461,200.9857,197.1873,192.7986,190.1629,192.1652,193.649,195.5427,199.8978,205.4475,207.9857,208.6932,209.5665,216.16,217.0636,219.051,225.8414,219.5087,208.32,202.505,199.6996],"m0":"2024-01"},"cu":{"avg":[3.8166,3.8064,3.988,4.3679,4.7579,4.4841,4.3684,4.1201,4.2645,4.4244,4.2063,4.1447,4.2723,4.5758,4.9351,4.6723,4.6905,4.8912,5.4598,4.4897,4.6606,5.0561,5.0736,5.4812,5.9097,5.8833,5.6859,5.921,6.3069,6.3479,6.3205,6.6197,6.6618,6.5908],"m0":"2024-01"},"eurkrw":{"avg":[1444.7335,1436.9609,1447.3552,1467.5168,1474.003,1484.2585,1498.0626,1487.7532,1476.0181,1482.577,1480.4462,1506.9405,1503.3313,1504.207,1575.9543,1614.8964,1568.7036,1574.5781,1609.1226,1617.8314,1634.88,1656.2252,1687.972,1715.8439,1708.1591,1711.631,1722.7618,1735.4368,1738.9872,1760.7432,1699.2922,1626.55,1563.1932,1498.0705],"m0":"2024-01"},"eurusd":{"avg":[1.0906,1.079,1.0871,1.0723,1.0809,1.0761,1.0843,1.1024,1.1104,1.0897,1.0624,1.0462,1.0355,1.0419,1.0814,1.1225,1.1277,1.1531,1.1673,1.1647,1.1735,1.1636,1.1561,1.1715,1.1743,1.1823,1.1564,1.1693,1.1677,1.1507,1.1424,1.1592,1.1507,1.1215],"m0":"2024-01"},"fx":{"avg":[1324.7965,1331.7157,1331.4976,1368.7336,1363.7126,1379.3105,1381.5922,1349.7286,1329.2881,1360.7226,1393.5957,1440.4782,1451.8174,1443.8025,1457.3105,1439.0445,1391.1914,1365.6238,1378.5878,1389.0581,1393.1477,1423.4135,1460.0055,1464.6457,1454.7527,1447.7375,1489.8945,1484.2473,1489.3576,1530.2641,1487.493,1403.3238,1358.5841,1335.7947],"m0":"2024-01"},"jpykrw":{"avg":[9.0701,8.8989,8.8865,8.8904,8.7513,8.7327,8.7676,9.2343,9.2845,9.0756,9.0741,9.3486,9.2762,9.5274,9.773,9.9745,9.6079,9.4474,9.3714,9.4177,9.4197,9.3999,9.4061,9.3917,9.2853,9.3339,9.388,9.3241,9.4112,9.5146,9.1673,8.8296,8.6874,8.4596],"m0":"2024-01"},"lastDay":"2026-10-26","ni":{"avg":[16285.4504,16539.4228,17614.9918,18322.8507,19741.4222,17709.9918,16549.3449,16443.4941,16382.9204,17012.9565,15948.1905,15673.6316,15582.1818,15477.4154,16246.6516,15307.2464,15514.4484,15167.6585,15202.7586,15122.3799,15267.5099,15271.4773,14848.8674,15028.8143,17942.1882,17377.5351,17277.3338,18151.4506,18962.6729,17784.2158,16853.3807,16896.7493,16439.257,15647.7778],"m0":"2024-01"},"pl":{"avg":[79.1495,81.7162,84.6655,89,82.9965,82.9985,83.8791,78.875,72.871,75.377,73.401,73.1286,78.1459,74.837,71.3205,66.3205,63.7918,69.3924,69.4165,67.1343,67.5186,63.8574,63.532,61.5632,64.5505,69.236,98.1636,101.429,102.781,84.2955,83.1043,87.3452,100.4314,105.5721],"m0":"2024-01"},"st":{"avg":[1076.5238,924.8571,802.6,841.9545,786.9091,722.2857,666.3636,680.1364,706.6,708.5217,693.65,688.9048,704.4762,785.3684,924.3333,929.2381,883.4545,874.6,875.6818,832.0476,806.3636,816.087,858.0526,907.7273,944.35,983.5,1021.4545,1049.5455,1086.5,1130.619,1160.7273,1196.3333,1234,1280.4706],"m0":"2024-01"},"updatedAt":"10/26 20:13"}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+/* PSK Dashboard add-on. Load immediately before the existing inline application script. */
+(() => {
+  'use strict';
+  const main = document.querySelector('#panes');
+  if (!main || document.querySelector('#dashboard')) return;
+  const style = document.createElement('style');
+  style.textContent = `
+  #dashboard{--d-accent:var(--copper);font-size:14px}
+  #dashboard .d-intro{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+  #dashboard .d-kicker{font:600 11px var(--font-data);color:var(--copper);letter-spacing:.12em}
+  #dashboard h2{font:700 clamp(22px,3vw,28px) var(--font-display);margin:3px 0 2px}
+  #dashboard .d-muted{color:var(--ink-3);font-size:12px}
+  #dashboard .d-actions{display:flex;gap:7px;flex-wrap:wrap}
+  #dashboard .d-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px}
+  #dashboard .d-card{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:16px;min-width:0}
+  #dashboard .d-label{color:var(--ink-3);font-size:12px;font-weight:600}
+  #dashboard .d-value{font:700 clamp(21px,2.8vw,29px) var(--font-display);letter-spacing:-.02em;margin:8px 0 3px;overflow-wrap:anywhere}
+  #dashboard .d-change{font:600 12px var(--font-data)}
+  #dashboard .d-up{color:var(--up)} #dashboard .d-down{color:var(--down)} #dashboard .d-neutral{color:var(--ink-3)}
+  #dashboard .d-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(250px,1fr);gap:14px;margin-bottom:16px}
+  #dashboard .d-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+  #dashboard .d-h h3{font-size:15px;margin:0}
+  #dashboard .d-chipset{display:flex;gap:5px;flex-wrap:wrap}
+  #dashboard .d-chip{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);border-radius:7px;padding:5px 9px;font:500 12px var(--font-body)}
+  #dashboard .d-chip[aria-pressed="true"]{background:var(--copper-soft);border-color:var(--copper);color:var(--copper)}
+  #dashboard .d-chart{width:100%;height:256px;display:block}
+  #dashboard .d-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--ink-2)}
+  #dashboard .d-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+  #dashboard .d-list{display:grid;gap:0}
+  #dashboard .d-listitem{padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;align-items:center}
+  #dashboard .d-listitem:last-child{border:0}
+  #dashboard .d-listitem small{display:block;color:var(--ink-3);font-size:11px;margin-top:3px}
+  #dashboard .d-badge{font:600 11px var(--font-data);white-space:nowrap;padding:4px 7px;border-radius:8px;background:var(--sunk);color:var(--ink-2)}
+  #dashboard .d-bottom{margin-top:2px}
+  #dashboard .d-table{width:100%;border-collapse:collapse}
+  #dashboard .d-table th,#dashboard .d-table td{font-size:12px;padding:10px 8px}
+  #dashboard .d-link{background:none;border:0;text-align:left;color:var(--copper);cursor:pointer;font:600 12px var(--font-body);padding:0}
+  #dashboard .d-error{padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--sunk)}
+  @media(max-width:780px){#dashboard .d-grid{grid-template-columns:1fr}#dashboard .d-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:470px){#dashboard .d-metrics{grid-template-columns:1fr}#dashboard .d-card{padding:12px}#dashboard .d-table th,#dashboard .d-table td{font-size:11px;padding:8px 5px}}
+  @media print{body:has(#dashboard:not([hidden])) .bar,body:has(#dashboard:not([hidden])) .tabhandle,body:has(#dashboard:not([hidden])) .side,body:has(#dashboard:not([hidden])) footer{display:none!important}#dashboard .d-actions,#dashboard .d-chipset{display:none!important}#dashboard{border:none!important;padding:0!important}#dashboard .d-grid{grid-template-columns:1.5fr 1fr}#dashboard .d-card{break-inside:avoid}}
+  `;
+  document.head.appendChild(style);
+  const pane = document.createElement('section');
+  pane.className = 'pane'; pane.id = 'dashboard';
+  pane.dataset.label = 'Dashboard'; pane.dataset.desc = '원자재·환율 시장 현황과 구매 검토 포인트를 한눈에 확인';
+  pane.setAttribute('role', 'tabpanel'); pane.hidden = true;
+  pane.innerHTML = `
+    <div class="d-intro"><div><div class="d-kicker">PROCUREMENT INTELLIGENCE / OVERVIEW</div><h2>Market Dashboard</h2><div class="d-muted" id="d-updated">데이터 확인 중…</div></div>
+      <div class="d-actions"><button type="button" class="btn" id="d-reload">↻ 데이터 새로고침</button><button type="button" class="btn primary" id="d-print">PDF / 인쇄</button></div></div>
+    <div class="d-metrics" id="d-metrics" aria-live="polite"></div>
+    <div class="d-grid"><div class="d-card"><div class="d-h"><h3>주요 원자재 가격지수 비교</h3><div class="d-chipset" id="d-period"><button class="d-chip" data-months="3" aria-pressed="false">3개월</button><button class="d-chip" data-months="6" aria-pressed="true">6개월</button><button class="d-chip" data-months="12" aria-pressed="false">12개월</button></div></div><div id="d-chart" aria-label="월별 가격 지수 추이"></div><div class="d-legend" id="d-legend"></div><div class="d-muted" style="margin-top:9px">각 원자재의 조회 시작월 = 100 · 월평균 기준 · 서로 다른 단위 비교용</div></div>
+      <div class="d-card"><div class="d-h"><h3>구매 관점 체크포인트</h3></div><div class="d-list" id="d-points"></div><div class="d-muted" style="margin-top:12px">전월 대비 가격 변화에 따른 자동 점검 항목이며, 실제 발주·협상 판단은 계약조건과 BP 원가구조 확인이 필요합니다.</div></div></div>
+    <div class="d-card d-bottom"><div class="d-h"><h3>원자재 현황 및 전월 대비 변동</h3><span class="d-muted">가격은 최신 수집값 · 증감률은 월평균 비교</span></div><div style="overflow-x:auto"><table class="d-table"><thead><tr><th>원자재 / 지표</th><th>현재가</th><th>전월 대비 월평균</th><th>기준일</th><th>상세</th></tr></thead><tbody id="d-rows"></tbody></table></div></div>`;
+  main.insertBefore(pane, main.firstElementChild);
+  // Dashboard is the default page, independent of previously selected tabs.
+
+  const materials = [
+    {id:'cu',name:'구리',unit:'$/lb',color:'#7754cc'},
+    {id:'ni',name:'니켈',unit:'$/t',color:'#d27b30'},
+    {id:'al',name:'알루미늄',unit:'$/t',color:'#168b86'},
+    {id:'st',name:'철강 (미국 HRC 선물)',unit:'$/short ton',color:'#3976bc'},
+    {id:'pl',name:'브렌트유 (플라스틱 참고)',unit:'$/bbl',color:'#bd579c'}
+  ];
+  const byId = id => document.getElementById(id);
+  const num = (v,d=2) => Number(v).toLocaleString('ko-KR',{maximumFractionDigits:d,minimumFractionDigits:d});
+  const signed = n => `${n>0?'+':''}${num(n,1)}%`;
+  const tone = n => n>0?'d-up':n<0?'d-down':'d-neutral';
+  const safe = x => String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const histFor = (data,id) => {
+    const h=data.history?.[id]; if(!h || !Array.isArray(h.avg)) return [];
+    const [year,month] = String(h.m0||'').split('-').map(Number);
+    if(!year || !month) return [];
+    return h.avg.map((value,i)=>({label:`${year+Math.floor((month-1+i)/12)}-${String((month-1+i)%12+1).padStart(2,'0')}`,value:Number(value)})).filter(x=>Number.isFinite(x.value)&&x.value>0);
+  };
+  const move = id => {
+    const b=document.querySelector(`#side button[data-id="${id}"]`);
+    if(b) { b.click(); window.scrollTo({top:0,behavior:'smooth'}); }
+  };
+  let cache=null, months=6;
+  function chart(data){
+    const view = materials.slice(0,3).map(m=>({ ...m,arr:histFor(data,m.id).slice(-months)}));
+    const labels=view[0]?.arr.map(p=>p.label)??[];
+    if(labels.length<2){byId('d-chart').textContent='차트 데이터가 부족합니다.';return;}
+    const w=720,h=250,l=48,r=12,t=12,b=35,innerW=w-l-r,innerH=h-t-b;
+    const datasets=view.map(v=>({...v,values:v.arr.map(p=>p.value/v.arr[0].value*100)}));
+    const all=datasets.flatMap(s=>s.values),lo=Math.floor((Math.min(...all)-4)/10)*10,hi=Math.ceil((Math.max(...all)+4)/10)*10;
+    const y=v=>t+(hi-v)/(hi-lo||1)*innerH;const x=i=>l+i/(labels.length-1)*innerW;
+    let s=`<svg class="d-chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="구리 니켈 알루미늄 월별 가격지수 비교"><g fill="none" stroke="var(--line)" stroke-width="1">`;
+    for(let i=0;i<=4;i++){const val=lo+(hi-lo)*i/4;s+=`<path d="M${l} ${y(val)}H${w-r}"/>`;}
+    s+='</g><g fill="var(--ink-3)" font-size="11" font-family="sans-serif">';
+    for(let i=0;i<=4;i++){const val=lo+(hi-lo)*i/4;s+=`<text x="${l-8}" y="${y(val)+4}" text-anchor="end">${num(val,0)}</text>`;}
+    labels.forEach((lab,i)=>{if(i===0||i===labels.length-1||i%Math.max(1,Math.ceil(labels.length/6))===0)s+=`<text x="${x(i)}" y="${h-10}" text-anchor="middle">${safe(lab.slice(2))}</text>`;});s+='</g>';
+    datasets.forEach(v=>{s+=`<polyline fill="none" stroke="${v.color}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" points="${v.values.map((n,i)=>`${x(i)},${y(n)}`).join(' ')}"/>`;});
+    byId('d-chart').innerHTML=s+'</svg>';
+    byId('d-legend').innerHTML=datasets.map(v=>`<span><i class="d-dot" style="background:${v.color}"></i>${safe(v.name)} <b>${num(v.values.at(-1),1)}</b></span>`).join('');
+  }
+  function draw(data){
+    cache=data;
+    const px=data.prices||{};
+    const fx=px.fx,cu=px.cu,ni=px.ni;
+    const metric=(label,v,change,sub)=>`<div class="d-card"><div class="d-label">${label}</div><div class="d-value">${v}</div><div class="d-change ${tone(change)}">${Number.isFinite(change)?signed(change):'—'} <span class="d-muted">수집 시점 변동률</span></div><div class="d-muted" style="margin-top:6px">${sub}</div></div>`;
+    byId('d-metrics').innerHTML=[metric('USD / KRW',fx?num(fx.price,2)+' 원':'—',Number(fx?.chg),safe(fx?.asOf||'기준일 미상')),
+      metric('구리 COMEX',cu?'$'+num(cu.price,4)+' /lb':'—',Number(cu?.chg),safe(cu?.asOf||'기준일 미상')),
+      metric('니켈 LME',ni?'$'+num(ni.price,0)+' /t':'—',Number(ni?.chg),safe(ni?.asOf||'기준일 미상'))].join('');
+    byId('d-updated').textContent=`데이터 업데이트: ${px.finishedAt||data.history?.updatedAt||'시간 미상'} · 출처: 기존 data.json`;chart(data);
+    const points=[];
+    const rows=materials.map(m=>{
+      const p=px[m.id]; const arr=histFor(data,m.id); const a=arr.at(-1)?.value,b=arr.at(-2)?.value;
+      const mom=Number.isFinite(a)&&Number.isFinite(b)&&b!==0?(a/b-1)*100:NaN;
+      if(Number.isFinite(mom) && Math.abs(mom)>=3){points.push({name:m.name,mom,kind:mom>0?'원가 상승 영향 점검':'단가 인하 협상 근거 검토'});}
+      const change=Number.isFinite(mom)?`<span class="${tone(mom)}">${signed(mom)}</span>`:'—';
+      return `<tr><td><strong>${safe(m.name)}</strong><div class="d-muted">${safe(m.unit)}</div></td><td>${p&&Number.isFinite(+p.price)?'$'+num(p.price,m.id==='cu'?4:2):'—'}</td><td>${change}</td><td>${safe(p?.asOf||'—')}</td><td><button type="button" class="d-link" data-go="prices">상세 보기</button></td></tr>`;
+    });
+    byId('d-rows').innerHTML=rows.join('');
+    const fxhist=histFor(data,'fx'),a=fxhist.at(-1)?.value,b=fxhist.at(-2)?.value;
+    if(b&&a){const mom=(a/b-1)*100;if(Math.abs(mom)>=2)points.push({name:'USD/KRW',mom,kind:mom>0?'달러 결제 원가 상승 영향 점검':'달러 결제 원가 절감 여지 점검'});}
+    points.sort((a,b)=>Math.abs(b.mom)-Math.abs(a.mom));
+    byId('d-points').innerHTML=(points.slice(0,5).map(p=>`<div class="d-listitem"><div><strong>${safe(p.name)}</strong><small>${safe(p.kind)}</small></div><span class="d-badge ${tone(p.mom)}">${signed(p.mom)}</span></div>`).join(''))||'<div class="d-muted">전월 대비 설정 기준(원자재 3%, 환율 2%) 이상 변동한 지표가 없습니다.</div>';
+  }
+  async function load(){
+    byId('d-updated').textContent='최신 데이터 불러오는 중…';
+    try{const res=await fetch(`./data.json?t=${Date.now()}`,{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);const obj=await res.json();if(!obj.prices||!obj.history)throw Error('필수 데이터 없음');draw(obj);}
+    catch(e){try{const embedded=JSON.parse(byId('snap').textContent||'{}');if(embedded.prices&&embedded.history){draw(embedded);byId('d-updated').textContent+=' · HTML 내 저장 데이터 사용';return;}}catch(_){}byId('d-updated').textContent='불러오기 실패';byId('d-metrics').innerHTML=`<div class="d-error">데이터를 불러올 수 없습니다. data.json 위치를 확인하세요. (${safe(e.message)})</div>`;}
+  }
+  byId('d-period').addEventListener('click',e=>{const b=e.target.closest('button[data-months]');if(!b)return;months=Number(b.dataset.months);byId('d-period').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));if(cache)chart(cache);});
+  byId('d-rows').addEventListener('click',e=>{if(e.target.closest('[data-go]'))move('prices');});
+  byId('d-reload').addEventListener('click',load);
+  byId('d-print').addEventListener('click',()=>window.print());
+  load();
+})();
+
+</script>
+<script>
+const STANDALONE=!window.claude;
+let KRW = 1323.1;
+const fmt = (n, d=0) => Number(n).toLocaleString('ko-KR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const $ = id => document.getElementById(id);
+
+/* ---------- left drawer tabs ---------- */
+const SECS=[...document.querySelectorAll('section.pane:not(.xpane)')];
+const side=$('side'), handle=$('tabHandle');
+side.innerHTML = `<div class="ttl">섹션 이동</div>` + SECS.map((s,i)=>`<button type="button" role="tab" id="tab-${s.id}" data-id="${s.id}" aria-controls="${s.id}"><span class="n">${String(i+1).padStart(2,'0')}</span>${s.dataset.label}</button>`).join('')
+  + `<div class="sep"></div><div class="foot">출처는 페이지 하단</div><button type="button" class="side-req" id="sideReq">관리자에게 요청하기</button>`;
+function setDrawer(open){
+  side.classList.toggle('open',open); handle.setAttribute('aria-expanded',open);
+  if(open){ side.removeAttribute('inert'); side.querySelector('button[aria-selected="true"]')?.focus(); } else side.setAttribute('inert','');
+}
+handle.onclick=()=>setDrawer(!side.classList.contains('open'));
+function showPane(id){
+  $('request').hidden=true; $('sideReq')?.setAttribute('aria-selected','false');
+  SECS.forEach(s=>{ s.hidden = s.id!==id; });
+  side.querySelectorAll('button[data-id]').forEach(b=>b.setAttribute('aria-selected', b.dataset.id===id));
+  const i=SECS.findIndex(s=>s.id===id); $('headNo').textContent=String(i+1).padStart(2,'0'); $('headTitle').textContent=SECS[i].dataset.label; $('headDesc').textContent=SECS[i].dataset.desc||'';
+  handle.setAttribute('aria-label',`섹션 메뉴 열기 (현재 ${SECS[i].dataset.label})`);
+  try{ localStorage.setItem('psk-mi-tab', id); }catch(e){}
+}
+function showRequest(){
+  SECS.forEach(s=>s.hidden=true); $('request').hidden=false;
+  side.querySelectorAll('button[data-id]').forEach(b=>b.setAttribute('aria-selected','false')); $('sideReq').setAttribute('aria-selected','true');
+  $('headNo').textContent='REQUEST'; $('headTitle').textContent='관리자에게 요청하기'; $('headDesc').textContent=$('request').dataset.desc;
+  handle.setAttribute('aria-label','섹션 메뉴 열기 (현재 관리자에게 요청하기)');
+  try{ window.loadMyRequests?.(); }catch(e){}
+}
+side.addEventListener('click',e=>{ if(e.target.closest('#sideReq')){ showRequest(); setDrawer(false); handle.focus(); window.scrollTo({top:0}); return; } const b=e.target.closest('button[data-id]'); if(b){ showPane(b.dataset.id); setDrawer(false); handle.focus(); window.scrollTo({top:0}); } });
+side.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){ setDrawer(false); handle.focus(); return; }
+  if(!['ArrowDown','ArrowUp'].includes(e.key)) return;
+  const bs=[...side.querySelectorAll('button[data-id]')]; const i=bs.indexOf(document.activeElement); if(i<0) return;
+  e.preventDefault(); bs[(i+(e.key==='ArrowDown'?1:-1)+bs.length)%bs.length].focus();
+});
+document.addEventListener('click',e=>{ if(side.classList.contains('open') && !e.target.closest('#side,#tabHandle')) setDrawer(false); });
+(()=>{ const h=location.hash.slice(1); let t=null; try{ t=localStorage.getItem('psk-mi-tab'); }catch(e){}
+  showPane(SECS.some(s=>s.id===h)?h:'dashboard'); })();
+
+/* ---------- 1. tiles ---------- */
+/* status: fresh = Investing 오늘자, lag = Investing 값 지연, na = Investing 미제공 */
+const TILES = [
+  {id:'cu', name:'구리', code:'COMEX HG', px:Math.round(6.5265*2204.62), cur:'$', unit:'$/t', kg:true, lb:true,
+   sub:'6.5265 $/lb · 10/26 19:31', status:'fresh', stLabel:'Investing 최신',
+   deltas:[['일 +0.29%','up'],['10/22 -2.76%','down']],
+   ref:'참고: LME 현물 $14,415 (10/23)', stock:'LME 재고 273,750t (+800)',
+   src:'Investing 구리 선물', url:'https://kr.investing.com/commodities/copper-historical-data', range:[3,30000]},
+  {id:'ni', name:'니켈', code:'LME Ni', px:15735, cur:'$', unit:'$/t', kg:true,
+   sub:'10/26 19:26 기준', status:'fresh', stLabel:'Investing 최신',
+   deltas:[['일 -0.70%','down'],['10/21 +3.44%','up']],
+   ref:'참고: LME 정산 $15,695 (10/23)', stock:'LME 재고 280,674t (0)',
+   src:'Investing 니켈 선물', url:'https://kr.investing.com/commodities/nickel-historical-data', range:[8000,40000]},
+  {id:'al', name:'알루미늄', code:'LME Al', px:3043, cur:'$', unit:'$/t', kg:true,
+   sub:'10/26 19:27 기준', status:'fresh', stLabel:'Investing 최신',
+   deltas:[['일 -0.14%','down'],['4주 -7.3%','down']],
+   ref:'참고: LME 정산 $3,043 (10/23)', stock:'LME 재고 235,800t (-225)',
+   src:'Investing 알루미늄', url:'https://kr.investing.com/commodities/aluminum-historical-data', range:[1500,6000]},
+  {id:'st', name:'철강', code:'HRB China', px:422, cur:'$', unit:'$/t', kg:true, refOnly:true,
+   sub:'SteelBenchmarker 10/14', status:'fresh', stLabel:'Investing 참고지표',
+   deltas:[['추가 하락','down'],['美 선물 +0.47%','up']],
+   ref:'US 열연코일 선물: $1,292 $/st (10/23, +0.47%) · Investing', stock:'中 HRC 연평균 ¥3,270/t (Platts)',
+   src:'Investing US Steel Coil', url:'https://kr.investing.com/commodities/us-steel-coil-futures-historical-data', range:[300,3000], refName:'US 열연코일 선물', refUnit:'$/st'},
+  {id:'pl', name:'플라스틱', code:'PE Fut. China', px:8781, cur:'¥', unit:'¥/t', kg:false, refOnly:true,
+   sub:'中 PE 선물 10/11', status:'fresh', stLabel:'Investing 참고지표',
+   deltas:[['PE 주간 +7.0%','up'],['브렌트 -1.34%','down']],
+   ref:'원가 지표: 브렌트유 $110.20 $/bbl (10/26 19:28, -1.34%) · Investing', stock:'PP 中 FOB $1,360.8/t (8월)',
+   src:'Investing 브렌트유', url:'https://kr.investing.com/commodities/brent-oil-historical-data', range:[30,250], refName:'원가 지표: 브렌트유', refUnit:'$/bbl'},
+];
+const FX_ITEM={id:'fx', name:'원/달러', url:'https://kr.investing.com/currencies/usd-krw-historical-data', range:[900,2000]};
+let LIVE={};  /* 보드 DB(board/prices)에서 채워짐 */
+
+const arrow=c=>c==='up'?'▲':c==='down'?'▼':'·';
+const pctCls=p=>p>0?'up':p<0?'down':'flat';
+function renderTiles(){
+  $('tiles').innerHTML = TILES.map(t => {
+    const L=LIVE[t.id];
+    let px=t.px, sub=t.sub, st=t.status, stl=t.stLabel, deltas=t.deltas, ref=t.ref;
+    if(L && !t.refOnly){
+      px = t.lb ? Math.round(L.price*2204.62) : L.price;
+      sub = `${t.lb? L.price+' $/lb · ':''}${L.asOf||'시각 미표시'} · Investing`;
+      st='new'; stl='방금 업데이트';
+      deltas = L.chg!=null ? [[`변동 ${L.chg>0?'+':''}${L.chg}%`, pctCls(L.chg)]] : [];
+      ref = `조사 기준값 ${t.cur}${fmt(t.px)} (${t.sub})`;
+    } else if(L && t.refOnly){
+      ref = `${t.refName}: $${fmt(L.price,2)} ${t.refUnit} (${L.asOf||'시각 미표시'}${L.chg!=null?`, ${L.chg>0?'+':''}${L.chg}%`:''}) · Investing`;
+      st='new'; stl='참고지표 업데이트';
+    }
+    const krw=t.kg ? '≈ '+fmt(px*KRW/1000)+' 원/kg' : '≈ '+fmt(px*199/1000)+' 원/kg (CNY 199원)';
+    return `
+    <div class="tile" data-id="${t.id}">
+      <div class="top"><span class="st ${st}">${stl}</span></div>
+      <div class="nm"><b>${t.name}</b><i>${t.code}</i></div>
+      <div class="px">${t.cur}${fmt(px)}<small>/t</small></div>
+      <div class="krw">${krw}</div>
+      <div class="sub">${sub}</div>
+      <div class="delta">${deltas.map(([s,c])=>`<span class="${c}">${arrow(c)} ${s}</span>`).join('')}</div>
+      <div class="ref">${ref}</div>
+      <div class="stock">${t.stock}</div>
+      <div class="src"><a href="${t.url}" target="_blank" rel="noopener">${t.src}</a></div>
+    </div>`;}).join('');
+  $('krwNote').textContent = LIVE.fx ? `${fmt(KRW,2)}원, Investing ${LIVE.fx.asOf||''}` : '1,323.1원, 10/26 서울 종가';
+  if(LIVE.fx){ $('fxInv').textContent=fmt(LIVE.fx.price,2); $('fxInvAsOf').textContent=`${LIVE.fx.asOf||'시각 미표시'}${LIVE.fx.chg!=null?`, ${LIVE.fx.chg>0?'+':''}${LIVE.fx.chg}%`:''} · 방금 업데이트`; }
+  if(LIVE._at){ $('asofInv').textContent = `Investing.com ${LIVE._at} 업데이트`; }
+}
+
+/* ---------- update panel ---------- */
+const UPD_ITEMS=[...TILES.map(t=>({id:t.id,name:t.name+(t.refOnly?` (${t.refName.replace('원가 지표: ','')})`:''),url:t.url,range:t.range,lb:!!t.lb})), {...FX_ITEM}];
+const updSel=new Set(UPD_ITEMS.map(i=>i.id));
+function lastText(id){ const L=LIVE[id]; return L ? `최근 ${L.at||''} · ${L.asOf||''}` : '조사 기준값 (10/26)'; }
+function renderUpdList(){
+  $('updList').innerHTML = UPD_ITEMS.map(i=>`
+    <div class="upd-item"><input type="checkbox" id="u-${i.id}" data-id="${i.id}" ${updSel.has(i.id)?'checked':''}>
+      <label for="u-${i.id}">${i.name}</label>
+      <a href="${i.url}" target="_blank" rel="noopener">${i.url.replace('https://kr.investing.com/','investing / ')}</a>
+      <span class="res" id="r-${i.id}">${lastText(i.id)}</span></div>`).join('');
+  $('updList').querySelectorAll('input').forEach(cb=>cb.addEventListener('change',e=>{
+    e.target.checked?updSel.add(e.target.dataset.id):updSel.delete(e.target.dataset.id); updCount();
+  }));
+  updCount();
+}
+function updCount(){
+  const n=updSel.size; $('updCount').textContent=`${UPD_ITEMS.length}개 중 ${n}개 선택`;
+  $('updRun').disabled=!n; $('updCopy').disabled=!n;
+  $('updRun').textContent = n===UPD_ITEMS.length ? '전체 시세 업데이트' : `선택한 ${n}개 시세 업데이트`;
+}
+$('updAll').onclick=()=>{ UPD_ITEMS.forEach(i=>updSel.add(i.id)); renderUpdList(); };
+$('updNone').onclick=()=>{ updSel.clear(); renderUpdList(); };
+$('updCopy').onclick=async()=>{
+  const names=UPD_ITEMS.filter(i=>updSel.has(i.id)).map(i=>i.name).join(', ');
+  const txt=`PSK Material Intelligence 대시보드에서 ${names} 시세를 Investing.com 최신값으로 업데이트하고, 바뀐 시세에 맞춰 AI 뉴스요약·시장분석·BP 질문도 갱신해줘.`;
+  try{ await navigator.clipboard.writeText(txt); $('updNote').textContent='요청문을 복사했습니다. Claude 대화창에 붙여 넣어 보내세요.'; }
+  catch(e){ $('updNote').textContent='복사가 막혀 있어 요청문을 여기에 표시합니다: '+txt; }
+};
+
+/* live update: 버튼 → Claude 예약 작업 실행 → 작업이 Investing을 조회해 보드 DB에 기록 → 페이지가 실시간 반영 */
+const TRIGGER_ID='trig_019KU2RsQJ1jmUNwyW7azQxJ';
+const REMOTE='Claude Code Remote';
+let db=null, priceRef=null, remote=null, wasRunning=false;
+function nowStr(){ const d=new Date(); return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; }
+function setRunning(on){ $('updRun').disabled=on||!updSel.size; $('updRun').textContent = on ? 'Claude가 조회 중…' : (updSel.size===UPD_ITEMS.length?'전체 시세 업데이트':`선택한 ${updSel.size}개 시세 업데이트`);
+  $('topUpd').disabled=on; $('topUpd').textContent=on?'업데이트 중…':'업데이트'; if(on){ $('barSt').textContent='Claude가 데이터를 가져오는 중'; $('barSt').className='barst run'; } }
+function applyRemote(d){
+  const ids=['cu','ni','al','st','pl','fx'];
+  LIVE={};
+  ids.forEach(id=>{ const v=d[id]; if(v && isFinite(Number(v.price))) LIVE[id]={price:Number(v.price), chg:v.chg==null?null:Number(v.chg), asOf:String(v.asOf||''), at:String(v.at||'')}; });
+  if(LIVE.fx) KRW=LIVE.fx.price;
+  ['eurkrw','jpykrw','cnykrw','eurusd'].forEach(k=>{ const v=d[k]; if(v && isFinite(Number(v.price))) FXLIVE[k]={price:Number(v.price), chg:v.chg==null?null:Number(v.chg), asOf:String(v.asOf||'')}; });
+  if(d.finishedAt) LIVE._at=String(d.finishedAt);
+  renderTiles();
+  try{ showFx(fxCur); }catch(e){}
+  UPD_ITEMS.forEach(it=>{ const el=$('r-'+it.id); if(el){ el.textContent=lastText(it.id); el.className='res'+(LIVE[it.id]?' ok':''); } });
+  const running = d.status==='running' && (Date.now()-Number(d.requestedAtMs||0)) < 15*60*1000;
+  setRunning(running);
+  if(running){
+    (d.request?.items||[]).forEach(id=>{ const el=$('r-'+id); if(el){ el.textContent='Claude 조회 중…'; el.className='res run'; } });
+    $('updNote').textContent=`${d.requestedAt||''} 요청 · Claude가 Investing을 조회하고 있습니다. 끝나면 자동으로 반영됩니다.`;
+  } else if(d.status==='done'){
+    $('updNote').textContent=`${d.finishedAt||''} 완료 · ${d.message||'업데이트했습니다.'}`;
+    $('barSt').textContent=`최근 업데이트 ${d.finishedAt||''}`; $('barSt').className='barst';
+  } else if(d.status==='error'){
+    $('updNote').textContent=d.message||'업데이트하지 못했습니다.'; $('barSt').textContent='업데이트 실패'; $('barSt').className='barst';
+  } else if(d.status==='queued'){
+    $('updNote').textContent=`${d.finishedAt||''} · ${d.message||'다음 자동 업데이트 때 반영됩니다.'}`; $('barSt').textContent='다음 자동 업데이트 때 반영'; $('barSt').className='barst';
+    if(wasRunning && window.runAiSummary) window.runAiSummary(true);
+  } else if(d.status==='running'){
+    $('updNote').textContent='이전 요청이 15분 넘게 끝나지 않았습니다. 데스크톱 앱이 켜져 있는지 확인하고 다시 눌러 주세요.';
+  }
+  wasRunning=running;
+}
+(async()=>{
+  try{ db = await window.claude?.use?.('db'); }catch(e){}
+  if(!db){ if(STANDALONE) return; $('updNote').textContent='시세 업데이트는 claude.ai에 로그인해 이 보드를 열었을 때 동작합니다. 지금은 10/26 조사 기준값을 보여드립니다.'; return; }
+  priceRef=db.doc('board/prices');
+  priceRef.onSnapshot(snap=>{ if(snap.exists) applyRemote(snap.data()||{}); },
+    ()=>{ $('updNote').textContent='보드 데이터 연결이 끊겼습니다. 페이지를 새로고침해 주세요.'; });
+})();
+(async()=>{ try{ remote = await window.claude?.use?.('mcp'); }catch(e){} })();
+
+$('updStop').hidden=true;
+function applyHistory(h){
+  if(!h) return;
+  const map={cu:'cu',ni:'ni',al:'al',st:'st',pl:'br',fx:'fx'};
+  if(h.lastDay) HLAST=String(h.lastDay);
+  Object.entries(map).forEach(([src,dst])=>{ const v=h[src]; if(v && Array.isArray(v.avg) && v.avg.length>3){ HIST[dst]=v.avg.map(Number); HM0[dst]=v.m0||'2024-01'; } });
+  try{
+    TREND.cu.s=buildSeries('cu',LB,'COMEX'); TREND.ni.s=buildSeries('ni'); TREND.al.s=buildSeries('al'); TREND.st.s=buildSeries('st'); TREND.br.s=buildSeries('br'); TREND.fx.s=buildSeries('fx');
+    FXH.usdkrw.m=HIST.fx; FXH.usdkrw.m0=HM0.fx;
+    ['eurkrw','jpykrw','cnykrw','eurusd'].forEach(k=>{ const v=h[k]; if(v && Array.isArray(v.avg) && v.avg.length>3){ FXH[k].m=v.avg.map(x=>k==='jpykrw'?Number(x)*100:Number(x)); FXH[k].m0=v.m0||'2024-01'; } });
+    Object.values(FXH).forEach(c=>{ c.s=seriesFrom(c.m, c.m0||'2024-01'); });
+    const wasMax=DMAX;
+    ALLD=[].concat(...Object.values(TREND).map(t=>t.s.map(p=>p.d))).sort();
+    DMIN=ALLD[0].slice(0,7); DMAX=ALLD[ALLD.length-1].slice(0,7); LASTDAY=HLAST;
+    if(RANGE.to===wasMax) RANGE.to=DMAX; if(FXR.to===wasMax) FXR.to=DMAX;
+    showTrend(curTrend); showFx(fxCur);
+  }catch(e){}
+}
+(async()=>{ const d0=await (async()=>{ try{ return await window.claude?.use?.('db'); }catch(e){ return null; } })();
+  if(!d0) return; d0.doc('board/history').onSnapshot(sn=>{ if(sn.exists) applyHistory(sn.data()); }, ()=>{}); })();
+
+const ALL_IDS=['cu','ni','al','st','pl','fx'];
+async function requestUpdate(items, history, from){
+  const note=$('updNote');
+  if(!db || !remote){
+    const msg='이 화면에서는 업데이트를 실행할 수 없습니다. claude.ai에 로그인한 상태로 열거나, 대화창에 "보드 업데이트해줘"라고 보내 주세요.';
+    note.textContent=msg; $('barSt').textContent=msg; return;
+  }
+  setRunning(true);
+  const req={status:'running', requestedAt:nowStr(), requestedAtMs:Date.now(), request:{items, history:!!history}};
+  try{
+    try{ await priceRef.update(req); }catch(e){ if(e?.code==='invalid_argument'||e?.code==='not_found') await priceRef.set(req); else throw e; }
+  }catch(e){ setRunning(false); note.textContent='요청을 기록하지 못했습니다. 잠시 후 다시 눌러 주세요.'; return; }
+  items.forEach(id=>{ const el=$('r-'+id); if(el){ el.textContent='Claude 조회 시작…'; el.className='res run'; } });
+  note.textContent = history ? 'Claude가 원자재·환율 현재가와 2024년 이후 월평균을 다시 가져오고 있습니다. 보통 2~5분 걸리며 끝나면 자동으로 반영됩니다.'
+                             : 'Claude에게 조회를 맡겼습니다. 보통 2~4분 걸리며, 끝나면 자동으로 반영됩니다. 이 창을 닫아도 됩니다.';
+  try{
+    await remote.callTool(REMOTE,'fire_trigger',{trigger_id:TRIGGER_ID, text:`이번 요청: 항목 ${items.join(', ')}${history?', 과거 데이터 포함':''} (${from})`},{cache:false});
+  }catch(e){
+    try{ await priceRef.update({status:'idle', message:'실행 실패'}); }catch(_){}
+    setRunning(false);
+    const c=e?.code;
+    const msg = c==='not_granted'||c==='consent_required' ? 'Claude 작업 실행이 허용되지 않았습니다. 페이지 권한 메뉴에서 "Claude Code Remote"를 허용한 뒤 다시 눌러 주세요.'
+      : c==='server_not_connected' ? 'Claude 작업 연결을 찾지 못했습니다. 대화창에 "보드 업데이트해줘"라고 보내 주세요.'
+      : `Claude 작업을 시작하지 못했습니다 (${c||'오류'}). 잠시 후 다시 눌러 주세요.`;
+    note.textContent=msg; $('barSt').textContent=msg; $('barSt').className='barst';
+  }
+}
+$('updRun').onclick=()=>{ const items=UPD_ITEMS.filter(i=>updSel.has(i.id)).map(i=>i.id); if(items.length) requestUpdate(items,false,'시세 패널'); };
+$('topUpd').onclick=()=>requestUpdate(ALL_IDS,true,'상단 업데이트 버튼');
+if(STANDALONE){
+  const AUTO_NOTE='시세는 Investing.com 기준으로 30분마다(매시 7분·37분) 자동 업데이트되고, 화면은 10분마다 새 데이터를 불러옵니다. 업데이트 버튼을 누르면 바로 가져옵니다.';
+  let updBusy=false;
+  const updMsg=(m,run)=>{ $('updNote').textContent=m; $('barSt').textContent=m; $('barSt').className=run?'barst run':'barst'; };
+  const updBtns=on=>{ ['topUpd','updRun'].forEach(id=>{ $(id).disabled=on; }); $('topUpd').textContent=on?'업데이트 중…':'업데이트'; };
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  const fetchSnap=()=>fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null);
+  const sbUpd=async()=>{
+    if(updBusy) return;
+    if(!TOKEN){ reloadData(); updMsg(AUTO_NOTE); return; }
+    updBusy=true; updBtns(true); const before=SNAP_AT;
+    try{
+      const r=await rpc('board_trigger_update',{p_token:TOKEN});
+      if(!r||!r.ok){ updMsg(`방금 다른 업데이트가 실행됐습니다. ${r&&r.wait?Math.ceil(r.wait/60)+'분 뒤 ':''}다시 누를 수 있어요. 결과는 1~2분 안에 화면에 반영됩니다.`); return; }
+      updMsg('Investing.com에서 최신 시세를 가져오는 중… (보통 1~3분)',true);
+      await sleep(4000);
+      try{ const c=await rpc('board_update_result',{p_token:TOKEN,p_req:r.req}); if(c&&c.done&&c.status!==204){ updMsg(`업데이트를 시작하지 못했습니다 (GitHub ${c.status||c.error||'오류'}). 관리자에게 GitHub 토큰 확인을 요청해 주세요. 시세는 30분마다 자동으로도 업데이트됩니다.`); return; } }catch(e){}
+      for(let i=0;i<24;i++){ await sleep(10000); const j=await fetchSnap(); if(j&&j.prices&&j.prices.finishedAt&&j.prices.finishedAt!==before){ applySnap(j); updMsg(`업데이트 완료 · ${SNAP_AT} 기준 데이터`); return; } }
+      updMsg('업데이트가 조금 늦어지고 있습니다. 잠시 뒤 화면이 자동으로 새 데이터를 불러옵니다.');
+    }catch(e){
+      if(/not_configured|Could not find the function/.test(e?.code||'')){ reloadData(); updMsg(AUTO_NOTE+' 방금 최신 데이터를 다시 불러왔습니다.'); }
+      else updMsg(sbMsg(e));
+    }finally{ updBusy=false; updBtns(false); }
+  };
+  $('updNote').textContent=AUTO_NOTE;
+  $('topUpd').onclick=sbUpd; $('updRun').onclick=sbUpd; $('updCopy').hidden=true;
+}
+renderTiles(); renderUpdList();
+
+/* ---------- chart ---------- */
+const esc0=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ctip=document.createElement('div'); ctip.className='ctip'; ctip.hidden=true; document.body.appendChild(ctip);
+function showTip(el){
+  const r=el.getBoundingClientRect(), u=el.dataset.u||'', v=Number(el.dataset.v);
+  let extra='';
+  if(/\$\/t/.test(u)) extra=`<span>≈ ${fmt(v*KRW/1000)}원/kg (원/달러 ${fmt(KRW,1)})</span><br>`;
+  ctip.innerHTML=`<b>${el.dataset.l}${u}</b>${extra}<span>${el.dataset.n}</span>`;
+  ctip.style.left=(r.left+r.width/2)+'px'; ctip.style.top=(r.top+r.height/2)+'px'; ctip.hidden=false;
+  const pt=el.previousElementSibling; 
+  document.querySelectorAll('.chart circle.pt.on').forEach(c=>{c.classList.remove('on'); c.setAttribute('r','3.6');});
+  const idx=[...el.parentNode.querySelectorAll('circle.hit')].indexOf(el), dot=el.parentNode.querySelectorAll('circle.pt')[idx];
+  if(dot){ dot.classList.add('on'); dot.setAttribute('r','6'); }
+}
+function hideTip(){ ctip.hidden=true; document.querySelectorAll('.chart circle.pt.on').forEach(c=>{c.classList.remove('on'); c.setAttribute('r','3.6');}); }
+document.addEventListener('mouseover',e=>{ const h=e.target.closest?.('.chart circle.hit'); if(h) showTip(h); });
+document.addEventListener('mouseout',e=>{ if(e.target.closest?.('.chart circle.hit')) hideTip(); });
+document.addEventListener('click',e=>{ const h=e.target.closest?.('.chart circle.hit'); if(h){ showTip(h); } else if(!ctip.hidden) hideTip(); });
+window.addEventListener('scroll',hideTip,{passive:true});
+const toT=s=>{ const [y,m,d]=s.split('-').map(Number); return Date.UTC(y,m-1,d||1); };
+function lineChart(series, {unit='', yFmt=v=>fmt(v), h=260, color='var(--copper)', domain=null}={}){
+  const W=760, H=h, L=66, R=18, T=18, B=34;
+  const d = series.map(p=>({...p, t:toT(p.d)}));
+  const t0=domain?domain[0]:Math.min(...d.map(p=>p.t)), t1=domain?domain[1]:Math.max(...d.map(p=>p.t));
+  let lo=Math.min(...d.map(p=>p.v)), hi=Math.max(...d.map(p=>p.v));
+  const pad=(hi-lo)*0.15||hi*0.05; lo-=pad; hi+=pad;
+  const span=hi-lo, raw=span/4, mag=Math.pow(10,Math.floor(Math.log10(raw)));
+  const step=[1,2,2.5,5,10].map(m=>m*mag).find(s=>s>=raw);
+  const y0=Math.ceil(lo/step)*step; const ticks=[]; for(let v=y0; v<=hi; v+=step) ticks.push(v);
+  const x=t=>L+(t-t0)/((t1-t0)||1)*(W-L-R), y=v=>T+(hi-v)/(hi-lo)*(H-T-B);
+  const path=d.map((p,i)=>(i?'L':'M')+x(p.t).toFixed(1)+' '+y(p.v).toFixed(1)).join(' ');
+  const area=path+` L${x(d[d.length-1].t).toFixed(1)} ${H-B} L${x(d[0].t).toFixed(1)} ${H-B} Z`;
+  /* month ticks: start at the first month boundary on or after t0 */
+  const s0=new Date(t0); let my=s0.getUTCFullYear(), mm=s0.getUTCMonth(); if(s0.getUTCDate()>1){ mm++; }
+  const months=[]; while(true){ const t=Date.UTC(my,mm,1); if(t>t1) break; months.push(t); mm++; }
+  const multiYear=new Date(t0).getUTCFullYear()!==new Date(t1).getUTCFullYear();
+  const every=months.length<=13?1:months.length<=26?3:6;
+  const lab=t=>{ const dt=new Date(t), Y=dt.getUTCFullYear(), M=dt.getUTCMonth()+1; return multiYear?`${String(Y).slice(2)}.${M}`:`${M}월`; };
+  const shown=months.filter((t,i)=>i%every===0 || new Date(t).getUTCMonth()===0 && every<=3);
+  const last=d[d.length-1];
+  const gid='g'+Math.random().toString(36).slice(2,7);
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="가격 추이 차트">
+    <defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${color}" stop-opacity=".22"/><stop offset="1" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>
+    ${ticks.map(v=>`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/>
+      <text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="13" fill="var(--ink-3)" font-family="IBM Plex Mono,monospace">${yFmt(v)}</text>`).join('')}
+    ${months.map(t=>`<line x1="${x(t)}" x2="${x(t)}" y1="${H-B}" y2="${H-B+4}" stroke="var(--ink-3)"/>`).join('')}
+    ${shown.map(t=>`<text x="${x(t)}" y="${H-12}" text-anchor="middle" font-size="13" fill="var(--ink-3)" font-family="IBM Plex Mono,monospace">${lab(t)}</text>`).join('')}
+    <line x1="${L}" x2="${W-R}" y1="${H-B}" y2="${H-B}" stroke="var(--ink-3)" stroke-width="1"/>
+    <path d="${area}" fill="url(#${gid})" stroke="none"/>
+    <path d="${path}" fill="none" stroke="${color}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+    ${d.map(p=>`<circle class="pt" cx="${x(p.t)}" cy="${y(p.v)}" r="3.6" fill="var(--panel)" stroke="${color}" stroke-width="2"/>`).join('')}
+    ${d.map(p=>`<circle class="hit" cx="${x(p.t)}" cy="${y(p.v)}" r="11" data-v="${p.v}" data-u="${esc0(unit)}" data-l="${esc0(yFmt(p.v))}" data-n="${esc0(p.n||p.d)}" tabindex="-1"/>`).join('')}
+    <circle cx="${x(last.t)}" cy="${y(last.v)}" r="5" fill="${color}" stroke="none"/>
+    <text x="${Math.min(x(last.t), W-R)-8}" y="${y(last.v)-10}" text-anchor="end" font-size="14" font-weight="600" fill="var(--ink)" font-family="IBM Plex Mono,monospace">${yFmt(last.v)}${unit}</text>
+  </svg>`;
+}
+
+/* ---------- 2. trend ---------- */
+/* Investing.com 일별 종가(2024.1.1~2026.10.26, 10/26 수집)를 월평균으로 계산. 시작 월부터 순서대로, 2026.10은 26일까지 평균 */
+const HIST={
+ cu:[3.8166,3.8064,3.988,4.3679,4.7579,4.4841,4.3684,4.1201,4.2645,4.4244,4.2063,4.1447,4.2723,4.5758,4.9351,4.6723,4.6905,4.8912,5.4598,4.4897,4.6606,5.0561,5.0736,5.4812,5.9097,5.8833,5.6859,5.921,6.3069,6.3479,6.3205,6.6197,6.6618,6.5908],
+ ni:[16285.45,16539.42,17614.99,18322.85,19741.42,17709.99,16549.34,16443.49,16382.92,17012.96,15948.19,15673.63,15582.18,15477.42,16246.65,15307.25,15514.45,15167.66,15202.76,15122.38,15267.51,15271.48,14848.87,15028.81,17942.19,17377.54,17277.33,18151.45,18962.67,17784.22,16853.38,16896.75,16439.26,15647.78],
+ al:[2238.64,2213.88,2272.22,2532.5,2613.57,2548.9,2406.04,2384.64,2474.5,2620.65,2612.43,2576.1,2589.33,2645.5,2645.57,2411.2,2456.75,2529.17,2610.56,2601.41,2654.52,2791.59,2848.7,2913.34,3151.92,3096,3335.67,3547.46,3598.06,3428.15,3155.83,3252.41,3275.19,3053.46],
+ st:[1076.52,924.86,802.6,841.95,786.91,722.29,666.36,680.14,706.6,708.52,693.65,688.9,704.48,785.37,924.33,929.24,883.45,874.6,875.68,832.05,806.36,816.09,858.05,907.73,944.35,983.5,1021.45,1049.55,1086.5,1130.62,1160.73,1196.33,1234,1280.47],
+ br:[79.15,81.72,84.67,89,83,83,83.88,78.88,72.87,75.38,73.4,73.13,78.15,74.84,71.32,66.32,63.79,69.39,69.42,67.13,67.52,63.86,63.53,61.56,64.55,69.24,98.16,101.43,102.78,84.3,83.1,87.35,100.43,105.57],
+ fx:[1324.8,1331.72,1331.5,1368.73,1363.71,1379.31,1381.59,1349.73,1329.29,1360.72,1393.6,1440.48,1451.82,1443.8,1457.31,1439.04,1391.19,1365.62,1378.59,1389.06,1393.15,1423.41,1460.01,1464.65,1454.75,1447.74,1489.89,1484.25,1489.36,1530.26,1487.49,1403.32,1358.58,1335.79],
+};
+const mEnd=(y,m)=>{ const d=new Date(Date.UTC(y,m,0)).getUTCDate(); return `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`; };
+/* 월평균 점은 그 달 15일에 찍는다 */
+let HLAST='2026-10-26'; const HM0={};
+function seriesFrom(arr, m0='2024-01', conv=v=>v, nm='Investing'){
+  const [y0,mm0]=m0.split('-').map(Number);
+  return arr.map((v,i)=>{ const mi=mm0-1+i, y=y0+Math.floor(mi/12), m=mi%12+1, last=`${y}-${String(m).padStart(2,'0')}`===HLAST.slice(0,7);
+    return {d:`${y}-${String(m).padStart(2,'0')}-15`, v:conv(v), n:`${nm} ${y}.${m} 월평균${last?` (${+HLAST.slice(5,7)}/${+HLAST.slice(8)}까지)`:''}`}; });
+}
+function buildSeries(k, conv=v=>v, nm='Investing'){ return seriesFrom(HIST[k], HM0[k]||'2024-01', conv, nm); }
+const LB=v=>Math.round(v*2204.62);
+const TREND = {
+  cu:{label:'구리', unit:' $/t', note:'Investing COMEX 구리 선물 월평균($/lb를 $/t로 환산, ×2,204.62). 2026년 10월은 26일까지의 평균입니다.', s:buildSeries('cu',LB,'COMEX')},
+  ni:{label:'니켈', unit:' $/t', note:'Investing 니켈 선물 월평균. 2026년 10월은 26일까지의 평균입니다.', s:buildSeries('ni')},
+  al:{label:'알루미늄', unit:' $/t', note:'Investing 알루미늄 월평균. 2026년 3~5월 중동 전쟁 급등 후 되돌림이 보입니다. 10월은 26일까지의 평균입니다.', s:buildSeries('al')},
+  st:{label:'철강', unit:' $/st', note:'Investing 미국 열연코일(HRC) 선물 월평균, 쇼트톤당 달러. 중국 열연 가격과는 다른 지표입니다.', s:buildSeries('st')},
+  pl:{label:'플라스틱(PP)', unit:' $/t', note:'중국 PP FOB 월간 가격(Procurement Resource). Investing에는 PP·PE 지표가 없어 2026년 1~8월만 있습니다. 원가 흐름은 브렌트유 탭을 함께 보세요.',
+    s:[{d:'2026-01-15',v:941.74,n:'1월'},{d:'2026-03-15',v:1264.12,n:'3월'},{d:'2026-04-15',v:1431.68,n:'4월'},{d:'2026-06-15',v:1434,n:'6월'},{d:'2026-07-15',v:1274.21,n:'7월'},{d:'2026-08-15',v:1360.83,n:'8월'}]},
+  br:{label:'브렌트유', unit:' $/bbl', note:'Investing 브렌트유 선물 월평균. 플라스틱 원가 지표입니다. 10월은 26일까지의 평균입니다.', s:buildSeries('br')},
+  fx:{label:'원/달러', unit:'원', note:'Investing USD/KRW 월평균. 10월은 26일까지의 평균입니다.', s:buildSeries('fx')},
+};
+/* 조회 기간: 연·월 드롭다운 (YYYY-MM) */
+let ALLD=[].concat(...Object.values(TREND).map(t=>t.s.map(p=>p.d))).sort();
+let DMIN=ALLD[0].slice(0,7), DMAX=ALLD[ALLD.length-1].slice(0,7), LASTDAY=HLAST;
+let RANGE={from:DMIN, to:DMAX}, curTrend='cu', quickSel='all';
+const ym=(y,m)=>`${y}-${String(m).padStart(2,'0')}`;
+const monthEnd=s=>{ const [y,m]=s.split('-').map(Number); return mEnd(y,m); };
+const rangeLabel=()=>`${RANGE.from.replace('-','.')} ~ ${RANGE.to.replace('-','.')}`;
+function inRange(p){ return p.d>=RANGE.from+'-01' && p.d<=monthEnd(RANGE.to); }
+function rangeDomain(){ const end=monthEnd(RANGE.to) > LASTDAY ? LASTDAY : monthEnd(RANGE.to); return [toT(RANGE.from+'-01'), toT(end)]; }
+function trendHTML(k){
+  const t=TREND[k]; const pts=t.s.filter(inRange);
+  if(pts.length<2) return `<div style="padding:22px;border:1px dashed var(--line);border-radius:10px;color:var(--ink-2)">${t.label}는 ${rangeLabel()} 기간에 데이터가 ${pts.length}개뿐이라 차트를 그릴 수 없습니다. 기간을 넓혀 보세요.</div>`;
+  return lineChart(pts,{unit:t.unit, domain:rangeDomain()});
+}
+const tabs=$('trendTabs');
+function showTrend(k){
+  curTrend=k;
+  [...tabs.children].forEach(b=>b.setAttribute('aria-pressed', b.dataset.k===k));
+  $('trendChart').innerHTML=trendHTML(k); $('trendNote').textContent=TREND[k].note;
+  const t=TREND[k], pts=t.s.filter(inRange);
+  const chg = pts.length>1 ? ((pts[pts.length-1].v/pts[0].v-1)*100) : null;
+  $('pNote').textContent = `${rangeLabel()} · 데이터 ${pts.length}개${chg!=null?` · 기간 등락 ${chg>0?'+':''}${chg.toFixed(1)}%`:''} · 보드 데이터 범위 ${t.s[0].d.slice(0,7).replace('-','.')} ~ ${t.s[t.s.length-1].d.slice(0,7).replace('-','.')}`;
+}
+(function initPeriod(){
+  const y0=+DMIN.slice(0,4), y1=+LASTDAY.slice(0,4);
+  const yrs=[]; for(let y=y1;y>=y0;y--) yrs.push(y);
+  ['pFromY','pToY'].forEach(id=>$(id).innerHTML=yrs.map(y=>`<option value="${y}">${y}년</option>`).join(''));
+  ['pFromM','pToM'].forEach(id=>$(id).innerHTML=Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1}월</option>`).join(''));
+  function syncSelects(){ $('pFromY').value=RANGE.from.slice(0,4); $('pFromM').value=+RANGE.from.slice(5); $('pToY').value=RANGE.to.slice(0,4); $('pToM').value=+RANGE.to.slice(5);
+    document.querySelectorAll('#period .quick button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.q===quickSel)); }
+  $('pApply').onclick=()=>{
+    let f=ym($('pFromY').value,$('pFromM').value), t=ym($('pToY').value,$('pToM').value);
+    if(f>t){ [f,t]=[t,f]; }
+    RANGE={from:f,to:t}; quickSel=''; syncSelects(); showTrend(curTrend);
+  };
+  document.querySelectorAll('#period .quick button').forEach(b=>b.onclick=()=>{
+    const q=b.dataset.q, [ly,lm]=LASTDAY.split('-').map(Number);
+    if(q==='all') RANGE={from:DMIN,to:DMAX};
+    else if(q==='ytd') RANGE={from:ym(ly,1),to:DMAX};
+    else if(q==='y1') RANGE={from:ym(ly-1,lm),to:DMAX};
+    else { const mi=lm-(+q); const y=ly+Math.floor(mi/12), m=((mi%12)+12)%12+1; RANGE={from:ym(y,m),to:DMAX}; }
+    quickSel=q; syncSelects(); showTrend(curTrend);
+  });
+  syncSelects();
+})();
+Object.entries(TREND).forEach(([k,t])=>{
+  const b=document.createElement('button'); b.type='button'; b.dataset.k=k; b.textContent=t.label;
+  b.onclick=()=>showTrend(k); tabs.appendChild(b);
+});
+showTrend('cu');
+
+/* ---------- 3. fx: 통화 탭 + 기간 조회 (Investing 일별 종가의 월평균) ---------- */
+const FXH={
+ usdkrw:{label:'USD/KRW', unit:'원', dec:1, last:[1323.57,-0.05], m:HIST.fx},
+ eurkrw:{label:'EUR/KRW', unit:'원', dec:1, last:[1483.62,-0.08], m:[1444.73,1436.96,1447.36,1467.52,1474,1484.26,1498.06,1487.75,1476.02,1482.58,1480.45,1506.94,1503.33,1504.21,1575.95,1614.9,1568.7,1574.58,1609.12,1617.83,1634.88,1656.23,1687.97,1715.84,1708.16,1711.63,1722.76,1735.44,1738.99,1760.74,1699.29,1626.55,1563.19,1498.07]},
+ jpykrw:{label:'JPY(100)/KRW', unit:'원', dec:1, last:[841.36,-0.35], m:[9.07,8.9,8.89,8.89,8.75,8.73,8.77,9.23,9.28,9.08,9.07,9.35,9.28,9.53,9.77,9.97,9.61,9.45,9.37,9.42,9.42,9.4,9.41,9.39,9.29,9.33,9.39,9.32,9.41,9.51,9.17,8.83,8.69,8.46].map(v=>v*100)},
+ cnykrw:{label:'CNY/KRW', unit:'원', dec:2, last:[198.50,-0.01], m:[184.79,185.11,184.86,189.11,188.52,190.13,190.25,188.8,187.78,191.94,193.29,197.79,198.92,198.46,200.99,197.19,192.8,190.16,192.17,193.65,195.54,199.9,205.45,207.99,208.69,209.57,216.16,217.06,219.05,225.84,219.51,208.32,202.5,199.7]},
+ eurusd:{label:'EUR/USD', unit:'', dec:4, last:[1.1199,-0.16], m:[1.0906,1.079,1.0871,1.0723,1.0809,1.0761,1.0843,1.1024,1.1104,1.0897,1.0624,1.0462,1.0355,1.0419,1.0814,1.1225,1.1277,1.1531,1.1673,1.1647,1.1735,1.1636,1.1561,1.1715,1.1743,1.1823,1.1564,1.1693,1.1677,1.1507,1.1424,1.1592,1.1507,1.1215]},
+};
+Object.values(FXH).forEach(c=>{ c.s=seriesFrom(c.m, c.m0||'2024-01'); });
+let FXR={from:'2024-01', to:DMAX}, fxCur='usdkrw', fxQuick='all'; const FXLIVE={};
+const fxFmt=(c)=>v=>Number(v).toLocaleString('ko-KR',{minimumFractionDigits:c.dec>2?c.dec:0,maximumFractionDigits:c.dec});
+const fxIn=p=>p.d>=FXR.from+'-01' && p.d<=monthEnd(FXR.to);
+const fxRangeLabel=()=>`${FXR.from.replace('-','.')} ~ ${FXR.to.replace('-','.')}`;
+function fxChartHTML(k){
+  const c=FXH[k], pts=c.s.filter(fxIn);
+  if(pts.length<2) return `<div style="padding:22px;border:1px dashed var(--line);border-radius:10px;color:var(--ink-2)">${c.label}는 ${fxRangeLabel()} 기간에 월평균 데이터가 ${pts.length}개뿐입니다. 기간을 넓혀 보세요.</div>`;
+  const end=monthEnd(FXR.to)>LASTDAY?LASTDAY:monthEnd(FXR.to);
+  return lineChart(pts,{unit:c.unit, yFmt:fxFmt(c), h:240, color:'var(--down)', domain:[toT(FXR.from+'-01'),toT(end)]});
+}
+function showFx(k){
+  fxCur=k; const c=FXH[k];
+  [...$('fxTabs').children].forEach(b=>b.setAttribute('aria-pressed', b.dataset.k===k));
+  const L = k==='usdkrw' ? LIVE.fx : FXLIVE[k];
+  const live = L ? [k==='jpykrw'?L.price*100:L.price, L.chg] : c.last;
+  $('fxLbl').textContent=`${c.label} · Investing ${L?L.asOf||'':'10/26'}`;
+  $('fxPx').textContent=fxFmt(c)(live[0]); $('fxUnit').textContent=c.unit?' '+c.unit:'';
+  const ch=live[1]; $('fxDelta').innerHTML = ch==null?'':`<span class="${ch>0?'up':ch<0?'down':'flat'}">${ch>0?'▲':ch<0?'▼':'·'} ${ch>0?'+':''}${Number(ch).toFixed(2)}% (전일비)</span>`;
+  $('fxChart').innerHTML=fxChartHTML(k);
+  const pts=c.s.filter(fxIn); const chg=pts.length>1?((pts[pts.length-1].v/pts[0].v-1)*100):null;
+  $('fxNote').textContent=`Investing ${c.label} 일별 종가의 월평균입니다. 마지막 달은 ${+LASTDAY.slice(5,7)}/${+LASTDAY.slice(8)}까지의 평균입니다.`;
+  $('fxPNote').textContent=`${fxRangeLabel()} · 월평균 ${pts.length}개${chg!=null?` · 기간 등락 ${chg>0?'+':''}${chg.toFixed(1)}%`:''}${pts.length?` · 최고 ${fxFmt(c)(Math.max(...pts.map(p=>p.v)))} / 최저 ${fxFmt(c)(Math.min(...pts.map(p=>p.v)))}`:''}`;
+}
+Object.entries(FXH).forEach(([k,c])=>{ const b=document.createElement('button'); b.type='button'; b.dataset.k=k; b.textContent=c.label; b.onclick=()=>showFx(k); $('fxTabs').appendChild(b); });
+(function initFxPeriod(){
+  const yrs=[]; for(let y=+LASTDAY.slice(0,4);y>=+DMIN.slice(0,4);y--) yrs.push(y);
+  ['fxFromY','fxToY'].forEach(id=>$(id).innerHTML=yrs.map(y=>`<option value="${y}">${y}년</option>`).join(''));
+  ['fxFromM','fxToM'].forEach(id=>$(id).innerHTML=Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1}월</option>`).join(''));
+  function sync(){ $('fxFromY').value=FXR.from.slice(0,4); $('fxFromM').value=+FXR.from.slice(5); $('fxToY').value=FXR.to.slice(0,4); $('fxToM').value=+FXR.to.slice(5);
+    document.querySelectorAll('#fxPeriod .quick button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.q===fxQuick)); }
+  $('fxApply').onclick=()=>{ let f=ym($('fxFromY').value,$('fxFromM').value), t=ym($('fxToY').value,$('fxToM').value); if(f>t){[f,t]=[t,f];} FXR={from:f,to:t}; fxQuick=''; sync(); showFx(fxCur); };
+  document.querySelectorAll('#fxPeriod .quick button').forEach(b=>b.onclick=()=>{
+    const q=b.dataset.q, [ly,lm]=LASTDAY.split('-').map(Number);
+    if(q==='all') FXR={from:DMIN,to:DMAX};
+    else if(q==='ytd') FXR={from:ym(ly,1),to:DMAX};
+    else if(q==='y1') FXR={from:ym(ly-1,lm),to:DMAX};
+    else { const mi=lm-(+q); FXR={from:ym(ly+Math.floor(mi/12), ((mi%12)+12)%12+1),to:DMAX}; }
+    fxQuick=q; sync(); showFx(fxCur);
+  });
+  sync();
+})();
+showFx('usdkrw');
+
+/* ---------- 4. news ---------- */
+const NEWS = [
+  {d:'10.26', m:'환율', t:'원/달러 1,323.1원 마감, 연저점 또 경신', s:'머니투데이', u:'https://www.mt.co.kr/economy/2026/10/26/2026102615362391860'},
+  {d:'10.26', m:'니켈', t:'니켈 선물 $15,735, 3거래일 연속 하락(-0.70%)', s:'Investing.com', u:'https://kr.investing.com/commodities/nickel-historical-data'},
+  {d:'10.26', m:'플라스틱', t:'브렌트유 $110.2로 숨 고르기…10/7 $100.2 대비 3주 새 약 10% 상승', s:'Investing.com', u:'https://kr.investing.com/commodities/brent-oil-historical-data'},
+  {d:'10.26', m:'알루미늄', t:'알루미늄 $3,043, 4주간 -7.3%로 연중 저점권 유지', s:'Investing.com', u:'https://kr.investing.com/commodities/aluminum-historical-data'},
+  {d:'10.23', m:'구리', t:'구리 선물 10/22 -2.76% 급락 후 10/23 +1.71% 반등, 변동성 확대', s:'Investing.com', u:'https://kr.investing.com/commodities/copper-historical-data'},
+  {d:'10.23', m:'철강', t:'미국 열연코일 선물 $1,292/st, 10월 들어 소폭 상승세', s:'Investing.com', u:'https://kr.investing.com/commodities/us-steel-coil-futures-historical-data'},
+  {d:'10.23', m:'니켈', t:'니켈 반등, 숏커버와 인도네시아 감산 공조 기대', s:'Trading Economics', u:'https://tradingeconomics.com/commodity/nickel'},
+  {d:'10.23', m:'구리', t:'중국 9월 정련동 수입 전월비 반등, 수출은 감소', s:'Mysteel', u:'https://www.mysteel.net/'},
+  {d:'10.21', m:'구리', t:'TD Cowen, 올해 구리 전망 $4.40 → $5.25/lb 상향…공급차질 세계 5% 규모', s:'SMM', u:'https://www.metal.com/en/newscontent/103582423'},
+  {d:'10.17', m:'플라스틱', t:'유가 3.5% 급등해 5개월 고점, 공급 리스크 확대', s:'Polymerupdate', u:'https://www.polymerupdate.com/'},
+  {d:'10.14', m:'알루미늄', t:'알루미늄 연중 저점 $3,020, 중동 제련소 재가동 가속', s:'Trading Economics', u:'https://tradingeconomics.com/commodity/aluminum/news/591898'},
+  {d:'10.14', m:'철강', t:'중국 열연 $422로 추가 하락, 미국은 $1,310로 상승', s:'SteelBenchmarker', u:'https://steelbenchmarker.com/history.pdf'},
+  {d:'10.12', m:'알루미늄', t:'Macquarie, 중동 재가동 반영해 공급부족 전망 하향', s:'AL Circle', u:'https://www.alcircle.com/news/aluminium-falls-to-3-050-t-hits-lowest-level-since-february-as-supply-outlook-improves-121529'},
+  {d:'10.11', m:'플라스틱', t:'中 PE 선물 주간 +7.0% ¥8,781, 호르무즈 상황이 수급 좌우', s:'Flexible Poly', u:'https://flexiblepoly.com/pe-market-brief-week-of-october-11-2026/'},
+  {d:'10.08', m:'환율', t:'원/달러 1,334~1,346원 전망, 반도체 업황 따른 달러 공급 우위', s:'KB Think', u:'https://kbthink.com/investment/fx/daily/261008.html'},
+  {d:'10.07', m:'플라스틱', t:'10월 PP·PE, 원가 지지 속 실수요 위주…보합~소폭 상승 전망', s:'Kanetora', u:'https://kanetora.vn/plastic-resin-market-pp-pe-october-2026-price-outlook/'},
+  {d:'10.02', m:'구리', t:'잠비아 구리정광 10% 수출관세 면제 만료, 연장 미발표', s:'Benchmark', u:'https://www.alpha-maven.com/story/venture-capital/commodity-update-copper-sourcebenchmarkmineralscom'},
+  {d:'06.29', m:'반도체', t:'SEMI, 올해 메모리 300mm 장비투자 $52B(+29%) 전망', s:'SEMI', u:'https://www.utusan.com.my/?p=1381016'},
+];
+const MATS=['전체','구리','니켈','알루미늄','철강','플라스틱','환율','반도체'];
+const nf=$('newsFilter');
+function renderNews(f){
+  [...nf.children].forEach(b=>b.setAttribute('aria-pressed', b.textContent===f));
+  $('newsList').innerHTML = NEWS.filter(n=>f==='전체'||n.m===f).map(n=>`
+    <li><time>2026.${n.d}</time><div style="min-width:0"><div class="t"><a href="${n.u}" target="_blank" rel="noopener">${n.t}</a></div>
+    <div class="meta"><span class="mat">${n.m}</span><span>${n.s}</span></div></div></li>`).join('');
+}
+MATS.forEach(m=>{const b=document.createElement('button');b.type='button';b.textContent=m;b.onclick=()=>renderNews(m);nf.appendChild(b)});
+renderNews('전체');
+
+/* ---------- 6. analysis ---------- */
+const ANA=[
+  {n:'구리', v:'bull', l:'강세 유지', p:'광산 공급차질과 낮은 비미국 재고가 하단을 지지. 다만 ICSG는 올해 소폭 공급과잉(10.4만t)을 제시해 급등보다는 고원 유지 가능성.', dr:['그라스버그 생산 가이던스 -35%','잠비아 관세 면제 만료','美 2027년 관세 검토']},
+  {n:'니켈', v:'side', l:'박스권', p:'인도네시아 RKAB 축소(약 2.6~2.7억t)가 하단을 받치나 BMO·노르니켈은 여전히 연간 24~27.5만t 공급과잉을 예상.', dr:['인니 감산 공조 여부','스테인리스 수요','LME 재고 28만t']},
+  {n:'알루미늄', v:'bear', l:'약세', p:'중동 제련소 재가동 가속과 인도네시아 증설로 전쟁 프리미엄 소멸. 다만 유럽 실물 프리미엄($574)은 높아 지역별 괴리 주의.', dr:['EGA·Alba 재가동 속도','달러 방향','OCBC 연말 $3,150 전망']},
+  {n:'철강', v:'bear', l:'약세', p:'중국 신규 HRC 설비 증가와 수요 둔화로 공급과잉. 반덤핑 확대로 중국산 수출 단가는 더 낮아질 여지.', dr:['중국 감산 정책','반덤핑 관세','원료탄 가격']},
+  {n:'플라스틱', v:'bull', l:'원가형 상승', p:'브렌트가 10/7 $100에서 $110대로 올라 원가 상승 압력. 수요가 약해 상승 폭은 제한적이나 하방도 막힌 구간.', dr:['호르무즈 통항','나프타·에틸렌','중국 재고']},
+  {n:'환율', v:'bear', l:'원화 강세', p:'반도체 수출 호조와 외국인 자금 유입으로 달러 공급 우위. 4분기 1,320원대 중심, 12개월 1,290원 전망.', dr:['美 금리 인상 재부각','외국인 주식 순매매','수출업체 네고']},
+];
+$('anaGrid').innerHTML = ANA.map(a=>`
+  <div class="card"><h3>${a.n}<span class="pill ${a.v}">${a.l}</span></h3><p>${a.p}</p>
+  <ul class="drivers">${a.dr.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('');
+
+/* ---------- 7. implications ---------- */
+const IMP=[
+  {k:'환율', lv:'hi', l:'즉시 검토', p:'<strong>달러 결제 물량 선매입·환헤지 비율 확대.</strong> 1,320원대는 연평균(1,454원) 대비 약 9% 유리. 수입 부품·원자재 4Q~1Q 소요분의 달러 확보 또는 선물환을 검토하세요.'},
+  {k:'알루미늄', lv:'hi', l:'즉시 검토', p:'<strong>연중 저점권 → 챔버·프레임용 판재·압출재 분기 단가 협상 적기.</strong> LME 연동 계약은 현재 평균가로 1~2분기 고정을 검토하고, 유럽 조달분은 프리미엄 상승을 별도 반영하세요.'},
+  {k:'구리', lv:'md', l:'분기 내', p:'<strong>분할 구매 유지, 급등 대비 상한 조항.</strong> 전원·RF 케이블, 버스바 등 구리 비중 품목은 LME 연동 + 상한(Cap) 조건을 공급사와 협의. 한 번에 몰아 사기보다 월별 분할이 유리한 구간입니다.'},
+  {k:'니켈', lv:'md', l:'분기 내', p:'<strong>SUS316L 배관·밸브·챔버 소재 단가 재협상.</strong> 니켈이 연초 대비 약 17% 낮아 스테인리스 서차지 인하 요구 근거가 됩니다. 인니 정책 변동성이 커 장기 고정은 짧게 가져가세요.'},
+  {k:'플라스틱', lv:'md', l:'분기 내', p:'<strong>수지 원가 상승분 전가 요청 대비.</strong> 케이블 피복, 포장재, 일부 엔지니어링 플라스틱 부품은 공급사 인상 통보 가능성. 재고 1~2개월분 확보와 대체 공급원 점검을 권장합니다.'},
+  {k:'철강', lv:'lo', l:'모니터링', p:'<strong>프레임·구조물 강재는 하락 국면.</strong> 단기 단가 인하 여지가 있으나 반덤핑 관세로 중국산 대체는 신중히. 국내 밀 가격 발표만 추적하면 충분합니다.'},
+  {k:'수요', lv:'lo', l:'모니터링', p:'<strong>메모리 장비투자 +29% → 부품 리드타임 장기화 대비.</strong> 장비 수주 증가 시 정밀가공·진공 부품 납기가 먼저 늘어납니다. 주요 협력사 생산능력을 분기마다 확인하세요.'},
+];
+$('impList').innerHTML = IMP.map(i=>`
+  <div class="row ${i.lv}"><b>${i.k}</b><span class="lvl">${i.l}</span><p>${i.p}</p></div>`).join('');
+
+/* ---------- 5. AI summary ---------- */
+(async()=>{
+  let s=null; try{ s = await window.claude?.use?.('sample'); }catch(e){}
+  if(!s) return;
+  const row=$('aiRow'), run=$('aiRun'), stop=$('aiStop'), out=$('aiOut'), stat=$('aiStatic'), note=$('aiNote');
+  row.hidden=false; let ctl;
+  stop.onclick=()=>ctl?.abort();
+  async function go(fromUpdate){
+    const focus=$('aiFocus').value;
+    const list=NEWS.map(n=>`- 2026.${n.d} [${n.m}] ${n.t} (${n.s})`).join('\n');
+    const px=TILES.map(t=>{ const L=LIVE[t.id];
+      return L ? `${t.name}: ${t.refOnly?t.refName+' ':''}${L.price}${t.lb?' $/lb':''} (Investing ${L.asOf||''}${L.chg!=null?', '+L.chg+'%':''})`
+               : `${t.name}: ${t.px} ${t.unit} (${t.sub})`; }).join('\n');
+    const prompt=`너는 반도체 장비 제조사 PSK의 원자재 구매 애널리스트다. 아래 가격과 뉴스만 근거로, "${focus}" 관점에서 한국어로 요약하라.
+형식: 원자재별(구리, 니켈, 알루미늄, 철강, 플라스틱, 환율) 한 줄씩 "• 품목 — 내용" 형태, 마지막에 "→ 이번 주 구매 액션:" 한 줄. 과장 없이 간결하게, 숫자는 주어진 것만 사용. 마크다운 굵게 표시는 쓰지 마라.
+
+[가격]
+${px}
+USD/KRW ${KRW}
+
+[뉴스]
+${list}`;
+    ctl=new AbortController(); run.disabled=true; stop.hidden=false;
+    out.hidden=false; stat.hidden=true; out.textContent='Thinking...';
+    try{
+      await s(prompt,{signal:ctl.signal, cache:false, onText:({text})=>{out.textContent=text;}});
+      $('aiSub').textContent = fromUpdate ? `${nowStr()} 시세 업데이트 반영` : `${nowStr()} 다시 요약`;
+      note.textContent=`"${focus}" 관점으로 요약했습니다.`;
+    }catch(e){
+      if(e.code==='cancelled'){ out.textContent=e.text||''; if(!e.text){out.hidden=true;stat.hidden=false;} }
+      else if(['not_granted','sampling_disabled','not_declared','capability_disabled','capability_removed'].includes(e.code)){ out.hidden=true; stat.hidden=false; row.hidden=true; }
+      else if(e.code==='rate_limited'){ note.textContent='요청이 많습니다. 잠시 후 다시 시도하세요.'; if(!e.text){out.hidden=true;stat.hidden=false;} }
+      else { note.textContent='요약을 받지 못했습니다. 다시 시도해 주세요.'; if(e.text) out.textContent=e.text; else {out.hidden=true;stat.hidden=false;} }
+    }finally{ run.disabled=false; stop.hidden=true; }
+  }
+  run.onclick=()=>go(false);
+  window.runAiSummary=go;
+})();
+
+
+/* ---------- 8. BP 논의점 (품목별, 단가 인하 관점) ---------- */
+const BP=[
+ {k:'cu', n:'구리', tone:['side','고점권 숨고르기'],
+  facts:[['6.59 $/lb','10월 월평균 (≈$14,530/t)'],['-5.4%','9/9 고점 6.89 → 10/26 6.52'],['-1.1%','9월 월평균 대비'],['+30%','1년 전(25.10) 대비']],
+  parts:'RF 케이블·전원 하네스, 버스바, RF 매칭 코일, 히터 리드',
+  goal:'구리 비중 높은 품목 1~2% 인하, 최소 동결',
+  angle:'1년 전보다는 높지만 9월 고점 이후 내려오는 중입니다. 원가 반영 기준월을 최근으로 옮기고, 하락도 반영되는 연동 구조를 요구할 시점입니다.',
+  qs:[['구리가 9월 고점(6.89 $/lb)보다 5% 내렸고 10월 월평균도 9월보다 1.1% 낮습니다. 케이블·하네스 단가의 구리 원가 기준월을 9월에서 10월 평균으로 바꿔 인하분을 반영해 주실 수 있나요?','Investing COMEX 구리 일별·월평균'],
+      ['단가에서 구리 원가가 몇 %인지 공유해 주시면, 오를 때와 내릴 때 똑같이 적용되는 LME 월평균 연동 공식으로 바꾸는 걸 제안드립니다. 가능할까요?','현재 견적은 상승분만 반영되는 구조일 수 있음'],
+      ['11~12월 물량을 묶어 분기 단위로 발주하면, 현재 월평균 기준으로 단가를 고정하고 추가 할인을 받을 여지가 있을까요?','물량 집중으로 협상력 확보']]},
+ {k:'ni', n:'니켈', tone:['bear','하락'],
+  facts:[['$15,648','10월 월평균'],['-17.5%','5월 월평균 $18,963 대비'],['-12.8%','1월 월평균 대비'],['+2.5%','1년 전(25.10) 대비']],
+  parts:'SUS316L 챔버·가스라인, VCR 피팅, 밸브 바디, 벨로우즈, 인코넬 히터',
+  goal:'스테인리스 부품 3~5% 인하 (원소재 비중 25~35% 가정)',
+  angle:'상반기 고점 때 올린 스테인리스 서차지가 아직 그대로인 경우가 많습니다. 하락 폭이 가장 커서 인하 요구 근거가 가장 분명한 품목입니다.',
+  qs:[['니켈 월평균이 5월 $18,963에서 10월 $15,648로 17% 내렸습니다. 상반기 견적에 들어간 스테인리스 서차지를 현재 수준으로 낮춰 11월 납품분부터 적용해 주실 수 있나요?','Investing 니켈 선물 월평균'],
+      ['SUS316L 원소재 단가가 kg당 얼마 내려갔는지 알 수 있게, 원소재비와 가공비를 나눈 견적서를 받을 수 있을까요?','원가 구조를 받아야 인하율을 계산할 수 있음'],
+      ['니켈이 박스권인 지금 3~6개월 고정가로 계약하면 단가를 몇 % 더 낮출 수 있나요?','인니 감산 정책 변수로 장기 고정은 짧게']]},
+ {k:'al', n:'알루미늄', tone:['bear','하락'],
+  facts:[['$3,053','10월 월평균'],['-15.1%','5월 월평균 $3,598 대비'],['-6.8%','9월 월평균 대비'],['+9.4%','1년 전(25.10) 대비']],
+  parts:'챔버 바디·리드(Al6061 블록), 프레임 압출재, 쿨링 플레이트',
+  goal:'알루미늄 가공품 3~6% 인하 (원소재 비중 30~40% 가정)',
+  angle:'중동 제련소 재가동으로 공급이 풀려 연중 저점권입니다. 챔버처럼 소재 비중이 큰 부품은 재견적만으로 인하 여지가 있습니다.',
+  qs:[['알루미늄 월평균이 5월 고점보다 15%, 9월보다 7% 내렸습니다. 챔버 바디·리드용 Al6061 블록의 원소재비를 현재 시세로 다시 견적해 주실 수 있나요?','Investing 알루미늄 월평균'],
+      ['중동 제련소가 다시 돌면서 수급이 풀렸는데, 소재 프리미엄 인하나 리드타임 단축이 견적에 반영됐나요?','10월 중순 연중 저점, Macquarie 공급부족 전망 하향'],
+      ['저점권인 지금 1~2분기 소재를 미리 확보하면 단가를 얼마나 낮출 수 있나요?','선확보 물량을 조건으로 협상']]},
+ {k:'st', n:'철강', tone:['side','지역별 엇갈림'],
+  facts:[['$1,280/st','미국 열연 선물 10월 월평균'],['+36%','미국, 1월 대비'],['$422/t','중국 열연(HRB) 10/14'],['공급과잉','중국·아시아 신규 설비 증가']],
+  parts:'장비 프레임, 베이스 플레이트, 커버·인클로저 판금',
+  goal:'동결 또는 1~2% 인하, 미국발 인상 전가 차단',
+  angle:'미국은 관세로 올랐지만 아시아는 공급과잉으로 약세입니다. 국내·아시아 소재를 쓰는 부품에 미국 가격 흐름이 끼어들지 않게 막는 것이 핵심입니다.',
+  qs:[['미국 열연은 올랐지만 중국 열연은 $422까지 내렸고 아시아는 공급과잉입니다. 프레임·판금 견적에 미국 가격 상승분이 들어가 있지 않은지 확인 부탁드립니다.','Investing US HRC, SteelBenchmarker'],
+      ['국내 밀 출하가 기준으로 강재 원가가 얼마인지 공유해 주시고, 4분기 단가 동결이나 인하가 가능할까요?','국내 밀 가격 발표 기준으로 협상'],
+      ['판금 부품 여러 품목을 묶어 발주하면 가공비 단가를 낮출 수 있나요?','소재보다 가공비 비중이 큰 품목']]},
+ {k:'pl', n:'플라스틱', tone:['bull','원가 상승'],
+  facts:[['$105.6','브렌트 10월 월평균'],['+25%','6월 월평균 $84.3 대비'],['+7%','中 PE 선물 주간 (10/11)'],['인상 압력','수지 원가 전가 가능성']],
+  parts:'PEEK·PTFE·Vespel 절연·실링 부품, O-ring, 케이블 피복, 포장재',
+  goal:'인상 방어 (현 단가 동결)',
+  angle:'원가가 오르는 품목이라 인하보다 인상을 막는 협상입니다. 인상 근거를 요구하고, 유가와 연동이 약한 엔지니어링 플라스틱을 분리해 대응하세요.',
+  qs:[['브렌트 월평균이 6월 $84에서 10월 $106으로 올랐습니다. 인상을 요청하신다면 수지 원가가 실제로 얼마 올랐는지 근거 자료를 받을 수 있나요?','Investing 브렌트 월평균'],
+      ['PEEK·PTFE 같은 엔지니어링 플라스틱은 유가와 가격 연동이 약한데, 범용 수지와 같은 인상률을 적용하시나요?','품목을 나눠 인상률을 낮추는 근거'],
+      ['인상을 미루는 대신 6개월 물량을 약정하면 현재 단가를 유지할 수 있나요?','물량 약정과 단가 동결 교환']]},
+ {k:'fx', n:'환율', tone:['bear','원화 강세'],
+  facts:[['1,336원','원/달러 10월 월평균'],['-12.7%','6월 월평균 1,530원 대비'],['846원','100엔 10월 월평균 (6월 대비 -11%)'],['1,498원','유로 10월 월평균 (6월 대비 -15%)']],
+  parts:'수입 진공펌프·밸브(일본·유럽), RF 제너레이터(미국), MFC·센서',
+  goal:'원화 견적 수입 부품 5~10% 인하 요청',
+  angle:'수입 부품을 원화로 받는 경우 고환율 때 정한 환율이 그대로 남아 있을 가능성이 큽니다. 지금 단가 인하 효과가 가장 큰 협상 포인트입니다.',
+  qs:[['원/달러 월평균이 6월 1,530원에서 10월 1,336원으로 13% 내렸습니다. 원화로 받은 수입 부품 견적의 적용 환율을 언제 기준으로 갱신해 주실 수 있나요?','Investing USD/KRW 월평균'],
+      ['엔화(100엔 846원, 6월 대비 -11%)와 유로(1,498원, -15%)도 내렸는데, 일본·유럽산 진공 부품 원화 단가에 반영해 주실 수 있나요?','Investing JPY/KRW·EUR/KRW 월평균'],
+      ['앞으로 환율이 ±3% 넘게 움직이면 단가를 다시 정하는 조항을 계약에 넣을 수 있을까요?','양방향 환율 조정 조항']]},
+];
+function renderBP(sel){
+  $('bpWrap').innerHTML = BP.map(b=>`
+    <article class="bp-card" data-k="${b.k}" ${sel==='all'||sel===b.k?'':'hidden'}>
+      <div class="bp-top"><h3>${b.n}</h3><span class="pill ${b.tone[0]}">${b.tone[1]}</span></div>
+      <div class="bp-facts">${b.facts.map(([v,l])=>`<div class="bp-fact"><b>${v}</b><span>${l}</span></div>`).join('')}</div>
+      <dl class="bp-meta"><dt>대상 부품</dt><dd>${b.parts}</dd><dt>협상 방향</dt><dd>${b.angle}</dd><dt>목표</dt><dd class="bp-goal">${b.goal}</dd></dl>
+      <div class="bpq" style="margin-top:0;border-top:0;padding-top:0"><ol>${b.qs.map(([q,w])=>`<li><div><p class="q">"${q}"</p><p class="why">근거: ${w}</p></div></li>`).join('')}</ol></div>
+    </article>`).join('');
+}
+$('bpSel').innerHTML = BP.map(b=>`<option value="${b.k}">${b.n}</option>`).join('') + '<option value="all">전체 보기</option>';
+$('bpSel').onchange=e=>{ renderBP(e.target.value); try{ localStorage.setItem('psk-mi-bp', e.target.value); }catch(_){} };
+(()=>{ let v='cu'; try{ v=localStorage.getItem('psk-mi-bp')||'cu'; }catch(e){} if(![...$('bpSel').options].some(o=>o.value===v)) v='cu'; $('bpSel').value=v; renderBP(v); })();
+
+/* ---------- PDF picker ---------- */
+const picker=$('picker'), status=$('pdfStatus');
+const SUBS={prices:TILES.map(t=>[t.id,t.name]), trend:Object.entries(TREND).map(([k,t])=>[k,t.label]), bp:[['cu','구리'],['ni','니켈'],['al','알루미늄'],['st','철강'],['pl','플라스틱'],['fx','환율']]};
+$('pickList').innerHTML = SECS.map(s=>`
+  <div class="grp"><label><input type="checkbox" class="p-sec" id="p-${s.id}" data-sec="${s.id}" checked>${s.dataset.label}</label>
+  ${SUBS[s.id]?`<div class="subs">${SUBS[s.id].map(([k,n])=>`<label><input type="checkbox" class="p-sub" id="p-${s.id}-${k}" data-sec="${s.id}" data-k="${k}" checked>${n}</label>`).join('')}</div>`:''}</div>`).join('');
+$('pickList').addEventListener('change',e=>{
+  const el=e.target;
+  if(el.classList.contains('p-sec')) document.querySelectorAll(`.p-sub[data-sec="${el.dataset.sec}"]`).forEach(c=>c.checked=el.checked);
+  if(el.classList.contains('p-sub')){ const any=[...document.querySelectorAll(`.p-sub[data-sec="${el.dataset.sec}"]`)].some(c=>c.checked); $('p-'+el.dataset.sec).checked=any; }
+});
+$('selAll').onclick=()=>document.querySelectorAll('#pickList input').forEach(c=>c.checked=true);
+$('selNone').onclick=()=>document.querySelectorAll('#pickList input').forEach(c=>c.checked=false);
+function togglePicker(open){ picker.hidden=!open; $('openExport').setAttribute('aria-expanded', open); if(open) status.textContent=''; }
+$('openExport').onclick=()=>togglePicker(picker.hidden);
+$('closeExport').onclick=()=>togglePicker(false);
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && !picker.hidden) togglePicker(false); });
+document.addEventListener('click',e=>{ if(!picker.hidden && !e.target.closest('.right')) togglePicker(false); });
+
+let downloads=null;
+(async()=>{ try{ downloads = await window.claude?.use?.('downloads'); }catch(e){} })();
+
+/* ---------- Material Report (A4 보고서 양식) ---------- */
+const RP_COL={bg:'#ffffff',panel:'#ffffff',sunk:'#f3f1f9',line:'#e2deee',ink:'#19162b','ink-2':'#4b4763','ink-3':'#7d7894',copper:'#6b3fc4','copper-soft':'#efe8fc',up:'#c0392b',down:'#1f6fb8',flat:'#7d7894',good:'#2e7d4f',warn:'#b7791f',bad:'#b83232'};
+const litSVG=svg=>svg.replace(/var\(--([a-z0-9-]+)\)/g,(m,k)=>RP_COL[k]||'#19162b');
+const stripTags=h=>String(h).replace(/<[^>]+>/g,'');
+const rpCSS=`
+.rp{width:794px;background:#fff;color:#19162b;font-family:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:11.5px;line-height:1.5;padding:0 40px 30px;box-sizing:border-box}
+.rp *{box-sizing:border-box}
+.rp .b{padding-top:14px}
+.rp .cover{margin:0 -40px;padding:34px 40px 26px;background:#1d1538;color:#fff}
+.rp .cover .k{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.18em;color:#c2b0f7}
+.rp .cover h1{font-family:Sora,"IBM Plex Sans KR",sans-serif;font-size:30px;margin:8px 0 4px;letter-spacing:-.01em}
+.rp .cover h1 span{color:#b39af7}
+.rp .cover p{margin:0;color:#d6cff0;font-size:12.5px}
+.rp .meta{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+.rp .meta div{border-top:1px solid rgba(255,255,255,.25);padding-top:6px}
+.rp .meta span{display:block;font-size:9.5px;color:#a99fd0;letter-spacing:.06em}
+.rp .meta b{font-size:12px;font-weight:600}
+.rp h2{font-family:Sora,"IBM Plex Sans KR",sans-serif;font-size:15px;margin:0 0 8px;display:flex;align-items:baseline;gap:8px;border-bottom:2px solid #6b3fc4;padding-bottom:5px}
+.rp h2 i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:#6b3fc4}
+.rp h2 small{margin-left:auto;font-size:10px;color:#7d7894;font-weight:400}
+.rp table{width:100%;border-collapse:collapse}
+.rp th{background:#f3f1f9;color:#4b4763;font-size:10px;font-weight:600;text-align:left;padding:6px 8px;border-bottom:1px solid #e2deee}
+.rp td{padding:6px 8px;border-bottom:1px solid #eeebf6;vertical-align:top}
+.rp td.n,.rp th.n{text-align:right;font-family:"IBM Plex Mono",monospace;white-space:nowrap}
+.rp table.sm th{font-size:9px;padding:4px 7px}
+.rp table.sm td{font-size:10px;padding:4px 7px;line-height:1.4}
+.rp table.sm td b{font-size:10.5px}
+.rp table.sm .src{font-size:8.5px}
+.rp .up{color:#c0392b}.rp .down{color:#1f6fb8}.rp .flat{color:#7d7894}
+.rp .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rp .chartbox{border:1px solid #e2deee;border-radius:8px;padding:8px 10px 4px}
+.rp .chartbox h3{margin:0;font-size:12px;display:flex;justify-content:space-between}
+.rp .chartbox h3 span{font-family:"IBM Plex Mono",monospace;font-size:10.5px}
+.rp .chartbox svg{width:100%;height:auto;display:block}
+.rp .note{font-size:9.5px;color:#7d7894;margin-top:5px}
+.rp .pill{font-size:9.5px;font-weight:600;padding:1px 7px;border-radius:999px;white-space:nowrap}
+.rp .pill.bull{background:rgba(192,57,43,.12);color:#c0392b}.rp .pill.bear{background:rgba(31,111,184,.12);color:#1f6fb8}.rp .pill.side{background:rgba(183,121,31,.15);color:#b7791f}
+.rp .lv{font-weight:600;white-space:nowrap}.rp .lv.hi{color:#b83232}.rp .lv.md{color:#b7791f}.rp .lv.lo{color:#2e7d4f}
+.rp .summary{background:#f3f1f9;border-radius:8px;padding:10px 12px;white-space:pre-wrap}
+.rp .summary ul{margin:0;padding-left:16px}
+.rp .bpc{border:1px solid #e2deee;border-radius:8px;padding:10px 12px;margin-top:8px}
+.rp .bpc h3{margin:0 0 4px;font-size:12.5px;display:flex;gap:8px;align-items:baseline}
+.rp .bpc .g{color:#6b3fc4;font-weight:600;font-size:11px}
+.rp .bpc ol{margin:6px 0 0;padding-left:18px}
+.rp .bpc li{margin-bottom:4px}
+.rp .bpc li em{display:block;font-style:normal;color:#7d7894;font-size:10px}
+.rp .src{font-size:9.5px;color:#7d7894}
+`;
+function rpTilesRows(picked){
+  return TILES.filter(t=>picked.has(t.id)).map(t=>{
+    const L=LIVE[t.id]; let px=t.px, chg=null, basis=t.sub, ref='';
+    if(L && !t.refOnly){ px=t.lb?Math.round(L.price*2204.62):L.price; chg=L.chg; basis=`Investing ${L.asOf||''}`; }
+    if(L && t.refOnly){ ref=`${t.refName}: $${fmt(L.price,2)} ${t.refUnit}${L.chg!=null?` (${L.chg>0?'+':''}${L.chg}%)`:''}`; }
+    const chgTxt = chg!=null ? `<span class="${chg>0?'up':chg<0?'down':'flat'}">${chg>0?'+':''}${Number(chg).toFixed(2)}%</span>` : t.deltas.map(([s,c])=>`<span class="${c}">${s}</span>`).join(' · ');
+    const krw = t.kg ? `${fmt(px*KRW/1000)} 원/kg` : `${fmt(px*199/1000)} 원/kg`;
+    return `<tr><td><b>${t.name}</b><br><span class="src">${t.code}</span></td><td class="n">${t.cur}${fmt(px)}/t</td><td>${chgTxt}</td><td class="n">${krw}</td><td>${basis}${ref?`<br><span class="src">${ref}</span>`:''}</td></tr>`;
+  }).join('');
+}
+function rpChart(series,unit,color,dom,yFmt){
+  return litSVG(lineChart(series,{unit,h:200,color,domain:dom,yFmt:yFmt||(v=>fmt(v))}))
+    .replace(/<circle class="hit"[^>]*\/>/g,'')
+    .replace(/<circle class="pt"([^>]*) r="3\.6"([^>]*) stroke-width="2"/g,'<circle class="pt"$1 r="1.5"$2 stroke-width="1.1"')
+    .replace(/ r="5" fill=/g,' r="2.6" fill=');
+}
+function buildReport(sel){
+  const d=new Date(), ymd=`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+  const names={prices:'원자재 가격',trend:'가격 추이',fx:'환율 정보',news:'글로벌 뉴스',ai:'AI 뉴스요약',analysis:'시장분석',implication:'구매시사점',bp:'BP 논의점'};
+  const order=['prices','trend','fx','news','ai','analysis','implication','bp'].filter(k=>sel.secs.has(k));
+  let no=0; const H=(k,small='')=>`<h2><i>${String(++no).padStart(2,'0')}</i>${names[k]}${small?`<small>${small}</small>`:''}</h2>`;
+  const blocks=[];
+  blocks.push(`<div class="cover"><div class="k">PSK · Procurement Intelligence</div><h1>PSK <span>Material Report</span></h1><p>원자재 시세 확인 및 동향 정리</p>
+    <div class="meta"><div><span>기준일</span><b>${ymd}</b></div><div><span>작성</span><b>${esc0(ME?.name||'-')}</b></div><div><span>데이터</span><b>Investing.com 외</b></div><div><span>포함 항목</span><b>${order.length}개</b></div></div></div>`);
+  for(const k of order){
+    if(k==='prices'){
+      blocks.push(`<div class="b">${H(k,`원/달러 ${fmt(KRW,1)}원 기준 환산`)}<table class="sm"><thead><tr><th>품목</th><th class="n">현재가</th><th>변동</th><th class="n">원화 환산</th><th>기준</th></tr></thead><tbody>${rpTilesRows(sel.tiles)}</tbody></table></div>`);
+    }
+    if(k==='trend'){
+      const dom=rangeDomain(); const ks=sel.trend;
+      blocks.push(`<div class="b">${H(k,`조회 기간 ${rangeLabel()} · 월평균`)}</div>`);
+      for(let i=0;i<ks.length;i+=2){
+        blocks.push(`<div class="b" style="padding-top:8px"><div class="grid2">${ks.slice(i,i+2).map(t=>{ const T=TREND[t], pts=T.s.filter(inRange);
+          const chg=pts.length>1?((pts[pts.length-1].v/pts[0].v-1)*100):null;
+          return `<div class="chartbox"><h3>${T.label}<span class="${chg>0?'up':chg<0?'down':'flat'}">${chg==null?'-':(chg>0?'+':'')+chg.toFixed(1)+'%'}</span></h3>${pts.length>1?rpChart(pts,T.unit,'var(--copper)',dom):'<p class="note">기간 내 데이터 부족</p>'}</div>`; }).join('')}</div></div>`);
+      }
+      blocks.push(`<div class="note" style="padding-top:4px">Investing.com 일별 종가의 월평균. 구리는 COMEX $/lb를 $/t로 환산. 철강은 미국 열연코일 선물($/st), 플라스틱은 중국 PP FOB.</div>`);
+    }
+    if(k==='fx'){
+      const rows=Object.entries(FXH).map(([kk,c])=>{ const L=kk==='usdkrw'?LIVE.fx:FXLIVE[kk]; const v=L?(kk==='jpykrw'?L.price*100:L.price):c.last[0], ch=L?L.chg:c.last[1];
+        const pts=c.s.filter(fxIn); const pchg=pts.length>1?((pts[pts.length-1].v/pts[0].v-1)*100):null;
+        return `<tr><td><b>${c.label}</b></td><td class="n">${fxFmt(c)(v)}${c.unit?' '+c.unit:''}</td><td class="n ${ch>0?'up':ch<0?'down':'flat'}">${ch==null?'-':(ch>0?'+':'')+Number(ch).toFixed(2)+'%'}</td><td class="n ${pchg>0?'up':pchg<0?'down':'flat'}">${pchg==null?'-':(pchg>0?'+':'')+pchg.toFixed(1)+'%'}</td></tr>`; }).join('');
+      const c=FXH.usdkrw, pts=c.s.filter(fxIn), end=monthEnd(FXR.to)>LASTDAY?LASTDAY:monthEnd(FXR.to);
+      blocks.push(`<div class="b">${H(k,`조회 기간 ${fxRangeLabel()}`)}<div class="grid2"><table class="sm"><thead><tr><th>통화</th><th class="n">현재</th><th class="n">전일비</th><th class="n">기간 등락</th></tr></thead><tbody>${rows}</tbody></table>
+        <div class="chartbox"><h3>USD/KRW 월평균<span></span></h3>${pts.length>1?rpChart(pts,'원','var(--down)',[toT(FXR.from+'-01'),toT(end)],fxFmt(c)):''}</div></div></div>`);
+    }
+    if(k==='news'){
+      blocks.push(`<div class="b">${H(k,`${Math.min(NEWS.length,12)}건`)}<table class="sm"><thead><tr><th style="width:70px">날짜</th><th style="width:66px">품목</th><th>내용</th><th style="width:110px">출처</th></tr></thead><tbody>${NEWS.slice(0,12).map(n=>`<tr><td>2026.${n.d}</td><td>${n.m}</td><td>${esc0(n.t)}</td><td class="src">${esc0(n.s)}</td></tr>`).join('')}</tbody></table></div>`);
+    }
+    if(k==='ai'){
+      const out=$('aiOut'); const body = (!out.hidden && out.textContent.trim()) ? `<div class="summary">${esc0(out.textContent.trim())}</div>` : `<div class="summary" style="white-space:normal">${$('aiStatic').innerHTML}</div>`;
+      blocks.push(`<div class="b">${H(k,$('aiSub').textContent)}${body}</div>`);
+    }
+    if(k==='analysis'){
+      blocks.push(`<div class="b">${H(k,'1~3개월 시각')}<table class="sm"><thead><tr><th style="width:70px">품목</th><th style="width:84px">방향</th><th>요약</th><th style="width:170px">주요 변수</th></tr></thead><tbody>${ANA.map(a=>`<tr><td><b>${a.n}</b></td><td><span class="pill ${a.v}">${a.l}</span></td><td>${a.p}</td><td class="src">${a.dr.join(' · ')}</td></tr>`).join('')}</tbody></table></div>`);
+    }
+    if(k==='implication'){
+      blocks.push(`<div class="b">${H(k)}<table class="sm"><thead><tr><th style="width:62px">품목</th><th style="width:66px">우선순위</th><th>대응</th></tr></thead><tbody>${IMP.map(i=>`<tr><td><b>${i.k}</b></td><td><span class="lv ${i.lv}">${i.l}</span></td><td>${i.p}</td></tr>`).join('')}</tbody></table></div>`);
+    }
+    if(k==='bp'){
+      const list=BP.filter(b=>sel.bp.has(b.k));
+      blocks.push(`<div class="b">${H(k,'반도체 장비 부품 단가 인하 관점')}</div>`);
+      list.forEach(b=>blocks.push(`<div class="b" style="padding-top:0"><div class="bpc"><h3>${b.n}<span class="pill ${b.tone[0]}">${b.tone[1]}</span><span class="g" style="margin-left:auto">목표: ${b.goal}</span></h3>
+        <div class="src">${b.facts.map(([v,l])=>`${v} (${l})`).join(' · ')}</div><div style="margin-top:4px"><b>대상 부품</b> ${b.parts}</div>
+        <ol>${b.qs.map(([q,w])=>`<li>"${q}"<em>근거: ${w}</em></li>`).join('')}</ol></div></div>`));
+    }
+  }
+  blocks.push(`<div class="b note">출처: Investing.com(원자재·환율 일별 종가 및 월평균), Westmetall(LME 공식가·재고), SteelBenchmarker, Procurement Resource, 각 뉴스 출처. 목표 인하율은 원소재 비중 가정에 따른 추정치이며 투자 권유가 아닙니다.</div>`);
+  const el=document.createElement('div'); el.className='rp';
+  el.innerHTML=`<style>${rpCSS}</style>`+blocks.map(b=>`<div class="rp-b">${b}</div>`).join('');
+  el.style.cssText='position:absolute;left:-10000px;top:0;z-index:-1';
+  document.body.appendChild(el); return el;
+}
+$('makePdf').onclick=async()=>{
+  const secs=new Set(SECS.filter(s=>$('p-'+s.id).checked).map(s=>s.id));
+  if(!secs.size){ status.textContent='PDF에 넣을 정보를 하나 이상 선택하세요.'; return; }
+  if(!window.jspdf||!window.html2canvas){ status.textContent='PDF 도구를 불러오지 못했습니다. 페이지를 새로고침해 주세요.'; return; }
+  const pick=sec=>new Set([...document.querySelectorAll(`.p-sub[data-sec="${sec}"]:checked`)].map(c=>c.dataset.k));
+  const sel={secs, tiles:pick('prices'), trend:[...pick('trend')], bp:pick('bp')};
+  const btn=$('makePdf'); btn.disabled=true; status.textContent='보고서 구성 중...';
+  let el=null;
+  try{
+    el=buildReport(sel);
+    if(document.fonts?.ready) await document.fonts.ready;
+    status.textContent='보고서 그리는 중...';
+    const SC=2, canvas=await html2canvas(el,{scale:SC,backgroundColor:'#ffffff',windowWidth:794,logging:false});
+    const { jsPDF } = window.jspdf; const pdf=new jsPDF({unit:'mm',format:'a4',orientation:'portrait'});
+    const PW=210, PH=297, pxW=794, mmPerPx=PW/pxW, topPx=36, botPx=40, pageH=Math.floor(PH/mmPerPx);
+    const usable=pageH-topPx-botPx;
+    const rootTop=el.getBoundingClientRect().top;
+    const marks=[...el.querySelectorAll(':scope > .rp-b')].map(b=>{ const r=b.getBoundingClientRect(); return [r.top-rootTop, r.bottom-rootTop]; });
+    const total=el.scrollHeight; const pages=[]; let start=0;
+    while(start<total-1){
+      let end=start+(pages.length?usable:pageH-botPx);
+      if(end>=total){ pages.push([start,total]); break; }
+      const fit=marks.filter(([t,b])=>b<=end && t>=start).map(([t,b])=>b);
+      const brk=fit.length?Math.max(...fit):end;
+      pages.push([start,brk<=start+40?end:brk]); start=pages[pages.length-1][1];
+    }
+    pages.forEach(([a,b],i)=>{
+      if(i) pdf.addPage();
+      const h=b-a, part=document.createElement('canvas'); part.width=canvas.width; part.height=Math.ceil(h*SC);
+      const g=part.getContext('2d'); g.fillStyle='#fff'; g.fillRect(0,0,part.width,part.height);
+      g.drawImage(canvas,0,Math.floor(a*SC),canvas.width,Math.ceil(h*SC),0,0,part.width,part.height);
+      const y0 = i? topPx*mmPerPx : 0;
+      pdf.addImage(part.toDataURL('image/jpeg',0.92),'JPEG',0,y0,PW,h*mmPerPx);
+      if(i){ pdf.setDrawColor(107,63,196); pdf.setLineWidth(0.4); pdf.line(10.6,8,PW-10.6,8); pdf.setFontSize(8); pdf.setTextColor(107,63,196); pdf.text('PSK Material Report',10.6,6.4); }
+    });
+    const n=pdf.getNumberOfPages(), ymd=new Date().toISOString().slice(0,10);
+    for(let p=1;p<=n;p++){ pdf.setPage(p); pdf.setFontSize(8); pdf.setTextColor(125,120,148); pdf.text(`PSK Material Report  |  ${ymd}  |  ${p} / ${n}`, PW/2, PH-6, {align:'center'}); }
+    const blob=pdf.output('blob');
+    if(!downloads){
+      const d0=new Date(), f0=`${d0.getFullYear()}${String(d0.getMonth()+1).padStart(2,'0')}${String(d0.getDate()).padStart(2,'0')}`;
+      const url=URL.createObjectURL(blob), a=document.createElement('a'); a.href=url; a.download=`PSK_Material_Report_${f0}.pdf`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),8000);
+      status.textContent=`PSK Material Report를 저장했습니다 (${secs.size}개 항목, ${n}쪽).`; return;
+    }
+    status.textContent='저장 확인 창을 확인해 주세요.';
+    try{
+      const d=new Date(), f=`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
+      await downloads.save({filename:`PSK_Material_Report_${f}.pdf`, data:blob});
+      status.textContent=`PSK Material Report를 저장했습니다 (${secs.size}개 항목, ${n}쪽).`;
+    }catch(e){
+      status.textContent = e.code==='declined' ? '저장을 취소했습니다.' : e.code==='rate_limited' ? '이미 저장 창이 열려 있습니다. 잠시 후 다시 시도하세요.' : '이 화면에서는 파일을 저장할 수 없습니다.';
+    }
+  }catch(err){
+    console.error('PDF error',err); status.textContent=`PDF를 만들지 못했습니다 (${String(err&&err.message||err).slice(0,80)}). 화면을 캡처해 알려 주세요.`;
+  }finally{ el?.remove(); btn.disabled=false; }
+};
+
+/* ---------- 로그인 · 계정 ---------- */
+const SKEY='psk-mi-session';
+let ME=null, authDb=null, authUser=null, gateMode='login', IS_OWNER=false, PENDING=null;
+const enc=new TextEncoder();
+const hexOf=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+async function hashPw(pw,salt){ const k=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveBits']); const bits=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:enc.encode(salt),iterations:120000},k,256); return hexOf(bits); }
+const newSalt=()=>hexOf(crypto.getRandomValues(new Uint8Array(16)));
+const normId=s=>String(s||'').trim().toLowerCase();
+const validId=s=>/^[a-z0-9._-]{3,32}$/.test(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function loadSess(){ try{ const s=JSON.parse(localStorage.getItem(SKEY)||'null'); return s&&s.exp>Date.now()?s:null; }catch(e){ return null; } }
+function saveSess(s){ try{ s?localStorage.setItem(SKEY,JSON.stringify(s)):localStorage.removeItem(SKEY); }catch(e){} }
+const sessFor=(id,hash)=>({id, h:hash.slice(0,12), exp:Date.now()+12*3600e3});
+function gateErr(t){ $('gErr').textContent=t||''; }
+function setGateMode(m){
+  gateMode=m; const change=m==='change', setup=m==='setup'||m==='reset'||change, blocked=m==='blocked', reset=m==='reset';
+  $('gateTitle').textContent = change?'새 비밀번호 설정':reset?'비밀번호 재설정':setup?'첫 관리자 계정 만들기':blocked?'지금은 로그인할 수 없습니다':'로그인';
+  $('gateSub').textContent = change?'처음 로그인했거나 관리자가 비밀번호를 초기화했습니다. 계속하려면 사용할 새 비밀번호를 정하세요.':reset?'보드 소유자 확인이 끝났습니다. 재설정할 계정 ID와 새 비밀번호를 입력하세요.':setup?'아직 계정이 없습니다. 보드를 관리할 관리자 계정을 먼저 만드세요.':blocked?'아래 안내를 확인해 주세요.':'계정 ID(영문)와 비밀번호를 입력하세요.';
+  $('setupName').hidden=!setup||reset||change; $('setupPw2').hidden=!setup;
+  $('gId').readOnly=change; document.querySelector('label[for="gPw"]').textContent=change?'새 비밀번호':'비밀번호';
+  $('gGo').textContent = change?'새 비밀번호로 시작':reset?'비밀번호 바꾸고 로그인':setup?'관리자 계정 만들고 시작':'로그인'; $('gGo').disabled=blocked;
+  $('gReset').hidden = change || !IS_OWNER;
+  $('gReset').textContent = reset?'로그인 화면으로 돌아가기':'비밀번호를 잊으셨나요? (보드 소유자 재설정)';
+  $('gPw').setAttribute('autocomplete', setup?'new-password':'current-password');
+  ['gId','gPw'].forEach(id=>$(id).disabled=blocked);
+  $('gFoot').textContent = change?'8자 이상, 임시 비밀번호와 다르게 정해 주세요.':reset?'새 비밀번호는 8자 이상입니다.':setup?'비밀번호는 8자 이상. 만든 뒤 오른쪽 위 계정 메뉴에서 다른 사람 계정을 추가할 수 있습니다.':'계정이 없으면 관리자에게 요청하세요.';
+}
+function showGate(){ $('app').hidden=true; $('gate').hidden=false; closePops(); startGlobe(); setTimeout(()=>{ if(!$('gId').disabled) $('gId').focus(); },50); }
+function enterApp(){ $('gate').hidden=true; $('app').hidden=false; stopGlobe(); renderAcct(); }
+const SB_URL='https://bmheoocphdomdvhmskee.supabase.co', SB_KEY='sb_publishable_63Jy7CW2uHLy8vtdqX6k2w_4gh_tlv-';
+let TOKEN=null; const TKEY='psk-mi-token';
+const sbSaveToken=t=>{ try{ t?localStorage.setItem(TKEY,t):localStorage.removeItem(TKEY); }catch(e){} };
+const sbLoadToken=()=>{ try{ return localStorage.getItem(TKEY); }catch(e){ return null; } };
+async function rpc(fn,args){
+  const r=await fetch(`${SB_URL}/rest/v1/rpc/${fn}`,{method:'POST',headers:{'apikey':SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(args||{})});
+  const t=await r.text(); let j=null; try{ j=t?JSON.parse(t):null; }catch(e){}
+  if(!r.ok) throw {code:(j&&(j.message||j.code))||('http_'+r.status)}; return j;
+}
+const SB_ERR={invalid_login:'ID 또는 비밀번호가 맞지 않습니다.',inactive:'사용이 중지된 계정입니다. 관리자에게 문의하세요.',not_logged_in:'로그인이 만료됐습니다. 다시 로그인해 주세요.',not_admin:'관리자만 할 수 있습니다.',
+  bad_password:'현재 비밀번호가 맞지 않습니다.',weak_password:'비밀번호는 8자 이상이어야 합니다.',same_password:'임시 비밀번호와 다른 비밀번호로 정해 주세요.',exists:'이미 있는 ID입니다.',bad_id:'ID는 영문 소문자·숫자·.-_ 3~32자로 정해 주세요.',
+  last_admin:'관리자가 최소 한 명은 있어야 합니다.',self:'자기 계정은 중지하거나 삭제할 수 없습니다.',not_found:'계정을 찾지 못했습니다.'};
+const sbMsg=e=>SB_ERR[e?.code]||(String(e?.code||'').startsWith('http_')||e instanceof TypeError?'서버에 연결하지 못했습니다. 잠시 후 다시 시도해 주세요.':'처리하지 못했습니다. 다시 시도해 주세요.');
+async function sbInit(){
+  showGate(); setGateMode('login'); $('gReset').hidden=true; $('gGo').disabled=true; $('gGo').textContent='불러오는 중…';
+  $('barSt').textContent=`${SNAP_AT||''} 기준 데이터`;
+  let st=null; try{ st=await rpc('board_status'); }catch(e){}
+  $('gGo').disabled=false; $('gGo').textContent='로그인';
+  if(!st){ setGateMode('blocked'); gateErr('로그인 서버에 연결하지 못했습니다. 잠시 후 새로고침해 주세요.'); return; }
+  if(!st.has_accounts){ setGateMode('blocked'); gateErr('아직 관리자 계정이 없습니다. 관리자가 서버 설정을 마치면 로그인할 수 있습니다.'); return; }
+  const t=sbLoadToken();
+  if(t){ try{ const me=await rpc('board_me',{p_token:t}); if(me && !me.must_change){ TOKEN=t; ME={id:me.id,name:me.name,role:me.role}; enterApp(); return; } }catch(e){} sbSaveToken(null); }
+}
+async function sbSubmit(){
+  const id=normId($('gId').value), pw=$('gPw').value, btn=$('gGo'), label=btn.textContent; btn.disabled=true; btn.textContent='확인 중…';
+  try{
+    if(gateMode==='change'){
+      if(pw.length<8) return gateErr('새 비밀번호는 8자 이상이어야 합니다.');
+      if(pw!==$('gPw2').value) return gateErr('새 비밀번호 확인이 일치하지 않습니다.');
+      await rpc('board_set_password',{p_token:PENDING.token,p_old:PENDING.pw,p_new:pw});
+      TOKEN=PENDING.token; sbSaveToken(TOKEN); ME={id:PENDING.id,name:PENDING.name,role:PENDING.role}; PENDING=null;
+      $('gPw').value=''; $('gPw2').value=''; setGateMode('login'); enterApp(); return;
+    }
+    if(!id||!pw) return gateErr('ID와 비밀번호를 입력하세요.');
+    if(/[^\x00-\x7f]/.test($('gId').value)) return gateErr('ID는 이름이 아니라 영문 ID입니다.');
+    const r=await rpc('board_login',{p_id:id,p_pw:pw});
+    if(r.must_change){ PENDING={token:r.token,pw,id:r.id,name:r.name,role:r.role}; $('gPw').value=''; setGateMode('change'); $('gPw').focus(); return; }
+    TOKEN=r.token; sbSaveToken(TOKEN); ME={id:r.id,name:r.name,role:r.role}; $('gPw').value=''; enterApp();
+  }catch(e){ gateErr(sbMsg(e)); }
+  finally{ btn.disabled=false; if(btn.textContent==='확인 중…') btn.textContent=label; }
+}
+function enterStandalone(){
+  $('gate').hidden=true; $('app').hidden=false; stopGlobe();
+  ['acctBtn','hello','topUpd','barSt','updPanel','sideReq','aiRow'].forEach(id=>{ const el=$(id); if(el) (id==='acctBtn'?el.closest('.acct-wrap'):el).hidden=true; });
+  $('barSt').hidden=false; $('barSt').textContent=`${SNAP_AT||''} 기준 데이터`; $('barSt').className='barst';
+  $('updNote') && ($('updNote').textContent='');
+}
+async function initAuth(){
+  if(STANDALONE){ return sbInit(); }
+  showGate(); setGateMode('login'); $('gGo').disabled=true; $('gGo').textContent='불러오는 중…';
+  try{ authDb=await window.claude?.use?.('db'); }catch(e){}
+  try{ authUser=await window.claude?.use?.('user'); }catch(e){}
+  try{ IS_OWNER=!!(await authUser?.isOwner?.()); }catch(e){}
+  $('gGo').disabled=false; $('gGo').textContent='로그인';
+  if(!authDb){ setGateMode('blocked'); gateErr('claude.ai에 로그인한 상태에서 이 보드를 열어 주세요. 계정 정보를 확인할 수 없습니다.'); return; }
+  let snap; try{ snap=await authDb.collection('accounts').get(); }catch(e){ gateErr('계정 정보를 불러오지 못했습니다. 페이지를 새로고침해 주세요.'); return; }
+  if(snap.empty){
+    let owner=false; try{ owner=!!(await authUser?.isOwner?.()); }catch(e){}
+    if(owner) setGateMode('setup'); else { setGateMode('blocked'); gateErr('아직 관리자 계정이 없습니다. 보드 소유자가 먼저 관리자 계정을 만들어야 합니다.'); }
+    return;
+  }
+  $('gReset').hidden=!IS_OWNER;
+  const s=loadSess();
+  if(s){
+    const d=await authDb.doc('accounts/'+s.id).get().catch(()=>null); const a=d?.exists?d.data():null;
+    if(a && a.active!==false && !a.mustChange && String(a.hash).slice(0,12)===s.h){ ME={id:s.id,name:a.name,role:a.role}; enterApp(); return; }
+    saveSess(null);
+  }
+}
+$('gReset').onclick=()=>{ gateErr(''); $('gPw').value=''; $('gPw2').value=''; setGateMode(gateMode==='reset'?'login':'reset'); $('gId').focus(); };
+$('loginForm').addEventListener('submit', async e=>{
+  e.preventDefault(); gateErr(''); if(gateMode==='blocked') return;
+  if(STANDALONE) return sbSubmit();
+  const id=normId($('gId').value), pw=$('gPw').value;
+  const btn=$('gGo'), label=btn.textContent; btn.disabled=true; btn.textContent='확인 중…';
+  try{
+    if(gateMode==='change'){
+      if(!PENDING) { setGateMode('login'); return; }
+      if(pw.length<8) return gateErr('새 비밀번호는 8자 이상이어야 합니다.');
+      if(pw!==$('gPw2').value) return gateErr('새 비밀번호 확인이 일치하지 않습니다.');
+      if(await hashPw(pw,PENDING.a.salt)===PENDING.a.hash) return gateErr('임시 비밀번호와 다른 비밀번호로 정해 주세요.');
+      const salt=newSalt(), hash=await hashPw(pw,salt);
+      await authDb.doc('accounts/'+PENDING.id).update({salt,hash,mustChange:false,pwChangedAt:nowStr(),lastLogin:nowStr()});
+      ME={id:PENDING.id,name:PENDING.a.name,role:PENDING.a.role}; saveSess(sessFor(PENDING.id,hash)); PENDING=null;
+      $('gPw').value=''; $('gPw2').value=''; setGateMode('login'); enterApp(); return;
+    }
+    if(gateMode==='reset'){
+      let owner=false; try{ owner=!!(await authUser?.isOwner?.()); }catch(_){}
+      if(!owner) return gateErr('보드 소유자만 비밀번호를 재설정할 수 있습니다.');
+      const ref=authDb.doc('accounts/'+id), d=await ref.get();
+      if(!d.exists) return gateErr('그 ID의 계정이 없습니다. 계정 만들 때 정한 영문 ID를 입력하세요.');
+      if(pw.length<8) return gateErr('비밀번호는 8자 이상이어야 합니다.');
+      if(pw!==$('gPw2').value) return gateErr('비밀번호 확인이 일치하지 않습니다.');
+      const salt=newSalt(), hash=await hashPw(pw,salt), a=d.data();
+      await ref.update({salt,hash,active:true,pwChangedAt:nowStr(),lastLogin:nowStr()});
+      ME={id,name:a.name,role:a.role}; saveSess(sessFor(id,hash)); $('gPw').value=''; $('gPw2').value=''; setGateMode('login'); enterApp(); return;
+    }
+    if(gateMode==='setup'){
+      const name=$('gName').value.trim();
+      if(!name) return gateErr('이름을 입력하세요.');
+      if(!validId(id)) return gateErr('ID는 영문 소문자·숫자·.-_ 3~32자로 정해 주세요.');
+      if(pw.length<8) return gateErr('비밀번호는 8자 이상이어야 합니다.');
+      if(pw!==$('gPw2').value) return gateErr('비밀번호 확인이 일치하지 않습니다.');
+      const chk=await authDb.collection('accounts').get(); if(!chk.empty){ setGateMode('login'); return gateErr('이미 관리자 계정이 있습니다. 로그인해 주세요.'); }
+      const salt=newSalt(), hash=await hashPw(pw,salt);
+      await authDb.doc('accounts/'+id).set({id,name,role:'admin',salt,hash,active:true,createdAt:nowStr(),lastLogin:nowStr()});
+      ME={id,name,role:'admin'}; saveSess(sessFor(id,hash)); $('gPw').value=''; $('gPw2').value=''; enterApp(); return;
+    }
+    if(!id||!pw) return gateErr('ID와 비밀번호를 입력하세요.');
+    const d=await authDb.doc('accounts/'+id).get(); const a=d.exists?d.data():null;
+    if(!a) return gateErr(/[^\x00-\x7f]/.test($('gId').value) ? 'ID는 이름이 아니라 계정 만들 때 정한 영문 ID입니다.' : '그 ID의 계정이 없습니다.');
+    if(!(await hashPw(pw,a.salt)===a.hash)) return gateErr('비밀번호가 맞지 않습니다. 한/영 상태와 Caps Lock을 확인해 주세요.');
+    if(a.active===false) return gateErr('사용이 중지된 계정입니다. 관리자에게 문의하세요.');
+    if(a.mustChange){ PENDING={id,a}; $('gPw').value=''; setGateMode('change'); $('gPw').focus(); return; }
+    ME={id,name:a.name,role:a.role}; saveSess(sessFor(id,a.hash));
+    authDb.doc('accounts/'+id).update({lastLogin:nowStr()}).catch(()=>{});
+    $('gPw').value=''; enterApp();
+  }catch(err){ gateErr('처리 중 오류가 났습니다. 잠시 후 다시 시도해 주세요.'); }
+  finally{ btn.disabled=gateMode==='blocked'; if(btn.textContent==='확인 중…') btn.textContent=label; }
+});
+
+/* 계정 메뉴 */
+function renderAcct(){
+  if(!ME) return;
+  $('acctName').textContent=`${ME.name||ME.id}님, 환영합니다`; $('hello').textContent=`${ME.name||ME.id}님`; $('acctId').textContent=ME.id;
+  $('acctRole').textContent=ME.role==='admin'?'관리자':'사용자'; $('acctRole').className='role'+(ME.role==='admin'?'':' user');
+  $('acctAdmin').hidden=ME.role!=='admin'; $('acctInbox').hidden=ME.role!=='admin';
+  try{ watchInbox(); }catch(e){}
+}
+function closePops(){ $('acctPop').hidden=true; $('acctBtn').setAttribute('aria-expanded','false'); ['mPw','mAdmin','mInbox'].forEach(id=>$(id).hidden=true); }
+$('acctBtn').onclick=e=>{ e.stopPropagation(); const open=$('acctPop').hidden; $('acctPop').hidden=!open; $('acctBtn').setAttribute('aria-expanded',open); if(open) togglePicker(false); };
+document.addEventListener('click',e=>{ if(!$('acctPop').hidden && !e.target.closest('.acct-wrap')){ $('acctPop').hidden=true; $('acctBtn').setAttribute('aria-expanded','false'); } });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ $('acctPop').hidden=true; ['mPw','mAdmin','mInbox'].forEach(id=>$(id).hidden=true); } });
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>{ $(b.dataset.close).hidden=true; });
+$('acctLogout').onclick=()=>{ if(STANDALONE){ if(TOKEN) rpc('board_logout',{p_token:TOKEN}).catch(()=>{}); TOKEN=null; sbSaveToken(null); } try{ inboxUnsub?.(); }catch(e){} inboxUnsub=null; $('acctDot').hidden=true; saveSess(null); ME=null; $('gReset').hidden=!IS_OWNER; $('gId').value=''; $('gPw').value=''; gateErr(''); setGateMode('login'); showGate(); };
+$('acctPw').onclick=()=>{ $('acctPop').hidden=true; ['pwOld','pwNew','pwNew2'].forEach(id=>$(id).value=''); $('pwMsg').textContent=''; $('pwMsg').className='mmsg'; $('mPw').hidden=false; $('pwOld').focus(); };
+$('pwSave').onclick=async()=>{
+  const m=$('pwMsg'), say=(t,c)=>{ m.textContent=t; m.className='mmsg '+(c||''); };
+  const o=$('pwOld').value, n=$('pwNew').value;
+  if(n.length<8) return say('새 비밀번호는 8자 이상이어야 합니다.','err');
+  if(n!==$('pwNew2').value) return say('새 비밀번호 확인이 일치하지 않습니다.','err');
+  if(STANDALONE){ try{ await rpc('board_set_password',{p_token:TOKEN,p_old:o,p_new:n}); return say('비밀번호를 변경했습니다.','ok'); }catch(e){ return say(sbMsg(e),'err'); } }
+  try{
+    const ref=authDb.doc('accounts/'+ME.id), d=await ref.get(), a=d.data();
+    if(await hashPw(o,a.salt)!==a.hash) return say('현재 비밀번호가 맞지 않습니다.','err');
+    const salt=newSalt(), hash=await hashPw(n,salt); await ref.update({salt,hash,pwChangedAt:nowStr()});
+    saveSess(sessFor(ME.id,hash)); say('비밀번호를 변경했습니다.','ok');
+  }catch(e){ say('변경하지 못했습니다. 다시 시도해 주세요.','err'); }
+};
+
+/* 관리자: 계정 관리 */
+let ACC=[];
+const adSay=(t,c)=>{ $('adMsg').textContent=t; $('adMsg').className='mmsg '+(c||''); };
+async function loadAccounts(){ if(STANDALONE){ ACC=(await rpc('board_admin_list',{p_token:TOKEN}))||[]; renderAccounts(); return; } const s=await authDb.collection('accounts').get(); ACC=s.docs.map(d=>({...d.data(), id:d.id})); renderAccounts(); }
+const activeAdmins=()=>ACC.filter(a=>a.role==='admin'&&a.active!==false);
+function renderAccounts(){
+  $('accRows').innerHTML = ACC.map(a=>{ const me=a.id===ME.id, off=a.active===false;
+    return `<tr class="${off?'off':''}" data-id="${esc(a.id)}">
+      <td>${esc(a.id)}${me?' <span class="role user">나</span>':''}</td><td>${esc(a.name)}</td>
+      <td><select data-act="role" aria-label="${esc(a.id)} 권한"><option value="user" ${a.role!=='admin'?'selected':''}>사용자</option><option value="admin" ${a.role==='admin'?'selected':''}>관리자</option></select></td>
+      <td>${off?'중지':'사용'}${a.mustChange&&!off?' · 첫 로그인 전':''}</td><td>${esc(a.lastLogin||'-')}</td>
+      <td class="act"><button class="mini" data-act="toggle" type="button">${off?'사용으로':'중지'}</button>
+        <button class="mini" data-act="reset" type="button">비밀번호 초기화</button>
+        <button class="mini danger" data-act="del" type="button">삭제</button>
+        <span class="rst" hidden><input type="password" placeholder="새 임시 비밀번호" aria-label="${esc(a.id)} 새 임시 비밀번호" style="width:150px;margin-top:6px"> <button class="mini" data-act="resetSave" type="button">저장</button></span></td></tr>`; }).join('');
+}
+$('acctAdmin').onclick=async()=>{ $('acctPop').hidden=true; adSay(''); $('mAdmin').hidden=false; try{ await loadAccounts(); }catch(e){ adSay('계정 목록을 불러오지 못했습니다.','err'); } };
+$('accRows').addEventListener('change',async e=>{
+  if(e.target.dataset.act!=='role') return;
+  const id=e.target.closest('tr').dataset.id, a=ACC.find(x=>x.id===id), role=e.target.value;
+  if(a.role==='admin' && role!=='admin' && activeAdmins().length<=1){ e.target.value='admin'; return adSay('관리자가 최소 한 명은 있어야 합니다.','err'); }
+  try{ await (STANDALONE?rpc('board_admin_update',{p_token:TOKEN,p_id:id,p_role:role}):authDb.doc('accounts/'+id).update({role})); if(id===ME.id){ ME.role=role; renderAcct(); if(role!=='admin') $('mAdmin').hidden=true; } adSay(`${id} 권한을 ${role==='admin'?'관리자':'사용자'}로 바꿨습니다.`,'ok'); await loadAccounts(); }
+  catch(err){ adSay(STANDALONE?sbMsg(err):'권한을 바꾸지 못했습니다.','err'); if(STANDALONE) await loadAccounts().catch(()=>{}); }
+});
+$('accRows').addEventListener('click',async e=>{
+  const b=e.target.closest('button[data-act]'); if(!b) return;
+  const tr=b.closest('tr'), id=tr.dataset.id, a=ACC.find(x=>x.id===id), act=b.dataset.act, ref=STANDALONE?null:authDb.doc('accounts/'+id);
+  try{
+    if(act==='toggle'){
+      if(id===ME.id) return adSay('자기 계정은 중지할 수 없습니다.','err');
+      if(a.active!==false && a.role==='admin' && activeAdmins().length<=1) return adSay('마지막 관리자 계정은 중지할 수 없습니다.','err');
+      await (STANDALONE?rpc('board_admin_update',{p_token:TOKEN,p_id:id,p_active:a.active===false}):ref.update({active:a.active===false})); adSay(`${id} 계정을 ${a.active===false?'사용':'중지'} 상태로 바꿨습니다.`,'ok'); await loadAccounts();
+    } else if(act==='reset'){ tr.querySelector('.rst').hidden=false; tr.querySelector('.rst input').focus();
+    } else if(act==='resetSave'){
+      const pw=tr.querySelector('.rst input').value; if(pw.length<8) return adSay('임시 비밀번호는 8자 이상이어야 합니다.','err');
+      if(STANDALONE){ await rpc('board_admin_update',{p_token:TOKEN,p_id:id,p_pw:pw}); }
+      else { const salt=newSalt(), hash=await hashPw(pw,salt); await ref.update({salt,hash,pwChangedAt:nowStr(),mustChange:id!==ME.id});
+      if(id===ME.id) saveSess(sessFor(id,hash)); }
+      adSay(`${id} 비밀번호를 초기화했습니다. 임시 비밀번호를 전달하세요. 다음 로그인 때 새 비밀번호를 정하게 됩니다.`,'ok'); await loadAccounts();
+    } else if(act==='del'){
+      if(id===ME.id) return adSay('자기 계정은 삭제할 수 없습니다.','err');
+      if(a.role==='admin' && activeAdmins().length<=1) return adSay('마지막 관리자 계정은 삭제할 수 없습니다.','err');
+      if(b.dataset.confirm!=='1'){ b.dataset.confirm='1'; b.textContent='삭제 확인'; return adSay(`한 번 더 누르면 ${id} 계정을 삭제합니다.`); }
+      await (STANDALONE?rpc('board_admin_delete',{p_token:TOKEN,p_id:id}):ref.delete()); adSay(`${id} 계정을 삭제했습니다.`,'ok'); await loadAccounts();
+    }
+  }catch(err){ adSay(STANDALONE?sbMsg(err):'처리하지 못했습니다. 다시 시도해 주세요.','err'); }
+});
+$('naAdd').onclick=async()=>{
+  const id=normId($('naId').value), name=$('naName').value.trim(), role=$('naRole').value, pw=$('naPw').value;
+  if(!validId(id)) return adSay('ID는 영문 소문자·숫자·.-_ 3~32자로 정해 주세요.','err');
+  if(!name) return adSay('이름을 입력하세요.','err');
+  if(pw.length<8) return adSay('임시 비밀번호는 8자 이상이어야 합니다.','err');
+  if(STANDALONE){ try{ await rpc('board_admin_create',{p_token:TOKEN,p_id:id,p_name:name,p_role:role,p_pw:pw}); ['naId','naName','naPw'].forEach(x=>$(x).value=''); adSay(`${id} 계정을 추가했습니다. 임시 비밀번호를 본인에게 전달하세요. 첫 로그인 때 새 비밀번호를 정하게 됩니다.`,'ok'); await loadAccounts(); }catch(e){ adSay(sbMsg(e),'err'); } return; }
+  try{
+    const ref=authDb.doc('accounts/'+id); if((await ref.get()).exists) return adSay('이미 있는 ID입니다.','err');
+    const salt=newSalt(), hash=await hashPw(pw,salt);
+    await ref.set({id,name,role,salt,hash,active:true,mustChange:true,createdAt:nowStr(),createdBy:ME.id,lastLogin:''});
+    ['naId','naName','naPw'].forEach(x=>$(x).value=''); adSay(`${id} 계정을 추가했습니다. 임시 비밀번호를 본인에게 전달하세요. 첫 로그인 때 새 비밀번호를 정하게 됩니다.`,'ok'); await loadAccounts();
+  }catch(e){ adSay('계정을 추가하지 못했습니다.','err'); }
+};
+
+/* 로그인 화면 지구본 */
+let globeRAF=0;
+function startGlobe(){
+  const cv=$('globe'); if(!cv || globeRAF) return; const ctx=cv.getContext('2d'); if(!ctx) return;
+  const N=1100, pts=[]; for(let i=0;i<N;i++){ const y=1-2*(i+.5)/N, r=Math.sqrt(1-y*y), th=i*2.399963; pts.push([Math.cos(th)*r,y,Math.sin(th)*r]); }
+  const hubs=[[37.5,127],[31.2,121.5],[35.7,139.7],[1.3,103.8],[51.5,-0.1],[40.7,-74],[-33.4,-70.6],[25.3,55.3],[-6.2,106.8]].map(([la,lo])=>{ const a=la*Math.PI/180,b=lo*Math.PI/180; return [Math.cos(a)*Math.cos(b),Math.sin(a),Math.cos(a)*Math.sin(b)]; });
+  const routes=[[0,1],[0,2],[0,3],[0,4],[0,5],[6,0],[7,0],[8,0],[1,3]];
+  const still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let t0=performance.now();
+  function frame(now){
+    const dpr=Math.min(2,window.devicePixelRatio||1), W=cv.clientWidth, H=cv.clientHeight;
+    if(cv.width!==W*dpr){ cv.width=W*dpr; cv.height=H*dpr; }
+    ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+    const R=Math.min(W,H)*(W<860?0.42:0.38), cx=W<860?W*0.5:W*0.3, cy=H*0.52, rot=-2.2+(still?0:(now-t0)/26000);
+    const pr=([x,y,z])=>{ const c=Math.cos(rot), s=Math.sin(rot); const X=x*c-z*s, Z=x*s+z*c; return [cx+X*R, cy-y*R, Z]; };
+    const g=ctx.createRadialGradient(cx-R*.3,cy-R*.3,R*.1,cx,cy,R*1.05); g.addColorStop(0,'rgba(123,79,224,.22)'); g.addColorStop(1,'rgba(123,79,224,0)');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,R*1.05,0,7); ctx.fill();
+    for(const p of pts){ const [x,y,z]=pr(p); if(z<-0.05) continue; ctx.fillStyle=`rgba(190,170,250,${0.12+0.55*z})`; ctx.fillRect(x,y,1.6,1.6); }
+    routes.forEach(([a,b],i)=>{ const A=hubs[a],B=hubs[b]; ctx.beginPath(); let vis=false;
+      for(let k=0;k<=40;k++){ const u=k/40; let v=[A[0]*(1-u)+B[0]*u, A[1]*(1-u)+B[1]*u, A[2]*(1-u)+B[2]*u]; const L=Math.hypot(...v), lift=1+0.18*Math.sin(Math.PI*u); v=v.map(q=>q/L*lift);
+        const [x,y,z]=pr(v); if(z>-0.1){ vis=true; k&&ctx.lineTo(x,y)||ctx.moveTo(x,y); } }
+      if(vis){ ctx.strokeStyle='rgba(179,154,247,.35)'; ctx.lineWidth=1; ctx.stroke(); }
+      const u=still?0.5:((now/3200+i*0.17)%1); let v=[A[0]*(1-u)+B[0]*u, A[1]*(1-u)+B[1]*u, A[2]*(1-u)+B[2]*u]; const L=Math.hypot(...v), lift=1+0.18*Math.sin(Math.PI*u); v=v.map(q=>q/L*lift);
+      const [x,y,z]=pr(v); if(z>0){ ctx.fillStyle='rgba(230,220,255,.95)'; ctx.beginPath(); ctx.arc(x,y,2.2,0,7); ctx.fill(); } });
+    hubs.forEach(h=>{ const [x,y,z]=pr(h); if(z>0){ ctx.fillStyle='rgba(255,255,255,.9)'; ctx.beginPath(); ctx.arc(x,y,2.8,0,7); ctx.fill(); ctx.strokeStyle='rgba(179,154,247,.6)'; ctx.beginPath(); ctx.arc(x,y,6,0,7); ctx.stroke(); } });
+    globeRAF = still ? 0 : requestAnimationFrame(frame);
+  }
+  globeRAF=requestAnimationFrame(frame);
+}
+function stopGlobe(){ if(globeRAF) cancelAnimationFrame(globeRAF); globeRAF=0; }
+
+/* ---------- 관리자에게 요청하기 ---------- */
+const RS={new:'새 요청',seen:'확인 중',done:'완료'};
+let REQS=[], inboxUnsub=null, inFilter='all';
+$('reqBody').addEventListener('input',()=>{ $('reqCnt').textContent=`${$('reqBody').value.length} / 2000`; });
+const reqSay=(t,c)=>{ $('reqMsg').textContent=t; $('reqMsg').className='mmsg '+(c||''); };
+async function loadMyRequests(){
+  if(!ME||(!STANDALONE&&!authDb)) return;
+  try{ const mine = STANDALONE ? ((await rpc('board_request_mine',{p_token:TOKEN}))||[]) : (await authDb.collection('requests').get()).docs.map(d=>({...d.data(),_id:d.id})).filter(r=>r.by===ME.id).sort((a,b)=>(b.atMs||0)-(a.atMs||0));
+    $('reqMine').innerHTML = mine.length ? mine.map(r=>`<li><div class="rt"><b>${esc(r.title)}</b><span class="rs ${esc(r.status||'new')}">${RS[r.status]||'새 요청'}</span></div>
+      <div class="rm">${esc(r.at||'')}</div><div class="rb">${esc(r.body)}</div>${r.reply?`<div class="ra"><b>관리자 답변</b> · ${esc(r.replyAt||'')}<br>${esc(r.reply)}</div>`:''}</li>`).join('')
+      : '<li class="req-empty">아직 보낸 요청이 없습니다.</li>';
+  }catch(e){ $('reqMine').innerHTML='<li class="req-empty">요청 목록을 불러오지 못했습니다.</li>'; }
+}
+window.loadMyRequests=loadMyRequests;
+$('reqForm').addEventListener('submit',async e=>{
+  e.preventDefault(); reqSay('');
+  const title=$('reqTitle').value.trim(), body=$('reqBody').value.trim();
+  if(!title) return reqSay('제목을 입력하세요.','err');
+  if(!body) return reqSay('내용을 입력하세요.','err');
+  if((!authDb&&!STANDALONE)||!ME) return reqSay('로그인 상태를 확인할 수 없습니다. 다시 로그인해 주세요.','err');
+  const btn=$('reqSend'); btn.disabled=true; btn.textContent='보내는 중…';
+  try{
+    if(STANDALONE) await rpc('board_request_create',{p_token:TOKEN,p_title:title,p_body:body});
+    else await authDb.collection('requests').add({title,body,by:ME.id,byName:ME.name||ME.id,at:nowStr(),atMs:Date.now(),status:'new'});
+    $('reqTitle').value=''; $('reqBody').value=''; $('reqCnt').textContent='0 / 2000';
+    reqSay('관리자에게 요청을 보냈습니다. 답변은 아래 "내가 보낸 요청"에서 볼 수 있습니다.','ok'); await loadMyRequests();
+  }catch(err){ reqSay(err?.code==='quota_exceeded'?'저장 공간이 가득 차 보낼 수 없습니다. 관리자에게 알려 주세요.':'보내지 못했습니다. 잠시 후 다시 시도해 주세요.','err'); }
+  finally{ btn.disabled=false; btn.textContent='제출하기'; }
+});
+/* 관리자 요청함 */
+function inboxBadge(){ const n=REQS.filter(r=>(r.status||'new')==='new').length; $('acctDot').hidden=!n; $('acctDot').textContent=n>9?'9+':String(n); $('inboxCnt').textContent=n?String(n):''; }
+async function sbInboxTick(){ try{ REQS=(await rpc('board_inbox',{p_token:TOKEN}))||[]; inboxBadge(); if(!$('mInbox').hidden) renderInbox(); }catch(e){} }
+function watchInbox(){
+  if(STANDALONE){ if(!ME||ME.role!=='admin'||inboxUnsub) return; sbInboxTick(); const h=setInterval(sbInboxTick,60000); inboxUnsub=()=>clearInterval(h); return; }
+  if(!authDb||!ME||ME.role!=='admin'||inboxUnsub) return;
+  inboxUnsub=authDb.collection('requests').onSnapshot(sn=>{
+    REQS=sn.docs.map(d=>({...d.data(),_id:d.id})).sort((a,b)=>(b.atMs||0)-(a.atMs||0));
+    const n=REQS.filter(r=>(r.status||'new')==='new').length;
+    $('acctDot').hidden=!n; $('acctDot').textContent=n>9?'9+':String(n); $('inboxCnt').textContent=n?String(n):'';
+    if(!$('mInbox').hidden) renderInbox();
+  },()=>{});
+}
+function renderInbox(){
+  const list=REQS.filter(r=>inFilter==='all'||(r.status||'new')===inFilter);
+  $('inList').innerHTML = list.length ? list.map(r=>`<div class="inbox-item" data-id="${esc(r._id)}">
+    <div class="ib-top"><b>${esc(r.title)}</b><span class="rs ${esc(r.status||'new')}">${RS[r.status]||'새 요청'}</span></div>
+    <div class="ib-meta">${esc(r.byName||'')} (${esc(r.by||'')}) · ${esc(r.at||'')}</div>
+    <div class="ib-body">${esc(r.body)}</div>
+    <div class="ib-ctl"><select aria-label="상태"><option value="new" ${(r.status||'new')==='new'?'selected':''}>새 요청</option><option value="seen" ${r.status==='seen'?'selected':''}>확인 중</option><option value="done" ${r.status==='done'?'selected':''}>완료</option></select>
+      <input placeholder="답변 (선택)" value="${esc(r.reply||'')}" aria-label="답변"><button class="btn" type="button" data-act="save">저장</button></div></div>`).join('')
+    : '<p class="desc" style="margin-top:12px">해당하는 요청이 없습니다.</p>';
+}
+$('acctInbox').onclick=()=>{ $('acctPop').hidden=true; $('inMsg').textContent=''; $('mInbox').hidden=false; watchInbox(); renderInbox(); };
+$('inFilter').addEventListener('click',e=>{ const b=e.target.closest('button[data-f]'); if(!b) return; inFilter=b.dataset.f; [...$('inFilter').children].forEach(x=>x.setAttribute('aria-pressed',x===b)); renderInbox(); });
+$('inList').addEventListener('click',async e=>{
+  const b=e.target.closest('button[data-act="save"]'); if(!b) return;
+  const item=b.closest('.inbox-item'), id=item.dataset.id, status=item.querySelector('select').value, reply=item.querySelector('input').value.trim();
+  try{ if(STANDALONE){ await rpc('board_inbox_update',{p_token:TOKEN,p_id:Number(id),p_status:status,p_reply:reply||null}); await sbInboxTick(); } else await authDb.doc('requests/'+id).update(reply?{status,reply,replyAt:nowStr(),replyBy:ME.id}:{status}); $('inMsg').textContent='저장했습니다.'; $('inMsg').className='mmsg ok'; }
+  catch(err){ $('inMsg').textContent='저장하지 못했습니다.'; $('inMsg').className='mmsg err'; }
+});
+
+let SNAP_AT='';
+function applySnap(j){ if(!j) return; if(j.history) applyHistory(j.history); if(j.prices){ applyRemote(j.prices); SNAP_AT=j.prices.finishedAt||SNAP_AT; }
+  if(j.ai && $('aiOut')){ $('aiOut').textContent=j.ai; $('aiOut').hidden=false; $('aiStatic').hidden=true; $('aiSub').textContent=`${j.aiAt||SNAP_AT} 자동 요약 (구매팀 관점)`; }
+  if(STANDALONE && $('barSt')){ $('barSt').textContent=`${SNAP_AT||''} 기준 데이터`; } }
+(function applySnapshot(){ try{ applySnap(JSON.parse(document.getElementById('snap').textContent||'{}')); }catch(e){ console.warn('snapshot',e); }
+  reloadData(); if(STANDALONE) setInterval(reloadData, 10*60*1000); })();
+function reloadData(){ if(STANDALONE && location.protocol.startsWith('http')) fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applySnap).catch(()=>{}); }
+initAuth();
+</script>
+
+</body>
+</html>
