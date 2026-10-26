@@ -1,0 +1,17 @@
+name: probe
+on:
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/probe.yml']
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: investing
+        run: |
+          curl -sS -m 20 -o inv.json -w "investing HTTP %{http_code}\n" -H 'domain-id: kr' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36' -H 'Accept: application/json' -H 'Origin: https://kr.investing.com' -H 'Referer: https://kr.investing.com/' "https://api.investing.com/api/financialdata/historical/8831?start-date=2026-10-01&end-date=2026-10-26&time-frame=Daily&add-missing-rows=false" || true
+          head -c 300 inv.json; echo
+      - name: yahoo
+        run: |
+          curl -sS -m 20 -o y.json -w "yahoo HTTP %{http_code}\n" -H 'User-Agent: Mozilla/5.0' "https://query1.finance.yahoo.com/v8/finance/chart/HG=F?range=5d&interval=1d" || true
+          head -c 300 y.json; echo
