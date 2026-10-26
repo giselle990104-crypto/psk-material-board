@@ -2050,7 +2050,7 @@ $('inList').addEventListener('click',async e=>{
 
 let SNAP_AT='';
 function applySnap(j){ if(!j) return; if(j.history) applyHistory(j.history); if(j.prices){ applyRemote(j.prices); SNAP_AT=j.prices.finishedAt||SNAP_AT; }
-  if(j.ai && $('aiOut')){ $('aiOut').textContent=j.ai; $('aiOut').hidden=false; $('aiStatic').hidden=true; $('aiSub').textContent=`${j.aiAt||SNAP_AT} 자동 요약 (구매팀 관점)`; }
+  if(j.ai && $('aiOut') && !liveNewsUpdated){ $('aiOut').textContent=j.ai; $('aiOut').hidden=false; $('aiStatic').hidden=true; $('aiSub').textContent=`${j.aiAt||SNAP_AT} 자동 요약 (구매팀 관점)`; }
   if(STANDALONE && $('barSt')){ $('barSt').textContent=`${SNAP_AT||''} 기준 데이터`; } }
 (function applySnapshot(){ try{ applySnap(JSON.parse(document.getElementById('snap').textContent||'{}')); }catch(e){ console.warn('snapshot',e); }
   reloadData(); if(STANDALONE) setInterval(reloadData, 10*60*1000); })();
