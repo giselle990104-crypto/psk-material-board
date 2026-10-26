@@ -55,17 +55,21 @@ def main():
         except Exception:pass
     if not items:
         raise SystemExit("No sources retrieved: "+", ".join(errors)+"; existing news.json remains unchanged")
+    # Preserve every previously collected article, not merely the most recent feed.
+    archived=old.get("items",[]) if isinstance(old,dict) else []
     seen=set();unique=[]
-    for r in sorted(items,key=lambda x:x["date"],reverse=True):
-        normalized=re.sub(r"\W+","",r["title"].lower())[:90]
-        if normalized in seen:continue
-        seen.add(normalized);unique.append(r)
+    for r in sorted([*items,*archived],key=lambda x:x.get("date",""),reverse=True):
+        if not isinstance(r,dict) or not r.get("title") or not r.get("url"):continue
+        normalized=re.sub(r"\W+","",str(r["title"]).lower())[:90]
+        key=(str(r.get("category","")),normalized)
+        if key in seen:continue
+        seen.add(key);unique.append(r)
     # Only the article headlines are indexed. No guessed causality or advice.
     by_group={}
     for group in QUERIES:
         batch=[v for v in unique if v["category"]==group][:3]
         if batch:by_group[group]=batch
-    output={"updatedAt":NOW.isoformat(timespec="minutes"),"timezone":"Asia/Seoul","source":"Google News RSS","status":"partial" if errors else "ok","errors":errors,"items":unique[:40],"brief":[{"category":g,"headlines":[v["title"] for v in batch]} for g,batch in by_group.items()],"briefMethod":"기사 제목 기반 자동 분류 요약 (AI 분석 아님)"}
+    output={"updatedAt":NOW.isoformat(timespec="minutes"),"timezone":"Asia/Seoul","source":"Google News RSS","status":"partial" if errors else "ok","errors":errors,"items":unique,"brief":[{"category":g,"headlines":[v["title"] for v in batch]} for g,batch in by_group.items()],"briefMethod":"기사 제목 기반 자동 분류 요약 (AI 분석 아님)"}
     OUT.write_text(json.dumps(output,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print("saved",len(output["items"]),"articles, errors",len(errors))
 if __name__=="__main__":main()
