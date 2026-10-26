@@ -1319,11 +1319,73 @@ const nf=$('newsFilter');
 function renderNews(f){
   [...nf.children].forEach(b=>b.setAttribute('aria-pressed', b.textContent===f));
   $('newsList').innerHTML = NEWS.filter(n=>f==='전체'||n.m===f).map(n=>`
-    <li><time>2026.${n.d}</time><div style="min-width:0"><div class="t"><a href="${n.u}" target="_blank" rel="noopener">${n.t}</a></div>
+    <li><time>${n.d.length===5 ? "2026."+n.d : n.d}</time><div style="min-width:0"><div class="t"><a href="${n.u}" target="_blank" rel="noopener">${n.t}</a></div>
     <div class="meta"><span class="mat">${n.m}</span><span>${n.s}</span></div></div></li>`).join('');
 }
 MATS.forEach(m=>{const b=document.createElement('button');b.type='button';b.textContent=m;b.onclick=()=>renderNews(m);nf.appendChild(b)});
 renderNews('전체');
+
+/* Scheduled public news feed. Retain embedded NEWS as fallback on load failure. */
+let liveNewsUpdated='';
+const briefSafe=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const formatNewsDate=s=>String(s||'').replace(/^(\d{4})-(\d{2})-(\d{2})$/,'$1.$2.$3');
+function updateNewsBrief(payload){
+  const brief=Array.isArray(payload.brief)?payload.brief:[];
+  if(!brief.length)return;
+  let box=document.getElementById('scheduledNewsBrief');
+  if(!box){
+    box=document.createElement('div');box.id='scheduledNewsBrief';box.className='ai-box';
+    box.style.marginBottom='14px';
+    document.getElementById('aiStatic').before(box);
+  }
+  box.replaceChildren();
+  const heading=document.createElement('strong');heading.textContent='정기 뉴스 브리핑 · '+(payload.updatedAt||'기준일 미상');
+  box.appendChild(heading);
+  const sub=document.createElement('p');sub.className='chart-note';sub.textContent='기사 제목 기반 자동 분류 (AI 생성 요약 아님) · 기사 본문 검토 후 구매 판단 필요';
+  box.appendChild(sub);
+  const ul=document.createElement('ul');ul.style.paddingLeft='20px';
+  brief.forEach(group=>{
+    if(!group || !Array.isArray(group.headlines) || !group.headlines.length)return;
+    const li=document.createElement('li');
+    const strong=document.createElement('strong');strong.textContent=String(group.category||'기타')+' — ';
+    li.appendChild(strong);li.appendChild(document.createTextNode(group.headlines.slice(0,2).join(' / ')));
+    ul.appendChild(li);
+  });
+  box.appendChild(ul);
+  const old=document.getElementById('aiStatic');
+  if(old)old.hidden=true; // archived hardcoded 2026 snapshot replaced by the live headline brief
+  const out=document.getElementById('aiOut');
+  if(out && !out.hidden){
+    // Existing separately generated summary may be older than scheduled RSS feed.
+    out.hidden=true;
+  }
+  const subLabel=document.getElementById('aiSub');
+  if(subLabel)subLabel.textContent=(payload.updatedAt||'')+' 자동 뉴스 브리핑';
+}
+async function refreshScheduledNews(){
+  try{
+    const response=await fetch('./news.json?v='+Date.now(),{cache:'no-store'});
+    if(!response.ok)throw Error('HTTP '+response.status);
+    const data=await response.json();
+    if(!Array.isArray(data.items)||!data.items.length)throw Error('뉴스 데이터 없음');
+    const incoming=data.items.filter(x=>x && typeof x.title==='string' && /^https:\/\//.test(x.url||'') && MATS.includes(x.category));
+    if(!incoming.length)throw Error('표시할 뉴스 없음');
+    NEWS.splice(0,NEWS.length,...incoming.map(x=>({d:formatNewsDate(x.date),m:x.category,t:x.title,s:x.source||'Google News',u:x.url})));
+    // renderNews handles both archived MM.DD and new YYYY.MM.DD.
+    renderNews([...nf.children].find(b=>b.getAttribute('aria-pressed')==='true')?.textContent||'전체');
+    updateNewsBrief(data);
+    liveNewsUpdated=data.updatedAt||'';
+    let note=document.getElementById('newsAutoStatus');
+    if(!note){note=document.createElement('p');note.id='newsAutoStatus';note.className='chart-note';document.getElementById('newsFilter').before(note);}
+    note.textContent='뉴스 마지막 자동 수집: '+(liveNewsUpdated||'확인 불가')+' · 평일 08:00 / 17:00 (한국시간) · '+(data.status==='partial'?'일부 출처 수집 지연':'수집 완료');
+  }catch(error){
+    let note=document.getElementById('newsAutoStatus');
+    if(!note){note=document.createElement('p');note.id='newsAutoStatus';note.className='chart-note';document.getElementById('newsFilter').before(note);}
+    note.textContent='정기 뉴스 데이터를 불러오지 못해 기존 목록을 표시합니다. ('+error.message+')';
+  }
+}
+refreshScheduledNews();
+setInterval(refreshScheduledNews,10*60*1000);
 
 /* ---------- 6. analysis ---------- */
 const ANA=[
