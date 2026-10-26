@@ -92,8 +92,8 @@ a{color:inherit}
   .side{top:calc(env(safe-area-inset-top,0px) + 72px);bottom:12px;width:min(240px,calc(100vw - 80px))}
   .bar button{white-space:nowrap}
 }
-@media (max-width:470px){.pane{padding-inline:14px}}
 section.pane{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+@media (max-width:700px){section.pane{background:none;border:0;border-radius:0;padding:0}}
 .pane-h{display:none;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
 .pdf-mode .pane-h{display:flex}
 .pane-h h2{font-family:var(--font-display);font-size:19px;font-weight:600;margin:0;letter-spacing:.01em}
