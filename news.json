@@ -1,0 +1,186 @@
+{
+  "updatedAt": "2026-10-26T23:28+09:00",
+  "timezone": "Asia/Seoul",
+  "source": "기존 사이트에 등록된 기사 (초기 데이터)",
+  "status": "seed",
+  "errors": [],
+  "items": [
+    {
+      "date": "2026-10-26",
+      "category": "환율",
+      "title": "원/달러 1,323.1원 마감, 연저점 또 경신",
+      "source": "머니투데이",
+      "url": "https://www.mt.co.kr/economy/2026/10/26/2026102615362391860"
+    },
+    {
+      "date": "2026-10-26",
+      "category": "니켈",
+      "title": "니켈 선물 $15,735, 3거래일 연속 하락(-0.70%)",
+      "source": "Investing.com",
+      "url": "https://kr.investing.com/commodities/nickel-historical-data"
+    },
+    {
+      "date": "2026-10-26",
+      "category": "플라스틱",
+      "title": "브렌트유 $110.2로 숨 고르기…10/7 $100.2 대비 3주 새 약 10% 상승",
+      "source": "Investing.com",
+      "url": "https://kr.investing.com/commodities/brent-oil-historical-data"
+    },
+    {
+      "date": "2026-10-26",
+      "category": "알루미늄",
+      "title": "알루미늄 $3,043, 4주간 -7.3%로 연중 저점권 유지",
+      "source": "Investing.com",
+      "url": "https://kr.investing.com/commodities/aluminum-historical-data"
+    },
+    {
+      "date": "2026-10-23",
+      "category": "구리",
+      "title": "구리 선물 10/22 -2.76% 급락 후 10/23 +1.71% 반등, 변동성 확대",
+      "source": "Investing.com",
+      "url": "https://kr.investing.com/commodities/copper-historical-data"
+    },
+    {
+      "date": "2026-10-23",
+      "category": "철강",
+      "title": "미국 열연코일 선물 $1,292/st, 10월 들어 소폭 상승세",
+      "source": "Investing.com",
+      "url": "https://kr.investing.com/commodities/us-steel-coil-futures-historical-data"
+    },
+    {
+      "date": "2026-10-23",
+      "category": "니켈",
+      "title": "니켈 반등, 숏커버와 인도네시아 감산 공조 기대",
+      "source": "Trading Economics",
+      "url": "https://tradingeconomics.com/commodity/nickel"
+    },
+    {
+      "date": "2026-10-23",
+      "category": "구리",
+      "title": "중국 9월 정련동 수입 전월비 반등, 수출은 감소",
+      "source": "Mysteel",
+      "url": "https://www.mysteel.net/"
+    },
+    {
+      "date": "2026-10-21",
+      "category": "구리",
+      "title": "TD Cowen, 올해 구리 전망 $4.40 → $5.25/lb 상향…공급차질 세계 5% 규모",
+      "source": "SMM",
+      "url": "https://www.metal.com/en/newscontent/103582423"
+    },
+    {
+      "date": "2026-10-17",
+      "category": "플라스틱",
+      "title": "유가 3.5% 급등해 5개월 고점, 공급 리스크 확대",
+      "source": "Polymerupdate",
+      "url": "https://www.polymerupdate.com/"
+    },
+    {
+      "date": "2026-10-14",
+      "category": "알루미늄",
+      "title": "알루미늄 연중 저점 $3,020, 중동 제련소 재가동 가속",
+      "source": "Trading Economics",
+      "url": "https://tradingeconomics.com/commodity/aluminum/news/591898"
+    },
+    {
+      "date": "2026-10-14",
+      "category": "철강",
+      "title": "중국 열연 $422로 추가 하락, 미국은 $1,310로 상승",
+      "source": "SteelBenchmarker",
+      "url": "https://steelbenchmarker.com/history.pdf"
+    },
+    {
+      "date": "2026-10-12",
+      "category": "알루미늄",
+      "title": "Macquarie, 중동 재가동 반영해 공급부족 전망 하향",
+      "source": "AL Circle",
+      "url": "https://www.alcircle.com/news/aluminium-falls-to-3-050-t-hits-lowest-level-since-february-as-supply-outlook-improves-121529"
+    },
+    {
+      "date": "2026-10-11",
+      "category": "플라스틱",
+      "title": "中 PE 선물 주간 +7.0% ¥8,781, 호르무즈 상황이 수급 좌우",
+      "source": "Flexible Poly",
+      "url": "https://flexiblepoly.com/pe-market-brief-week-of-october-11-2026/"
+    },
+    {
+      "date": "2026-10-08",
+      "category": "환율",
+      "title": "원/달러 1,334~1,346원 전망, 반도체 업황 따른 달러 공급 우위",
+      "source": "KB Think",
+      "url": "https://kbthink.com/investment/fx/daily/261008.html"
+    },
+    {
+      "date": "2026-10-07",
+      "category": "플라스틱",
+      "title": "10월 PP·PE, 원가 지지 속 실수요 위주…보합~소폭 상승 전망",
+      "source": "Kanetora",
+      "url": "https://kanetora.vn/plastic-resin-market-pp-pe-october-2026-price-outlook/"
+    },
+    {
+      "date": "2026-10-02",
+      "category": "구리",
+      "title": "잠비아 구리정광 10% 수출관세 면제 만료, 연장 미발표",
+      "source": "Benchmark",
+      "url": "https://www.alpha-maven.com/story/venture-capital/commodity-update-copper-sourcebenchmarkmineralscom"
+    },
+    {
+      "date": "2026-06-29",
+      "category": "반도체",
+      "title": "SEMI, 올해 메모리 300mm 장비투자 $52B(+29%) 전망",
+      "source": "SEMI",
+      "url": "https://www.utusan.com.my/?p=1381016"
+    }
+  ],
+  "brief": [
+    {
+      "category": "환율",
+      "headlines": [
+        "원/달러 1,323.1원 마감, 연저점 또 경신",
+        "원/달러 1,334~1,346원 전망, 반도체 업황 따른 달러 공급 우위"
+      ]
+    },
+    {
+      "category": "니켈",
+      "headlines": [
+        "니켈 선물 $15,735, 3거래일 연속 하락(-0.70%)",
+        "니켈 반등, 숏커버와 인도네시아 감산 공조 기대"
+      ]
+    },
+    {
+      "category": "플라스틱",
+      "headlines": [
+        "브렌트유 $110.2로 숨 고르기…10/7 $100.2 대비 3주 새 약 10% 상승",
+        "유가 3.5% 급등해 5개월 고점, 공급 리스크 확대"
+      ]
+    },
+    {
+      "category": "알루미늄",
+      "headlines": [
+        "알루미늄 $3,043, 4주간 -7.3%로 연중 저점권 유지",
+        "알루미늄 연중 저점 $3,020, 중동 제련소 재가동 가속"
+      ]
+    },
+    {
+      "category": "구리",
+      "headlines": [
+        "구리 선물 10/22 -2.76% 급락 후 10/23 +1.71% 반등, 변동성 확대",
+        "중국 9월 정련동 수입 전월비 반등, 수출은 감소"
+      ]
+    },
+    {
+      "category": "철강",
+      "headlines": [
+        "미국 열연코일 선물 $1,292/st, 10월 들어 소폭 상승세",
+        "중국 열연 $422로 추가 하락, 미국은 $1,310로 상승"
+      ]
+    },
+    {
+      "category": "반도체",
+      "headlines": [
+        "SEMI, 올해 메모리 300mm 장비투자 $52B(+29%) 전망"
+      ]
+    }
+  ],
+  "briefMethod": "기존 뉴스 제목 기반 분류 (AI 분석 아님)"
+}
