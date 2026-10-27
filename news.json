@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T08:16+09:00",
+  "updatedAt": "2026-10-27T17:30+09:00",
   "timezone": "Asia/Seoul",
   "source": "Google News RSS",
   "status": "ok",
@@ -18,6 +18,13 @@
       "title": "South Korea's Won Nominal Effective Exchange Rate Hits 94.83, Two-Year High as USD-KRW Enters 1,310 Range - BigGo Finance",
       "source": "BigGo Finance",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBzVHBYVUlWc3M4SUdLTTJaaFZ1N3pKZnRrZjB3SWlfZ0w1Z3dHNHMxUzh5WXNoaEJRUUh1cXl0YWRleC0tQTEzdGUxcF9oM25LRDY5eThkNDVEelZJN3ZjMW5XRDFtekxiSjhxWDJCT3FMeGtWbEE?oc=5"
+    },
+    {
+      "date": "2026-10-26",
+      "category": "환율",
+      "title": "Won’s trade-weighted value hits two-year high - Korea JoongAng Daily",
+      "source": "Korea JoongAng Daily",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPS1Z4NUFhWVlwRC1nNmhfTjJmaWs0NXJGc3Exel9LemdXaWt4dHdSbUVTZkRvRGh5eUwxNUtpNnhXODJkclNYOVpGejkzUmZWVDh3N1Q0LTdKbmxKZFVyc2hWS0laenpWRFVEb0NmRlVERGU3MHJwMVdJQ05kLXlRVS1ORWs2R1dxTmVUbkY4dlhaMDc1RVA5WlhYNA?oc=5"
     },
     {
       "date": "2026-10-26",
@@ -46,6 +53,13 @@
       "title": "알루미늄 $3,043, 4주간 -7.3%로 연중 저점권 유지",
       "source": "Investing.com",
       "url": "https://kr.investing.com/commodities/aluminum-historical-data"
+    },
+    {
+      "date": "2026-10-25",
+      "category": "철강",
+      "title": "Global HRC market dynamics vary by region in October - GMK Center",
+      "source": "GMK Center",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPbjVvVTRjMEI0QUg4UE9palJMYklsLXBDM0NmQ1Mydjg2M0NQa1FIYWxFb056TlpiNUtockxqTmFFdlk0VE9rOHQzb0dKSzdvWEdVcFlzSEtjamU4LTA2aDA5NDVjX3hIdDBneGh3Nmp5TnNOUGM3U0hmaTB3WGJyVFk4N1pCYW_SAYwBQVVfeXFMT0RMU0Rpc0c5d0Y4UEd4MWtSdm5mZFR4SnNvcXpaR1Ziam1CY2JTb0dZUU9WOURfcFpQNnpWY3NFR1RMc2tZQmxIZE14N2NwZ28zTEVKNVlVNEczc2ZmZjlyTkJ2TnRUY1hHOFBDMUU0VWl5enhFbkdZVVhlUHJ5Mm5GVFB3MlJBV0ZYSE4?oc=5"
     },
     {
       "date": "2026-10-25",
@@ -84,17 +98,17 @@
     },
     {
       "date": "2026-10-23",
-      "category": "철강",
-      "title": "U.S. sheet prices jump as supply tightens further - CME Group",
-      "source": "CME Group",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNT2JOOVNnTjRGMEIwbFlidDZVNmJRZHpsbTBWZnVMejY2XzBmY0JjUG0zNjY5Y3QzR01pbEREY3VzeVJqS0FUR25maWk0dUF4eHFOVG1palZEMjlSSnRoeVB6S2Z3cnEzQzJ0MURYT1JvSXQxYzJRSXduQXlaSHZobTFWa0VuZw?oc=5"
-    },
-    {
-      "date": "2026-10-23",
       "category": "반도체",
       "title": "Chip stocks fall as equipment maker Lam Research cites 'supply chain constraints' - Yahoo Finance",
       "source": "Yahoo Finance",
       "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPNTFRUEdPVXNMUm5MbFhpU0ltTkZDam0wSXU0R292ZDBvVGhlT3hlOWxJbk1jZjBJeFhZUWNXbmgtemF0TTFrak1fRnNxOFlsaGJJa0xMWEUtZUZ3LTEtcHh6OXl4d1hPaVlPcjJlbDl1NlQwZC1CN2VIcmQyOVlQczVpdVotR2pjZGI5MWJyWk1pVFdjLURHS1ZmeFY0VGd6ajMtRGxWTkRkY2xUVS04cnRSZ1ltQl9UMnRCOWpBTGpIbVJBX0pnZ29jRlp3NUhXdmc?oc=5"
+    },
+    {
+      "date": "2026-10-23",
+      "category": "철강",
+      "title": "U.S. sheet prices jump as supply tightens further - CME Group",
+      "source": "CME Group",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNT2JOOVNnTjRGMEIwbFlidDZVNmJRZHpsbTBWZnVMejY2XzBmY0JjUG0zNjY5Y3QzR01pbEREY3VzeVJqS0FUR25maWk0dUF4eHFOVG1palZEMjlSSnRoeVB6S2Z3cnEzQzJ0MURYT1JvSXQxYzJRSXduQXlaSHZobTFWa0VuZw?oc=5"
     },
     {
       "date": "2026-10-23",
@@ -225,6 +239,13 @@
     {
       "date": "2026-10-21",
       "category": "철강",
+      "title": "Nucor & CSI raise hot-rolled coil prices on tight US steel supply - Yieh Corp.",
+      "source": "Yieh Corp.",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOdDF1THZrRDEtMzZqVHY3Q2ZHSzVnS2FXZ282ZVQ1SnRTS3VRbHVLZXVOaUdJTlV6NFdKd1FGWnFNTGRhMnlsVGh3QlpsOVYxUlBfNTFFMFMxb1RlSWliWVFqNzRCYWdMWTlERnVtSnNybFlaQTVmUkRtOHZnMDRWNTllYi1nT2xlVWJ6WWtJM0kwOWM5cVpqNkgxWmpQWFFy?oc=5"
+    },
+    {
+      "date": "2026-10-21",
+      "category": "철강",
       "title": "[Europe] European domestic hot-rolled coil (HRC) steel prices edged sl - Shanghai Metals Market",
       "source": "Shanghai Metals Market",
       "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNX1ZWWFlQUVZWVTFaOXFESEJDNXRVdVFlNVM1cXpPSWhhX2hCVkJGR092SEdBVjRaT2JWUGhrQ1dQeFBSUkxCaGZIX1hnTzZubkZqc1BpaGFzOWE2NGoyV2QzOGZTeTJGN3ZVdkwzUlZlQW85RmEzQm5WMURDRTVPbVE4NDhJOW5JR3RnLWk3a3dtNVNHOGNVMGNtUjk2R0ZzdVNUY0t2QzUyTWxBVzF0WTk0RXR5aDdkUmhMYi1UbzR3SDN1Y0hTNWlFNHRsamVMRnZ5WE1UV3BXU0YyenhiOHJJbEw?oc=5"
@@ -267,16 +288,16 @@
     {
       "date": "2026-10-20",
       "category": "철강",
-      "title": "Nucor has increased prices for hot-rolled coils by $15/t - GMK Center",
-      "source": "GMK Center",
-      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQaVVZMU9hd2I2eFRjVVoxY0w0QUVQNkV4NmJfaGFuSEU0dnoxMUdpMFFUZ3gwdGpIYk5JWnZNbzhSckwxS1Z2eWtWVE9JRWt0bEFsQnJySmw5N3pzSEtMTTNoX0xFNXNxZHVfVEE1S3Z4M21IbjRDVU5sRnNCSHh4QUtMMlBSQzhoTENB0gGQAUFVX3lxTE9uSjM0c3BfcnR6Z00wT2szYjdldzFSel80b0o2dEdpUS1lNXVLRERaMEhpZTJCYUdhLVZ2Smpic1lCYTZ3aFAzRkhkS3JIOF92ZjVSSWRzdXR2bnVZTHF0SmlCLWoweVdfMThZY1ZNcDF2d2UwNHhadS1WLUlUclBuRDdHbXJpbVB2VGxvUlg4Wg?oc=5"
+      "title": "PT Krakatau Steel signs agreement to supply HRC and HRS to Australia and New Zealand - SteelOrbis",
+      "source": "SteelOrbis",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOZXlRamlxOUNaaC1oTUc2RHlUV0FURFgzY1loSUd1Z1JNUE82YXZHcUI3ZGRuT21yNUJmUUpGUXozQWpDRUpBSldjYnBWb0xJeWxaaDU5LXdELWhsTUtsbGc4S0Jub0tHa3lqb1FrQ1lNQTBzUDR2UThIZlR3Ymk3dzlmUGN6dlFNWU5QUUdzNE00YzBqOUZFTFpZdFotRlpHYXV3RDJHTFRmLU1GTkw1UFRzNzZvdWxpc0dMZzJkZEV6OEdjdHRpa1ZnbUEzb05COFdaeV9rLWtJbmlzTW1Z?oc=5"
     },
     {
       "date": "2026-10-20",
       "category": "철강",
-      "title": "PT Krakatau Steel signs agreement to supply HRC and HRS to Australia and New Zealand - SteelOrbis",
-      "source": "SteelOrbis",
-      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOZXlRamlxOUNaaC1oTUc2RHlUV0FURFgzY1loSUd1Z1JNUE82YXZHcUI3ZGRuT21yNUJmUUpGUXozQWpDRUpBSldjYnBWb0xJeWxaaDU5LXdELWhsTUtsbGc4S0Jub0tHa3lqb1FrQ1lNQTBzUDR2UThIZlR3Ymk3dzlmUGN6dlFNWU5QUUdzNE00YzBqOUZFTFpZdFotRlpHYXV3RDJHTFRmLU1GTkw1UFRzNzZvdWxpc0dMZzJkZEV6OEdjdHRpa1ZnbUEzb05COFdaeV9rLWtJbmlzTW1Z?oc=5"
+      "title": "Nucor has increased prices for hot-rolled coils by $15/t - GMK Center",
+      "source": "GMK Center",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQaVVZMU9hd2I2eFRjVVoxY0w0QUVQNkV4NmJfaGFuSEU0dnoxMUdpMFFUZ3gwdGpIYk5JWnZNbzhSckwxS1Z2eWtWVE9JRWt0bEFsQnJySmw5N3pzSEtMTTNoX0xFNXNxZHVfVEE1S3Z4M21IbjRDVU5sRnNCSHh4QUtMMlBSQzhoTENB0gGQAUFVX3lxTE9uSjM0c3BfcnR6Z00wT2szYjdldzFSel80b0o2dEdpUS1lNXVLRERaMEhpZTJCYUdhLVZ2Smpic1lCYTZ3aFAzRkhkS3JIOF92ZjVSSWRzdXR2bnVZTHF0SmlCLWoweVdfMThZY1ZNcDF2d2UwNHhadS1WLUlUclBuRDdHbXJpbVB2VGxvUlg4Wg?oc=5"
     },
     {
       "date": "2026-10-17",
@@ -371,8 +392,8 @@
       "category": "철강",
       "headlines": [
         "Nucor Profit Beats Estimates as Higher Steel Prices Lift Results - Bloomberg.com",
-        "U.S. sheet prices jump as supply tightens further - CME Group",
-        "미국 열연코일 선물 $1,292/st, 10월 들어 소폭 상승세"
+        "Global HRC market dynamics vary by region in October - GMK Center",
+        "U.S. sheet prices jump as supply tightens further - CME Group"
       ]
     },
     {
@@ -387,8 +408,8 @@
       "category": "환율",
       "headlines": [
         "South Korea's Won Nominal Effective Exchange Rate Hits 94.83, Two-Year High as USD-KRW Enters 1,310 Range - BigGo Finance",
-        "원/달러 1,323.1원 마감, 연저점 또 경신",
-        "Why Kospi and Korean won have parted ways - The Korea Herald"
+        "Won’s trade-weighted value hits two-year high - Korea JoongAng Daily",
+        "원/달러 1,323.1원 마감, 연저점 또 경신"
       ]
     },
     {
