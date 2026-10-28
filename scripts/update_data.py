@@ -1,4 +1,4 @@
-"""Fetch Investing.com prices + monthly averages (2024~) and rewrite data.json.
+"""Fetch Investing.com prices + monthly averages (last 5 years) and rewrite data.json.
 Keeps the AI summary fields (ai, aiAt) written by the Claude task."""
 import json, sys, time, datetime as dt
 from curl_cffi import requests
@@ -11,6 +11,8 @@ KST = dt.timezone(dt.timedelta(hours=9))
 now = dt.datetime.now(KST)
 stamp = f"{now.month}/{now.day} {now:%H:%M}"
 end = now.strftime("%Y-%m-%d")
+# 최근 5년: 5년 전 다음 달부터 (예: 2026-10 기준 2021-11~)
+START_Y, START_M = (now.year - 5, now.month + 1) if now.month < 12 else (now.year - 4, 1)
 
 s = requests.Session(impersonate="chrome")
 def get(i, a, b):
@@ -29,8 +31,9 @@ def get(i, a, b):
 prices, history, last_day = {}, {}, ""
 for key, i in IDS.items():
     rows = []
-    for y in range(2024, now.year + 1):
-        rows += get(i, f"{y}-01-01", end if y == now.year else f"{y}-12-31")
+    for y in range(START_Y, now.year + 1):
+        a = f"{y}-{START_M:02d}-01" if y == START_Y else f"{y}-01-01"
+        rows += get(i, a, end if y == now.year else f"{y}-12-31")
         time.sleep(0.6)
     rows.sort()
     seen, g = set(), {}
@@ -50,7 +53,7 @@ try:
 except Exception:
     old = {}
 out = {"prices": {**prices, "finishedAt": stamp, "status": "done",
-                  "message": "원자재 5종·환율 5종 현재가와 2024년 이후 월평균 (Investing.com)"},
+                  "message": "원자재 5종·환율 5종 현재가와 최근 5년 월평균 (Investing.com)"},
        "history": history}
 for k in ("ai", "aiAt"):
     if k in old: out[k] = old[k]

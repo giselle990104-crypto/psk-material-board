@@ -414,7 +414,7 @@ footer a{color:var(--ink-2)}
       </div>
       <div class="r-bot">
       <span class="barst" id="barSt" role="status"></span>
-      <button class="btn" id="topUpd" type="button" title="원자재·환율 현재가와 2024년 이후 월평균을 Investing에서 다시 가져옵니다">업데이트</button>
+      <button class="btn" id="topUpd" type="button" title="원자재·환율 현재가와 최근 5년 월평균을 Investing에서 다시 가져옵니다">업데이트</button>
       <button class="btn primary" id="openExport" type="button" aria-expanded="false" aria-controls="picker">PDF 추출</button>
       <div class="picker" id="picker" hidden role="dialog" aria-label="PDF에 넣을 정보 선택">
         <h3>PSK Material Report</h3>
@@ -482,7 +482,7 @@ footer a{color:var(--ink-2)}
             <button class="btn primary" id="pApply" type="button">조회</button>
           </div>
           <div class="period-row quick" role="group" aria-label="빠른 기간 선택">
-            <button type="button" data-q="3">최근 3개월</button><button type="button" data-q="6">최근 6개월</button><button type="button" data-q="ytd">올해 초부터</button><button type="button" data-q="y1">최근 1년</button><button type="button" data-q="all">전체 (2024~)</button>
+            <button type="button" data-q="3">최근 3개월</button><button type="button" data-q="6">최근 6개월</button><button type="button" data-q="ytd">올해 초부터</button><button type="button" data-q="y1">최근 1년</button><button type="button" data-q="all">최근 5년</button>
           </div>
           <p class="chart-note" id="pNote"></p>
         </div>
@@ -510,7 +510,7 @@ footer a{color:var(--ink-2)}
                 <button class="btn primary" id="fxApply" type="button">조회</button>
               </div>
               <div class="period-row quick" role="group" aria-label="빠른 기간 선택">
-                <button type="button" data-q="3">최근 3개월</button><button type="button" data-q="6">최근 6개월</button><button type="button" data-q="ytd">올해 초부터</button><button type="button" data-q="y1">최근 1년</button><button type="button" data-q="all">전체 (2024~)</button>
+                <button type="button" data-q="3">최근 3개월</button><button type="button" data-q="6">최근 6개월</button><button type="button" data-q="ytd">올해 초부터</button><button type="button" data-q="y1">최근 1년</button><button type="button" data-q="all">최근 5년</button>
               </div>
               <p class="chart-note" id="fxPNote" style="margin:0"></p>
             </div>
@@ -1033,6 +1033,7 @@ function applyRemote(d){
 (async()=>{ try{ remote = await window.claude?.use?.('mcp'); }catch(e){} })();
 
 $('updStop').hidden=true;
+var YEAR_HOOKS=[];
 function applyHistory(h){
   if(!h) return;
   const map={cu:'cu',ni:'ni',al:'al',st:'st',pl:'br',fx:'fx'};
@@ -1043,10 +1044,12 @@ function applyHistory(h){
     FXH.usdkrw.m=HIST.fx; FXH.usdkrw.m0=HM0.fx;
     ['eurkrw','jpykrw','cnykrw','eurusd'].forEach(k=>{ const v=h[k]; if(v && Array.isArray(v.avg) && v.avg.length>3){ FXH[k].m=v.avg.map(x=>k==='jpykrw'?Number(x)*100:Number(x)); FXH[k].m0=v.m0||'2024-01'; } });
     Object.values(FXH).forEach(c=>{ c.s=seriesFrom(c.m, c.m0||'2024-01'); });
-    const wasMax=DMAX;
+    const wasMax=DMAX, wasMin=DMIN;
     ALLD=[].concat(...Object.values(TREND).map(t=>t.s.map(p=>p.d))).sort();
     DMIN=ALLD[0].slice(0,7); DMAX=ALLD[ALLD.length-1].slice(0,7); LASTDAY=HLAST;
     if(RANGE.to===wasMax) RANGE.to=DMAX; if(FXR.to===wasMax) FXR.to=DMAX;
+    if(RANGE.from===wasMin) RANGE.from=DMIN; if(FXR.from===wasMin) FXR.from=DMIN;
+    YEAR_HOOKS.forEach(f=>{ try{ f(); }catch(e){} });
     showTrend(curTrend); showFx(fxCur);
   }catch(e){}
 }
@@ -1066,7 +1069,7 @@ async function requestUpdate(items, history, from){
     try{ await priceRef.update(req); }catch(e){ if(e?.code==='invalid_argument'||e?.code==='not_found') await priceRef.set(req); else throw e; }
   }catch(e){ setRunning(false); note.textContent='요청을 기록하지 못했습니다. 잠시 후 다시 눌러 주세요.'; return; }
   items.forEach(id=>{ const el=$('r-'+id); if(el){ el.textContent='Claude 조회 시작…'; el.className='res run'; } });
-  note.textContent = history ? 'Claude가 원자재·환율 현재가와 2024년 이후 월평균을 다시 가져오고 있습니다. 보통 2~5분 걸리며 끝나면 자동으로 반영됩니다.'
+  note.textContent = history ? 'Claude가 원자재·환율 현재가와 최근 5년 월평균을 다시 가져오고 있습니다. 보통 2~5분 걸리며 끝나면 자동으로 반영됩니다.'
                              : 'Claude에게 조회를 맡겼습니다. 보통 2~4분 걸리며, 끝나면 자동으로 반영됩니다. 이 창을 닫아도 됩니다.';
   try{
     await remote.callTool(REMOTE,'fire_trigger',{trigger_id:TRIGGER_ID, text:`이번 요청: 항목 ${items.join(', ')}${history?', 과거 데이터 포함':''} (${from})`},{cache:false});
@@ -1224,9 +1227,9 @@ function showTrend(k){
   $('pNote').textContent = `${rangeLabel()} · 데이터 ${pts.length}개${chg!=null?` · 기간 등락 ${chg>0?'+':''}${chg.toFixed(1)}%`:''} · 보드 데이터 범위 ${t.s[0].d.slice(0,7).replace('-','.')} ~ ${t.s[t.s.length-1].d.slice(0,7).replace('-','.')}`;
 }
 (function initPeriod(){
-  const y0=+DMIN.slice(0,4), y1=+LASTDAY.slice(0,4);
-  const yrs=[]; for(let y=y1;y>=y0;y--) yrs.push(y);
-  ['pFromY','pToY'].forEach(id=>$(id).innerHTML=yrs.map(y=>`<option value="${y}">${y}년</option>`).join(''));
+  const fillY=()=>{ const y0=+DMIN.slice(0,4), y1=+LASTDAY.slice(0,4); const yrs=[]; for(let y=y1;y>=y0;y--) yrs.push(y);
+    ['pFromY','pToY'].forEach(id=>$(id).innerHTML=yrs.map(y=>`<option value="${y}">${y}년</option>`).join('')); };
+  fillY(); YEAR_HOOKS.push(()=>{ fillY(); syncSelects(); });
   ['pFromM','pToM'].forEach(id=>$(id).innerHTML=Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1}월</option>`).join(''));
   function syncSelects(){ $('pFromY').value=RANGE.from.slice(0,4); $('pFromM').value=+RANGE.from.slice(5); $('pToY').value=RANGE.to.slice(0,4); $('pToM').value=+RANGE.to.slice(5);
     document.querySelectorAll('#period .quick button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.q===quickSel)); }
@@ -1285,8 +1288,9 @@ function showFx(k){
 }
 Object.entries(FXH).forEach(([k,c])=>{ const b=document.createElement('button'); b.type='button'; b.dataset.k=k; b.textContent=c.label; b.onclick=()=>showFx(k); $('fxTabs').appendChild(b); });
 (function initFxPeriod(){
-  const yrs=[]; for(let y=+LASTDAY.slice(0,4);y>=+DMIN.slice(0,4);y--) yrs.push(y);
-  ['fxFromY','fxToY'].forEach(id=>$(id).innerHTML=yrs.map(y=>`<option value="${y}">${y}년</option>`).join(''));
+  const fillY=()=>{ const yrs=[]; for(let y=+LASTDAY.slice(0,4);y>=+DMIN.slice(0,4);y--) yrs.push(y);
+    ['fxFromY','fxToY'].forEach(id=>$(id).innerHTML=yrs.map(y=>`<option value="${y}">${y}년</option>`).join('')); };
+  fillY(); YEAR_HOOKS.push(()=>{ fillY(); sync(); });
   ['fxFromM','fxToM'].forEach(id=>$(id).innerHTML=Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1}월</option>`).join(''));
   function sync(){ $('fxFromY').value=FXR.from.slice(0,4); $('fxFromM').value=+FXR.from.slice(5); $('fxToY').value=FXR.to.slice(0,4); $('fxToM').value=+FXR.to.slice(5);
     document.querySelectorAll('#fxPeriod .quick button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.q===fxQuick)); }
