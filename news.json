@@ -1,10 +1,24 @@
 {
-  "updatedAt": "2026-10-28T17:38+09:00",
+  "updatedAt": "2026-10-29T08:21+09:00",
   "timezone": "Asia/Seoul",
   "source": "Google News RSS",
   "status": "ok",
   "errors": [],
   "items": [
+    {
+      "date": "2026-10-29",
+      "category": "환율",
+      "title": "Dollar Deposits Surge to 4-Year High Amid Rate Gains - 조선일보",
+      "source": "조선일보",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQcWFlVVdqMEowOFh1T3djSjh2b1pUa2VlckRjNmVva1ZLemxrY19nem9ocFlva0VSUk4tZFJYbkhNVzZxMDYzdnJ4bGhRMS1QTWliUEl5X3JKc0ZQU2syZFlHQUtDdzJFRWFPa0QzcGNQaXFoVkpzUDViRE53eDV1NE0tVmQyWldXWEVES3BR?oc=5"
+    },
+    {
+      "date": "2026-10-28",
+      "category": "알루미늄",
+      "title": "$4b Oklahoma aluminum smelter’s civil works penciled in for Q2 2027 as Inola ballot looms - AL Circle",
+      "source": "AL Circle",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNSzNjVm9ieGdzd0w5dzZrMlJqT1AzSFpSaWNjbkI5d2FYNUlmSUYyc2lvVUZ4bUJOemt2QWpyYzE5aVMxSF92VEhrN2FoZ09FRzN3Tm9XYUQ1NS1uazhZVDcxQkEtQmE0ZFhuVmdRMGhiN2JlTHRIU183S2hkWlNNMGZubm0yWUpWNXJ2bERqZDVJdnJnZ1RmRnlBVmRJcklIaUVUbV8tZThyaGktZUZMNldqYXVNblFFNFVyZW1GY1doZw?oc=5"
+    },
     {
       "date": "2026-10-28",
       "category": "환율",
@@ -43,8 +57,8 @@
     {
       "date": "2026-10-27",
       "category": "철강",
-      "title": "Nucor Profit Beats Estimates as Higher Steel Prices Lift Results - Bloomberg",
-      "source": "Bloomberg",
+      "title": "Nucor Profit Beats Estimates as Higher Steel Prices Lift Results - Bloomberg.com",
+      "source": "Bloomberg.com",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQQzNpQ0NmYkNLOUdmc3JpTzBqQ0JuRS1GUzAxMjhlWnpmSVdnMFBqbG13NWRicWRveVcxZzVERmlHMHZ6Q1VBX1MyajdWazBLSE91bDczeDA4ZTBqS1ZJZjA0eXhNRERQOUZfNWFJZ21KS3pSYkNDeWRSRm9reV9oaU0wZFQ3aWhGZmdVLVlpQnlDb3lNdkZTWmFnUGttZGdUNFdsd01hdnk2TFFBOFR4ZzdQaXcwZw?oc=5"
     },
     {
@@ -53,6 +67,13 @@
       "title": "Worthington Steel posts strong quarterly sales despite ‘challenging’ steel supply environment - Fastmarkets",
       "source": "Fastmarkets",
       "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOSHFwLTg4a1AxUE9NVi1DSk96ZXBJcFBsZGxpOUhLdFV0ZjhiS2NqaUdBc3pHcFYzV3pwTk1GWnU4cF92Q3NrenpDSlN1WmJaYThSY0YtMnBlVzlUdVZscG1KUVl4SVBLSlZvU1d2b20xeHNKVVhMNlV2OFZoUDd4WklxZHdwWTNzRnZyNEdkX3JVZmZPd25KMWhWRE94eld6ejZIaWhzRXE3ZzZBMHhla2d3RnNON1hDUzVTbkFqcXI5eXNVMFk1LQ?oc=5"
+    },
+    {
+      "date": "2026-10-27",
+      "category": "철강",
+      "title": "Nucor Profit Beats Estimates as Higher Steel Prices Lift Results - Bloomberg",
+      "source": "Bloomberg",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQQzNpQ0NmYkNLOUdmc3JpTzBqQ0JuRS1GUzAxMjhlWnpmSVdnMFBqbG13NWRicWRveVcxZzVERmlHMHZ6Q1VBX1MyajdWazBLSE91bDczeDA4ZTBqS1ZJZjA0eXhNRERQOUZfNWFJZ21KS3pSYkNDeWRSRm9reV9oaU0wZFQ3aWhGZmdVLVlpQnlDb3lNdkZTWmFnUGttZGdUNFdsd01hdnk2TFFBOFR4ZzdQaXcwZw?oc=5"
     },
     {
       "date": "2026-10-27",
@@ -67,13 +88,6 @@
       "title": "Primary Metal Manufacturing Market in the Middle East: Size, Trends and Forecast to 2035 - IndexBox",
       "source": "IndexBox",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQVTh6SzVsaGtPOWFvcnQwNENrME9tSTdldUI0S0FKaWlGZ3hFLUoxNWI5WDEzb0NSMm1uQS1saHJRYTZkWHZqNjduSTFyTWlETV8wdDBvM1VOeFVLYkZRekZ2bUppMFExNndTeWFrWC1GWjFJRG1RM19NZEl2cWYwWU5MT00yT095Z0FZYVBhWGx4aktzc1FFQllHRHpNd0lFSlozdGg4dkhVazA5RFp5M2JkQlRGXzdHUVhnMQ?oc=5"
-    },
-    {
-      "date": "2026-10-27",
-      "category": "철강",
-      "title": "Nucor Profit Beats Estimates as Higher Steel Prices Lift Results - Bloomberg.com",
-      "source": "Bloomberg.com",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQQzNpQ0NmYkNLOUdmc3JpTzBqQ0JuRS1GUzAxMjhlWnpmSVdnMFBqbG13NWRicWRveVcxZzVERmlHMHZ6Q1VBX1MyajdWazBLSE91bDczeDA4ZTBqS1ZJZjA0eXhNRERQOUZfNWFJZ21KS3pSYkNDeWRSRm9reV9oaU0wZFQ3aWhGZmdVLVlpQnlDb3lNdkZTWmFnUGttZGdUNFdsd01hdnk2TFFBOFR4ZzdQaXcwZw?oc=5"
     },
     {
       "date": "2026-10-27",
@@ -140,17 +154,17 @@
     },
     {
       "date": "2026-10-25",
-      "category": "철강",
-      "title": "Global HRC market dynamics vary by region in October - GMK Center",
-      "source": "GMK Center",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPbjVvVTRjMEI0QUg4UE9palJMYklsLXBDM0NmQ1Mydjg2M0NQa1FIYWxFb056TlpiNUtockxqTmFFdlk0VE9rOHQzb0dKSzdvWEdVcFlzSEtjamU4LTA2aDA5NDVjX3hIdDBneGh3Nmp5TnNOUGM3U0hmaTB3WGJyVFk4N1pCYW_SAYwBQVVfeXFMT0RMU0Rpc0c5d0Y4UEd4MWtSdm5mZFR4SnNvcXpaR1Ziam1CY2JTb0dZUU9WOURfcFpQNnpWY3NFR1RMc2tZQmxIZE14N2NwZ28zTEVKNVlVNEczc2ZmZjlyTkJ2TnRUY1hHOFBDMUU0VWl5enhFbkdZVVhlUHJ5Mm5GVFB3MlJBV0ZYSE4?oc=5"
-    },
-    {
-      "date": "2026-10-25",
       "category": "구리",
       "title": "Copper Prices Today | Current Live Spot Price of Copper Per Pound - SD Bullion",
       "source": "SD Bullion",
       "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1kOTlLN2J1VTU0RWJIVF9SWXV5U3I4bk1sOWNVUXg1X28tV2ZDNzNMU0hvRGltcEU0eTVyd2t5X3JlMEkxYWp1VFVR?oc=5"
+    },
+    {
+      "date": "2026-10-25",
+      "category": "철강",
+      "title": "Global HRC market dynamics vary by region in October - GMK Center",
+      "source": "GMK Center",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPbjVvVTRjMEI0QUg4UE9palJMYklsLXBDM0NmQ1Mydjg2M0NQa1FIYWxFb056TlpiNUtockxqTmFFdlk0VE9rOHQzb0dKSzdvWEdVcFlzSEtjamU4LTA2aDA5NDVjX3hIdDBneGh3Nmp5TnNOUGM3U0hmaTB3WGJyVFk4N1pCYW_SAYwBQVVfeXFMT0RMU0Rpc0c5d0Y4UEd4MWtSdm5mZFR4SnNvcXpaR1Ziam1CY2JTb0dZUU9WOURfcFpQNnpWY3NFR1RMc2tZQmxIZE14N2NwZ28zTEVKNVlVNEczc2ZmZjlyTkJ2TnRUY1hHOFBDMUU0VWl5enhFbkdZVVhlUHJ5Mm5GVFB3MlJBV0ZYSE4?oc=5"
     },
     {
       "date": "2026-10-25",
@@ -169,9 +183,9 @@
     {
       "date": "2026-10-24",
       "category": "알루미늄",
-      "title": "US aluminium industry highlights importance of domestic smelting capacity for national security - AL Circle",
-      "source": "AL Circle",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQalQ1MC01OHJmR0hUVG4tZUU4cEJIZ0tIZkZvWmZDSmwxZmVkOHhVdWdMN0tTb2xCWjZnSW45NEU3MjA3U2dnZ2JlcVRrNk9qTTVTNlJTQUN1SzJqcGdSYU5fb1p0dExIcjdnNS1GclZlQnM3SVdocGIzRjZoME9sM09uaHhoR3pMcGdmT0FpcmhjNnJKNkFoTTAyVWFvS2QzWTFqc3hoaUE3ZFdzUTBHVlpXSHM0TUNsdkNxMm0zY0h2emlac3JFbE1EZEQ?oc=5"
+      "title": "Norsk Hydro flags higher smelting costs after quarterly profit miss - Mining.com",
+      "source": "Mining.com",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOLVlZbF9NVjFDWEl3ZlhxMEJlRW1YNExNRUVsR3BQb2dhbWQ1S0RPeWczaUVhb3NUZGpBcUtxOWlDYUlidkI3cUpma3MzVFNwd0tvaTlRZk90TDQ3dzNzWkhRZ0tTWUQzeUI2aWJoTko0cjBRMXhiQThEa3hrQWQ2WjUxYi1uajJOcVFmbXoyUUNNQ0JzdzVWUk01RQ?oc=5"
     },
     {
       "date": "2026-10-24",
@@ -182,10 +196,24 @@
     },
     {
       "date": "2026-10-24",
+      "category": "알루미늄",
+      "title": "US aluminium industry highlights importance of domestic smelting capacity for national security - AL Circle",
+      "source": "AL Circle",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQalQ1MC01OHJmR0hUVG4tZUU4cEJIZ0tIZkZvWmZDSmwxZmVkOHhVdWdMN0tTb2xCWjZnSW45NEU3MjA3U2dnZ2JlcVRrNk9qTTVTNlJTQUN1SzJqcGdSYU5fb1p0dExIcjdnNS1GclZlQnM3SVdocGIzRjZoME9sM09uaHhoR3pMcGdmT0FpcmhjNnJKNkFoTTAyVWFvS2QzWTFqc3hoaUE3ZFdzUTBHVlpXSHM0TUNsdkNxMm0zY0h2emlac3JFbE1EZEQ?oc=5"
+    },
+    {
+      "date": "2026-10-24",
       "category": "반도체",
       "title": "U.S. Designates Helium as Critical Material, Citing Semiconductor Importance - Industrial Equipment News",
       "source": "Industrial Equipment News",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOOXFLRGo2TVBLRVhTNTZnZ3lKWFlXajF6bkpxbElKY1BKNU1rcFUzN0luOW1FbUo5eUR2SXliQmNsenRDSDZtamNhbXZ0cFZueWE3aHdHaEtvYTFqNHprYW15cGxVZ2dCY0xZTzQ3R2ZST1pad0RES29ZVmdSbHhET3NnRXZTTmFjdDd4RnhjRVFmbHdwQ1Y4LXExalhlcmlQNF80SW9DMGFyNG9Hd0ZFYTZFSkIxejdnZnZzeg?oc=5"
+    },
+    {
+      "date": "2026-10-23",
+      "category": "구리",
+      "title": "Copper price falls to five-week low as LME inventory build continues - Mining.com",
+      "source": "Mining.com",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQRmdRSWVTRDg0dVlRcEFSUndFeEZwZ2xVaXBEbldkTUswbDVHU0RqcDRTckZZWEVNNkhrV3dOR2x5NURyWjNMYnBIMldpMGNPWnEwTlExZUxlb0RYQ1ZvaWpfQnBKRzhvWlhXUTFoelFJb3pxSXUyOFRQcHE5aF8zTldfQXNKQzBTWXJoWDVtRE5kNmpTWUExbnBBX0I?oc=5"
     },
     {
       "date": "2026-10-23",
@@ -197,9 +225,16 @@
     {
       "date": "2026-10-23",
       "category": "알루미늄",
-      "title": "Norsk Hydro flags higher smelting costs after quarterly profit miss - Reuters",
-      "source": "Reuters",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOcVNZRVNVVWlTM1NlQ2RFUjgzZWREb3pUalR1aVhsWmtiaTBrLUZwUG9naWV3VkNRUVRmMExzdFMzSGtZNWVjakpQbFJKUFN5bGkwTEJ0d3RscDE1R1lheDRKcGxySElCQXE3dmlQT25kZGR6YjI1MmY5NlFRZVc0QWtvSnJtZjk3MkZwUjNIOTBTUFRXcEZ6S2oyazN4YzhxZXJsWElXSHNGeHo5cnlHUEs2eDVfRTdC?oc=5"
+      "title": "News by CNBC TV18 on TradingView, 2026-10-23 — cnbctv:d9a38e18c094b:0 - TradingView",
+      "source": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBKblRtVlYwdjVMd3JCOEZ1bW55ZllvQW92S2FfUXNVZmozUHlhTUxqZXA4cW9IQVlZbExkbF9fTnp6dGVUTDRYTHVqUVAtcG5BRXN0a0xaYkZFcjV4c0ZFR3BMa28zbmM?oc=5"
+    },
+    {
+      "date": "2026-10-23",
+      "category": "철강",
+      "title": "NUE to Report Q3 Earnings: What's in the Offing for the Stock? - TradingView",
+      "source": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOTE5HTjJESW9aS0k5S294dU1oVDFoSEUxT3YzZmE0aUVZZHhoLUpfRHJBYnRHQ0VqYTBTc29ZUWJWTFVwdkRiZXpER2E4aGx1U1lTUkt5TGM3a2FwczJHX1F4TlZwLWVGLXo2aVU3eUxCWFUxNnZvMllESzNQWTJ3SzVpNHdRSk1PaUxPSzJVYXowOW01QXJWd0FiLXphN3pZU1pqTGZfV08yZFpQc3BicTdKUHBFZw?oc=5"
     },
     {
       "date": "2026-10-23",
@@ -214,6 +249,13 @@
       "title": "Chip stocks fall as equipment maker Lam Research cites 'supply chain constraints' - Yahoo Finance",
       "source": "Yahoo Finance",
       "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPNTFRUEdPVXNMUm5MbFhpU0ltTkZDam0wSXU0R292ZDBvVGhlT3hlOWxJbk1jZjBJeFhZUWNXbmgtemF0TTFrak1fRnNxOFlsaGJJa0xMWEUtZUZ3LTEtcHh6OXl4d1hPaVlPcjJlbDl1NlQwZC1CN2VIcmQyOVlQczVpdVotR2pjZGI5MWJyWk1pVFdjLURHS1ZmeFY0VGd6ajMtRGxWTkRkY2xUVS04cnRSZ1ltQl9UMnRCOWpBTGpIbVJBX0pnZ29jRlp3NUhXdmc?oc=5"
+    },
+    {
+      "date": "2026-10-23",
+      "category": "알루미늄",
+      "title": "Norsk Hydro flags higher smelting costs after quarterly profit miss - Reuters",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOcVNZRVNVVWlTM1NlQ2RFUjgzZWREb3pUalR1aVhsWmtiaTBrLUZwUG9naWV3VkNRUVRmMExzdFMzSGtZNWVjakpQbFJKUFN5bGkwTEJ0d3RscDE1R1lheDRKcGxySElCQXE3dmlQT25kZGR6YjI1MmY5NlFRZVc0QWtvSnJtZjk3MkZwUjNIOTBTUFRXcEZ6S2oyazN4YzhxZXJsWElXSHNGeHo5cnlHUEs2eDVfRTdC?oc=5"
     },
     {
       "date": "2026-10-23",
@@ -260,23 +302,9 @@
     {
       "date": "2026-10-22",
       "category": "구리",
-      "title": "Copper price falls as inventories rise, supply worries ease; nickel climbs - Mining.com",
-      "source": "Mining.com",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOVXlzT0xXYVUzeDVyaWxSYTdldjJGNVI4ZHFnZjV2aEJNaDN5dTZKTGtZR2V5WFN0aVdoTHAwZDY2Zkdad1R0OHhrNkl4dk9KVWFPRDNqZTZ2RGpwNW9HSE9ZRXBNQzBPdHRUNEZ6U0xuUzg3QTc3QW5UWFlleFJ2Z0ZqWUhfRXBpVlpyUnJqOXlJVlFGWjB6cUtkSHlfYjU4b2c?oc=5"
-    },
-    {
-      "date": "2026-10-22",
-      "category": "구리",
       "title": "Aluminium Gives Up Its War Premium, Copper Stays Elevated - Crude Oil Prices Today | OilPrice.com",
       "source": "Crude Oil Prices Today | OilPrice.com",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNWWRNcEFodF9pZi0zZFRaMmdjZjJaRmpNNkIxOG8yS3drYlc4QnlRTFRhUllfTFBBejFRb0ZPb3llOEpHbjk2UUotZ2JqNWN5NU44aks0QWQxVjZOV2x6bFFhSS1UbGxlUGZOb0VFUnZoYzRFV3dUTEVTS1JHQ284YVBhUXg5SERjcDVYZHh3Q3VFZzg1emUxdHptUjRxUWM1cUNj0gGoAUFVX3lxTE5ZOS05U0RFYUxRdWpMLXUzNlExOVNYc3djU0NTMFZraXJoZ2J1TjN2c3I3bFNZMHNqQnVnV3VEUE0zWEJGeTFxMFhqenYxUFpLcTVCSFUxZ2h5UnRRRWdXY3VLc3VsalJxNFFCVGZvVG9iSjRvU1ZvczVES1NWM0tlOW1NemVfcURZTWxMLVlqWjdjSlV1QS1oT3hkUHlpN1pUd1A5VklYUw?oc=5"
-    },
-    {
-      "date": "2026-10-22",
-      "category": "구리",
-      "title": "Copper Declines as Tech-Stock Selloff Dulls Appetite for Risk - Bloomberg.com",
-      "source": "Bloomberg.com",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPZEljYmU3djMyLWxYRlJTdU9XX2dkZUxlQXg4Rkw2eUd0aHctRkwwbTNlN1RxTU1xRV93ZVhFY2x6WElUX0Fxc0RGODYwNXkxNUtNdjVKS0RJd0dnc2VQX0dkTmU1VE9qa3EtZkFNR0JaQWNzVFBWa2RadmNBYUw2RmptQzg2UkZJVWFOcklWeXl5RkFPaVdiSnZRSDJlTGViYlM4cHV5SUcwbEYxTnJYMjRB?oc=5"
     },
     {
       "date": "2026-10-22",
@@ -287,10 +315,10 @@
     },
     {
       "date": "2026-10-22",
-      "category": "알루미늄",
-      "title": "The US faces national security risks without aluminum smelters: report - Manufacturing Dive",
-      "source": "Manufacturing Dive",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPNFJaU0x2UUlXbDloWXZQN256UVhrd0xIWnluMjhRNHBwUjVscTFQUXJVd1lBNG55NEgtLXVONE91aEs5MnItUkE1Uk1Pb0ZKc29ZY0ZIWG52eWhqVUNQaW1NcWsxRGtyWG1iWTAwaWhYRlZ5M1JmVXpuSlpTcjZvYzVxQjlIMW1ZRVBpazJDdXpiWHRIaGJNT1RoV3pWOUd0U0pSVnJwVkdsMlg0RjY2d0l3?oc=5"
+      "category": "니켈",
+      "title": "[SMM Analysis] Indonesian Nickel Output-Cut Talk Gathers Pace, but the Case for Cutting Diverges Across the Supply Chain - Shanghai Metals Market",
+      "source": "Shanghai Metals Market",
+      "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOdDdxRXdMakotR0VIUjVQUk9aWjBOYnVTdTNmeDNkQkZCZTVHdWxfczYzTUx2UHg5ekNsWWF1dTAtV2V0SVhLdzUzaFZmRWIycXNKOURmVkt0WnhfTUF0V1RQaGJsVUd6QzJNdV9ST01ISmRncjhOLU0yN2pOOGxmS1NCd29acUlGWWFITDl6UmRralFnbXF6aFVVMEQzZmhRZDczWElSSnl3UlpKX0xsNU9NUjl3TnM0Zm9nWW9vZnFZMzdUdUtTa2lQMjNuZVZYdWw3RncyRmprc19mb1FKeXdmd0pXWDNqdENhV2J4X0ZnbDU4?oc=5"
     },
     {
       "date": "2026-10-22",
@@ -315,17 +343,45 @@
     },
     {
       "date": "2026-10-22",
-      "category": "환율",
-      "title": "USD/KRW Rebounds to Around 1,327 Won; Bargain Buying Flows In After String of Annual Lows - BigGo Finance",
-      "source": "BigGo Finance",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE45ZlNPWUhUWTdXbC1jWFE4cmdrTzJyYWtMNEhFZHBSakxVeFpSMnV2Q3FTZ0ZINWNQbW1xYlB1X2FJVVhTT2E0Q2JnS2pPelZQZDNBdVpHdUYzX0ZubjA3YWgyMTdGN3hNSGFmdEF4blJ1N0tyWlE?oc=5"
-    },
-    {
-      "date": "2026-10-22",
       "category": "반도체",
       "title": "Department of Commerce Announces Letters of Intent With 4 Companies for $389 Million of R&D Awards to Strengthen America’s Energy Semiconductor Supply Chain - National Institute of Standards and Technology (.gov)",
       "source": "National Institute of Standards and Technology (.gov)",
       "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOdEdiaElUdmdRUmROa1VJN00tV3M0SmpBSzRacktERVIyb2FwT2xiT1ZBazFtcGZaX2V2TmtiZ0ZLdWNVNDdKWUhGVFNkaVlQYWlQTVhSWGxtdFdUVlpkMURSc3dmWEVqRHMyZzdEZ0JXdHVEWjZicTlvUV9CU1FWeG1NdlgtVG9VbEwwYnNPbzJpM203VVl6cC0ySzRhZVBveXc4UnRJaXZqUFc0aXVfMVpHa29uMDZV?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "반도체",
+      "title": "EXCLUSIVE: TSMC seeks factory-equipment alternatives to thwart China's rare earths grip, sources say - Reuters",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOVDZiLXZ3MjNBLVhJa0g3VzJ0SU9MalBLSjFrMWlJUVhXd21CY0x2OVo3SUVLV25tNnBDZVBKYnN4b1E2ZHd4Rm9FTzVGMDYySmtfU1lBRkxYUFl2eGlOWjllZEptTVZ6V3BVVFVtQVBaODVqWmp1V3dTckg2WUZVQVRYNTFIZU9yLU81bVJTNEhzZG8xR0xVNnFUcTRXSkg0cFVLOHBxSjVXSzdtdS13cFF4RkpscWdLeXdPb3Q4Sk9GQ1dybDZn?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "구리",
+      "title": "Copper price falls as inventories rise, supply worries ease; nickel climbs - Mining.com",
+      "source": "Mining.com",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOVXlzT0xXYVUzeDVyaWxSYTdldjJGNVI4ZHFnZjV2aEJNaDN5dTZKTGtZR2V5WFN0aVdoTHAwZDY2Zkdad1R0OHhrNkl4dk9KVWFPRDNqZTZ2RGpwNW9HSE9ZRXBNQzBPdHRUNEZ6U0xuUzg3QTc3QW5UWFlleFJ2Z0ZqWUhfRXBpVlpyUnJqOXlJVlFGWjB6cUtkSHlfYjU4b2c?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "구리",
+      "title": "Copper Declines as Tech-Stock Selloff Dulls Appetite for Risk - Bloomberg.com",
+      "source": "Bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPZEljYmU3djMyLWxYRlJTdU9XX2dkZUxlQXg4Rkw2eUd0aHctRkwwbTNlN1RxTU1xRV93ZVhFY2x6WElUX0Fxc0RGODYwNXkxNUtNdjVKS0RJd0dnc2VQX0dkTmU1VE9qa3EtZkFNR0JaQWNzVFBWa2RadmNBYUw2RmptQzg2UkZJVWFOcklWeXl5RkFPaVdiSnZRSDJlTGViYlM4cHV5SUcwbEYxTnJYMjRB?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "알루미늄",
+      "title": "The US faces national security risks without aluminum smelters: report - Manufacturing Dive",
+      "source": "Manufacturing Dive",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPNFJaU0x2UUlXbDloWXZQN256UVhrd0xIWnluMjhRNHBwUjVscTFQUXJVd1lBNG55NEgtLXVONE91aEs5MnItUkE1Uk1Pb0ZKc29ZY0ZIWG52eWhqVUNQaW1NcWsxRGtyWG1iWTAwaWhYRlZ5M1JmVXpuSlpTcjZvYzVxQjlIMW1ZRVBpazJDdXpiWHRIaGJNT1RoV3pWOUd0U0pSVnJwVkdsMlg0RjY2d0l3?oc=5"
+    },
+    {
+      "date": "2026-10-22",
+      "category": "환율",
+      "title": "USD/KRW Rebounds to Around 1,327 Won; Bargain Buying Flows In After String of Annual Lows - BigGo Finance",
+      "source": "BigGo Finance",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE45ZlNPWUhUWTdXbC1jWFE4cmdrTzJyYWtMNEhFZHBSakxVeFpSMnV2Q3FTZ0ZINWNQbW1xYlB1X2FJVVhTT2E0Q2JnS2pPelZQZDNBdVpHdUYzX0ZubjA3YWgyMTdGN3hNSGFmdEF4blJ1N0tyWlE?oc=5"
     },
     {
       "date": "2026-10-22",
@@ -544,17 +600,17 @@
     {
       "category": "알루미늄",
       "headlines": [
+        "$4b Oklahoma aluminum smelter’s civil works penciled in for Q2 2027 as Inola ballot looms - AL Circle",
         "Primary Metal Manufacturing Market in the Middle East: Size, Trends and Forecast to 2035 - IndexBox",
-        "알루미늄 $3,043, 4주간 -7.3%로 연중 저점권 유지",
-        "US aluminium industry highlights importance of domestic smelting capacity for national security - AL Circle"
+        "알루미늄 $3,043, 4주간 -7.3%로 연중 저점권 유지"
       ]
     },
     {
       "category": "철강",
       "headlines": [
-        "Nucor Profit Beats Estimates as Higher Steel Prices Lift Results - Bloomberg",
+        "Nucor Profit Beats Estimates as Higher Steel Prices Lift Results - Bloomberg.com",
         "Worthington Steel posts strong quarterly sales despite ‘challenging’ steel supply environment - Fastmarkets",
-        "Nucor Profit Beats Estimates as Higher Steel Prices Lift Results - Bloomberg.com"
+        "Nucor Profit Beats Estimates as Higher Steel Prices Lift Results - Bloomberg"
       ]
     },
     {
@@ -568,9 +624,9 @@
     {
       "category": "환율",
       "headlines": [
+        "Dollar Deposits Surge to 4-Year High Amid Rate Gains - 조선일보",
         "South Korean Won Retreats from Over 2-Year High - TradingView",
-        "HD Hyundai Heavy Q3 2026 slides: offshore unit shines amid FX drag - Investing.com",
-        "KOSPI Jumps 3.46% to 5,658.65 on U.S. AI Stock Rebound - 조선일보"
+        "HD Hyundai Heavy Q3 2026 slides: offshore unit shines amid FX drag - Investing.com"
       ]
     },
     {
