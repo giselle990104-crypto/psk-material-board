@@ -41,7 +41,14 @@ for key, i in IDS.items():
         if d in seen or v != v: continue
         seen.add(d); g.setdefault(d[:7], []).append(v)
     ms = sorted(g)
-    history[key] = {"m0": ms[0], "avg": [round(sum(g[m]) / len(g[m]), 4) for m in ms]}
+    # 연속된 월 목록으로 만들고, 거래가 없던 달은 null (예: 2022-03 LME 니켈 거래정지)
+    allm, (y, m) = [], map(int, ms[0].split("-"))
+    while f"{y}-{m:02d}" <= ms[-1]:
+        allm.append(f"{y}-{m:02d}"); m += 1
+        if m > 12: y, m = y + 1, 1
+    history[key] = {"m0": ms[0], "avg": [round(sum(g[k]) / len(g[k]), 4) if k in g else None for k in allm]}
+    gaps = [k for k in allm if k not in g]
+    if gaps: print("gap", key, gaps)
     d, v, c = rows[-1]
     last_day = max(last_day, d)
     prices[key] = {"price": round(v, 4), "chg": round(c, 2), "asOf": d[5:].replace("-", "/"), "at": stamp}

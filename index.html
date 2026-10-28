@@ -1038,11 +1038,11 @@ function applyHistory(h){
   if(!h) return;
   const map={cu:'cu',ni:'ni',al:'al',st:'st',pl:'br',fx:'fx'};
   if(h.lastDay) HLAST=String(h.lastDay);
-  Object.entries(map).forEach(([src,dst])=>{ const v=h[src]; if(v && Array.isArray(v.avg) && v.avg.length>3){ HIST[dst]=v.avg.map(Number); HM0[dst]=v.m0||'2024-01'; } });
+  Object.entries(map).forEach(([src,dst])=>{ const v=h[src]; if(v && Array.isArray(v.avg) && v.avg.length>3){ HIST[dst]=v.avg.map(x=>x==null?null:Number(x)); HM0[dst]=v.m0||'2024-01'; } });
   try{
     TREND.cu.s=buildSeries('cu',LB,'COMEX'); TREND.ni.s=buildSeries('ni'); TREND.al.s=buildSeries('al'); TREND.st.s=buildSeries('st'); TREND.br.s=buildSeries('br'); TREND.fx.s=buildSeries('fx');
     FXH.usdkrw.m=HIST.fx; FXH.usdkrw.m0=HM0.fx;
-    ['eurkrw','jpykrw','cnykrw','eurusd'].forEach(k=>{ const v=h[k]; if(v && Array.isArray(v.avg) && v.avg.length>3){ FXH[k].m=v.avg.map(x=>k==='jpykrw'?Number(x)*100:Number(x)); FXH[k].m0=v.m0||'2024-01'; } });
+    ['eurkrw','jpykrw','cnykrw','eurusd'].forEach(k=>{ const v=h[k]; if(v && Array.isArray(v.avg) && v.avg.length>3){ FXH[k].m=v.avg.map(x=>x==null?null:(k==='jpykrw'?Number(x)*100:Number(x))); FXH[k].m0=v.m0||'2024-01'; } });
     Object.values(FXH).forEach(c=>{ c.s=seriesFrom(c.m, c.m0||'2024-01'); });
     const wasMax=DMAX, wasMin=DMIN;
     ALLD=[].concat(...Object.values(TREND).map(t=>t.s.map(p=>p.d))).sort();
@@ -1189,7 +1189,7 @@ let HLAST='2026-10-26'; const HM0={};
 function seriesFrom(arr, m0='2024-01', conv=v=>v, nm='Investing'){
   const [y0,mm0]=m0.split('-').map(Number);
   return arr.map((v,i)=>{ const mi=mm0-1+i, y=y0+Math.floor(mi/12), m=mi%12+1, last=`${y}-${String(m).padStart(2,'0')}`===HLAST.slice(0,7);
-    return {d:`${y}-${String(m).padStart(2,'0')}-15`, v:conv(v), n:`${nm} ${y}.${m} 월평균${last?` (${+HLAST.slice(5,7)}/${+HLAST.slice(8)}까지)`:''}`}; });
+    return {d:`${y}-${String(m).padStart(2,'0')}-15`, v:(v==null||!isFinite(v))?null:conv(v), n:`${nm} ${y}.${m} 월평균${last?` (${+HLAST.slice(5,7)}/${+HLAST.slice(8)}까지)`:''}`}; }).filter(p=>p.v!=null);
 }
 function buildSeries(k, conv=v=>v, nm='Investing'){ return seriesFrom(HIST[k], HM0[k]||'2024-01', conv, nm); }
 const LB=v=>Math.round(v*2204.62);
