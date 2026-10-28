@@ -204,7 +204,7 @@ select{font:inherit;font-size:14.5px;padding:6px 8px;border-radius:8px;border:1p
 .pill{font-size:12.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
 .pill.bull{color:var(--up);background:var(--up-soft)}
 .pill.bear{color:var(--down);background:var(--down-soft)}
-.pill.side{color:var(--warn);background:var(--warn-soft)}
+.pill.flat{color:var(--warn);background:var(--warn-soft)}
 .drivers{font-size:13.5px;color:var(--ink-3);margin:0;padding-left:16px}
 
 /* implications */
@@ -1413,7 +1413,7 @@ setInterval(refreshScheduledNews,10*60*1000);
 /* ---------- 6. analysis ---------- */
 const ANA=[
   {n:'구리', v:'bull', l:'강세 유지', p:'광산 공급차질과 낮은 비미국 재고가 하단을 지지. 다만 ICSG는 올해 소폭 공급과잉(10.4만t)을 제시해 급등보다는 고원 유지 가능성.', dr:['그라스버그 생산 가이던스 -35%','잠비아 관세 면제 만료','美 2027년 관세 검토']},
-  {n:'니켈', v:'side', l:'박스권', p:'인도네시아 RKAB 축소(약 2.6~2.7억t)가 하단을 받치나 BMO·노르니켈은 여전히 연간 24~27.5만t 공급과잉을 예상.', dr:['인니 감산 공조 여부','스테인리스 수요','LME 재고 28만t']},
+  {n:'니켈', v:'flat', l:'박스권', p:'인도네시아 RKAB 축소(약 2.6~2.7억t)가 하단을 받치나 BMO·노르니켈은 여전히 연간 24~27.5만t 공급과잉을 예상.', dr:['인니 감산 공조 여부','스테인리스 수요','LME 재고 28만t']},
   {n:'알루미늄', v:'bear', l:'약세', p:'중동 제련소 재가동 가속과 인도네시아 증설로 전쟁 프리미엄 소멸. 다만 유럽 실물 프리미엄($574)은 높아 지역별 괴리 주의.', dr:['EGA·Alba 재가동 속도','달러 방향','OCBC 연말 $3,150 전망']},
   {n:'철강', v:'bear', l:'약세', p:'중국 신규 HRC 설비 증가와 수요 둔화로 공급과잉. 반덤핑 확대로 중국산 수출 단가는 더 낮아질 여지.', dr:['중국 감산 정책','반덤핑 관세','원료탄 가격']},
   {n:'플라스틱', v:'bull', l:'원가형 상승', p:'브렌트가 10/7 $100에서 $110대로 올라 원가 상승 압력. 수요가 약해 상승 폭은 제한적이나 하방도 막힌 구간.', dr:['호르무즈 통항','나프타·에틸렌','중국 재고']},
@@ -1478,7 +1478,7 @@ ${list}`;
 
 /* ---------- 8. BP 논의점 (품목별, 단가 인하 관점) ---------- */
 const BP=[
- {k:'cu', n:'구리', tone:['side','고점권 숨고르기'],
+ {k:'cu', n:'구리', tone:['flat','고점권 숨고르기'],
   facts:[['6.59 $/lb','10월 월평균 (≈$14,530/t)'],['-5.4%','9/9 고점 6.89 → 10/26 6.52'],['-1.1%','9월 월평균 대비'],['+30%','1년 전(25.10) 대비']],
   parts:'RF 케이블·전원 하네스, 버스바, RF 매칭 코일, 히터 리드',
   goal:'구리 비중 높은 품목 1~2% 인하, 최소 동결',
@@ -1502,7 +1502,7 @@ const BP=[
   qs:[['알루미늄 월평균이 5월 고점보다 15%, 9월보다 7% 내렸습니다. 챔버 바디·리드용 Al6061 블록의 원소재비를 현재 시세로 다시 견적해 주실 수 있나요?','Investing 알루미늄 월평균'],
       ['중동 제련소가 다시 돌면서 수급이 풀렸는데, 소재 프리미엄 인하나 리드타임 단축이 견적에 반영됐나요?','10월 중순 연중 저점, Macquarie 공급부족 전망 하향'],
       ['저점권인 지금 1~2분기 소재를 미리 확보하면 단가를 얼마나 낮출 수 있나요?','선확보 물량을 조건으로 협상']]},
- {k:'st', n:'철강', tone:['side','지역별 엇갈림'],
+ {k:'st', n:'철강', tone:['flat','지역별 엇갈림'],
   facts:[['$1,280/st','미국 열연 선물 10월 월평균'],['+36%','미국, 1월 대비'],['$422/t','중국 열연(HRB) 10/14'],['공급과잉','중국·아시아 신규 설비 증가']],
   parts:'장비 프레임, 베이스 플레이트, 커버·인클로저 판금',
   goal:'동결 또는 1~2% 인하, 미국발 인상 전가 차단',
@@ -1598,7 +1598,7 @@ const rpCSS=`
 .rp .chartbox svg{width:100%;height:auto;display:block}
 .rp .note{font-size:9.5px;color:#7d7894;margin-top:5px}
 .rp .pill{font-size:9.5px;font-weight:600;padding:1px 7px;border-radius:999px;white-space:nowrap}
-.rp .pill.bull{background:rgba(192,57,43,.12);color:#c0392b}.rp .pill.bear{background:rgba(31,111,184,.12);color:#1f6fb8}.rp .pill.side{background:rgba(183,121,31,.15);color:#b7791f}
+.rp .pill.bull{background:rgba(192,57,43,.12);color:#c0392b}.rp .pill.bear{background:rgba(31,111,184,.12);color:#1f6fb8}.rp .pill.flat{background:rgba(183,121,31,.15);color:#b7791f}
 .rp .lv{font-weight:600;white-space:nowrap}.rp .lv.hi{color:#b83232}.rp .lv.md{color:#b7791f}.rp .lv.lo{color:#2e7d4f}
 .rp .summary{background:#f3f1f9;border-radius:8px;padding:10px 12px;white-space:pre-wrap}
 .rp .summary ul{margin:0;padding-left:16px}
