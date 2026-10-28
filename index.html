@@ -1168,6 +1168,8 @@ function lineChart(series, {unit='', yFmt=v=>fmt(v), h=260, color='var(--copper)
   </svg>`;
 }
 
+TILES.sort((a,b)=>['cu','al','st','ni','pl'].indexOf(a.id)-['cu','al','st','ni','pl'].indexOf(b.id));
+
 /* ---------- 2. trend ---------- */
 /* Investing.com 일별 종가(2024.1.1~2026.10.26, 10/26 수집)를 월평균으로 계산. 시작 월부터 순서대로, 2026.10은 26일까지 평균 */
 const HIST={
