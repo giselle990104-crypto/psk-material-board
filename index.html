@@ -1124,11 +1124,11 @@ function showTip(el){
   ctip.innerHTML=`<b>${el.dataset.l}${u}</b>${extra}<span>${el.dataset.n}</span>`;
   ctip.style.left=(r.left+r.width/2)+'px'; ctip.style.top=(r.top+r.height/2)+'px'; ctip.hidden=false;
   const pt=el.previousElementSibling; 
-  document.querySelectorAll('.chart circle.pt.on').forEach(c=>{c.classList.remove('on'); c.setAttribute('r','3.6');});
+  document.querySelectorAll('.chart circle.pt.on').forEach(c=>{c.classList.remove('on'); c.setAttribute('r',c.dataset.r0||'2.8');});
   const idx=[...el.parentNode.querySelectorAll('circle.hit')].indexOf(el), dot=el.parentNode.querySelectorAll('circle.pt')[idx];
-  if(dot){ dot.classList.add('on'); dot.setAttribute('r','6'); }
+  if(dot){ if(!dot.dataset.r0) dot.dataset.r0=dot.getAttribute('r'); dot.classList.add('on'); dot.setAttribute('r',String(+dot.dataset.r0+2)); }
 }
-function hideTip(){ ctip.hidden=true; document.querySelectorAll('.chart circle.pt.on').forEach(c=>{c.classList.remove('on'); c.setAttribute('r','3.6');}); }
+function hideTip(){ ctip.hidden=true; document.querySelectorAll('.chart circle.pt.on').forEach(c=>{c.classList.remove('on'); c.setAttribute('r',c.dataset.r0||'2.8');}); }
 document.addEventListener('mouseover',e=>{ const h=e.target.closest?.('.chart circle.hit'); if(h) showTip(h); });
 document.addEventListener('mouseout',e=>{ if(e.target.closest?.('.chart circle.hit')) hideTip(); });
 document.addEventListener('click',e=>{ const h=e.target.closest?.('.chart circle.hit'); if(h){ showTip(h); } else if(!ctip.hidden) hideTip(); });
