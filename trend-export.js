@@ -7,22 +7,12 @@ const style=document.createElement('style');
 style.textContent='.trend-export-tools{display:flex;align-items:center;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin:8px 0}.trend-export-note{font-size:12px;color:var(--ink-3);margin:0}.trend-export-tools .btn{white-space:nowrap}';
 document.head.appendChild(style);
 const controls=document.createElement('div');controls.className='trend-export-tools no-pdf';
-controls.innerHTML='<span class="trend-export-note">5년 조회 지원 · 2022~2023년 미수집 시 빈칸 표시</span><button class="btn" id="trendFiveYears" type="button">최근 5년</button><button class="btn primary" id="trendExportExcel" type="button">엑셀 다운로드 (.xlsx)</button>';
+controls.innerHTML='<span class="trend-export-note">5년 조회 지원 · 2022~2023년 미수집 시 빈칸 표시</span><button class="btn primary" id="trendExportExcel" type="button">엑셀 다운로드 (.xlsx)</button>';
 period.after(controls);
 for(const id of ['pFromY','pToY']){const select=document.getElementById(id);for(const y of [2022,2023]){if(![...select.options].some(o=>o.value===String(y))){const opt=new Option(y+'년',String(y));select.add(opt);}}}
 const note=document.createElement('p');note.className='trend-export-note no-pdf';note.id='trendExportStatus';controls.after(note);
 const status=s=>{note.textContent=s;};
-document.getElementById('trendFiveYears').addEventListener('click',()=>{
-  const last=new Date();
-  const end=(typeof LASTDAY==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(LASTDAY))?LASTDAY:new Date().toISOString().slice(0,10);
-  const y=Number(end.slice(0,4)),m=Number(end.slice(5,7));
-  document.getElementById('pFromY').value=String(y-4);
-  document.getElementById('pFromM').value=String(m);
-  document.getElementById('pToY').value=String(y);
-  document.getElementById('pToM').value=String(m);
-  document.getElementById('pApply').click();
-  status('최근 5년 조회 범위를 적용했습니다. 보유한 실제 시세만 차트에 표시합니다.');
-});
+
 function monthsBetween(from,to){
  const result=[];let [y,m]=from.split('-').map(Number);const [endY,endM]=to.split('-').map(Number);
  if(!Number.isFinite(y)||!Number.isFinite(m)||!Number.isFinite(endY)||!Number.isFinite(endM))return result;
