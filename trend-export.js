@@ -7,7 +7,7 @@ const style=document.createElement('style');
 style.textContent='.trend-export-tools{display:flex;align-items:center;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin:8px 0}.trend-export-note{font-size:12px;color:var(--ink-3);margin:0}.trend-export-tools .btn{white-space:nowrap}';
 document.head.appendChild(style);
 const controls=document.createElement('div');controls.className='trend-export-tools no-pdf';
-controls.innerHTML='<span class="trend-export-note">최근 5년 월평균 · 미수집 월은 빈칸 표시</span><button class="btn primary" id="trendExportExcel" type="button">엑셀 다운로드 (.xlsx)</button>';
+controls.innerHTML='<span class="trend-export-note">미수집 월은 빈칸 표시</span><button class="btn primary" id="trendExportExcel" type="button">엑셀 다운로드 (.xlsx)</button>';
 period.after(controls);
 
 const note=document.createElement('p');note.className='trend-export-note no-pdf';note.id='trendExportStatus';controls.after(note);
