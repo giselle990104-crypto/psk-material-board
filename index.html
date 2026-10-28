@@ -482,7 +482,7 @@ footer a{color:var(--ink-2)}
             <button class="btn primary" id="pApply" type="button">조회</button>
           </div>
           <div class="period-row quick" role="group" aria-label="빠른 기간 선택">
-            <button type="button" data-q="3">최근 3개월</button><button type="button" data-q="6">최근 6개월</button><button type="button" data-q="ytd">올해 초부터</button><button type="button" data-q="y1">최근 1년</button>
+            <button type="button" data-q="3">최근 3개월</button><button type="button" data-q="6">최근 6개월</button><button type="button" data-q="ytd">올해 초부터</button><button type="button" data-q="y1">최근 1년</button><button type="button" data-q="all">전체 보기</button>
           </div>
           <p class="chart-note" id="pNote"></p>
         </div>
@@ -510,7 +510,7 @@ footer a{color:var(--ink-2)}
                 <button class="btn primary" id="fxApply" type="button">조회</button>
               </div>
               <div class="period-row quick" role="group" aria-label="빠른 기간 선택">
-                <button type="button" data-q="3">최근 3개월</button><button type="button" data-q="6">최근 6개월</button><button type="button" data-q="ytd">올해 초부터</button><button type="button" data-q="y1">최근 1년</button>
+                <button type="button" data-q="3">최근 3개월</button><button type="button" data-q="6">최근 6개월</button><button type="button" data-q="ytd">올해 초부터</button><button type="button" data-q="y1">최근 1년</button><button type="button" data-q="all">전체 보기</button>
               </div>
               <p class="chart-note" id="fxPNote" style="margin:0"></p>
             </div>
@@ -1164,9 +1164,9 @@ function lineChart(series, {unit='', yFmt=v=>fmt(v), h=260, color='var(--copper)
     <line x1="${L}" x2="${W-R}" y1="${H-B}" y2="${H-B}" stroke="var(--ink-3)" stroke-width="1"/>
     <path d="${area}" fill="url(#${gid})" stroke="none"/>
     <path d="${path}" fill="none" stroke="${color}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
-    ${d.map(p=>`<circle class="pt" cx="${x(p.t)}" cy="${y(p.v)}" r="3.6" fill="var(--panel)" stroke="${color}" stroke-width="2"/>`).join('')}
+    ${d.map(p=>`<circle class="pt" cx="${x(p.t)}" cy="${y(p.v)}" r="${d.length>30?2.2:2.8}" fill="var(--panel)" stroke="${color}" stroke-width="${d.length>30?1.4:1.7}"/>`).join('')}
     ${d.map(p=>`<circle class="hit" cx="${x(p.t)}" cy="${y(p.v)}" r="11" data-v="${p.v}" data-u="${esc0(unit)}" data-l="${esc0(yFmt(p.v))}" data-n="${esc0(p.n||p.d)}" tabindex="-1"/>`).join('')}
-    <circle cx="${x(last.t)}" cy="${y(last.v)}" r="5" fill="${color}" stroke="none"/>
+    <circle cx="${x(last.t)}" cy="${y(last.v)}" r="4" fill="${color}" stroke="none"/>
     <text x="${Math.min(x(last.t), W-R)-8}" y="${y(last.v)-10}" text-anchor="end" font-size="14" font-weight="600" fill="var(--ink)" font-family="IBM Plex Mono,monospace">${yFmt(last.v)}${unit}</text>
   </svg>`;
 }
@@ -1623,7 +1623,7 @@ function rpTilesRows(picked){
 function rpChart(series,unit,color,dom,yFmt){
   return litSVG(lineChart(series,{unit,h:200,color,domain:dom,yFmt:yFmt||(v=>fmt(v))}))
     .replace(/<circle class="hit"[^>]*\/>/g,'')
-    .replace(/<circle class="pt"([^>]*) r="3\.6"([^>]*) stroke-width="2"/g,'<circle class="pt"$1 r="1.5"$2 stroke-width="1.1"')
+    .replace(/<circle class="pt"([^>]*) r="[\d.]+"([^>]*) stroke-width="[\d.]+"/g,'<circle class="pt"$1 r="1.5"$2 stroke-width="1.1"')
     .replace(/ r="5" fill=/g,' r="2.6" fill=');
 }
 function buildReport(sel){
