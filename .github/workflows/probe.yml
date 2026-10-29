@@ -11,11 +11,14 @@ jobs:
           s=r.Session(impersonate="chrome")
           H={"domain-id":"kr","Origin":"https://kr.investing.com","Referer":"https://kr.investing.com/"}
           def note(t,m): print("::notice title=%s::%s"%(t,str(m).replace("\n"," ").replace("%","")[:900]))
-          for q in ["stainless","stainless steel","스테인리스","SS futures"]:
+          import re
+          x=s.get("https://api.investing.com/api/search/v2/search",params={"q":"stainless"},headers=H,timeout=20); note("raw",x.text[:850])
+          for slug in ["commodities/stainless-steel","commodities/stainless-steel-futures","commodities/shfe-stainless-steel","commodities/stainless-steel-futures-historical-data","commodities/lme-stainless-steel","commodities/nickel"]:
               try:
-                  x=s.get("https://api.investing.com/api/search/v2/search",params={"q":q},headers=H,timeout=20)
-                  j=x.json(); qs=j.get("quotes",[]) if isinstance(j,dict) else []
-                  note("search "+q, "%s | "%x.status_code + " ; ".join("%s:%s:%s:%s"%(a.get("id"),a.get("description") or a.get("name"),a.get("exchange"),a.get("url")) for a in qs[:8]) or x.text[:300])
-              except Exception as e: note("search "+q,"ERR "+repr(e))
+                  y=s.get("https://www.investing.com/"+slug,timeout=25)
+                  ids=set(re.findall(r'"instrument_id":"?(\d+)',y.text))|set(re.findall(r'data-pair-id="(\d+)"',y.text))
+                  t=re.search(r"<title>(.*?)</title>",y.text,re.S)
+                  note("page "+slug,"%s %s ids=%s"%(y.status_code,(t.group(1).strip()[:80] if t else ''),sorted(ids)[:6]))
+              except Exception as e: note("page "+slug,"ERR "+repr(e))
           PY
           python p.py
