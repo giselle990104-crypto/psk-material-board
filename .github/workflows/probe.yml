@@ -10,15 +10,22 @@ jobs:
           from curl_cffi import requests as r
           s=r.Session(impersonate="chrome")
           def note(t,m): print("::notice title=%s::%s"%(t,str(m).replace("\n"," | ").replace("%","")[:950]))
-          note("robots", s.get("https://www.komis.or.kr/robots.txt",timeout=20).text[:900])
+          import json
           s.get("https://www.komis.or.kr/Komis/RsrcPrice/IronOre",timeout=30)
           H={"X-Requested-With":"XMLHttpRequest","Referer":"https://www.komis.or.kr/Komis/RsrcPrice/IronOre","Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"}
-          x=s.post("https://www.komis.or.kr/Komis/RsrcPrice/ajax/getMnrlPriceCrtr",data={"HP000":"HP003","mnrkndUnqCd":"MNRL0031"},headers=H,timeout=30); note("crtr",x.status_code); print("::notice title=crtr body::"+x.text[:900].replace("\n"," "))
-          base={"mnrkndUnqRadioCd":"MNRL0031","srchMnrkndUnqCd":"MNRL0031","srchPrcCrtr":"509","srchCompareMnrkndUnqCd":"","srchComparePrcCrtr":"","lmeInvt":"Y","HP000":"HP003"}
-          for opt,fld,a,b in [("MONTH","month","2021-11","2026-10"),("MONTH","year","2021","2026"),("DAY","month","2026-10","2026-10")]:
-              d=dict(base,srchAvgOpt=opt,srchField=fld,srchStartDate=a,srchEndDate=b)
-              for ep in ["getChartData","getMnrlPrcByMnrkndUnqCd"]:
-                  x=s.post("https://www.komis.or.kr/Komis/RsrcPrice/ajax/"+ep,data=d,headers=H,timeout=30)
-                  note(f"{ep} {opt} {fld}", f"{x.status_code} len={len(x.text)} {x.text[:700]}")
+          x=s.post("https://www.komis.or.kr/ajax/common/getMnrlKndInfoCodeList",data={"cdType":"HP000","cdGrp":"HP003"},headers=H,timeout=30)
+          L=x.json().get("data",[]) if x.ok else []
+          note("list", " ; ".join(f"{a.get('mnrkndUnqCd')}={a.get('mnrkndKornNm')}" for a in L)[:950] if L else x.text[:900])
+          iron=[a for a in L if '철' in str(a.get('mnrkndKornNm',''))]
+          for a in iron:
+              c=a.get('mnrkndUnqCd')
+              y=s.post("https://www.komis.or.kr/Komis/RsrcPrice/ajax/getMnrlPriceCrtr",data={"HP000":"HP003","mnrkndUnqCd":c},headers=H,timeout=30)
+              note("crtr "+c, y.text[:400])
+              crs=[d.get('cdKey') for d in y.json().get('data',[])]
+              for cr in crs[:4]:
+                  d={"mnrkndUnqRadioCd":c,"srchMnrkndUnqCd":c,"srchPrcCrtr":cr,"srchAvgOpt":"MONTH","srchField":"year","srchStartDate":"2018","srchEndDate":"2026","srchCompareMnrkndUnqCd":"","srchComparePrcCrtr":"","lmeInvt":"Y","HP000":"HP003"}
+                  z=s.post("https://www.komis.or.kr/Komis/RsrcPrice/ajax/getChartData",data=d,headers=H,timeout=30).json().get("data",{})
+                  xa=z.get("xaxis",[]); se=z.get("series",[{}])[0].get("data",[])
+                  note(f"chart {c} {cr}", f"{json.dumps(z.get('mnrlInfo'),ensure_ascii=False)} n={len(xa)} first={xa[:2]}{se[:2]} last={xa[-3:]}{se[-3:]}")
           PY
           python p.py
