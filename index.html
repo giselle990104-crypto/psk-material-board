@@ -436,7 +436,7 @@ footer a{color:var(--ink-2)}
   <div class="head">
     <div class="eyebrow" id="headNo">01</div>
     <h1 id="headTitle">원자재 가격</h1>
-    <p id="headDesc">구리·알루미늄·철강·철광석·니켈·스테인리스·플라스틱 현재가와 원화 환산, Investing 시세 업데이트</p>
+    <p id="headDesc">구리·알루미늄·철강·철광석·니켈·스테인리스·알루미나·석영·플라스틱 현재가와 원화 환산, Investing 시세 업데이트</p>
   </div>
 
   <div class="shell">
@@ -445,7 +445,7 @@ footer a{color:var(--ink-2)}
 
     <main id="panes" style="min-width:0;display:grid;gap:18px">
       <!-- 1. 원자재 가격 -->
-      <section class="pane" id="prices" data-desc="구리·알루미늄·철강·철광석·니켈·스테인리스·플라스틱 현재가와 원화 환산, Investing 시세 업데이트" data-label="원자재 가격" role="tabpanel">
+      <section class="pane" id="prices" data-desc="구리·알루미늄·철강·철광석·니켈·스테인리스·알루미나·석영·플라스틱 현재가와 원화 환산, Investing 시세 업데이트" data-label="원자재 가격" role="tabpanel">
         <div class="pane-h"><span class="tag">01</span><h2>원자재 가격</h2><span class="sub" id="pricesSub">구리·니켈·알루미늄·철강·플라스틱</span></div>
         <div class="asof">
           <span class="chip c">기준일 2026.10.26 (월)</span>
@@ -922,6 +922,18 @@ const TILES = [
    sub:'10/28 · KOMIS', status:'fresh', stLabel:'KOMIS 최신',
    deltas:[], ref:'Iron Ore Fines 62% Fe, CNF China (호주산) · 철강 원료 가격', stock:'한국광해광업공단 자원정보(KOMIS) · 매일 오전 10시경 갱신',
    src:'KOMIS 철광석 시세', url:'https://www.komis.or.kr/Komis/RsrcPrice/IronOre', range:[30,300]},
+  {id:'ao', name:'알루미나', code:'SHFE AO', px:2595, cur:'¥', unit:'¥/t', kg:false, srcTag:'SHFE',
+   sub:'10/29 · SHFE', status:'fresh', stLabel:'SHFE 최신',
+   deltas:[], ref:'야금용 알루미나(Al₂O₃) 선물 · 세라믹 부품용 고순도(4N) 알루미나는 이보다 훨씬 비싸고 따로 거래됩니다', stock:'상하이선물거래소 연속물 · 위안/t',
+   src:'SHFE 알루미나 선물', url:'https://www.tradingview.com/symbols/SHFE-AO1%21/', range:[1000,10000]},
+  {id:'qz', name:'고순도 석영사', code:'SMM 내층', px:43000, cur:'¥', unit:'¥/t', kg:false, srcTag:'SMM',
+   sub:'10/29 · SMM', status:'fresh', stLabel:'SMM 최신',
+   deltas:[], ref:'수입산(IOTA-CG, Sibelco) ¥51,000/t', stock:'중국 도가니 내층용 Al≤12ppm · 반도체 석영 부품의 원료 지표(부품 가격과 다름)',
+   src:'SMM 고순도 석영사', url:'https://www-old.metal.com/Photovoltaic/202307130006', range:[1000,1000000]},
+  {id:'mw', name:'최저임금', code:'최저임금위원회', px:10320, cur:'₩', unit:'원/시간', per:'시간', kg:false, srcTag:'고용노동부',
+   sub:'2026년 적용 · 연 1회 고시', status:'fresh', stLabel:'공식 고시',
+   deltas:[['2027년 ₩10,700 (+3.7%)','up']], ref:'가공·조립 공수 단가 협상 시 인건비 인상률 기준으로 참고', stock:'제조업 실제 임금은 최저임금보다 높으며, 업체별 임률은 견적 원가표로 확인',
+   src:'최저임금위원회', url:'https://www.minimumwage.go.kr/', range:[0,0]},
   {id:'al', name:'알루미늄', code:'LME Al', px:3043, cur:'$', unit:'$/t', kg:true,
    sub:'10/26 19:27 기준', status:'fresh', stLabel:'Investing 최신',
    deltas:[['일 -0.14%','down'],['4주 -7.3%','down']],
@@ -959,17 +971,19 @@ function renderTiles(){
       st='new'; stl='방금 업데이트';
       deltas = L.chg!=null ? [[`변동 ${L.chg>0?'+':''}${L.chg}%`, pctCls(L.chg)]] : [];
       if(t.id==='io' && !L.chg) deltas=[];
+      if(t.id==='qz' && LIVE.qzi) ref=`수입산(IOTA-CG, Sibelco) ¥${fmt(LIVE.qzi.price)}/t (${LIVE.qzi.asOf})`;
+      if(t.id==='qz' && !L.chg) deltas=[];
       ref = t.srcTag ? t.ref : `조사 기준값 ${t.cur}${fmt(t.px)} (${t.sub})`;
     } else if(L && t.refOnly){
       ref = `${t.refName}: $${fmt(L.price,2)} ${t.refUnit} (${L.asOf||'시각 미표시'}${L.chg!=null?`, ${L.chg>0?'+':''}${L.chg}%`:''}) · Investing`;
       st='new'; stl='참고지표 업데이트';
     }
-    let CNY=199, EUR=1490; try{ CNY=FXLIVE.cnykrw?.price||199; EUR=FXLIVE.eurkrw?.price||1490; }catch(e){} const krw=t.eur ? '≈ '+fmt(px*EUR/1000)+` 원/kg (EUR ${fmt(EUR,1)}원)` : t.kg ? '≈ '+fmt(px*KRW/1000)+' 원/kg' : '≈ '+fmt(px*CNY/1000)+` 원/kg (CNY ${fmt(CNY,1)}원)`;
+    let CNY=199, EUR=1490; try{ CNY=FXLIVE.cnykrw?.price||199; EUR=FXLIVE.eurkrw?.price||1490; }catch(e){} const krw=t.id==='mw' ? '≈ '+fmt(px*209)+' 원/월 (주 40시간·209시간 기준)' : t.eur ? '≈ '+fmt(px*EUR/1000)+` 원/kg (EUR ${fmt(EUR,1)}원)` : t.kg ? '≈ '+fmt(px*KRW/1000)+' 원/kg' : '≈ '+fmt(px*CNY/1000)+` 원/kg (CNY ${fmt(CNY,1)}원)`;
     return `
     <div class="tile" data-id="${t.id}">
       <div class="top"><span class="st ${st}">${stl}</span></div>
       <div class="nm"><b>${t.name}</b><i>${t.code}</i></div>
-      <div class="px">${t.cur}${fmt(px,t.dec||0)}<small>/t</small></div>
+      <div class="px">${t.cur}${fmt(px,t.dec||0)}<small>/${t.per||'t'}</small></div>
       <div class="krw">${krw}</div>
       <div class="sub">${sub}</div>
       <div class="delta">${deltas.map(([s,c])=>`<span class="${c}">${arrow(c)} ${s}</span>`).join('')}</div>
@@ -983,7 +997,7 @@ function renderTiles(){
 }
 
 /* ---------- update panel ---------- */
-const UPD_ITEMS=[...TILES.filter(t=>t.id!=='s316'&&t.id!=='io').map(t=>({id:t.id,name:t.name+(t.refOnly?` (${t.refName.replace('원가 지표: ','')})`:''),url:t.url,range:t.range,lb:!!t.lb})), {...FX_ITEM}];
+const UPD_ITEMS=[...TILES.filter(t=>!['s316','io','ao','qz','mw'].includes(t.id)).map(t=>({id:t.id,name:t.name+(t.refOnly?` (${t.refName.replace('원가 지표: ','')})`:''),url:t.url,range:t.range,lb:!!t.lb})), {...FX_ITEM}];
 const updSel=new Set(UPD_ITEMS.map(i=>i.id));
 function lastText(id){ const L=LIVE[id]; return L ? `최근 ${L.at||''} · ${L.asOf||''}` : '조사 기준값 (10/26)'; }
 function renderUpdList(){
@@ -1019,7 +1033,7 @@ function nowStr(){ const d=new Date(); return `${d.getMonth()+1}/${d.getDate()} 
 function setRunning(on){ $('updRun').disabled=on||!updSel.size; $('updRun').textContent = on ? 'Claude가 조회 중…' : (updSel.size===UPD_ITEMS.length?'전체 시세 업데이트':`선택한 ${updSel.size}개 시세 업데이트`);
   $('topUpd').disabled=on; $('topUpd').textContent=on?'업데이트 중…':'업데이트'; if(on){ $('barSt').textContent='Claude가 데이터를 가져오는 중'; $('barSt').className='barst run'; } }
 function applyRemote(d){
-  const ids=['cu','ni','ss','io','al','st','pl','fx'];
+  const ids=['cu','ni','ss','io','ao','qz','qzi','al','st','pl','fx'];
   LIVE={};
   ids.forEach(id=>{ const v=d[id]; if(v && isFinite(Number(v.price))) LIVE[id]={price:Number(v.price), chg:v.chg==null?null:Number(v.chg), asOf:String(v.asOf||''), at:String(v.at||'')}; });
   if(LIVE.fx) KRW=LIVE.fx.price;
@@ -1060,11 +1074,11 @@ var YEAR_HOOKS=[];
 function fxMin(){ try{ const ds=Object.values(FXH).flatMap(c=>(c.s||[]).map(p=>p.d)).sort(); return ds.length?ds[0].slice(0,7):DMIN; }catch(e){ return DMIN; } }
 function applyHistory(h){
   if(!h) return;
-  const map={cu:'cu',ni:'ni',ss:'ss',io:'io',al:'al',st:'st',pl:'br',fx:'fx'};
+  const map={cu:'cu',ni:'ni',ss:'ss',io:'io',ao:'ao',qz:'qz',qzi:'qzi',al:'al',st:'st',pl:'br',fx:'fx'};
   if(h.lastDay) HLAST=String(h.lastDay);
   Object.entries(map).forEach(([src,dst])=>{ const v=h[src]; if(v && Array.isArray(v.avg) && v.avg.length>3){ HIST[dst]=v.avg.map(x=>x==null?null:Number(x)); HM0[dst]=v.m0||'2024-01'; } });
   try{
-    TREND.cu.s=buildSeries('cu',LB,'COMEX'); TREND.ni.s=buildSeries('ni'); if(HIST.ss) TREND.ss.s=buildSeries('ss',v=>v,'SHFE'); if(HIST.io) TREND.io.s=buildSeries('io',v=>v,'KOMIS'); TREND.al.s=buildSeries('al'); TREND.st.s=buildSeries('st'); TREND.br.s=buildSeries('br'); TREND.fx.s=buildSeries('fx');
+    TREND.cu.s=buildSeries('cu',LB,'COMEX'); TREND.ni.s=buildSeries('ni'); if(HIST.ss) TREND.ss.s=buildSeries('ss',v=>v,'SHFE'); if(HIST.io) TREND.io.s=buildSeries('io',v=>v,'KOMIS'); if(HIST.ao) TREND.ao.s=buildSeries('ao',v=>v,'SHFE'); if(HIST.qz) TREND.qz.s=buildSeries('qz',v=>v,'SMM'); if(HIST.qzi) TREND.qz.s2=buildSeries('qzi',v=>v,'SMM 수입'); TREND.al.s=buildSeries('al'); TREND.st.s=buildSeries('st'); TREND.br.s=buildSeries('br'); TREND.fx.s=buildSeries('fx');
     FXH.usdkrw.m=HIST.fx; FXH.usdkrw.m0=HM0.fx;
     ['eurkrw','jpykrw','cnykrw','eurusd'].forEach(k=>{ const v=h[k]; if(v && Array.isArray(v.avg) && v.avg.length>3){ FXH[k].m=v.avg.map(x=>x==null?null:(k==='jpykrw'?Number(x)*100:Number(x))); FXH[k].m0=v.m0||'2024-01'; } });
     Object.values(FXH).forEach(c=>{ c.s=seriesFrom(c.m, c.m0||'2024-01'); });
@@ -1204,7 +1218,7 @@ function lineChart(series, {unit='', yFmt=v=>fmt(v), h=260, color='var(--copper)
   </svg>`;
 }
 
-TILES.sort((a,b)=>['cu','al','st','io','ni','ss','s316','pl'].indexOf(a.id)-['cu','al','st','io','ni','ss','s316','pl'].indexOf(b.id));
+TILES.sort((a,b)=>['cu','al','st','io','ni','ss','s316','ao','qz','pl','mw'].indexOf(a.id)-['cu','al','st','io','ni','ss','s316','ao','qz','pl','mw'].indexOf(b.id));
 
 /* ---------- 2. trend ---------- */
 /* Investing.com 일별 종가(2024.1.1~2026.10.26, 10/26 수집)를 월평균으로 계산. 시작 월부터 순서대로, 2026.10은 26일까지 평균 */
@@ -1235,6 +1249,9 @@ const TREND = {
   pb:{label:'납', unit:' $/t', note:'LME 납 공식가(Cash Seller & Settlement) 월평균, 한국비철금속협회 자료. 파일을 받을 때마다 갱신합니다.', s:[]},
   sn:{label:'주석', unit:' $/t', note:'LME 주석 공식가(Cash Seller & Settlement) 월평균, 한국비철금속협회 자료. 파일을 받을 때마다 갱신합니다.', s:[]},
   al:{label:'알루미늄', unit:' $/t', note:'Investing 알루미늄 월평균. 2026년 3~5월 중동 전쟁 급등 후 되돌림이 보입니다. 10월은 26일까지의 평균입니다.', s:buildSeries('al')},
+  ao:{label:'알루미나', unit:' ¥/t', note:'상하이선물거래소(SHFE) 알루미나(AO) 선물 연속물 월평균, 위안/t. 2023년 6월 상장. 야금용 알루미나라 세라믹 부품용 고순도 알루미나 가격과는 수준이 다르지만 방향을 보는 지표로 씁니다.', s:[]},
+  qz:{label:'고순도 석영사', unit:' ¥/t', l1:'국산 내층용(SMM)', l2:'수입 IOTA-CG(SMM)', note:'SMM 고순도 석영사(도가니 내층용) 가격, 위안/t. 2026.10부터 매일 자동 수집하고, 그 전은 SMM 기사에 나온 가격범위의 중간값입니다(2023.11 ~41.5만, 2024.6 ~12만, 2025.4 ~6.7만). 과거 연속 시계열은 SMM 유료 자료라 비어 있습니다.', s:[]},
+  mw:{label:'최저임금', unit:'원', note:'최저임금위원회 고시 시간급, 원. 2027년은 10,700원(+3.7%)으로 확정됐습니다. 업체 임률·공수 단가의 인상 요구를 볼 때 기준선으로 씁니다.', s:[[2018,7530],[2019,8350],[2020,8590],[2021,8720],[2022,9160],[2023,9620],[2024,9860],[2025,10030],[2026,10320]].map(([y,v])=>({d:`${y}-01-15`,v,n:`${y}년 최저임금(시급)`}))},
   st:{label:'철강', unit:' $/st', note:'Investing 미국 열연코일(HRC) 선물 월평균, 쇼트톤당 달러. 중국 열연 가격과는 다른 지표입니다.', s:buildSeries('st')},
   io:{label:'철광석', unit:' $/t', note:'KOMIS(한국광해광업공단) 철광석 분광 Iron Ore Fines 62% Fe, CNF China 월평균, USD/t. 철강 원료 가격입니다.', s:[]},
   pl:{label:'플라스틱(PP)', unit:' $/t', note:'중국 PP FOB 월간 가격(Procurement Resource). Investing에는 PP·PE 지표가 없어 2026년 1~8월만 있습니다. 원가 흐름은 브렌트유 탭을 함께 보세요.',
@@ -2143,8 +2160,6 @@ initAuth();
 </script>
 
 <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
-<script src="./special-cost-indicators.js?v=20261029-1"></script>
-<script src="./lab-assumption-test.js?v=20261029-1"></script>
 <script src="./trend-export.js?v=20261028-1"></script>
 <script src="./news-filter.js?v=20261026-2"></script>
 </body>

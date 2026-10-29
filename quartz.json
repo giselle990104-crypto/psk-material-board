@@ -5,11 +5,37 @@
   "imp": "https://www-old.metal.com/photovoltaic/202412120001"
  },
  "days": {
-  "2026-10-29": {
-   "dom": 43000.0
+  "2023-11-20": {
+   "dom": 415000,
+   "via": "news",
+   "url": "https://news.metal.com/newscontent/102495315"
+  },
+  "2024-06-05": {
+   "dom": 120000,
+   "via": "news",
+   "url": "https://news.metal.com/newscontent/102788921"
+  },
+  "2025-03-14": {
+   "imp": 105000,
+   "via": "news",
+   "url": "https://news.metal.com/newscontent/103227703"
+  },
+  "2025-04-30": {
+   "dom": 66500,
+   "via": "news",
+   "url": "https://news.metal.com/newscontent/103306092"
+  },
+  "2025-06-26": {
+   "dom": 64000,
+   "via": "news",
+   "url": "https://news.metal.com/newscontent/103397143"
   },
   "2026-10-26": {
    "imp": 51000.0
+  },
+  "2026-10-29": {
+   "dom": 43000.0
   }
- }
+ },
+ "note": "뉴스(via=news)는 SMM 기사 가격범위의 중간값. 그 외는 SMM 공개 가격 페이지 일별 수집값."
 }
