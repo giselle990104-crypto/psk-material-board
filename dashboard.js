@@ -74,6 +74,7 @@
     {id:'cu',name:'구리',unit:'$/lb',color:'#7754cc'},
     {id:'al',name:'알루미늄',unit:'$/t',color:'#168b86'},
     {id:'st',name:'철강 (미국 HRC 선물)',unit:'$/short ton',color:'#3976bc'},
+    {id:'io',name:'철광석 (62% Fe CNF China)',unit:'$/t',color:'#9a6b4f'},
     {id:'ni',name:'니켈',unit:'$/t',color:'#d27b30'},
     {id:'ss',name:'스테인리스 (SHFE SUS304)',unit:'¥/t',cur:'¥',color:'#8a8f98'},
     {id:'pl',name:'브렌트유 (플라스틱 참고)',unit:'$/bbl',color:'#bd579c'}
