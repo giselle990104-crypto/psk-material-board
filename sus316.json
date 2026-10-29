@@ -1,4 +1,5 @@
 {
+ "v": 2,
  "unit": "EUR/kg",
  "source": "Acerinox Flat Product Alloy Surcharge (공식 월별 PDF)",
  "grades": {
@@ -6,7 +7,7 @@
   "s304": "304 (1.4301)",
   "s316": "316 (1.4401)"
  },
- "updatedAt": "10/29 14:36",
+ "updatedAt": "10/29 14:38",
  "rows": [
   {
    "m": "2021-11",
@@ -114,6 +115,55 @@
    "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-January-2023.pdf"
   },
   {
+   "m": "2025-06",
+   "s316l": 3.071,
+   "s304": 1.861,
+   "s316": 3.071,
+   "src": "https://www.acerinox.com/export/sites/acerinox/es/soluciones/.galleries/Documentacion-Productos-Largo-Extra-de-aleacion-espanol/2025-06-Alloy-Surcharge-Flat-Product.pdf"
+  },
+  {
+   "m": "2025-07",
+   "s316l": 3.072,
+   "s304": 1.82,
+   "s316": 3.072,
+   "src": "https://www.acerinox.com/export/sites/acerinox/es/soluciones/.galleries/Documentacion-Productos-Largo-Extra-de-aleacion-espanol/2025-07-Alloy-Surcharge-Flat-Product.pdf"
+  },
+  {
+   "m": "2025-08",
+   "s316l": 3.032,
+   "s304": 1.789,
+   "s316": 3.032,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/2025-08-Alloy-Surcharge-Flat-Product.pdf"
+  },
+  {
+   "m": "2025-10",
+   "s316l": 3.187,
+   "s304": 1.804,
+   "s316": 3.187,
+   "src": "https://www.acerinox.com/export/sites/acerinox/es/soluciones/.galleries/Documentacion-Productos-Largo-Extra-de-aleacion-espanol/Alloy-Surcharge-Flat-Product-October-2025.pdf"
+  },
+  {
+   "m": "2025-11",
+   "s316l": 3.181,
+   "s304": 1.828,
+   "s316": 3.181,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/2025-11-Alloy-Surcharge-Flat-Product.pdf"
+  },
+  {
+   "m": "2025-12",
+   "s316l": 3.17,
+   "s304": 1.843,
+   "s316": 3.17,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/2025-12-Alloy-Surcharge-Flat-Product.pdf"
+  },
+  {
+   "m": "2026-01",
+   "s316l": 3.047,
+   "s304": 1.817,
+   "s316": 3.047,
+   "src": "https://www.acerinox.com/export/sites/acerinox/es/soluciones/.galleries/Documentacion-Productos-Largo-Extra-de-aleacion-espanol/Alloy-Surcharge-Flat-Product-January-2026.pdf"
+  },
+  {
    "m": "2026-02",
    "s316l": 3.36,
    "s304": 2.033,
@@ -161,6 +211,13 @@
    "s304": 2.136,
    "s316": 3.972,
    "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Product-October-2026.pdf"
+  },
+  {
+   "m": "2026-11",
+   "s316l": 4.018,
+   "s304": 2.135,
+   "s316": 4.018,
+   "src": "https://www.acerinox.com/export/sites/acerinox/es/soluciones/.galleries/Documentacion-Productos-Largo-Extra-de-aleacion-espanol/Alloy-Surcharge-Flat-Product-November-2026.pdf"
   }
  ],
  "tried": {
@@ -192,16 +249,8 @@
   "2025-03": "none",
   "2025-04": "none",
   "2025-05": "none",
-  "2025-06": "none",
-  "2025-07": "none",
-  "2025-08": "none",
   "2025-09": "none",
-  "2025-10": "none",
-  "2025-11": "none",
-  "2025-12": "none",
-  "2026-01": "none",
   "2026-04": "none",
-  "2026-06": "none",
-  "2026-11": "2026-10-29"
+  "2026-06": "none"
  }
 }
