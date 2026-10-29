@@ -1050,6 +1050,7 @@ function applyRemote(d){
 
 $('updStop').hidden=true;
 var YEAR_HOOKS=[];
+function fxMin(){ try{ const ds=Object.values(FXH).flatMap(c=>(c.s||[]).map(p=>p.d)).sort(); return ds.length?ds[0].slice(0,7):DMIN; }catch(e){ return DMIN; } }
 function applyHistory(h){
   if(!h) return;
   const map={cu:'cu',ni:'ni',ss:'ss',al:'al',st:'st',pl:'br',fx:'fx'};
@@ -1064,7 +1065,7 @@ function applyHistory(h){
     ALLD=[].concat(...Object.entries(TREND).filter(([k])=>k!=='s316').map(([,t])=>t.s.map(p=>p.d))).sort();
     DMIN=ALLD[0].slice(0,7); DMAX=ALLD[ALLD.length-1].slice(0,7); LASTDAY=HLAST;
     if(RANGE.to===wasMax) RANGE.to=DMAX; if(FXR.to===wasMax) FXR.to=DMAX;
-    if(RANGE.from===wasMin) RANGE.from=DMIN; if(FXR.from===wasMin) FXR.from=DMIN;
+    if(RANGE.from===wasMin) RANGE.from=DMIN; if(FXR.from===wasMin) FXR.from=fxMin();
     YEAR_HOOKS.forEach(f=>{ try{ f(); }catch(e){} });
     showTrend(curTrend); showFx(fxCur);
   }catch(e){}
@@ -1141,7 +1142,7 @@ function showTip(el){
   ctip.style.left=(r.left+r.width/2)+'px'; ctip.style.top=(r.top+r.height/2)+'px'; ctip.hidden=false;
   const pt=el.previousElementSibling; 
   document.querySelectorAll('.chart circle.pt.on').forEach(c=>{c.classList.remove('on'); c.setAttribute('r',c.dataset.r0||'2.8');});
-  const idx=[...el.parentNode.querySelectorAll('circle.hit')].indexOf(el), dot=el.parentNode.querySelectorAll('circle.pt')[idx];
+  const kids=[...el.parentNode.children], idx=kids.filter(c=>c.matches('circle.hit')).indexOf(el), dot=kids.filter(c=>c.matches('circle.pt'))[idx];
   if(dot){ if(!dot.dataset.r0) dot.dataset.r0=dot.getAttribute('r'); dot.classList.add('on'); dot.setAttribute('r',String(+dot.dataset.r0+2)); }
 }
 function hideTip(){ ctip.hidden=true; document.querySelectorAll('.chart circle.pt.on').forEach(c=>{c.classList.remove('on'); c.setAttribute('r',c.dataset.r0||'2.8');}); }
@@ -1150,11 +1151,13 @@ document.addEventListener('mouseout',e=>{ if(e.target.closest?.('.chart circle.h
 document.addEventListener('click',e=>{ const h=e.target.closest?.('.chart circle.hit'); if(h){ showTip(h); } else if(!ctip.hidden) hideTip(); });
 window.addEventListener('scroll',hideTip,{passive:true});
 const toT=s=>{ const [y,m,d]=s.split('-').map(Number); return Date.UTC(y,m-1,d||1); };
-function lineChart(series, {unit='', yFmt=v=>fmt(v), h=260, color='var(--copper)', domain=null}={}){
+function lineChart(series, {unit='', yFmt=v=>fmt(v), h=260, color='var(--copper)', domain=null, s2=null, c2='#c27a2c'}={}){
   const W=760, H=h, L=66, R=18, T=18, B=34;
   const d = series.map(p=>({...p, t:toT(p.d)}));
-  const t0=domain?domain[0]:Math.min(...d.map(p=>p.t)), t1=domain?domain[1]:Math.max(...d.map(p=>p.t));
-  let lo=Math.min(...d.map(p=>p.v)), hi=Math.max(...d.map(p=>p.v));
+  const d2 = (s2||[]).map(p=>({...p, t:toT(p.d)}));
+  const all=d.concat(d2);
+  const t0=domain?domain[0]:Math.min(...all.map(p=>p.t)), t1=domain?domain[1]:Math.max(...all.map(p=>p.t));
+  let lo=Math.min(...all.map(p=>p.v)), hi=Math.max(...all.map(p=>p.v));
   const pad=(hi-lo)*0.15||hi*0.05; lo-=pad; hi+=pad;
   const span=hi-lo, raw=span/4, mag=Math.pow(10,Math.floor(Math.log10(raw)));
   const step=[1,2,2.5,5,10].map(m=>m*mag).find(s=>s>=raw);
@@ -1164,6 +1167,7 @@ function lineChart(series, {unit='', yFmt=v=>fmt(v), h=260, color='var(--copper)
   const segs=[]; d.forEach((p,i)=>{ if(!i || p.t-d[i-1].t>75*864e5) segs.push([]); segs[segs.length-1].push(p); });
   const segPath=g=>g.map((p,i)=>(i?'L':'M')+x(p.t).toFixed(1)+' '+y(p.v).toFixed(1)).join(' ');
   const path=segs.map(segPath).join(' ');
+  const segs2=arr=>{ const g=[]; arr.forEach((p,i)=>{ if(!i || p.t-arr[i-1].t>75*864e5) g.push([]); g[g.length-1].push(p); }); return g.map(segPath).join(' '); };
   const area=segs.map(g=>segPath(g)+` L${x(g[g.length-1].t).toFixed(1)} ${H-B} L${x(g[0].t).toFixed(1)} ${H-B} Z`).join(' ');
   /* month ticks: start at the first month boundary on or after t0 */
   const s0=new Date(t0); let my=s0.getUTCFullYear(), mm=s0.getUTCMonth(); if(s0.getUTCDate()>1){ mm++; }
@@ -1182,6 +1186,9 @@ function lineChart(series, {unit='', yFmt=v=>fmt(v), h=260, color='var(--copper)
     ${shown.map(t=>`<text x="${x(t)}" y="${H-12}" text-anchor="middle" font-size="13" fill="var(--ink-3)" font-family="IBM Plex Mono,monospace">${lab(t)}</text>`).join('')}
     <line x1="${L}" x2="${W-R}" y1="${H-B}" y2="${H-B}" stroke="var(--ink-3)" stroke-width="1"/>
     <path d="${area}" fill="url(#${gid})" stroke="none"/>
+    ${d2.length>1?`<g class="s2"><path d="${segs2(d2)}" fill="none" stroke="${c2}" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" stroke-linecap="round"/>
+      ${d2.map(p=>`<circle class="pt" cx="${x(p.t)}" cy="${y(p.v)}" r="1.8" fill="var(--panel)" stroke="${c2}" stroke-width="1.2"/>`).join('')}
+      ${d2.map(p=>`<circle class="hit" cx="${x(p.t)}" cy="${y(p.v)}" r="9" data-v="${p.v}" data-u="${esc0(unit)}" data-l="${esc0(yFmt(p.v))}" data-n="${esc0(p.n||p.d)}" tabindex="-1"/>`).join('')}</g>`:''}
     <path d="${path}" fill="none" stroke="${color}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
     ${d.map(p=>`<circle class="pt" cx="${x(p.t)}" cy="${y(p.v)}" r="${d.length>30?2.2:2.8}" fill="var(--panel)" stroke="${color}" stroke-width="${d.length>30?1.4:1.7}"/>`).join('')}
     ${d.map(p=>`<circle class="hit" cx="${x(p.t)}" cy="${y(p.v)}" r="11" data-v="${p.v}" data-u="${esc0(unit)}" data-l="${esc0(yFmt(p.v))}" data-n="${esc0(p.n||p.d)}" tabindex="-1"/>`).join('')}
@@ -1217,6 +1224,9 @@ const TREND = {
   ni:{label:'니켈', unit:' $/t', note:'Investing 니켈 선물 월평균. 2026년 10월은 26일까지의 평균입니다.', s:buildSeries('ni')},
   ss:{label:'스테인리스', unit:' ¥/t', note:'상하이선물거래소(SHFE) 스테인리스강(SUS304 냉연) 선물 연속물 월평균, 위안/t. Investing에는 스테인리스 지표가 없어 Sina Finance 시세를 씁니다.', s:[]},
   s316:{label:'SUS316L 할증료', unit:' €/t', note:'Acerinox 공식 판재 합금할증료(SUS316L, EN 1.4404), 유로/t. 가격 중 합금 원가 부분이며 매달 21일경 다음 달 적용분이 발표됩니다. 그래프는 발표 시점 기준이고, 2023.2~2025.5는 공개 자료가 없어 비어 있습니다.', s:[]},
+  zn:{label:'아연', unit:' $/t', note:'LME 아연 공식가(Cash Seller & Settlement) 월평균, 한국비철금속협회 자료. 파일을 받을 때마다 갱신합니다.', s:[]},
+  pb:{label:'납', unit:' $/t', note:'LME 납 공식가(Cash Seller & Settlement) 월평균, 한국비철금속협회 자료. 파일을 받을 때마다 갱신합니다.', s:[]},
+  sn:{label:'주석', unit:' $/t', note:'LME 주석 공식가(Cash Seller & Settlement) 월평균, 한국비철금속협회 자료. 파일을 받을 때마다 갱신합니다.', s:[]},
   al:{label:'알루미늄', unit:' $/t', note:'Investing 알루미늄 월평균. 2026년 3~5월 중동 전쟁 급등 후 되돌림이 보입니다. 10월은 26일까지의 평균입니다.', s:buildSeries('al')},
   st:{label:'철강', unit:' $/st', note:'Investing 미국 열연코일(HRC) 선물 월평균, 쇼트톤당 달러. 중국 열연 가격과는 다른 지표입니다.', s:buildSeries('st')},
   pl:{label:'플라스틱(PP)', unit:' $/t', note:'중국 PP FOB 월간 가격(Procurement Resource). Investing에는 PP·PE 지표가 없어 2026년 1~8월만 있습니다. 원가 흐름은 브렌트유 탭을 함께 보세요.',
@@ -1236,7 +1246,10 @@ function rangeDomain(){ const end=monthEnd(RANGE.to) > LASTDAY ? LASTDAY : month
 function trendHTML(k){
   const t=TREND[k]; const pts=t.s.filter(inRange);
   if(pts.length<2) return `<div style="padding:22px;border:1px dashed var(--line);border-radius:10px;color:var(--ink-2)">${t.label}는 ${rangeLabel()} 기간에 데이터가 ${pts.length}개뿐이라 차트를 그릴 수 없습니다. 기간을 넓혀 보세요.</div>`;
-  return lineChart(pts,{unit:t.unit, domain:rangeDomain()});
+  const p2=(t.s2||[]).filter(inRange);
+  const dom=rangeDomain(); const first=[pts[0], p2[0]].filter(Boolean).map(p=>toT(p.d)); if(first.length) dom[0]=Math.max(dom[0], Math.min(...first)-15*864e5);
+  const leg=p2.length>1?`<div class="note" style="display:flex;gap:16px;flex-wrap:wrap;margin:2px 0 6px"><span><i style="display:inline-block;width:18px;height:0;border-top:2.4px solid var(--copper);vertical-align:middle;margin-right:6px"></i>${t.l1||'Investing 월평균'}</span><span><i style="display:inline-block;width:18px;height:0;border-top:2px dashed #c27a2c;vertical-align:middle;margin-right:6px"></i>${t.l2||'LME 공식가 월평균 (비철금속협회)'}</span></div>`:'';
+  return leg+lineChart(pts,{unit:t.unit, domain:dom, s2:p2});
 }
 const tabs=$('trendTabs');
 function showTrend(k){
@@ -1310,7 +1323,7 @@ function showFx(k){
 }
 Object.entries(FXH).forEach(([k,c])=>{ const b=document.createElement('button'); b.type='button'; b.dataset.k=k; b.textContent=c.label; b.onclick=()=>showFx(k); $('fxTabs').appendChild(b); });
 (function initFxPeriod(){
-  const fillY=()=>{ const yrs=[]; for(let y=+LASTDAY.slice(0,4);y>=+DMIN.slice(0,4);y--) yrs.push(y);
+  const fillY=()=>{ const yrs=[]; for(let y=+LASTDAY.slice(0,4);y>=+fxMin().slice(0,4);y--) yrs.push(y);
     ['fxFromY','fxToY'].forEach(id=>$(id).innerHTML=yrs.map(y=>`<option value="${y}">${y}년</option>`).join('')); };
   fillY(); YEAR_HOOKS.push(()=>{ fillY(); sync(); });
   ['fxFromM','fxToM'].forEach(id=>$(id).innerHTML=Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1}월</option>`).join(''));
@@ -1319,7 +1332,7 @@ Object.entries(FXH).forEach(([k,c])=>{ const b=document.createElement('button');
   $('fxApply').onclick=()=>{ let f=ym($('fxFromY').value,$('fxFromM').value), t=ym($('fxToY').value,$('fxToM').value); if(f>t){[f,t]=[t,f];} FXR={from:f,to:t}; fxQuick=''; sync(); showFx(fxCur); };
   document.querySelectorAll('#fxPeriod .quick button').forEach(b=>b.onclick=()=>{
     const q=b.dataset.q, [ly,lm]=LASTDAY.split('-').map(Number);
-    if(q==='all') FXR={from:DMIN,to:DMAX};
+    if(q==='all') FXR={from:fxMin(),to:DMAX};
     else if(q==='ytd') FXR={from:ym(ly,1),to:DMAX};
     else if(q==='y1') FXR={from:ym(ly-1,lm),to:DMAX};
     else { const mi=lm-(+q); FXR={from:ym(ly+Math.floor(mi/12), ((mi%12)+12)%12+1),to:DMAX}; }
@@ -2102,7 +2115,16 @@ function applySnap(j){ if(!j) return; if(j.history) applyHistory(j.history); if(
 (function applySnapshot(){ try{ applySnap(JSON.parse(document.getElementById('snap').textContent||'{}')); }catch(e){ console.warn('snapshot',e); }
   reloadData(); if(STANDALONE) setInterval(reloadData, 10*60*1000); })();
 function reloadData(){ if(STANDALONE && location.protocol.startsWith('http')){ fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applySnap).catch(()=>{});
-  fetch('sus316.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applySus).catch(()=>{}); } }
+  fetch('sus316.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applySus).catch(()=>{});
+  fetch('lme_kna.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applyLme).catch(()=>{}); } }
+function applyLme(j){ if(!j||!j.series) return; const S=j.series, mk=k=>S[k]?seriesFrom(S[k].avg, S[k].m0, v=>v, 'LME 공식가'):[];
+  ['cu','ni','al'].forEach(k=>{ if(S[k]){ TREND[k].s2=mk(k); } });
+  ['zn','pb','sn'].forEach(k=>{ if(S[k]) TREND[k].s=mk(k); });
+  try{ const wasMax=DMAX, wasMin=DMIN;
+    ALLD=[].concat(...Object.entries(TREND).filter(([k])=>k!=='s316').map(([,t])=>t.s.map(p=>p.d)).concat(Object.values(TREND).map(t=>(t.s2||[]).map(p=>p.d)))).sort();
+    DMIN=ALLD[0].slice(0,7); DMAX=ALLD[ALLD.length-1].slice(0,7);
+    if(RANGE.to===wasMax) RANGE.to=DMAX; if(FXR.to===wasMax) FXR.to=DMAX;
+    YEAR_HOOKS.forEach(f=>{ try{ f(); }catch(e){} }); showTrend(curTrend); }catch(e){} }
 function applySus(j){ if(!j||!Array.isArray(j.rows)) return; const rows=j.rows.filter(r=>isFinite(r.s316l)); if(!rows.length) return;
   const pm=m=>{ let [y,mm]=m.split('-').map(Number); mm--; if(mm<1){mm=12;y--;} return [y,mm]; };
   const pub=m=>`${pm(m)[1]}/21`, pubD=m=>{ const [y,mm]=pm(m); return `${y}-${String(mm).padStart(2,'0')}-21`; };
