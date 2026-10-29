@@ -1,0 +1,25 @@
+name: probe
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          pip install -q curl_cffi
+          cat > p.py <<'PY'
+          import re
+          from curl_cffi import requests as r
+          s=r.Session(impersonate="chrome")
+          def note(t,m): print("::notice title=%s::%s"%(t,str(m).replace("\n"," ").replace("%","")[:900]))
+          urls=["https://www.outokumpu.com/en/products/alloy-surcharges","https://www.outokumpu.com/en-us/products/alloy-surcharges","https://www.outokumpu.com/en/surcharges","https://www.outokumpu.com/en/products/alloy-surcharge",
+                "https://www.aperam.com/alloy-surcharges","https://www.aperam.com/stainless/alloy-surcharges","https://www.aperam.com/en/alloy-surcharges",
+                "https://www.acerinox.com/en/productos/extras-de-aleacion/","https://www.acerinox.com/en/products/alloy-surcharges/","https://www.acerinox.com/en/clientes/extras-de-aleacion/"]
+          for u in urls:
+              try:
+                  y=s.get(u,timeout=25,allow_redirects=True)
+                  t=re.search(r"<title>(.*?)</title>",y.text,re.S)
+                  links=sorted(set(re.findall(r'href="([^"]*(?:urcharge|aleaci|surcharge|\.pdf|\.xlsx)[^"]*)"',y.text,re.I)))[:12]
+                  note(u.split("//")[1][:60],"%s final=%s title=%s 316L=%s links=%s"%(y.status_code,y.url[:80],(t.group(1).strip()[:60] if t else ''),('316L' in y.text or '1.4404' in y.text),links))
+              except Exception as e: note(u.split("//")[1][:60],"ERR "+repr(e)[:200])
+          PY
+          python p.py
