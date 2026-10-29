@@ -852,7 +852,7 @@ footer a{color:var(--ink-2)}
 
 </script>
 <script src="./lab.js"></script>
-<script src="./lab-price-review.js?v=20261029-1"></script>
+<script src="./lab-price-review.js?v=20261029-2"></script>
 <script>
 const STANDALONE=!window.claude;
 let KRW = 1323.1;
@@ -1179,7 +1179,7 @@ function lineChart(series, {unit='', yFmt=v=>fmt(v), h=260, color='var(--copper)
   const all=d.concat(d2);
   const t0=domain?domain[0]:Math.min(...all.map(p=>p.t)), t1=domain?domain[1]:Math.max(...all.map(p=>p.t));
   let lo=Math.min(...all.map(p=>p.v)), hi=Math.max(...all.map(p=>p.v));
-  const pad=(hi-lo)*0.15||hi*0.05; lo-=pad; hi+=pad;
+  const pad=(hi-lo)*0.15||hi*0.05; const pos=lo>=0; lo-=pad; hi+=pad; if(pos&&lo<0) lo=0;
   const span=hi-lo, raw=span/4, mag=Math.pow(10,Math.floor(Math.log10(raw)));
   const step=[1,2,2.5,5,10].map(m=>m*mag).find(s=>s>=raw);
   const y0=Math.ceil(lo/step)*step; const ticks=[]; for(let v=y0; v<=hi; v+=step) ticks.push(v);
