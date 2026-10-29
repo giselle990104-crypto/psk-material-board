@@ -82,6 +82,35 @@ try:
 except Exception as e:
     print("sus skipped", e, file=sys.stderr)
 
+# 철광석: KOMIS(한국광해광업공단) Australian 62% Fe CNF China, USD/t — 월평균 + 최근 일별가
+def komis_iron():
+    K = "https://www.komis.or.kr"
+    H = {"X-Requested-With": "XMLHttpRequest", "Referer": K + "/Komis/RsrcPrice/IronOre",
+         "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"}
+    s.get(K + "/Komis/RsrcPrice/IronOre", timeout=30)
+    base = {"mnrkndUnqRadioCd": "MNRL1011", "srchMnrkndUnqCd": "MNRL1011", "srchPrcCrtr": "793", "srchCompareMnrkndUnqCd": "",
+            "srchComparePrcCrtr": "", "lmeInvt": "Y", "HP000": "HP003"}
+    c = s.post(K + "/Komis/RsrcPrice/ajax/getChartData", headers=H, timeout=30,
+               data=dict(base, srchAvgOpt="MONTH", srchField="year", srchStartDate=str(START_Y), srchEndDate=str(now.year))).json()["data"]
+    xs = [x.replace(".", "-") for x in c["xaxis"]]; ys = c["series"][0]["data"]
+    g = {m: float(v) for m, v in zip(xs, ys) if v not in (None, "", "-")}
+    start = f"{START_Y}-{START_M:02d}"
+    ms = sorted(m for m in g if m >= start)
+    allm, (y, m) = [], map(int, ms[0].split("-"))
+    while f"{y}-{m:02d}" <= ms[-1]:
+        allm.append(f"{y}-{m:02d}"); m += 1
+        if m > 12: y, m = y + 1, 1
+    history["io"] = {"m0": ms[0], "avg": [round(g[k], 2) if k in g else None for k in allm], "src": "KOMIS Iron Ore Fines 62% CNF China"}
+    d = s.post(K + "/Komis/RsrcPrice/ajax/getMnrlPrcByMnrkndUnqCd", headers=H, timeout=30,
+               data=dict(base, srchAvgOpt="DAY", srchField="month", srchStartDate=now.strftime("%Y-%m"), srchEndDate=now.strftime("%Y-%m"))).json()
+    st = d["dataAvg"]["stdMap"]; day = st.get("DAY", {}); ymd = st.get("CRTRYMD", {}).get("crtrYmd", "")
+    price = float(day.get("cmercPrc") or st["CRTRYMD"]["cmercPrc"])
+    prices["io"] = {"price": round(price, 2), "chg": float(day.get("flctnPrcnt") or 0), "asOf": f"{ymd[4:6]}/{ymd[6:8]}" if len(ymd) == 8 else "", "at": stamp, "src": "KOMIS"}
+try:
+    komis_iron()
+except Exception as e:
+    print("iron ore skipped", repr(e), file=sys.stderr)
+
 history["lastDay"] = last_day
 history["updatedAt"] = stamp
 try:
@@ -89,7 +118,7 @@ try:
 except Exception:
     old = {}
 out = {"prices": {**prices, "finishedAt": stamp, "status": "done",
-                  "message": "원자재 6종·환율 5종 현재가와 최근 5년 월평균 (Investing.com)"},
+                  "message": "원자재 7종·환율 5종 현재가와 최근 5년 월평균 (Investing.com)"},
        "history": history}
 for k in ("ai", "aiAt"):
     if k in old: out[k] = old[k]
