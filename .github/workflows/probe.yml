@@ -18,13 +18,11 @@ jobs:
                   await pg.goto("https://www.outokumpu.com/en/surcharges", wait_until="networkidle", timeout=60000)
                   await pg.wait_for_timeout(4000)
                   txt=await pg.inner_text("body")
-                  i=txt.find("316"); note("text316", txt[max(0,i-400):i+500] if i>=0 else "no 316 | "+txt[:600])
-                  api=[u for u,s,c in reqs if ("json" in c or "api" in u.lower() or "surcharge" in u.lower()) and not re.search(r"\.(js|css|png|svg|woff2?)(\?|$)",u)]
-                  note("api", " ; ".join(api[:15]))
-                  sels=await pg.eval_on_selector_all("select", "els=>els.map(e=>e.name+':'+[...e.options].slice(0,12).map(o=>o.textContent.trim()).join('/'))")
-                  note("selects", sels)
-                  links=await pg.eval_on_selector_all("a", "els=>els.map(e=>e.href).filter(h=>/xls|pdf|csv|history|archive/i.test(h)).slice(0,15)")
-                  note("dl", links)
+                  i=txt.find("Skip to Main Navigation"); body=txt[i:]
+                  for k in range(0,min(len(body),5400),900): note("t%d"%k, body[k:k+900])
+                  fr=[f.url for f in pg.frames]; note("frames", fr)
+                  links=await pg.eval_on_selector_all("main a, a[href*='surcharge']", "els=>els.map(e=>e.textContent.trim().slice(0,40)+'>'+e.href).slice(0,40)")
+                  note("links", links)
                   await b.close()
           asyncio.run(main())
           PY
