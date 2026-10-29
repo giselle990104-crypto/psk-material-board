@@ -75,6 +75,7 @@
     {id:'al',name:'알루미늄',unit:'$/t',color:'#168b86'},
     {id:'st',name:'철강 (미국 HRC 선물)',unit:'$/short ton',color:'#3976bc'},
     {id:'ni',name:'니켈',unit:'$/t',color:'#d27b30'},
+    {id:'ss',name:'스테인리스 (SHFE SUS304)',unit:'¥/t',cur:'¥',color:'#8a8f98'},
     {id:'pl',name:'브렌트유 (플라스틱 참고)',unit:'$/bbl',color:'#bd579c'}
   ];
   const byId = id => document.getElementById(id);
@@ -125,7 +126,7 @@
       const mom=Number.isFinite(a)&&Number.isFinite(b)&&b!==0?(a/b-1)*100:NaN;
       if(Number.isFinite(mom) && Math.abs(mom)>=3){points.push({name:m.name,mom,kind:mom>0?'원가 상승 영향 점검':'단가 인하 협상 근거 검토'});}
       const change=Number.isFinite(mom)?`<span class="${tone(mom)}">${signed(mom)}</span>`:'—';
-      return `<tr><td><strong>${safe(m.name)}</strong><div class="d-muted">${safe(m.unit)}</div></td><td>${p&&Number.isFinite(+p.price)?'$'+num(p.price,m.id==='cu'?4:2):'—'}</td><td>${change}</td><td>${safe(p?.asOf||'—')}</td><td><button type="button" class="d-link" data-go="prices">상세 보기</button></td></tr>`;
+      return `<tr><td><strong>${safe(m.name)}</strong><div class="d-muted">${safe(m.unit)}</div></td><td>${p&&Number.isFinite(+p.price)?(m.cur||'$')+num(p.price,m.id==='cu'?4:m.cur?0:2):'—'}</td><td>${change}</td><td>${safe(p?.asOf||'—')}</td><td><button type="button" class="d-link" data-go="prices">상세 보기</button></td></tr>`;
     });
     byId('d-rows').innerHTML=rows.join('');
     const momOf=id=>{const h=histFor(data,id),a=h.at(-1)?.value,b=h.at(-2)?.value;return a&&b?(a/b-1)*100:NaN;};
