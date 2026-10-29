@@ -1,0 +1,15 @@
+{
+ "unit": "CNY/t",
+ "src": {
+  "dom": "https://www-old.metal.com/Photovoltaic/202307130006",
+  "imp": "https://www-old.metal.com/photovoltaic/202412120001"
+ },
+ "days": {
+  "2026-10-29": {
+   "dom": 43000.0
+  },
+  "2026-10-26": {
+   "imp": 51000.0
+  }
+ }
+}
