@@ -6,6 +6,7 @@ from curl_cffi import requests
 from pypdf import PdfReader
 
 BASE = "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/"
+ALT = "https://www.acerinox.com/export/sites/acerinox/es/soluciones/.galleries/Documentacion-Productos-Largo-Extra-de-aleacion-espanol/"
 MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"]
 ES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]
 PATH = "sus316.json"
@@ -17,7 +18,7 @@ try:
 except Exception:
     data = {}
 rows = {r["m"]: r for r in data.get("rows", [])}
-tried = data.get("tried", {})
+tried = data.get("tried", {}) if data.get("v") == 2 else {}
 s = requests.Session(impersonate="chrome")
 
 def num(x):
@@ -32,14 +33,16 @@ def parse(pdf):
 
 def fetch(y, m):
     names = [f"Alloy-Surcharge-Flat-Product-{MONTHS[m-1]}-{y}.pdf", f"Alloy-Surcharge-Flat-Product-{MONTHS[m-1]}{y}.pdf",
+             f"{y}-{m:02d}-Alloy-Surcharge-Flat-Product.pdf", f"{y}-{m:02d}-Alloy-Surcharge-Flat-Products.pdf",
              f"Alloy-Surcharge-Flat-Products-{MONTHS[m-1]}-{y}.pdf", f"Extras-de-aleacion-Producto-Plano-{ES[m-1]}-{y}.pdf"]
-    for n in names:
+    urls = [BASE + n for n in names] + [ALT + n for n in names[:3]]
+    for u in urls:
         try:
-            r = s.get(BASE + n, timeout=30)
+            r = s.get(u, timeout=30)
             if r.status_code == 200 and r.content[:4] == b"%PDF":
-                return BASE + n, r.content
+                return u, r.content
         except Exception as e:
-            print("ERR", n, e, file=sys.stderr)
+            print("ERR", u, e, file=sys.stderr)
     return None, None
 
 # 최근 5년 + 다음 달(보통 전월 21일경 발표)
@@ -67,7 +70,7 @@ for y, m in months:
     tried.pop(key, None); changed = True
     print("got", key, v316l, v304)
 
-out = {"unit": "EUR/kg", "source": "Acerinox Flat Product Alloy Surcharge (공식 월별 PDF)",
+out = {"v": 2, "unit": "EUR/kg", "source": "Acerinox Flat Product Alloy Surcharge (공식 월별 PDF)",
        "grades": {"s316l": "316L (1.4404)", "s304": "304 (1.4301)", "s316": "316 (1.4401)"},
        "updatedAt": now.strftime("%-m/%-d %H:%M") if changed or "updatedAt" not in data else data["updatedAt"],
        "rows": [rows[k] for k in sorted(rows)], "tried": tried}
