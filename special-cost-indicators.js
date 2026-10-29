@@ -24,4 +24,16 @@ const detail=document.createElement('div');detail.className='small';detail.textC
 const status=document.createElement('div');status.className='small';status.textContent=d.refresh;item.appendChild(status);
 const link=document.createElement('div');link.className='source';const a=document.createElement('a');a.href=d.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=d.source+' · 원문 확인';link.appendChild(a);item.appendChild(link);cards.appendChild(item);
 }
+
+const extra=[['qz','고순도 석영사',5694.36,'USD/t','2026-10-29'],['hpAl','고순도 알루미나',15.87,'USD/kg','2026-10-23'],['mfgLabor','제조업 시간당 임금',null,'KRW/h','']];
+extra.forEach(([k,label,v,unit,date])=>{
+ const tab=document.createElement('button');tab.type='button';tab.dataset.k=k;tab.textContent=label;
+ tab.addEventListener('click',()=>{
+ document.querySelectorAll('#trendTabs button').forEach(b=>b.setAttribute('aria-pressed',String(b===tab)));
+ document.getElementById('trendChart').textContent=v===null?'제조업 시간당 임금 월별 데이터 미확보':label+' '+v+' '+unit+' ('+date+')';
+ document.getElementById('trendNote').textContent='단일 참고값만 보유, 시계열 확인 전';
+ document.getElementById('pNote').textContent='월별 시세 추이 데이터는 아직 확보되지 않았습니다.';
+ });
+ document.getElementById('trendTabs')?.append(tab);
+});
 })();
