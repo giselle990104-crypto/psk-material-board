@@ -912,6 +912,10 @@ const TILES = [
    deltas:[['일 +0.26%','up']],
    ref:'SUS304 냉연 기준. SUS316L은 니켈·몰리브덴 비중이 커 니켈 흐름도 함께 보세요', stock:'상하이선물거래소 연속물 · 위안/t',
    src:'SHFE 스테인리스 선물', url:'https://www.tradingview.com/symbols/SHFE-SS1!/', range:[5000,40000]},
+  {id:'s316', name:'SUS316L 할증료', code:'Acerinox 1.4404', px:4018, cur:'€', unit:'€/t', kg:false, eur:true, srcTag:'Acerinox',
+   sub:'11월 적용분 · 월 1회 발표', status:'fresh', stLabel:'월별 공식 발표',
+   deltas:[], ref:'SUS304 할증료 €2,135/t', stock:'합금할증료 = 가격 중 합금(니켈·크롬·몰리브덴) 원가 부분',
+   src:'Acerinox 할증료 PDF', url:'https://www.acerinox.com/export/sites/acerinox/es/soluciones/.galleries/Documentacion-Productos-Largo-Extra-de-aleacion-espanol/Alloy-Surcharge-Flat-Product-November-2026.pdf', range:[0,0]},
   {id:'al', name:'알루미늄', code:'LME Al', px:3043, cur:'$', unit:'$/t', kg:true,
    sub:'10/26 19:27 기준', status:'fresh', stLabel:'Investing 최신',
    deltas:[['일 -0.14%','down'],['4주 -7.3%','down']],
@@ -929,7 +933,7 @@ const TILES = [
    src:'Investing 브렌트유', url:'https://kr.investing.com/commodities/brent-oil-historical-data', range:[30,250], refName:'원가 지표: 브렌트유', refUnit:'$/bbl'},
 ];
 const FX_ITEM={id:'fx', name:'원/달러', url:'https://kr.investing.com/currencies/usd-krw-historical-data', range:[900,2000]};
-let LIVE={};  /* 보드 DB(board/prices)에서 채워짐 */
+let LIVE={}, S316=null;  /* 보드 DB(board/prices)에서 채워짐 */
 
 const arrow=c=>c==='up'?'▲':c==='down'?'▼':'·';
 const pctCls=p=>p>0?'up':p<0?'down':'flat';
@@ -937,7 +941,13 @@ function renderTiles(){
   $('tiles').innerHTML = TILES.map(t => {
     const L=LIVE[t.id];
     let px=t.px, sub=t.sub, st=t.status, stl=t.stLabel, deltas=t.deltas, ref=t.ref;
-    if(L && !t.refOnly){
+    if(t.id==='s316' && S316){
+      const a=S316.last, b=S316.prev, v=Math.round(a.s316l*1000), ch=b?((a.s316l/b.s316l-1)*100):null;
+      px=v; st='new'; stl='월별 공식 발표';
+      sub=`${+a.m.slice(5)}월 적용분 · ${S316.pub(a.m)} 발표`;
+      deltas = ch!=null ? [[`전월 ${ch>0?'+':''}${ch.toFixed(1)}%`, pctCls(ch)]] : [];
+      ref = a.s304 ? `SUS304 할증료 €${fmt(Math.round(a.s304*1000))}/t · 316L이 €${fmt(v-Math.round(a.s304*1000))}/t 높음` : t.ref;
+    } else if(L && !t.refOnly){
       px = t.lb ? Math.round(L.price*2204.62) : L.price;
       sub = `${t.lb? L.price+' $/lb · ':''}${L.asOf||'시각 미표시'} · ${t.srcTag||'Investing'}`;
       st='new'; stl='방금 업데이트';
@@ -947,7 +957,7 @@ function renderTiles(){
       ref = `${t.refName}: $${fmt(L.price,2)} ${t.refUnit} (${L.asOf||'시각 미표시'}${L.chg!=null?`, ${L.chg>0?'+':''}${L.chg}%`:''}) · Investing`;
       st='new'; stl='참고지표 업데이트';
     }
-    let CNY=199; try{ CNY=FXLIVE.cnykrw?.price||199; }catch(e){} const krw=t.kg ? '≈ '+fmt(px*KRW/1000)+' 원/kg' : '≈ '+fmt(px*CNY/1000)+` 원/kg (CNY ${fmt(CNY,1)}원)`;
+    let CNY=199, EUR=1490; try{ CNY=FXLIVE.cnykrw?.price||199; EUR=FXLIVE.eurkrw?.price||1490; }catch(e){} const krw=t.eur ? '≈ '+fmt(px*EUR/1000)+` 원/kg (EUR ${fmt(EUR,1)}원)` : t.kg ? '≈ '+fmt(px*KRW/1000)+' 원/kg' : '≈ '+fmt(px*CNY/1000)+` 원/kg (CNY ${fmt(CNY,1)}원)`;
     return `
     <div class="tile" data-id="${t.id}">
       <div class="top"><span class="st ${st}">${stl}</span></div>
@@ -958,7 +968,7 @@ function renderTiles(){
       <div class="delta">${deltas.map(([s,c])=>`<span class="${c}">${arrow(c)} ${s}</span>`).join('')}</div>
       <div class="ref">${ref}</div>
       <div class="stock">${t.stock}</div>
-      <div class="src"><a href="${t.url}" target="_blank" rel="noopener">${t.src}</a></div>
+      <div class="src"><a href="${t.id==='s316'&&S316?S316.last.src:t.url}" target="_blank" rel="noopener">${t.src}</a></div>
     </div>`;}).join('');
   $('krwNote').textContent = LIVE.fx ? `${fmt(KRW,2)}원, Investing ${LIVE.fx.asOf||''}` : '1,323.1원, 10/26 서울 종가';
   if(LIVE.fx){ $('fxInv').textContent=fmt(LIVE.fx.price,2); $('fxInvAsOf').textContent=`${LIVE.fx.asOf||'시각 미표시'}${LIVE.fx.chg!=null?`, ${LIVE.fx.chg>0?'+':''}${LIVE.fx.chg}%`:''} · 방금 업데이트`; }
@@ -966,7 +976,7 @@ function renderTiles(){
 }
 
 /* ---------- update panel ---------- */
-const UPD_ITEMS=[...TILES.map(t=>({id:t.id,name:t.name+(t.refOnly?` (${t.refName.replace('원가 지표: ','')})`:''),url:t.url,range:t.range,lb:!!t.lb})), {...FX_ITEM}];
+const UPD_ITEMS=[...TILES.filter(t=>t.id!=='s316').map(t=>({id:t.id,name:t.name+(t.refOnly?` (${t.refName.replace('원가 지표: ','')})`:''),url:t.url,range:t.range,lb:!!t.lb})), {...FX_ITEM}];
 const updSel=new Set(UPD_ITEMS.map(i=>i.id));
 function lastText(id){ const L=LIVE[id]; return L ? `최근 ${L.at||''} · ${L.asOf||''}` : '조사 기준값 (10/26)'; }
 function renderUpdList(){
@@ -1051,7 +1061,7 @@ function applyHistory(h){
     ['eurkrw','jpykrw','cnykrw','eurusd'].forEach(k=>{ const v=h[k]; if(v && Array.isArray(v.avg) && v.avg.length>3){ FXH[k].m=v.avg.map(x=>x==null?null:(k==='jpykrw'?Number(x)*100:Number(x))); FXH[k].m0=v.m0||'2024-01'; } });
     Object.values(FXH).forEach(c=>{ c.s=seriesFrom(c.m, c.m0||'2024-01'); });
     const wasMax=DMAX, wasMin=DMIN;
-    ALLD=[].concat(...Object.values(TREND).map(t=>t.s.map(p=>p.d))).sort();
+    ALLD=[].concat(...Object.entries(TREND).filter(([k])=>k!=='s316').map(([,t])=>t.s.map(p=>p.d))).sort();
     DMIN=ALLD[0].slice(0,7); DMAX=ALLD[ALLD.length-1].slice(0,7); LASTDAY=HLAST;
     if(RANGE.to===wasMax) RANGE.to=DMAX; if(FXR.to===wasMax) FXR.to=DMAX;
     if(RANGE.from===wasMin) RANGE.from=DMIN; if(FXR.from===wasMin) FXR.from=DMIN;
@@ -1150,8 +1160,11 @@ function lineChart(series, {unit='', yFmt=v=>fmt(v), h=260, color='var(--copper)
   const step=[1,2,2.5,5,10].map(m=>m*mag).find(s=>s>=raw);
   const y0=Math.ceil(lo/step)*step; const ticks=[]; for(let v=y0; v<=hi; v+=step) ticks.push(v);
   const x=t=>L+(t-t0)/((t1-t0)||1)*(W-L-R), y=v=>T+(hi-v)/(hi-lo)*(H-T-B);
-  const path=d.map((p,i)=>(i?'L':'M')+x(p.t).toFixed(1)+' '+y(p.v).toFixed(1)).join(' ');
-  const area=path+` L${x(d[d.length-1].t).toFixed(1)} ${H-B} L${x(d[0].t).toFixed(1)} ${H-B} Z`;
+  /* 3개월 이상 비는 구간은 선을 끊어서 그림 (자료 없는 기간을 직선으로 잇지 않음) */
+  const segs=[]; d.forEach((p,i)=>{ if(!i || p.t-d[i-1].t>75*864e5) segs.push([]); segs[segs.length-1].push(p); });
+  const segPath=g=>g.map((p,i)=>(i?'L':'M')+x(p.t).toFixed(1)+' '+y(p.v).toFixed(1)).join(' ');
+  const path=segs.map(segPath).join(' ');
+  const area=segs.map(g=>segPath(g)+` L${x(g[g.length-1].t).toFixed(1)} ${H-B} L${x(g[0].t).toFixed(1)} ${H-B} Z`).join(' ');
   /* month ticks: start at the first month boundary on or after t0 */
   const s0=new Date(t0); let my=s0.getUTCFullYear(), mm=s0.getUTCMonth(); if(s0.getUTCDate()>1){ mm++; }
   const months=[]; while(true){ const t=Date.UTC(my,mm,1); if(t>t1) break; months.push(t); mm++; }
@@ -1177,7 +1190,7 @@ function lineChart(series, {unit='', yFmt=v=>fmt(v), h=260, color='var(--copper)
   </svg>`;
 }
 
-TILES.sort((a,b)=>['cu','al','st','ni','ss','pl'].indexOf(a.id)-['cu','al','st','ni','ss','pl'].indexOf(b.id));
+TILES.sort((a,b)=>['cu','al','st','ni','ss','s316','pl'].indexOf(a.id)-['cu','al','st','ni','ss','s316','pl'].indexOf(b.id));
 
 /* ---------- 2. trend ---------- */
 /* Investing.com 일별 종가(2024.1.1~2026.10.26, 10/26 수집)를 월평균으로 계산. 시작 월부터 순서대로, 2026.10은 26일까지 평균 */
@@ -1203,6 +1216,7 @@ const TREND = {
   cu:{label:'구리', unit:' $/t', note:'Investing COMEX 구리 선물 월평균($/lb를 $/t로 환산, ×2,204.62). 2026년 10월은 26일까지의 평균입니다.', s:buildSeries('cu',LB,'COMEX')},
   ni:{label:'니켈', unit:' $/t', note:'Investing 니켈 선물 월평균. 2026년 10월은 26일까지의 평균입니다.', s:buildSeries('ni')},
   ss:{label:'스테인리스', unit:' ¥/t', note:'상하이선물거래소(SHFE) 스테인리스강(SUS304 냉연) 선물 연속물 월평균, 위안/t. Investing에는 스테인리스 지표가 없어 Sina Finance 시세를 씁니다.', s:[]},
+  s316:{label:'SUS316L 할증료', unit:' €/t', note:'Acerinox 공식 판재 합금할증료(SUS316L, EN 1.4404), 유로/t. 가격 중 합금 원가 부분이며 매달 21일경 다음 달 적용분이 발표됩니다. 그래프는 발표 시점 기준이고, 2023.2~2025.5는 공개 자료가 없어 비어 있습니다.', s:[]},
   al:{label:'알루미늄', unit:' $/t', note:'Investing 알루미늄 월평균. 2026년 3~5월 중동 전쟁 급등 후 되돌림이 보입니다. 10월은 26일까지의 평균입니다.', s:buildSeries('al')},
   st:{label:'철강', unit:' $/st', note:'Investing 미국 열연코일(HRC) 선물 월평균, 쇼트톤당 달러. 중국 열연 가격과는 다른 지표입니다.', s:buildSeries('st')},
   pl:{label:'플라스틱(PP)', unit:' $/t', note:'중국 PP FOB 월간 가격(Procurement Resource). Investing에는 PP·PE 지표가 없어 2026년 1~8월만 있습니다. 원가 흐름은 브렌트유 탭을 함께 보세요.',
@@ -1211,7 +1225,7 @@ const TREND = {
   fx:{label:'원/달러', unit:'원', note:'Investing USD/KRW 월평균. 10월은 26일까지의 평균입니다.', s:buildSeries('fx')},
 };
 /* 조회 기간: 연·월 드롭다운 (YYYY-MM) */
-let ALLD=[].concat(...Object.values(TREND).map(t=>t.s.map(p=>p.d))).sort();
+let ALLD=[].concat(...Object.entries(TREND).filter(([k])=>k!=='s316').map(([,t])=>t.s.map(p=>p.d))).sort();
 let DMIN=ALLD[0].slice(0,7), DMAX=ALLD[ALLD.length-1].slice(0,7), LASTDAY=HLAST;
 let RANGE={from:LASTDAY.slice(0,4)+'-01', to:DMAX}, curTrend='cu', quickSel='ytd';
 const ym=(y,m)=>`${y}-${String(m).padStart(2,'0')}`;
@@ -1621,10 +1635,12 @@ const rpCSS=`
 function rpTilesRows(picked){
   return TILES.filter(t=>picked.has(t.id)).map(t=>{
     const L=LIVE[t.id]; let px=t.px, chg=null, basis=t.sub, ref='';
-    if(L && !t.refOnly){ px=t.lb?Math.round(L.price*2204.62):L.price; chg=L.chg; basis=`Investing ${L.asOf||''}`; }
+    if(t.id==='s316' && S316){ const a=S316.last,b=S316.prev; px=Math.round(a.s316l*1000); chg=b?+((a.s316l/b.s316l-1)*100).toFixed(2):null; basis=`Acerinox ${+a.m.slice(5)}월 적용분`; }
+    else if(L && !t.refOnly){ px=t.lb?Math.round(L.price*2204.62):L.price; chg=L.chg; basis=`Investing ${L.asOf||''}`; }
     if(L && t.refOnly){ ref=`${t.refName}: $${fmt(L.price,2)} ${t.refUnit}${L.chg!=null?` (${L.chg>0?'+':''}${L.chg}%)`:''}`; }
     const chgTxt = chg!=null ? `<span class="${chg>0?'up':chg<0?'down':'flat'}">${chg>0?'+':''}${Number(chg).toFixed(2)}%</span>` : t.deltas.map(([s,c])=>`<span class="${c}">${s}</span>`).join(' · ');
-    const krw = t.kg ? `${fmt(px*KRW/1000)} 원/kg` : `${fmt(px*199/1000)} 원/kg`;
+    let EUR=1490, CNY=199; try{ EUR=FXLIVE.eurkrw?.price||1490; CNY=FXLIVE.cnykrw?.price||199; }catch(e){}
+    const krw = t.eur ? `${fmt(px*EUR/1000)} 원/kg` : t.kg ? `${fmt(px*KRW/1000)} 원/kg` : `${fmt(px*CNY/1000)} 원/kg`;
     return `<tr><td><b>${t.name}</b><br><span class="src">${t.code}</span></td><td class="n">${t.cur}${fmt(px)}/t</td><td>${chgTxt}</td><td class="n">${krw}</td><td>${basis}${ref?`<br><span class="src">${ref}</span>`:''}</td></tr>`;
   }).join('');
 }
@@ -2085,7 +2101,14 @@ function applySnap(j){ if(!j) return; if(j.history) applyHistory(j.history); if(
   if(STANDALONE && $('barSt')){ $('barSt').textContent=`${SNAP_AT||''} 기준 데이터`; } }
 (function applySnapshot(){ try{ applySnap(JSON.parse(document.getElementById('snap').textContent||'{}')); }catch(e){ console.warn('snapshot',e); }
   reloadData(); if(STANDALONE) setInterval(reloadData, 10*60*1000); })();
-function reloadData(){ if(STANDALONE && location.protocol.startsWith('http')) fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applySnap).catch(()=>{}); }
+function reloadData(){ if(STANDALONE && location.protocol.startsWith('http')){ fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applySnap).catch(()=>{});
+  fetch('sus316.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applySus).catch(()=>{}); } }
+function applySus(j){ if(!j||!Array.isArray(j.rows)) return; const rows=j.rows.filter(r=>isFinite(r.s316l)); if(!rows.length) return;
+  const pm=m=>{ let [y,mm]=m.split('-').map(Number); mm--; if(mm<1){mm=12;y--;} return [y,mm]; };
+  const pub=m=>`${pm(m)[1]}/21`, pubD=m=>{ const [y,mm]=pm(m); return `${y}-${String(mm).padStart(2,'0')}-21`; };
+  S316={last:rows[rows.length-1], prev:rows[rows.length-2], pub};
+  TREND.s316.s=rows.map(r=>({d:pubD(r.m), v:Math.round(r.s316l*1000), n:`Acerinox ${r.m.replace('-','.')} 적용분 (${pub(r.m)}경 발표)${r.via==='news'?' · 뉴스 확인값':''}`}));
+  try{ renderTiles(); }catch(e){} try{ if(curTrend==='s316') showTrend('s316'); }catch(e){} }
 initAuth();
 </script>
 
