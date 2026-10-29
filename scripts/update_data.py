@@ -53,6 +53,35 @@ for key, i in IDS.items():
     last_day = max(last_day, d)
     prices[key] = {"price": round(v, 4), "chg": round(c, 2), "asOf": d[5:].replace("-", "/"), "at": stamp}
 
+# 스테인리스(SUS): Investing에 지표가 없어 상하이선물거래소(SHFE) SS 연속물을 Sina Finance에서 가져옴 (위안/t)
+def get_sus():
+    url = "https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var%20_SS0=/InnerFuturesNewService.getDailyKLine"
+    for k in range(4):
+        try:
+            r = s.get(url, params={"symbol": "SS0"}, headers={"Referer": "https://finance.sina.com.cn/"}, timeout=30)
+            t = r.text
+            arr = json.loads(t[t.find("(") + 1:t.rfind(")")])
+            return [(d["d"], float(d["c"])) for d in arr if d.get("c")]
+        except Exception as e:
+            print("ERR sus", e, file=sys.stderr); time.sleep(3 + 3 * k)
+    return []
+try:
+    sus = sorted(get_sus())
+    start = f"{START_Y}-{START_M:02d}"
+    g = {}
+    for d, v in sus:
+        if d[:7] >= start: g.setdefault(d[:7], []).append(v)
+    if g and len(sus) > 1:
+        ms = sorted(g); allm, (y, m) = [], map(int, ms[0].split("-"))
+        while f"{y}-{m:02d}" <= ms[-1]:
+            allm.append(f"{y}-{m:02d}"); m += 1
+            if m > 12: y, m = y + 1, 1
+        history["ss"] = {"m0": ms[0], "avg": [round(sum(g[k]) / len(g[k]), 2) if k in g else None for k in allm], "src": "SHFE SS (Sina Finance)"}
+        (d1, v1), (_, v0) = sus[-1], sus[-2]
+        prices["ss"] = {"price": round(v1, 2), "chg": round((v1 / v0 - 1) * 100, 2), "asOf": d1[5:].replace("-", "/"), "at": stamp, "src": "SHFE"}
+except Exception as e:
+    print("sus skipped", e, file=sys.stderr)
+
 history["lastDay"] = last_day
 history["updatedAt"] = stamp
 try:
@@ -60,7 +89,7 @@ try:
 except Exception:
     old = {}
 out = {"prices": {**prices, "finishedAt": stamp, "status": "done",
-                  "message": "원자재 5종·환율 5종 현재가와 최근 5년 월평균 (Investing.com)"},
+                  "message": "원자재 6종·환율 5종 현재가와 최근 5년 월평균 (Investing.com)"},
        "history": history}
 for k in ("ai", "aiAt"):
     if k in old: out[k] = old[k]
