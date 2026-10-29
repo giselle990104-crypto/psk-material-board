@@ -1,0 +1,207 @@
+{
+ "unit": "EUR/kg",
+ "source": "Acerinox Flat Product Alloy Surcharge (공식 월별 PDF)",
+ "grades": {
+  "s316l": "316L (1.4404)",
+  "s304": "304 (1.4301)",
+  "s316": "316 (1.4401)"
+ },
+ "updatedAt": "10/29 14:36",
+ "rows": [
+  {
+   "m": "2021-11",
+   "s316l": 3.382,
+   "s304": 2.194,
+   "s316": 3.382,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-November-2021.pdf"
+  },
+  {
+   "m": "2021-12",
+   "s316l": 3.589,
+   "s304": 2.363,
+   "s316": 3.589,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-December-2021.pdf"
+  },
+  {
+   "m": "2022-01",
+   "s316l": 3.917,
+   "s304": 2.684,
+   "s316": 3.917,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-January-2022.pdf"
+  },
+  {
+   "m": "2022-02",
+   "s316l": 3.774,
+   "s304": 2.498,
+   "s316": 3.774,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-February-2022.pdf"
+  },
+  {
+   "m": "2022-03",
+   "s316l": 4.0,
+   "s304": 2.685,
+   "s316": 4.0,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-March-2022.pdf"
+  },
+  {
+   "m": "2022-04",
+   "s316l": 4.773,
+   "s304": 3.265,
+   "s316": 4.773,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-April-2022.pdf"
+  },
+  {
+   "m": "2022-05",
+   "s316l": 5.515,
+   "s304": 3.839,
+   "s316": 5.515,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-May-2022.pdf"
+  },
+  {
+   "m": "2022-06",
+   "s316l": 4.771,
+   "s304": 3.253,
+   "s316": 4.771,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-June-2022.pdf"
+  },
+  {
+   "m": "2022-07",
+   "s316l": 4.617,
+   "s304": 3.171,
+   "s316": 4.617,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-July-2022.pdf"
+  },
+  {
+   "m": "2022-08",
+   "s316l": 4.087,
+   "s304": 2.751,
+   "s316": 4.087,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-August-2022.pdf"
+  },
+  {
+   "m": "2022-09",
+   "s316l": 4.055,
+   "s304": 2.795,
+   "s316": 4.055,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-September-2022.pdf"
+  },
+  {
+   "m": "2022-10",
+   "s316l": 4.168,
+   "s304": 2.814,
+   "s316": 4.168,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-October-2022.pdf"
+  },
+  {
+   "m": "2022-11",
+   "s316l": 4.338,
+   "s304": 2.819,
+   "s316": 4.338,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-November-2022.pdf"
+  },
+  {
+   "m": "2022-12",
+   "s316l": 4.245,
+   "s304": 2.703,
+   "s316": 4.245,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-December-2022.pdf"
+  },
+  {
+   "m": "2023-01",
+   "s316l": 4.682,
+   "s304": 2.926,
+   "s316": 4.682,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Products-January-2023.pdf"
+  },
+  {
+   "m": "2026-02",
+   "s316l": 3.36,
+   "s304": 2.033,
+   "s316": 3.36,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Product-February-2026.pdf"
+  },
+  {
+   "m": "2026-03",
+   "s316l": 3.513,
+   "s304": 2.048,
+   "s316": 3.513,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Product-March-2026.pdf"
+  },
+  {
+   "m": "2026-05",
+   "s316l": 3.718,
+   "s304": 2.156,
+   "s316": 3.718,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Product-May-2026.pdf"
+  },
+  {
+   "m": "2026-07",
+   "s316l": 4.014,
+   "s304": 2.258,
+   "s316": 4.014,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Product-July-2026.pdf"
+  },
+  {
+   "m": "2026-08",
+   "s316l": 3.932,
+   "s304": 2.152,
+   "s316": 3.932,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Product-August-2026.pdf"
+  },
+  {
+   "m": "2026-09",
+   "s316l": 4.007,
+   "s304": 2.178,
+   "s316": 4.007,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Product-September-2026.pdf"
+  },
+  {
+   "m": "2026-10",
+   "s316l": 3.972,
+   "s304": 2.136,
+   "s316": 3.972,
+   "src": "https://www.acerinox.com/export/sites/acerinox/.content/galerias/galeria-descargas/galeria-extras-aleacion/Alloy-Surcharge-Flat-Product-October-2026.pdf"
+  }
+ ],
+ "tried": {
+  "2023-02": "none",
+  "2023-03": "none",
+  "2023-04": "none",
+  "2023-05": "none",
+  "2023-06": "none",
+  "2023-07": "none",
+  "2023-08": "none",
+  "2023-09": "none",
+  "2023-10": "none",
+  "2023-11": "none",
+  "2023-12": "none",
+  "2024-01": "none",
+  "2024-02": "none",
+  "2024-03": "none",
+  "2024-04": "none",
+  "2024-05": "none",
+  "2024-06": "none",
+  "2024-07": "none",
+  "2024-08": "none",
+  "2024-09": "none",
+  "2024-10": "none",
+  "2024-11": "none",
+  "2024-12": "none",
+  "2025-01": "none",
+  "2025-02": "none",
+  "2025-03": "none",
+  "2025-04": "none",
+  "2025-05": "none",
+  "2025-06": "none",
+  "2025-07": "none",
+  "2025-08": "none",
+  "2025-09": "none",
+  "2025-10": "none",
+  "2025-11": "none",
+  "2025-12": "none",
+  "2026-01": "none",
+  "2026-04": "none",
+  "2026-06": "none",
+  "2026-11": "2026-10-29"
+ }
+}
