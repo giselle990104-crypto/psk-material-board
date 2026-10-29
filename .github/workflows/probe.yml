@@ -15,14 +15,19 @@ jobs:
                   b=await p.chromium.launch(); pg=await b.new_page(user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36")
                   reqs=[]
                   pg.on("response", lambda r: reqs.append((r.url, r.status, r.headers.get("content-type",""))))
-                  await pg.goto("https://www.outokumpu.com/en/surcharges", wait_until="networkidle", timeout=60000)
-                  await pg.wait_for_timeout(4000)
-                  txt=await pg.inner_text("body")
-                  i=txt.find("Skip to Main Navigation"); body=txt[i:]
-                  for k in range(0,min(len(body),5400),900): note("t%d"%k, body[k:k+900])
-                  fr=[f.url for f in pg.frames]; note("frames", fr)
-                  links=await pg.eval_on_selector_all("main a, a[href*='surcharge']", "els=>els.map(e=>e.textContent.trim().slice(0,40)+'>'+e.href).slice(0,40)")
-                  note("links", links)
+                  for u in ["https://www.outokumpu.com/en/surcharges","https://www.northamericanstainless.com/surcharge/","https://www.northamericanstainless.com/surcharges/"]:
+                      try:
+                          await pg.goto(u, wait_until="networkidle", timeout=60000); await pg.wait_for_timeout(2500)
+                          if "outokumpu" in u:
+                              h=await pg.eval_on_selector_all("a", "els=>els.filter(e=>/Americas/i.test(e.textContent)).map(e=>e.href)")
+                              note("oku-americas-links", h[:6])
+                              if h:
+                                  await pg.goto(h[0], wait_until="networkidle", timeout=60000); await pg.wait_for_timeout(3000)
+                          txt=await pg.inner_text("body"); k=txt.find("316")
+                          note("T "+pg.url[:70], txt[max(0,k-500):k+700] if k>=0 else "no316 "+txt[:500])
+                          links=await pg.eval_on_selector_all("a", "els=>els.map(e=>e.textContent.trim().slice(0,30)+'>'+e.href).filter(x=>/xls|pdf|csv|histor|archive|surcharge/i.test(x)).slice(0,20)")
+                          note("L "+pg.url[:70], links)
+                      except Exception as e: note("ERR "+u[:60], repr(e)[:300])
                   await b.close()
           asyncio.run(main())
           PY
