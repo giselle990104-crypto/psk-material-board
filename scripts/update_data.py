@@ -106,6 +106,65 @@ def komis_iron():
     st = d["dataAvg"]["stdMap"]; day = st.get("DAY", {}); ymd = st.get("CRTRYMD", {}).get("crtrYmd", "")
     price = float(day.get("cmercPrc") or st["CRTRYMD"]["cmercPrc"])
     prices["io"] = {"price": round(price, 2), "chg": float(day.get("flctnPrcnt") or 0), "asOf": f"{ymd[4:6]}/{ymd[6:8]}" if len(ymd) == 8 else "", "at": stamp, "src": "KOMIS"}
+# 알루미나: 상하이선물거래소(SHFE) 알루미나(AO) 연속물, 위안/t (2023.6 상장)
+def sina_monthly(sym, key, src):
+    url = "https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var%20_x=/InnerFuturesNewService.getDailyKLine"
+    r = s.get(url, params={"symbol": sym}, headers={"Referer": "https://finance.sina.com.cn/"}, timeout=30)
+    t = r.text; arr = json.loads(t[t.find("(") + 1:t.rfind(")")])
+    rows = sorted((d["d"], float(d["c"])) for d in arr if d.get("c"))
+    start = f"{START_Y}-{START_M:02d}"; g = {}
+    for d, v in rows:
+        if d[:7] >= start: g.setdefault(d[:7], []).append(v)
+    ms = sorted(g); allm, (y, m) = [], map(int, ms[0].split("-"))
+    while f"{y}-{m:02d}" <= ms[-1]:
+        allm.append(f"{y}-{m:02d}"); m += 1
+        if m > 12: y, m = y + 1, 1
+    history[key] = {"m0": ms[0], "avg": [round(sum(g[k]) / len(g[k]), 2) if k in g else None for k in allm], "src": src}
+    (d1, v1), (_, v0) = rows[-1], rows[-2]
+    prices[key] = {"price": round(v1, 2), "chg": round((v1 / v0 - 1) * 100, 2), "asOf": d1[5:].replace("-", "/"), "at": stamp, "src": "SHFE"}
+try:
+    sina_monthly("AO0", "ao", "SHFE 알루미나(AO) 연속물 (Sina Finance)")
+except Exception as e:
+    print("alumina skipped", repr(e), file=sys.stderr)
+
+# 고순도 석영사: SMM 공개 가격 페이지 (과거 시계열은 로그인 필요 → 매일 값 누적)
+def smm_quartz():
+    import re as _re
+    pages = {"dom": "https://www-old.metal.com/Photovoltaic/202307130006", "imp": "https://www-old.metal.com/photovoltaic/202412120001"}
+    try:
+        store = json.load(open("quartz.json", encoding="utf-8"))
+    except Exception:
+        store = {"unit": "CNY/t", "src": pages, "days": {}}
+    for k, u in pages.items():
+        try:
+            t = s.get(u, timeout=40).text
+            txt = _re.sub(r"<[^>]+>", " ", t); txt = _re.sub(r"\s+", " ", txt)
+            m = _re.search(r"Original\s*([\d,]+(?:\.\d+)?)\s*yuan/tonne", txt)
+            dm = _re.search(r"yuan/tonne.{0,40}?([A-Z][a-z]{2} \d{1,2}, \d{4})", txt)
+            if not m: print("quartz parse fail", k, file=sys.stderr); continue
+            day = dt.datetime.strptime(dm.group(1), "%b %d, %Y").strftime("%Y-%m-%d") if dm else now.strftime("%Y-%m-%d")
+            store["days"].setdefault(day, {})[k] = float(m.group(1).replace(",", ""))
+        except Exception as e:
+            print("quartz", k, repr(e), file=sys.stderr)
+    json.dump(store, open("quartz.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    days = sorted(store["days"])
+    for k, key in (("dom", "qz"), ("imp", "qzi")):
+        pts = [(d, store["days"][d][k]) for d in days if k in store["days"][d]]
+        if not pts: continue
+        g = {}
+        for d, v in pts: g.setdefault(d[:7], []).append(v)
+        ms = sorted(g); allm, (y, m) = [], map(int, ms[0].split("-"))
+        while f"{y}-{m:02d}" <= ms[-1]:
+            allm.append(f"{y}-{m:02d}"); m += 1
+            if m > 12: y, m = y + 1, 1
+        history[key] = {"m0": ms[0], "avg": [round(sum(g[x]) / len(g[x]), 1) if x in g else None for x in allm], "src": "SMM"}
+        d1, v1 = pts[-1]; v0 = pts[-2][1] if len(pts) > 1 else v1
+        prices[key] = {"price": v1, "chg": round((v1 / v0 - 1) * 100, 2), "asOf": d1[5:].replace("-", "/"), "at": stamp, "src": "SMM"}
+try:
+    smm_quartz()
+except Exception as e:
+    print("quartz skipped", repr(e), file=sys.stderr)
+
 try:
     komis_iron()
 except Exception as e:
