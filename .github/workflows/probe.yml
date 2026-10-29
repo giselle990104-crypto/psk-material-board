@@ -15,8 +15,11 @@ jobs:
           H={"X-Requested-With":"XMLHttpRequest","Referer":"https://www.komis.or.kr/Komis/RsrcPrice/IronOre","Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"}
           x=s.post("https://www.komis.or.kr/ajax/common/getMnrlKndInfoCodeList",data={"cdType":"HP000","cdGrp":"HP003"},headers=H,timeout=30)
           L=x.json().get("data",[]) if x.ok else []
-          note("list", " ; ".join(f"{a.get('mnrkndUnqCd')}={a.get('mnrkndKornNm')}" for a in L)[:950] if L else x.text[:900])
-          iron=[a for a in L if '철' in str(a.get('mnrkndKornNm',''))]
+          note("list raw", x.text[:950])
+          note("list keys", list(L[0].keys()) if L else None)
+          iron=[a for a in L if '철' in json.dumps(a,ensure_ascii=False)]
+          note('iron', json.dumps(iron,ensure_ascii=False)[:900])
+          iron=[]
           for a in iron:
               c=a.get('mnrkndUnqCd')
               y=s.post("https://www.komis.or.kr/Komis/RsrcPrice/ajax/getMnrlPriceCrtr",data={"HP000":"HP003","mnrkndUnqCd":c},headers=H,timeout=30)
