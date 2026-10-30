@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-30T08:23+09:00",
+  "updatedAt": "2026-10-30T17:42+09:00",
   "timezone": "Asia/Seoul",
   "source": "Google News RSS",
   "status": "ok",
@@ -25,6 +25,13 @@
       "title": "Q4 2026 Metals Update - CME Group",
       "source": "CME Group",
       "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQd3lqeVRrNWJUTlk0eGJmSmhVcDNyQXRTZlRILVlyMkx3ZUdxSkJpdnV4X3Fsb1lPbmYzdzlSaThabEdpcmxzWE1QNUZONGRoM3NldjhzcXBQcHIwd0E2MnN5cVNTbjdJMVNuYk9BNVdNWjZScG54RFlscDBfWGVYZHhROA?oc=5"
+    },
+    {
+      "date": "2026-10-30",
+      "category": "철강",
+      "title": "European hot-rolled coil prices move in opposite directions amid limited supply and weak demand - Металлургпром",
+      "source": "Металлургпром",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOa0VZd05xVkZLSmM0ZDNnSkY3OTk4V3l3N1pqSG9uQUdHT1FNS0pmdjFxZ191N25kX3d5V3JWUHdyRUNickpvaFota3dwNU4wdUdGU2I5NDVKMGxycm9xM1RMQ3dRNHNGYU1nT0FFa2pmRnhKMnNmN3JYV1hxVGI2UFhXVmNzUG5CMWpDMHRSTHR0dGtzbXZkZGY2Uks3aFZxZ3hiRjVqUFNjU2F5UEpESkZvOWVYb0twME80WndralhkWW1wa3lQWW9RNXF2OVdoX21OU3hvbjRUX0hlUjhlZNIB8gFBVV95cUxNUmlpeERxbjlBM1BydUJiMFNZZGN5LVVPNGR6VkptOF9ydTlZZklObnhVbDNUUUFqbHBfa1hwLWxmTlU4bEFGR1liRUNkbjlFX2x5TmhtOVU5a3AwNXk0S3UwZzN1LUEyQU9FWDNPQzh4YW5KSmZsaFR2OC1tTVpTQmh6ZHh6b1U5aXQzemhDMEpRT0ZvYnltenM1YzB1WUttSk5tazF5c2p0V2V4VGN0bFRRODl0VnBCdlNmV2xTMjZUcWN2SzItcFNrbHd6NDljcFp4STgycU9pYjNycUpOZWxob2tSUXRjS2hmNDltYURndw?oc=5"
     },
     {
       "date": "2026-10-30",
@@ -67,6 +74,13 @@
       "title": "Exclusive-Bank of Korea board member says won moves faster than expected By Reuters - Investing.com",
       "source": "Investing.com",
       "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOaTgwczlNY3dhSDk3aDR3X0RLb18xRmpxLUp0cVpiOV9feUg5VDRYMVVLc0FYS09HWWc3aE1EMTVFYlFjNHVmRE42cGVtUndZcVV3MHl0YjNmU1RVOWxLVzZyQUV5U0twSElDdTJmZGp5aEZxZmYySkUwRWt2RXg2RUxvNC1CaGVlOVNYX1BLdmxkYUNDTG9WNVZWYkpyR1p2dmFVMzBUT3d0eVliZE9CLUlPbkFTM3pfZU9RUFJuVjE?oc=5"
+    },
+    {
+      "date": "2026-10-29",
+      "category": "반도체",
+      "title": "TechInsights Acquires IC Knowledge LLC - TechInsights",
+      "source": "TechInsights",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQS1FYeURrQWx1ay1aUXVtR1JIQWxvY1gyd1hXTXQyTEZLcm04VEVzWXRablNaWXBGRTdUdEFXdmhWYXlDMy1WdExBS1p5dGF2ajE1S1FMcjgzUUdIUXV2UG5WclRjRnVLNmd1cW5GQkNZd1ZwYU42OGN3MDgza3Uxc3V5aVUwTE1i?oc=5"
     },
     {
       "date": "2026-10-29",
@@ -204,9 +218,16 @@
     {
       "date": "2026-10-26",
       "category": "구리",
-      "title": "Copper Demand Narratives Overstated as Chinese Market Slows | LME Week Panel - News and Statistics - IndexBox",
-      "source": "IndexBox",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPcElFb3F5NldJVzA4b3hWYlpBYmd1alR4RUpFWEpmN1RveG41bG96eUg0VEprb2hJdUFBNTAwVERvUE5pdzAwYlVKTEZYVGhTYnNIbWZpcXNtY0lQc184SXcxUEZOUmVxXzZVdEE2bEtrYXl6SHJ2VWFiMVpLT1R3MnZfWjBfYTdpRzVnX21mRE9YYUliWENQNGM4dzExMU1RWVFV?oc=5"
+      "title": "COMMENTARY: Quantum copper steals the show at LME Week - Reuters",
+      "source": "Reuters",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNRGJDN20wTnk5SG9CNG81Ykh1WndBNzNya3B3S3J6dWZ0ejlNSkdGdXN0NDE4LVBUZ0s0VFZRamRkQ0pjeVNIZ21MSEg0Y0QzU19vQTFwaG9SRmVNTWJsLV9rdlZ0UnltZ0FISmpuVHhSTUxfSGFNMjg5MEljUWgzNkdyNDBiZ3IyT1FpSzJQbzFNbkhNMXdkVnlSUWRrMmZsbjlxYUJIQQ?oc=5"
+    },
+    {
+      "date": "2026-10-26",
+      "category": "니켈",
+      "title": "Discover the Top 5 Canadian Nickel Stocks - Investing News Network",
+      "source": "Investing News Network",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQVEJRS2NlVm9mNWRHN2tSMXlDemJJdTJrRV9YbUl2cG5OWXRCWHczSTNVSEpvVElQZkxzZUdHMDczLXRHSzFES2hTUEdDcUVLZVptOV9WbGZNejJlMVB1YmFkMGZyYl9QMjEtRGlqejNYSzRwOEtXSm96VVBydG9oQWNQek9UcFBjVXVxel95LVctaU1RTkROMUhpclJTQ25mQ2MyMDdyeFJLanFl?oc=5"
     },
     {
       "date": "2026-10-26",
@@ -224,10 +245,17 @@
     },
     {
       "date": "2026-10-26",
-      "category": "니켈",
-      "title": "Discover the Top 5 Canadian Nickel Stocks - Investing News Network",
-      "source": "Investing News Network",
-      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQVEJRS2NlVm9mNWRHN2tSMXlDemJJdTJrRV9YbUl2cG5OWXRCWHczSTNVSEpvVElQZkxzZUdHMDczLXRHSzFES2hTUEdDcUVLZVptOV9WbGZNejJlMVB1YmFkMGZyYl9QMjEtRGlqejNYSzRwOEtXSm96VVBydG9oQWNQek9UcFBjVXVxel95LVctaU1RTkROMUhpclJTQ25mQ2MyMDdyeFJLanFl?oc=5"
+      "category": "반도체",
+      "title": "Hidden semiconductor supply chain risks are starting to emerge - Sourceability",
+      "source": "Sourceability",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNWGRraUtQV2xhOWNnb1hmWGlsUWZFalVKZlJTbVBwS24yam9rd3dhWWZ5RFhfZmw0SFlvMlZmMXo4QzRPYWFHRDZaNjdNTnYzY2hURHBMN1NSWmVSVHNfZEdVcllsd2NKalgwbzJYUmpndERPaGFDaUJHampFdHVLazREM3lYSU5VWEgwMHhFX0cxUDVVUGRpbg?oc=5"
+    },
+    {
+      "date": "2026-10-26",
+      "category": "구리",
+      "title": "Copper Demand Narratives Overstated as Chinese Market Slows | LME Week Panel - News and Statistics - IndexBox",
+      "source": "IndexBox",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPcElFb3F5NldJVzA4b3hWYlpBYmd1alR4RUpFWEpmN1RveG41bG96eUg0VEprb2hJdUFBNTAwVERvUE5pdzAwYlVKTEZYVGhTYnNIbWZpcXNtY0lQc184SXcxUEZOUmVxXzZVdEE2bEtrYXl6SHJ2VWFiMVpLT1R3MnZfWjBfYTdpRzVnX21mRE9YYUliWENQNGM4dzExMU1RWVFV?oc=5"
     },
     {
       "date": "2026-10-26",
@@ -308,6 +336,13 @@
     },
     {
       "date": "2026-10-24",
+      "category": "알루미늄",
+      "title": "US aluminium industry highlights importance of domestic smelting capacity for national security - AL Circle",
+      "source": "AL Circle",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQalQ1MC01OHJmR0hUVG4tZUU4cEJIZ0tIZkZvWmZDSmwxZmVkOHhVdWdMN0tTb2xCWjZnSW45NEU3MjA3U2dnZ2JlcVRrNk9qTTVTNlJTQUN1SzJqcGdSYU5fb1p0dExIcjdnNS1GclZlQnM3SVdocGIzRjZoME9sM09uaHhoR3pMcGdmT0FpcmhjNnJKNkFoTTAyVWFvS2QzWTFqc3hoaUE3ZFdzUTBHVlpXSHM0TUNsdkNxMm0zY0h2emlac3JFbE1EZEQ?oc=5"
+    },
+    {
+      "date": "2026-10-24",
       "category": "반도체",
       "title": "U.S. Designates Helium as Critical Material, Citing Semiconductor Importance - Industrial Equipment News",
       "source": "Industrial Equipment News",
@@ -321,11 +356,11 @@
       "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQTGE2dUxvQlFkOGI2eTlhZW5fRTBMdEJPcmJjbS1xbFpTbFRVSDZJWlRiNzlWZXRkOXlrOGZsZlRJRHhVa19jd21jY2lzX2tET1JJMjE2TGJiRVUxUWw5TGQ0ZzdDMUdpajg5QThwcE9HZ1M4a2xkRm5FbUp3SjZ6RXhaUDd1djNuVzE4b1EtVlBJa0JmMV9N?oc=5"
     },
     {
-      "date": "2026-10-24",
-      "category": "알루미늄",
-      "title": "US aluminium industry highlights importance of domestic smelting capacity for national security - AL Circle",
-      "source": "AL Circle",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQalQ1MC01OHJmR0hUVG4tZUU4cEJIZ0tIZkZvWmZDSmwxZmVkOHhVdWdMN0tTb2xCWjZnSW45NEU3MjA3U2dnZ2JlcVRrNk9qTTVTNlJTQUN1SzJqcGdSYU5fb1p0dExIcjdnNS1GclZlQnM3SVdocGIzRjZoME9sM09uaHhoR3pMcGdmT0FpcmhjNnJKNkFoTTAyVWFvS2QzWTFqc3hoaUE3ZFdzUTBHVlpXSHM0TUNsdkNxMm0zY0h2emlac3JFbE1EZEQ?oc=5"
+      "date": "2026-10-23",
+      "category": "반도체",
+      "title": "India’s Semiconductor Push Tests Logistics Readiness - Logistics Viewpoints",
+      "source": "Logistics Viewpoints",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNak5LUS1FTzFjdGVDb1FxVm9mc2EtVzhZTTIwSldTejRVQmpTdGotT05xOXRKbmdWTmg4NTRNVXEtVzRVT1hzSjVUZGFzZHZVelg4Vl9Oa01CWUhNaUZuUzNmTTZoUC1zMkkybGhKckd3MXpLalhqakUyVUx3Y1YxUzl0ZjBRVno4ejZqTm9kV2hIcXM1UHNjUzBPWWo5NTA?oc=5"
     },
     {
       "date": "2026-10-23",
@@ -340,13 +375,6 @@
       "title": "News by CNBC TV18 on TradingView, 2026-10-23 — cnbctv:d9a38e18c094b:0 - TradingView",
       "source": "TradingView",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBKblRtVlYwdjVMd3JCOEZ1bW55ZllvQW92S2FfUXNVZmozUHlhTUxqZXA4cW9IQVlZbExkbF9fTnp6dGVUTDRYTHVqUVAtcG5BRXN0a0xaYkZFcjV4c0ZFR3BMa28zbmM?oc=5"
-    },
-    {
-      "date": "2026-10-23",
-      "category": "반도체",
-      "title": "India’s Semiconductor Push Tests Logistics Readiness - Logistics Viewpoints",
-      "source": "Logistics Viewpoints",
-      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNak5LUS1FTzFjdGVDb1FxVm9mc2EtVzhZTTIwSldTejRVQmpTdGotT05xOXRKbmdWTmg4NTRNVXEtVzRVT1hzSjVUZGFzZHZVelg4Vl9Oa01CWUhNaUZuUzNmTTZoUC1zMkkybGhKckd3MXpLalhqakUyVUx3Y1YxUzl0ZjBRVno4ejZqTm9kV2hIcXM1UHNjUzBPWWo5NTA?oc=5"
     },
     {
       "date": "2026-10-23",
@@ -508,13 +536,6 @@
       "title": "USD/KRW Rebounds to Around 1,327 Won; Bargain Buying Flows In After String of Annual Lows - BigGo Finance",
       "source": "BigGo Finance",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE45ZlNPWUhUWTdXbC1jWFE4cmdrTzJyYWtMNEhFZHBSakxVeFpSMnV2Q3FTZ0ZINWNQbW1xYlB1X2FJVVhTT2E0Q2JnS2pPelZQZDNBdVpHdUYzX0ZubjA3YWgyMTdGN3hNSGFmdEF4blJ1N0tyWlE?oc=5"
-    },
-    {
-      "date": "2026-10-22",
-      "category": "반도체",
-      "title": "TechInsights Acquires IC Knowledge LLC - TechInsights",
-      "source": "TechInsights",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQS1FYeURrQWx1ay1aUXVtR1JIQWxvY1gyd1hXTXQyTEZLcm04VEVzWXRablNaWXBGRTdUdEFXdmhWYXlDMy1WdExBS1p5dGF2ajE1S1FMcjgzUUdIUXV2UG5WclRjRnVLNmd1cW5GQkNZd1ZwYU42OGN3MDgza3Uxc3V5aVUwTE1i?oc=5"
     },
     {
       "date": "2026-10-22",
@@ -735,8 +756,8 @@
       "category": "철강",
       "headlines": [
         "Q4 2026 Metals Update - CME Group",
-        "European HRC Mills Defend Price Hikes Despite Weak Demand - News and Statistics - IndexBox",
-        "Medium Carbon Steel Market in Latin America and the Caribbean: Size, Trends and Forecast to 2035 - IndexBox"
+        "European hot-rolled coil prices move in opposite directions amid limited supply and weak demand - Металлургпром",
+        "European HRC Mills Defend Price Hikes Despite Weak Demand - News and Statistics - IndexBox"
       ]
     },
     {
@@ -758,9 +779,9 @@
     {
       "category": "반도체",
       "headlines": [
+        "TechInsights Acquires IC Knowledge LLC - TechInsights",
         "Why TSMC Is Seeking Rare-Earth-Free Equipment as China Tightens Its Grip｜Industry｜2026-10-27｜web only - 天下雜誌",
-        "U.S. Designates Helium as Critical Material, Citing Semiconductor Importance - Industrial Equipment News",
-        "Micron Invests in US Critical Minerals Supply Chain for Semiconductor Production - Thomasnet"
+        "Hidden semiconductor supply chain risks are starting to emerge - Sourceability"
       ]
     }
   ],
