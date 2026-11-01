@@ -1,7 +1,7 @@
 """합금시세: 원소별 10년 월평균 시세(USD/t)와 원/달러 환율을 모아 alloy.json 저장.
 합금 가격(원소 구성비 × 원소 시세)은 화면에서 계산 (구성비는 GUESS, 화면에서 바꿀 수 있음).
 - 비철 LME Cash, 희유금속(합금철 포함): KOMIS(한국광해광업공단) 월평균
-- 철(Fe): Investing 미국 열연코일(HRC) 선물 월평균 ($/short ton → $/t)
+- 철(Fe): SHFE 열연코일(HC) 선물 월평균 (위안/t → USD/t)
 - 원/달러: Investing USD/KRW 월평균
 하루 한 번만 새로 받음."""
 import json, sys, time, datetime as dt
@@ -81,20 +81,35 @@ for k, (nm, g, code, cr, mult, desc) in EL.items():
     except Exception as e:
         print("ERR", k, repr(e), file=sys.stderr)
         if old.get("elements", {}).get(k): out["elements"][k] = old["elements"][k]
-try:
-    hrc = investing_monthly(961730, lambda v: v / 0.907185)
-    vals = [round(hrc[mm], 2) if mm in hrc else None for mm in months]
-    first = next((v for v in vals if v is not None), None); last = first; filled = []
+def sina_monthly(sym):
+    url = "https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var%20_x=/InnerFuturesNewService.getDailyKLine"
+    r = s.get(url, params={"symbol": sym}, headers={"Referer": "https://finance.sina.com.cn/"}, timeout=30)
+    t = r.text; arr = json.loads(t[t.find("(") + 1:t.rfind(")")]); g = {}
+    for d in arr:
+        if d.get("c"): g.setdefault(d["d"][:7], []).append(float(d["c"]))
+    return {k: sum(v) / len(v) for k, v in g.items()}
+def ffill(vals):
+    first = next((v for v in vals if v is not None), None); last = first; out_ = []
     for v in vals:
-        filled.append(v if v is not None else last); last = v if v is not None else last
-    out["elements"]["fe"] = {"name": "철(탄소강)", "src": "Investing 미국 열연코일(HRC) 선물 $/st → $/t", "usd": filled, "from": months[0]}
-    fx = investing_monthly(650)
+        out_.append(v if v is not None else last); last = v if v is not None else last
+    return out_
+try:
+    fx = investing_monthly(650)          # 원/달러
+    cny = investing_monthly(9511)        # 원/위안
+    hc = sina_monthly("HC0")             # SHFE 열연코일 위안/t
     out["fx"] = [round(fx[mm], 2) if mm in fx else None for mm in months]
-    print("ok fe", filled[-1], "fx", out["fx"][-1])
+    out["cnykrw"] = [round(cny[mm], 4) if mm in cny else None for mm in months]
+    fe = [round(hc[mm] * cny[mm] / fx[mm], 2) if (mm in hc and mm in cny and mm in fx) else None for mm in months]
+    out["elements"]["fe"] = {"name": "철(탄소강)", "src": "SHFE 열연코일(HC) 위안/t → 같은 달 환율로 USD 환산 (아시아 열연 가격 수준)", "usd": ffill(fe), "from": next((mm for mm, v in zip(months, fe) if v is not None), None)}
+    print("ok fe", out["elements"]["fe"]["usd"][-1], "fx", out["fx"][-1])
 except Exception as e:
-    print("ERR investing", repr(e), file=sys.stderr)
+    print("ERR fe/fx", repr(e), file=sys.stderr)
     if old.get("elements", {}).get("fe"): out["elements"]["fe"] = old["elements"]["fe"]
     if old.get("fx"): out["fx"] = old["fx"]
+# 환율이 아직 없는 마지막 달(월초 등)은 뺌
+while out["fx"] and out["fx"][-1] is None:
+    out["fx"].pop(); out["months"].pop()
+    for e in out["elements"].values(): e["usd"] = e["usd"][:len(out["months"])]
 if len(out["elements"]) < 10 or not out["fx"]:
     print("too few series; keeping old file", file=sys.stderr); sys.exit(0)
 json.dump(out, open(PATH, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
