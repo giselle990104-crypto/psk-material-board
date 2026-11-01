@@ -21,7 +21,7 @@ jobs:
       - run: python scripts/update_data.py
       - run: python scripts/update_sus316.py || echo 'sus316 skipped'
       - run: python scripts/update_alloy.py || echo 'alloy skipped'
-      - run: python scripts/update_costs.py --force || echo 'costs skipped'
+      - run: python scripts/update_costs.py || echo 'costs skipped'
       - name: Commit data.json
         run: |
           git config user.name "github-actions[bot]"

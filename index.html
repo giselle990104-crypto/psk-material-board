@@ -852,6 +852,7 @@ footer a{color:var(--ink-2)}
 
 </script>
 <script src="./alloy.js?v=20261101-2"></script>
+<script src="./costs.js?v=20261101-1"></script>
 <script src="./lab.js"></script>
 <script src="./lab-price-review.js?v=20261101-1"></script>
 <script>
@@ -1195,9 +1196,9 @@ function lineChart(series, {unit='', yFmt=v=>fmt(v), h=260, color='var(--copper)
   const s0=new Date(t0); let my=s0.getUTCFullYear(), mm=s0.getUTCMonth(); if(s0.getUTCDate()>1){ mm++; }
   const months=[]; while(true){ const t=Date.UTC(my,mm,1); if(t>t1) break; months.push(t); mm++; }
   const multiYear=new Date(t0).getUTCFullYear()!==new Date(t1).getUTCFullYear();
-  const every=months.length<=13?1:months.length<=26?3:6;
+  const every=months.length<=13?1:months.length<=26?3:months.length<=72?6:12;
   const lab=t=>{ const dt=new Date(t), Y=dt.getUTCFullYear(), M=dt.getUTCMonth()+1; return multiYear?`${String(Y).slice(2)}.${M}`:`${M}월`; };
-  const shown=months.filter((t,i)=>i%every===0 || new Date(t).getUTCMonth()===0 && every<=3);
+  const shown=every===12 ? months.filter(t=>new Date(t).getUTCMonth()===0) : months.filter((t,i)=>i%every===0 || new Date(t).getUTCMonth()===0 && every<=3);
   const last=d[d.length-1];
   const gid='g'+Math.random().toString(36).slice(2,7);
   return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="가격 추이 차트">

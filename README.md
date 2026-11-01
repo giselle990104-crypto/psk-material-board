@@ -7,6 +7,7 @@
 - `sus316.json` : SUS316L·304 합금할증료(Acerinox 공식 월별 PDF, EUR/kg). GitHub Actions가 새 달 발표를 자동으로 받아옵니다.
 - `lme_kna.json` : 한국비철금속협회 LME 공식가 월평균(구리·납·아연·알루미늄·니켈·주석, 2018.1~). 협회 엑셀을 받을 때 수동 갱신.
 - `alloy.json` / `alloy.js` : 합금시세 — 원소 10년 월평균(KOMIS·SHFE·Investing) × 합금 구성비(GUESS). 하루 1회 자동 갱신.
+- `costs.json` / `costs.js` : 원료 외 추세 — 에너지·인건비(국가별 최저임금·용접공)·물류비·유류비 10년. 자동 지표는 하루 1회 갱신, 최저임금·노임단가·전기요금은 costs.js에 공식 발표값.
 - `dashboard.js` : Dashboard 화면 코드 원본 (실제 화면에는 index.html 안에 들어가 있음)
 
 로그인·계정 관리·요청함·업데이트 버튼은 Supabase로 동작합니다.

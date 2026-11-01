@@ -50,7 +50,7 @@ def komis_coal():
 arr = lambda g, nd=3: [round(g[mm], nd) if mm in g else None for mm in months]
 
 AUTO = {  # id: (category, name, unit, currency, fetcher, note)
- "brent":   ("fuel", "브렌트유", "$/bbl", "USD", lambda: fred("DCOILBRENTEU"), "FRED (EIA) Europe Brent Spot 월평균"),
+ "brent":   ("fuel", "브렌트유", "$/bbl", "USD", lambda: fred("DCOILBRENTEU"), "FRED (EIA) Europe Brent 현물(Spot) 월평균 — 원자재 가격 탭의 선물 가격과 다를 수 있음"),
  "wti":     ("fuel", "WTI 원유", "$/bbl", "USD", lambda: fred("DCOILWTICO"), "FRED (EIA) WTI Spot 월평균"),
  "gasoil":  ("fuel", "경유(런던 가스오일 선물)", "$/t", "USD", lambda: investing(8861), "Investing ICE London Gas Oil 선물 월평균 — 아시아·유럽 경유 가격 지표"),
  "diesel":  ("fuel", "미국 경유 소매가", "$/gal", "USD", lambda: fred("GASDESW"), "FRED (EIA) US No 2 Diesel Retail 주간 → 월평균"),
