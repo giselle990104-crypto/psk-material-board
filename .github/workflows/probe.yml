@@ -1,0 +1,38 @@
+name: probe
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          pip install -q curl_cffi
+          cat > p.py <<'PY'
+          import json
+          from curl_cffi import requests as r
+          s=r.Session(impersonate="chrome")
+          def note(t,m): print("::notice title=%s::%s"%(t,str(m).replace("\n"," | ").replace("%","")[:950]))
+          K="https://www.komis.or.kr"
+          s.get(K+"/Komis/RsrcPrice/IronOre",timeout=30)
+          H={"X-Requested-With":"XMLHttpRequest","Referer":K+"/Komis/RsrcPrice/IronOre","Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"}
+          allm=[]
+          for g in ["HP001","HP002","HP003","HP004","HP005","HP006"]:
+              try:
+                  x=s.post(K+"/ajax/common/getMnrlKndInfoCodeList",data={"cdType":"HP000","cdGrp":g},headers=H,timeout=30).json().get("data",[])
+                  note("grp "+g, " ; ".join(f"{a['cdKey']}={a['cdVal']}" for a in x))
+                  allm+= [(g,a['cdKey'],a['cdVal']) for a in x]
+              except Exception as e: note("grp "+g, repr(e)[:200])
+          want=["몰리브덴","크롬","망간","규소","실리콘","마그네슘","니오븀","텅스텐","코발트","주석","아연","니켈","구리","알루미늄","페로"]
+          for g,c,nm in allm:
+              if not any(w in nm for w in want): continue
+              try:
+                  cr=s.post(K+"/Komis/RsrcPrice/ajax/getMnrlPriceCrtr",data={"HP000":g,"mnrkndUnqCd":c},headers=H,timeout=30).json().get("data",[])
+                  out=[]
+                  for d in cr[:6]:
+                      z=s.post(K+"/Komis/RsrcPrice/ajax/getChartData",headers=H,timeout=30,data={"mnrkndUnqRadioCd":c,"srchMnrkndUnqCd":c,"srchPrcCrtr":d["cdKey"],"srchAvgOpt":"MONTH","srchField":"year","srchStartDate":"2016","srchEndDate":"2026","srchCompareMnrkndUnqCd":"","srchComparePrcCrtr":"","lmeInvt":"Y","HP000":g}).json().get("data",{})
+                      xa=z.get("xaxis",[]); se=z.get("series",[{}])[0].get("data",[]); mi=z.get("mnrlInfo",{})
+                      nn=[i for i,v in enumerate(se) if v not in (None,"","-")]
+                      out.append(f"[{d['cdKey']} {d.get('cdVal','')} {d.get('spcfct','')}] {mi.get('prcCrtr')} {mi.get('prcUnitCdNm')}/{mi.get('weigUnitCd')} src={mi.get('archNm')} n={len(nn)} {xa[nn[0]] if nn else ''}~{xa[nn[-1]] if nn else ''} last={se[nn[-1]] if nn else ''}")
+                  note(f"{g} {c} {nm}", " || ".join(out))
+              except Exception as e: note(f"ERR {c} {nm}", repr(e)[:200])
+          PY
+          python p.py
