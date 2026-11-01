@@ -57,6 +57,7 @@ const ok=v=>Number.isFinite(v);
 const f0=v=>ok(v)?Math.round(v).toLocaleString('ko-KR'):'—';
 const f2=v=>ok(v)?v.toLocaleString('ko-KR',{maximumFractionDigits:2}):'—';
 const pc=(v,d=1)=>ok(v)?(v>0?'+':'')+(v*100).toFixed(d)+'%':'—';
+const dot=v=>String(v??'').replace('-','.');
 const nowYm=()=>{ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; };
 function ym(v){
   if(v===null||v===undefined||v==='') return '';
@@ -69,7 +70,7 @@ function ym(v){
 const matId=v=>{ const k=nk(v); if(!k) return ''; if(MAT[k]) return k; if(ALIAS[k]&&MAT[ALIAS[k]]) return ALIAS[k];
   const byName=MATS.find(m=>nk(m.name)===k); if(byName) return byName.id;
   const hit=Object.keys(ALIAS).sort((a,b)=>b.length-a.length).find(a=>k.includes(a)&&MAT[ALIAS[a]]); return hit?ALIAS[hit]:'custom'; };
-const blank=()=>({code:'',name:'',bp:'',mat:'cu',matName:'',oldYm:'',oldPrice:'',newYm:nowYm(),newPrice:'',qty:'',fx:'Y',rawShare:'',laborShare:'',
+const blank=()=>({code:'',name:'',bp:'',mat:'cu',matName:'',oldYm:'',oldPrice:'',newYm:nowYm(),newPrice:'',qty:'',fx:'Y',weld:'N',rawShare:'',laborShare:'',
   idxOld:'',idxNew:'',laborPct:'',weight:'',yield:'',costs:{},basis:{},note:''});
 
 /* ---------- 시세 조회 ---------- */
@@ -121,6 +122,11 @@ function matMove(r){
 }
 function laborMove(r){
   const o=num(r.laborPct); if(ok(o)) return {pct:o/100, src:'직접 입력'};
+  if(r.weld==='Y'){ const C=window.PSK_COSTS, A=C?.wageAt('weld',r.oldYm), B=C?.wageAt('weld',r.newYm);
+    if(A&&B) return {pct:B.v/A.v-1, src:`용접공 노임단가 ${dot(A.d)} ${A.v.toLocaleString('ko-KR')}원 → ${dot(B.d)} ${B.v.toLocaleString('ko-KR')}원`, weld:true};
+    const ya=+String(r.oldYm).slice(0,4), yb=+String(r.newYm).slice(0,4);
+    if(MW[ya]&&MW[yb]) return {pct:MW[yb]/MW[ya]-1, src:`용접공 노임단가는 2019.01부터 있어 최저임금 ${ya}→${yb}로 대신 계산`, weld:true};
+  }
   const ya=+String(r.oldYm).slice(0,4), yb=+String(r.newYm).slice(0,4);
   if(MW[ya]&&MW[yb]) return {pct:MW[yb]/MW[ya]-1, src:`최저임금 ${ya}→${yb}`};
   return {pct:0, src:'최저임금 자료 없음'};
@@ -284,11 +290,11 @@ function renderTable(res){
     <td><b>${esc(r.name||'(품목명 없음)')}</b><small>${esc(r.code)}</small></td>
     <td>${esc(r.bp)}</td>
     <td>${esc(r.mat==='custom'?(r.matName||'직접 입력'):(MAT[r.mat]?.name||r.mat))}</td>
-    <td class="n">${f0(o.P0)}<small>${esc(r.oldYm)}</small></td>
-    <td class="n">${f0(o.P1)}<small>${esc(r.newYm)}</small></td>
+    <td class="n">${f0(o.P0)}<small>${esc(dot(r.oldYm))}</small></td>
+    <td class="n">${f0(o.P1)}<small>${esc(dot(r.newYm))}</small></td>
     <td class="n ${o.req>0?'up':o.req<0?'down':''}">${pc(o.req)}</td>
     <td class="n">${o.mv&&ok(o.mv.pct)?`<span class="${o.mv.pct>0?'up':'down'}">${pc(o.mv.pct)}</span><small>${esc(o.mv.src)}${o.mv.krw?' 원화':''}</small>`:`<small>${esc(o.mv?.why||'—')}</small>`}</td>
-    <td class="n">${pc(o.lb.pct)}</td>
+    <td class="n">${pc(o.lb.pct)}<small>${o.lb.weld?'용접공':r.laborPct!==''&&r.laborPct!=null?'직접':'최저임금'}</small></td>
     <td class="n">${f0(o.just)}<small>${pc(o.justPct)}</small></td>
     <td class="n ${o.gap>0?'up':o.gap<0?'down':''}">${pc(o.gap)}</td>
     <td><span class="vb ${o.cls}">${o.v}</span>${o.flags.length?`<small>⚠ ${o.flags.length}건</small>`:''}</td>
@@ -297,6 +303,7 @@ function renderTable(res){
 }
 $p('#pr-body').addEventListener('click',e=>{ const tr=e.target.closest('tr[data-i]'); if(!tr) return; sel=+tr.dataset.i; renderTable(); renderDetail(); $p('#pr-det').scrollIntoView({behavior:'smooth',block:'start'}); });
 
+function ymField(k,label,val){ return `<label>${label}<input data-f="${k}" data-ym="1" type="text" inputmode="decimal" placeholder="YYYY.MM" maxlength="7" value="${esc(dot(val))}"></label>`; }
 function field(k,label,val,type='text',extra=''){ return `<label${extra}>${label}<input data-f="${k}" type="${type}" value="${esc(val)}"${type==='number'?' step="any"':''}></label>`; }
 function renderDetail(){
   const box=$p('#pr-det'); if(sel<0||!rows[sel]){ box.innerHTML=''; return; }
@@ -308,7 +315,7 @@ function renderDetail(){
   const mkt = r.mat==='custom'
     ? `DB에 없는 원재료입니다. 기존·신규 견적월의 시세(또는 지수)를 직접 넣으세요. ${ok(mv?.pct)?`→ 변동 <b>${pc(mv.pct)}</b>`:''}`
     : mv&&ok(mv.pct)
-      ? `<b>${esc(MAT[r.mat].name)}</b> · ${esc(mv.src)} 월평균 ${esc(r.oldYm)} <b>${f2(mv.a)} ${esc(mv.unit)}</b> → ${esc(r.newYm)} <b>${f2(mv.b)} ${esc(mv.unit)}</b> (외화 ${pc(mv.native)})${mv.krw?` · 같은 달 환율로 원화 환산하면 <b>${pc(mv.pct)}</b>`:''}${ok(mv.kgA)?` · 원화 kg당 ${f0(mv.kgA)} → ${f0(mv.kgB)}원`:''}${mv.notes?.length?`<br><span class="pr-note">${esc(mv.notes.join(' · '))}</span>`:''}`
+      ? `<b>${esc(MAT[r.mat].name)}</b> · ${esc(mv.src)} 월평균 ${esc(dot(r.oldYm))} <b>${f2(mv.a)} ${esc(mv.unit)}</b> → ${esc(dot(r.newYm))} <b>${f2(mv.b)} ${esc(mv.unit)}</b> (외화 ${pc(mv.native)})${mv.krw?` · 같은 달 환율로 원화 환산하면 <b>${pc(mv.pct)}</b>`:''}${ok(mv.kgA)?` · 원화 kg당 ${f0(mv.kgA)} → ${f0(mv.kgB)}원`:''}${mv.notes?.length?`<br><span class="pr-note">${esc(mv.notes.join(' · '))}</span>`:''}`
       : `시세를 찾지 못했습니다: ${esc(mv?.why||'')}. 원재료를 "직접 입력"으로 바꾸고 지수를 넣거나, 원재료비 인정 변동률을 직접 지정하세요.`;
   const C=r.costs||{};
   const L=Object.fromEntries(o.lines.map(l=>[l.k,l]));
@@ -326,12 +333,13 @@ function renderDetail(){
   ${o.flags.length?`<ul class="pr-flags">${o.flags.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
   <div class="pr-g">
     ${field('code','품목코드',r.code)}${field('name','품목명',r.name)}${field('bp','BP(공급사)',r.bp)}${field('qty','연간 수량(선택)',r.qty,'number')}
-    ${field('oldYm','기존 견적월',r.oldYm,'month')}${field('oldPrice','기존 단가(원)',r.oldPrice,'number')}${field('newYm','신규 견적월',r.newYm,'month')}${field('newPrice','요청 단가(원)',r.newPrice,'number')}
+    ${ymField('oldYm','기존 견적월',r.oldYm)}${field('oldPrice','기존 단가(원)',r.oldPrice,'number')}${ymField('newYm','신규 견적월',r.newYm)}${field('newPrice','요청 단가(원)',r.newPrice,'number')}
     <label class="wide">원재료<select data-f="mat">${matOpts}</select></label>
     ${r.mat==='custom'?field('matName','원재료명',r.matName)+field('idxOld','기존월 시세·지수',r.idxOld,'number'):`<label>환율 반영<select data-f="fx"><option value="Y"${r.fx!=='N'?' selected':''}>Y (원화 환산)</option><option value="N"${r.fx==='N'?' selected':''}>N (외화 기준)</option></select></label>${field('weight','원재료 중량 kg/개(선택)',r.weight,'number')}`}
     ${r.mat==='custom'?field('idxNew','신규월 시세·지수',r.idxNew,'number'):''}
     ${r.mat!=='custom'?field('yield','수율 %(선택)',r.yield,'number'):''}
-    ${field('laborPct','인건비 변동률 %(비우면 최저임금)',r.laborPct,'number')}
+    <label>용접 공정 필요<select data-f="weld"><option value="N"${r.weld!=='Y'?' selected':''}>N · 인건비=최저임금 변동</option><option value="Y"${r.weld==='Y'?' selected':''}>Y · 인건비=용접공 노임단가 변동</option></select></label>
+    ${field('laborPct','인건비 변동률 %(비우면 위 기준)',r.laborPct,'number')}
     ${o.hasBreak?'':field('rawShare',`원재료 비중 %(기본 ${cfg.rawShare})`,r.rawShare,'number')+field('laborShare',`인건비 비중 %(기본 ${cfg.laborShare})`,r.laborShare,'number')}
   </div>
   <div class="pr-mkt">${mkt}<br>인건비: ${esc(o.lb.src)} <b>${pc(o.lb.pct)}</b></div>
@@ -352,7 +360,8 @@ function renderDetail(){
 const det=$p('#pr-det');
 function onDetail(e){
   if(sel<0) return; const r=rows[sel], t=e.target;
-  if(t.dataset.f){ r[t.dataset.f]=t.value; if(t.dataset.f==='mat'&&e.type==='change'){ renderAll(); return; } }
+  if(t.dataset.ym){ const v=ym(t.value); if(v) r[t.dataset.f]=v; else if(e.type==='change'){ t.value=dot(r[t.dataset.f]); return; } else return; }
+  else if(t.dataset.f){ r[t.dataset.f]=t.value; if((t.dataset.f==='mat'||t.dataset.f==='weld')&&e.type==='change'){ renderAll(); return; } }
   else if(t.dataset.c){ r.costs=r.costs||{}; const a=r.costs[t.dataset.c]||['','']; a[+t.dataset.j]=t.value; r.costs[t.dataset.c]=a; }
   else if(t.dataset.b){ r.basis=r.basis||{}; r.basis[t.dataset.b]=t.value; }
   else return;
@@ -370,13 +379,13 @@ det.addEventListener('click',e=>{ const a=e.target.dataset.d; if(!a) return;
 function renderAll(){ const res=rows.map((r,i)=>({r,i,o:calc(r)})); renderSummary(res); renderTable(res); renderDetail(); }
 
 /* ---------- 엑셀 ---------- */
-const COLS=[['code','품목코드'],['name','품목명'],['bp','BP(공급사)'],['mat','원재료'],['matName','원재료명(직접입력)'],['oldYm','기존 견적월'],['oldPrice','기존 단가'],['newYm','신규 견적월'],['newPrice','요청 단가'],['qty','연간 수량'],['fx','환율 반영(Y/N)'],
+const COLS=[['code','품목코드'],['name','품목명'],['bp','BP(공급사)'],['mat','원재료'],['matName','원재료명(직접입력)'],['oldYm','기존 견적월'],['oldPrice','기존 단가'],['newYm','신규 견적월'],['newPrice','요청 단가'],['qty','연간 수량'],['fx','환율 반영(Y/N)'],['weld','용접 필요(Y/N)'],
   ...CATS.flatMap(([k,l])=>[[`c:${k}:0`,`기존 ${l}`],[`c:${k}:1`,`요청 ${l}`]]),
   ['rawShare','원재료 비중(%)'],['laborShare','인건비 비중(%)'],['idxOld','기존월 시세(직접입력)'],['idxNew','신규월 시세(직접입력)'],['laborPct','인건비 변동률(%)'],['weight','원재료 중량(kg/개)'],['yield','수율(%)'],['note','비고']];
 const normH=h=>String(h??'').replace(/[\s()\/·_\-:]/g,'').replace(/원$/,'').toLowerCase();
 const HMAP=Object.fromEntries(COLS.map(([k,h])=>[normH(h),k]));
-Object.assign(HMAP,{[normH('품번')]:'code',[normH('품목')]:'name',[normH('공급사')]:'bp',[normH('BP')]:'bp',[normH('업체')]:'bp',[normH('재질')]:'mat',[normH('기존단가(원)')]:'oldPrice',[normH('신규단가')]:'newPrice',[normH('요청단가(원)')]:'newPrice',[normH('견적단가')]:'newPrice',[normH('수량')]:'qty'});
-function cellVal(r,k){ if(k.startsWith('c:')){ const [,c,j]=k.split(':'); return r.costs?.[c]?.[+j]??''; } if(k==='mat') return MAT[r.mat]?.name||r.mat; return r[k]??''; }
+Object.assign(HMAP,{[normH('용접')]:'weld',[normH('용접여부')]:'weld',[normH('용접 필요')]:'weld',[normH('품번')]:'code',[normH('품목')]:'name',[normH('공급사')]:'bp',[normH('BP')]:'bp',[normH('업체')]:'bp',[normH('재질')]:'mat',[normH('기존단가(원)')]:'oldPrice',[normH('신규단가')]:'newPrice',[normH('요청단가(원)')]:'newPrice',[normH('견적단가')]:'newPrice',[normH('수량')]:'qty'});
+function cellVal(r,k){ if(k==='oldYm'||k==='newYm') return dot(r[k]); if(k==='weld') return r.weld==='Y'?'Y':'N'; if(k.startsWith('c:')){ const [,c,j]=k.split(':'); return r.costs?.[c]?.[+j]??''; } if(k==='mat') return MAT[r.mat]?.name||r.mat; return r[k]??''; }
 function rowFrom(obj){
   const r=blank(); r.newYm='';
   Object.entries(obj).forEach(([h,v])=>{ const k=HMAP[normH(h)]; if(!k||v===''||v==null) return;
@@ -384,6 +393,7 @@ function rowFrom(obj){
     if(k==='mat'){ r.mat=matId(v); if(r.mat==='custom'&&!r.matName) r.matName=String(v); return; }
     if(k==='oldYm'||k==='newYm'){ r[k]=ym(v); return; }
     if(k==='fx'){ r.fx=/^n|아니|미반영/i.test(String(v))?'N':'Y'; return; }
+    if(k==='weld'){ r.weld=/^(y|o|예|필요|있|용접)/i.test(String(v).trim())?'Y':'N'; return; }
     if(['oldPrice','newPrice','qty','rawShare','laborShare','idxOld','idxNew','laborPct','weight','yield'].includes(k)){ const n=num(v); r[k]=ok(n)?n:''; return; }
     r[k]=String(v); });
   if(!r.newYm) r.newYm=nowYm();
@@ -394,11 +404,11 @@ function download(name,blob){ const a=document.createElement('a'); a.href=URL.cr
 function toCSV(aoa){ return '﻿'+aoa.map(r=>r.map(v=>{ const s=String(v??''); return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }).join(',')).join('\r\n'); }
 function template(){
   const head=COLS.map(c=>c[1]);
-  const ex1=blank(); Object.assign(ex1,{code:'P-10234',name:'(예시) RF 케이블 어셈블리',bp:'OO전선',mat:'cu',oldYm:'2025-10',oldPrice:48000,newYm:'2026-10',newPrice:56000,qty:1200,costs:{raw:[19000,25500],labor:[9000,10000],proc:[8000,9000],pack:[1500,1800],admin:[5000,5500],profit:[5500,4200]}});
-  const ex2=blank(); Object.assign(ex2,{code:'Q-55120',name:'(예시) 석영 링',bp:'OO쿼츠',mat:'custom',matName:'합성 석영 잉곳',idxOld:100,idxNew:104,oldYm:'2025-04',oldPrice:820000,newYm:'2026-10',newPrice:910000,qty:40,rawShare:45,laborShare:25});
+  const ex1=blank(); Object.assign(ex1,{code:'P-10234',name:'(예시) RF 케이블 어셈블리',bp:'OO전선',mat:'cu',oldYm:'2025-10',oldPrice:48000,newYm:'2026-10',weld:'N',newPrice:56000,qty:1200,costs:{raw:[19000,25500],labor:[9000,10000],proc:[8000,9000],pack:[1500,1800],admin:[5000,5500],profit:[5500,4200]}});
+  const ex2=blank(); Object.assign(ex2,{code:'Q-55120',name:'(예시) 석영 링',bp:'OO쿼츠',mat:'custom',matName:'합성 석영 잉곳',idxOld:100,idxNew:104,oldYm:'2025-04',weld:'Y',oldPrice:820000,newYm:'2026-10',newPrice:910000,qty:40,rawShare:45,laborShare:25});
   const aoa=[head,...[ex1,ex2].map(r=>COLS.map(([k])=>cellVal(r,k)))];
   const mats=[['원재료(이 이름 그대로 쓰기)','단위','DB 출처','비고'],...MATS.map(m=>[m.name,m.unit,m.srcs.map(s=>s[3]).join(' / ')||'직접 입력', m.id==='custom'?'"원재료명(직접입력)"과 기존월/신규월 시세 칸을 채우세요':''])];
-  const how=[['작성 방법'],['· 한 줄에 한 품목. 필수: 품목명, 원재료, 기존 견적월, 기존 단가, 신규 견적월, 요청 단가'],['· 견적월은 2025-10처럼 연-월(날짜를 넣어도 됩니다)'],['· 원재료는 "원재료목록" 시트의 이름이나 구리·SUS316L·석영처럼 써도 인식합니다. 목록에 없으면 원재료명과 기존/신규월 시세(직접입력)를 채우세요'],['· 원가 항목(기존/요청 원재료비·인건비…)은 원가표가 있을 때만 채우세요. 없으면 원재료·인건비 비중(%)으로 추정합니다'],['· 인건비 변동률을 비우면 최저임금 인상률을 씁니다'],['· 예시 두 줄은 지우고 쓰세요']];
+  const how=[['작성 방법'],['· 한 줄에 한 품목. 필수: 품목명, 원재료, 기존 견적월, 기존 단가, 신규 견적월, 요청 단가'],['· 견적월은 2025.10처럼 YYYY.MM (2025-10이나 날짜를 넣어도 인식합니다)'],['· 용접 필요(Y/N): Y면 인건비 변동을 용접공 노임단가(대한건설협회)로, N이면 최저임금으로 계산합니다'],['· 원재료는 "원재료목록" 시트의 이름이나 구리·SUS316L·석영처럼 써도 인식합니다. 목록에 없으면 원재료명과 기존/신규월 시세(직접입력)를 채우세요'],['· 원가 항목(기존/요청 원재료비·인건비…)은 원가표가 있을 때만 채우세요. 없으면 원재료·인건비 비중(%)으로 추정합니다'],['· 인건비 변동률을 비우면 최저임금 인상률을 씁니다'],['· 예시 두 줄은 지우고 쓰세요']];
   if(libReady()){ const wb=XLSX.utils.book_new(); const ws=XLSX.utils.aoa_to_sheet(aoa); ws['!cols']=head.map(h=>({wch:Math.max(10,h.length*2)})); XLSX.utils.book_append_sheet(wb,ws,'검토목록'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(mats),'원재료목록'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(how),'작성방법'); XLSX.writeFile(wb,'PSK_단가인상검토_양식.xlsx'); }
   else download('PSK_단가인상검토_양식.csv',new Blob([toCSV(aoa)],{type:'text/csv;charset=utf-8'}));
 }
