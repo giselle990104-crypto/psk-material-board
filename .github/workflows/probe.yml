@@ -1,16 +1,20 @@
 name: probe
 on: workflow_dispatch
+permissions:
+  contents: write
 jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: |
           pip install -q curl_cffi
           cat > p.py <<'PY'
           import json
           from curl_cffi import requests as r
           s=r.Session(impersonate="chrome")
-          def note(t,m): print("::notice title=%s::%s"%(t,str(m).replace("\n"," | ").replace("%","")[:950]))
+          OUT=open("probe_out.txt","w")
+          def note(t,m): OUT.write(f"{t}: {m}\n"); OUT.flush()
           K="https://www.komis.or.kr"
           s.get(K+"/Komis/RsrcPrice/IronOre",timeout=30)
           H={"X-Requested-With":"XMLHttpRequest","Referer":K+"/Komis/RsrcPrice/IronOre","Content-Type":"application/x-www-form-urlencoded; charset=UTF-8"}
@@ -21,6 +25,7 @@ jobs:
                   note("grp "+g, " ; ".join(f"{a['cdKey']}={a['cdVal']}" for a in x))
                   allm+= [(g,a['cdKey'],a['cdVal']) for a in x]
               except Exception as e: note("grp "+g, repr(e)[:200])
+          allm=[x for x in allm if x[0]!="HP001"]
           want=["몰리브덴","크롬","망간","규소","실리콘","마그네슘","니오븀","텅스텐","코발트","주석","아연","니켈","구리","알루미늄","페로"]
           for g,c,nm in allm:
               if not any(w in nm for w in want): continue
@@ -36,3 +41,5 @@ jobs:
               except Exception as e: note(f"ERR {c} {nm}", repr(e)[:200])
           PY
           python p.py
+          git config user.name bot; git config user.email bot@x
+          git checkout -b probe-out; git add -f probe_out.txt; git commit -qm out; git push -f origin probe-out
