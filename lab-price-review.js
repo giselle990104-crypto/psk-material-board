@@ -450,39 +450,29 @@ const won=v=>{ if(!ok(v)) return '—'; const a=Math.abs(v); return a>=1e8?(v/1e
 /* ---------- 검토 보고서 PDF (A4 가로) ---------- */
 const RPT_CSS=`
 .prr{position:fixed;left:-20000px;top:0;z-index:-1}
-.prr .pg{width:1123px;height:794px;box-sizing:border-box;padding:34px 42px 0;background:#fff;color:#1d1b26;font-family:"IBM Plex Sans KR","Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;font-size:12px;line-height:1.45;position:relative;overflow:hidden}
-.prr .hd{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #6b3fc4;padding-bottom:8px;margin-bottom:16px}
-.prr .hd .t{font-size:17px;font-weight:700} .prr .hd .s{font-size:11px;color:#6b3fc4;letter-spacing:.06em;font-weight:600}
-.prr .hd .r{font-size:11px;color:#7d7894;text-align:right}
-.prr .ft{position:absolute;left:42px;right:42px;bottom:16px;display:flex;justify-content:space-between;font-size:10px;color:#9a96ad;border-top:1px solid #e6e3ee;padding-top:6px}
-.prr .cover-t{font-size:30px;font-weight:800;letter-spacing:-.01em;margin:6px 0 2px} .prr .cover-s{color:#5c5872;font-size:13px;margin-bottom:18px}
-.prr .kp{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
-.prr .kp div{border:1px solid #e6e3ee;border-radius:10px;padding:11px 13px;background:#faf9fd}
-.prr .kp small{display:block;color:#7d7894;font-size:10.5px} .prr .kp b{display:block;font-size:22px;font-weight:700;margin:2px 0;font-family:"Sora","IBM Plex Sans KR",sans-serif} .prr .kp i{font-style:normal;color:#7d7894;font-size:10.5px}
-.prr h4{font-size:13px;margin:0 0 7px;font-weight:700;color:#1d1b26} .prr h4 span{color:#7d7894;font-weight:400;font-size:11px;margin-left:6px}
-.prr .bar{display:flex;height:16px;border-radius:8px;overflow:hidden;margin:4px 0 6px;background:#eee}
-.prr .lg{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:#5c5872} .prr .lg i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px}
-.prr .cols{display:grid;grid-template-columns:1.55fr 1fr;gap:22px}
+.prr .pg{width:1123px;height:794px;box-sizing:border-box;padding:40px 52px 0;background:#fff;color:#111;font-family:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;font-size:11.5px;line-height:1.45;position:relative;overflow:hidden}
+.prr .hd{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #111;padding-bottom:6px;margin-bottom:18px;font-size:10.5px;color:#444}
+.prr .hd b{font-size:12px;color:#111;font-weight:600}
+.prr .ft{position:absolute;left:52px;right:52px;bottom:18px;display:flex;justify-content:space-between;font-size:9.5px;color:#777;border-top:1px solid #ccc;padding-top:6px}
+.prr .ttl{border-top:2px solid #111;border-bottom:1px solid #111;padding:14px 0 12px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-end}
+.prr .ttl h1{font-size:24px;font-weight:700;margin:0;letter-spacing:.02em}
+.prr .meta{font-size:11px;color:#333;text-align:right;line-height:1.7}
+.prr h2{font-size:12.5px;font-weight:700;margin:0 0 6px;padding-left:0;color:#111}
+.prr h2 span{font-weight:400;color:#666;font-size:10.5px;margin-left:6px}
 .prr table{width:100%;border-collapse:collapse;table-layout:fixed}
-.prr th{background:#f3f1f8;color:#5c5872;font-weight:600;font-size:10.5px;text-align:left;padding:6px 6px;border-bottom:1px solid #dcd8e6;white-space:nowrap;overflow:hidden}
-.prr td{padding:0 6px;height:29px;border-bottom:1px solid #eeecf3;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}
-.prr td.n,.prr th.n{text-align:right;font-variant-numeric:tabular-nums}
-.prr td small{display:block;color:#9a96ad;font-size:9.5px;line-height:1.2;overflow:hidden;text-overflow:ellipsis}
-.prr td b{font-weight:600;display:block;overflow:hidden;text-overflow:ellipsis}
-.prr .up{color:#c62f3a} .prr .dn{color:#2f6fb5}
-.prr .vb{display:inline-block;padding:2px 8px;border-radius:999px;font-weight:600;font-size:10.5px}
-.prr .vb.bad{background:#fde8ea;color:#c62f3a} .prr .vb.warn{background:#fdf1dc;color:#a8650f} .prr .vb.good{background:#e3f4ea;color:#2f8a57} .prr .vb.na{background:#efeef3;color:#7d7894}
-.prr .note{font-size:10.5px;color:#7d7894;line-height:1.6}
-.prr .box{border:1px solid #e6e3ee;border-radius:10px;padding:12px 14px}
-.prr .dets{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.prr .card{border:1px solid #e6e3ee;border-radius:12px;padding:14px 16px;max-height:640px;box-sizing:border-box;overflow:hidden}
-.prr .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
-.prr .card .nm{font-size:15px;font-weight:700;line-height:1.3} .prr .card .cd{font-size:10.5px;color:#7d7894}
-.prr .fig{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
-.prr .fig div{background:#f6f5fa;border-radius:8px;padding:7px 9px} .prr .fig small{display:block;font-size:9.5px;color:#7d7894} .prr .fig b{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
-.prr .card td{height:24px;font-size:10.5px} .prr .card th{font-size:9.5px;padding:5px}
-.prr .pt{background:#f4effd;border-left:3px solid #6b3fc4;border-radius:6px;padding:9px 11px;font-size:11px;line-height:1.6;margin-top:10px}
-.prr .fl{color:#c62f3a;font-size:10.5px;margin:8px 0 0;padding-left:16px}
+.prr th{background:#f2f2f2;color:#222;font-weight:600;font-size:10.5px;text-align:center;padding:6px 6px;border-top:1.5px solid #111;border-bottom:1px solid #999;white-space:nowrap;overflow:hidden}
+.prr td{padding:0 6px;height:26px;border-bottom:1px solid #ddd;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}
+.prr tbody tr:last-child td{border-bottom:1px solid #111}
+.prr td.n{text-align:right;font-variant-numeric:tabular-nums} .prr td.c{text-align:center}
+.prr td small{color:#777;font-size:9.5px;margin-left:5px}
+.prr .lt td{height:31px} .prr .lt td small.b{display:block;margin:0;line-height:1.1;font-size:9px} .prr .lt td b{font-weight:600}
+.prr .kv td{height:auto;padding:9px 8px;text-align:center;border-bottom:1px solid #111}
+.prr .kv td b{display:block;font-size:17px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+.prr .kv td small{display:block;margin:2px 0 0;font-size:9.5px}
+.prr .cols{display:grid;grid-template-columns:1fr 1.35fr;gap:28px}
+.prr .sec{margin-bottom:16px}
+.prr .v-bad{color:#9b1c1c;font-weight:600} .prr .v-warn{color:#7a4f00;font-weight:600} .prr .v-good,.prr .v-na{color:#444}
+.prr .hi{color:#9b1c1c}
 `;
 function exportPdf(){
   const msg=$p('#pr-msg');
@@ -492,92 +482,72 @@ function exportPdf(){
 }
 async function makePdf(){
   const msg=$p('#pr-msg'), btn=pane.querySelector('[data-a="pdf"]'); btn.disabled=true; msg.textContent='보고서 만드는 중…';
-  const V=['과다 요청','협상 검토','적정','인하·동결','시세 확인','입력 필요'], VC={'과다 요청':'#c62f3a','협상 검토':'#e0a03a','적정':'#2f8a57','인하·동결':'#6fb38a','시세 확인':'#b9b6c6','입력 필요':'#dcdae3'};
+  const V=['과다 요청','협상 검토','적정','인하·동결','시세 확인','입력 필요'];
   const res=rows.map((r,i)=>({r,i,o:calc(r)}));
   const d=new Date(), ymd=`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
   let who=''; try{ who=(typeof ME!=='undefined'&&ME?.name)||''; }catch(e){}
   const matName=r=>r.mat==='custom'?(r.matName||'직접 입력'):(MAT[r.mat]?.name||r.mat||'');
-  const vb=o=>`<span class="vb ${o.cls}">${o.v}</span>`;
+  const vt=o=>`<span class="v-${o.cls}">${o.v}</span>`;
   const cnt={}; V.forEach(v=>cnt[v]=0); let reqSum=0, justSum=0, over=0, nq=0, base=0; const reqs=[], justs=[];
   res.forEach(({o})=>{ cnt[o.v]=(cnt[o.v]||0)+1; if(ok(o.P1)&&ok(o.just)&&ok(o.P0)){ const q=ok(o.qty)?o.qty:1; reqSum+=(o.P1-o.P0)*q; justSum+=(o.just-o.P0)*q; base+=o.P0*q; over+=o.save; if(ok(o.qty)) nq++; reqs.push(o.req); justs.push(o.justPct); } });
   const avg=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:NaN;
   const sev={'과다 요청':0,'협상 검토':1,'시세 확인':2,'입력 필요':3,'적정':4,'인하·동결':5};
   const sorted=res.slice().sort((a,b)=>(sev[a.o.v]-sev[b.o.v])||((b.o.gap||0)-(a.o.gap||0)));
-  const unit=nq?'원(연간)':'원(개당)';
-  const top=res.filter(x=>x.o.save>0).sort((a,b)=>b.o.save-a.o.save).slice(0,8);
-  const bps={}; res.forEach(({r,o})=>{ const k=r.bp||'(BP 미입력)'; const B=bps[k]||(bps[k]={n:0,bad:0,warn:0,over:0,req:[]}); B.n++; if(o.cls==='bad')B.bad++; if(o.cls==='warn')B.warn++; B.over+=o.save||0; if(ok(o.req)) B.req.push(o.req); });
-  const bpList=Object.entries(bps).sort((a,b)=>b[1].over-a[1].over||b[1].n-a[1].n).slice(0,8);
-  const pages=[]; const head=(t)=>`<div class="hd"><div><div class="s">PSK MATERIAL INTELLIGENCE BOARD</div><div class="t">${t}</div></div><div class="r">단가 인상 검토 보고서<br>${ymd}${who?` · ${esc(who)}`:''}</div></div>`;
+  const unit=nq?'연간 기준':'개당 기준';
+  const top=res.filter(x=>x.o.save>0).sort((a,b)=>b.o.save-a.o.save).slice(0,9);
+  const bps={}; res.forEach(({r,o})=>{ const k=r.bp||'(미입력)'; const B=bps[k]||(bps[k]={n:0,bad:0,warn:0,over:0,req:[]}); B.n++; if(o.cls==='bad')B.bad++; if(o.cls==='warn')B.warn++; B.over+=o.save||0; if(ok(o.req)) B.req.push(o.req); });
+  const bpList=Object.entries(bps).sort((a,b)=>b[1].over-a[1].over||b[1].n-a[1].n).slice(0,6);
+  const meta=`작성일 ${ymd}${who?`　|　작성자 ${esc(who)}`:''}`;
+  const head=t=>`<div class="hd"><b>${t}</b><span>단가 인상 검토 보고서　|　${meta}</span></div>`;
+  const pages=[];
   /* 1. 요약 */
-  pages.push(`<div class="hd" style="border:0;margin:0"><div class="s">PSK MATERIAL INTELLIGENCE BOARD · LAB</div><div class="r">${ymd}${who?`<br>작성 ${esc(who)}`:''}</div></div>
-  <div class="cover-t">단가 인상 검토 보고서</div>
-  <div class="cover-s">공급사 단가 인상 요청 ${rows.length}건을 원재료 시세·인건비 변동으로 계산한 근거 단가와 비교한 결과입니다.</div>
-  <div class="kp">
-    <div><small>검토 품목</small><b>${rows.length}</b><i>BP ${Object.keys(bps).length}곳</i></div>
-    <div><small>평균 요청 인상률</small><b class="up">${pc(avg(reqs))}</b><i>품목 단순 평균</i></div>
-    <div><small>평균 근거 인상률</small><b>${pc(avg(justs))}</b><i>시세·인건비 반영</i></div>
-    <div><small>과다 요청 · 협상 검토</small><b><span class="up">${cnt['과다 요청']}</span> · <span style="color:#a8650f">${cnt['협상 검토']}</span></b><i>전체의 ${rows.length?Math.round((cnt['과다 요청']+cnt['협상 검토'])/rows.length*100):0}%</i></div>
-    <div><small>근거 초과 요청액</small><b class="up">${won(over)}원</b><i>${unit} · 협상 여지</i></div>
-  </div>
+  pages.push(`<div class="ttl"><h1>단가 인상 검토 보고서</h1><div class="meta">${meta}<br>검토 대상 ${rows.length}개 품목 · 공급사 ${Object.keys(bps).length}곳</div></div>
+  <div class="sec"><h2>1. 검토 개요</h2>
+  <table class="kv"><tr>
+    <td>검토 품목<b>${rows.length}건</b></td>
+    <td>평균 요청 인상률<b>${pc(avg(reqs))}</b></td>
+    <td>평균 근거 인상률<b>${pc(avg(justs))}</b><small>원재료 시세·인건비 반영</small></td>
+    <td>과다 요청<b class="hi">${cnt['과다 요청']}건</b></td>
+    <td>협상 검토<b>${cnt['협상 검토']}건</b></td>
+    <td>근거 초과 요청액<b class="hi">${f0(over)}원</b><small>${unit}</small></td>
+  </tr></table></div>
   <div class="cols"><div>
-    <h4>판정 분포</h4>
-    <div class="bar">${V.filter(v=>cnt[v]).map(v=>`<div style="width:${cnt[v]/rows.length*100}%;background:${VC[v]}"></div>`).join('')}</div>
-    <div class="lg">${V.filter(v=>cnt[v]).map(v=>`<span><i style="background:${VC[v]}"></i>${v} ${cnt[v]}</span>`).join('')}</div>
-    <h4 style="margin-top:18px">근거 초과액 상위 품목 <span>요청 단가 − 근거 단가${nq?' × 연간수량':''}</span></h4>
-    <table><colgroup><col style="width:30%"><col style="width:16%"><col style="width:12%"><col style="width:12%"><col style="width:13%"><col style="width:17%"></colgroup>
-    <thead><tr><th>품목</th><th>BP</th><th class="n">요청 인상</th><th class="n">근거 인상</th><th>판정</th><th class="n">초과액</th></tr></thead><tbody>
-    ${top.length?top.map(({r,o})=>`<tr><td><b>${esc(r.name||'(품목명 없음)')}</b><small>${esc(r.code)}</small></td><td>${esc(r.bp)}</td><td class="n up">${pc(o.req)}</td><td class="n">${pc(o.justPct)}</td><td>${vb(o)}</td><td class="n"><b>${f0(o.save)}원</b></td></tr>`).join(''):`<tr><td colspan="6" style="color:#7d7894">근거 단가를 넘는 요청이 없습니다.</td></tr>`}
-    </tbody></table>
+    <div class="sec"><h2>2. 판정 결과</h2>
+    <table><colgroup><col style="width:40%"><col style="width:30%"><col style="width:30%"></colgroup><thead><tr><th>판정</th><th>품목 수</th><th>비중</th></tr></thead><tbody>
+    ${V.filter(v=>cnt[v]).map(v=>`<tr><td class="c">${v}</td><td class="n">${cnt[v]}건</td><td class="n">${(cnt[v]/rows.length*100).toFixed(1)}%</td></tr>`).join('')}
+    <tr><td class="c"><b>합계</b></td><td class="n"><b>${rows.length}건</b></td><td class="n">100.0%</td></tr></tbody></table></div>
+    <div class="sec"><h2>3. 인상액 비교 <span>${unit}, 원</span></h2>
+    <table><colgroup><col style="width:40%"><col style="width:35%"><col style="width:25%"></colgroup><thead><tr><th>구분</th><th>금액</th><th>기존 대비</th></tr></thead><tbody>
+      <tr><td class="c">요청 인상액</td><td class="n">${f0(reqSum)}</td><td class="n">${base?pc(reqSum/base):'—'}</td></tr>
+      <tr><td class="c">근거 인상액</td><td class="n">${f0(justSum)}</td><td class="n">${base?pc(justSum/base):'—'}</td></tr>
+      <tr><td class="c"><b>근거 초과액</b></td><td class="n hi"><b>${f0(over)}</b></td><td class="n">${base?pc(over/base):'—'}</td></tr></tbody></table></div>
   </div><div>
-    <h4>BP별 요약</h4>
-    <table><colgroup><col style="width:34%"><col style="width:12%"><col style="width:20%"><col style="width:14%"><col style="width:20%"></colgroup>
-    <thead><tr><th>BP</th><th class="n">품목</th><th class="n">평균 요청</th><th class="n">과다·협상</th><th class="n">초과액</th></tr></thead><tbody>
-    ${bpList.map(([k,B])=>`<tr><td><b>${esc(k)}</b></td><td class="n">${B.n}</td><td class="n">${pc(avg(B.req))}</td><td class="n">${B.bad+B.warn?`<span class="up">${B.bad}</span> · ${B.warn}`:'—'}</td><td class="n">${B.over?won(B.over)+'원':'—'}</td></tr>`).join('')}
-    </tbody></table>
-    <div class="box" style="margin-top:16px">
-      <h4>요청 vs 근거 인상액 합계</h4>
-      <div style="display:flex;justify-content:space-between;font-size:12px;margin:4px 0"><span>요청 인상액</span><b>${f0(reqSum)}원</b></div>
-      <div style="display:flex;justify-content:space-between;font-size:12px;margin:4px 0"><span>근거 인상액</span><b>${f0(justSum)}원</b></div>
-      <div style="display:flex;justify-content:space-between;font-size:12px;margin:4px 0" class="up"><span>근거 초과</span><b>${f0(over)}원</b></div>
-      <div class="note">${unit} 기준${base?` · 기존 구매액 ${won(base)}원 대비 요청 ${pc(reqSum/base)}, 근거 ${pc(justSum/base)}`:''}</div>
-    </div>
-  </div></div>
-  <div class="note" style="margin-top:14px">판정 기준(근거 단가 대비): 적정 +${cfg.tol}% 이하 · 협상 검토 +${cfg.tol}~${cfg.over}% · 과다 요청 +${cfg.over}% 초과. 근거 단가 = 기존 단가 + 원재료비 × 원재료 시세 변동률 + 인건비 × 인건비 변동률(+직접 지정 항목). 원가표가 없으면 원재료 ${cfg.rawShare}% · 인건비 ${cfg.laborShare}% 비중으로 추정합니다.</div>`);
-  /* 2. 전체 검토표 */
+    <div class="sec"><h2>4. 근거 초과액 상위 품목 <span>요청 단가 − 근거 단가${nq?' × 연간 수량':''}, 원</span></h2>
+    <table><colgroup><col style="width:31%"><col style="width:15%"><col style="width:12%"><col style="width:12%"><col style="width:13%"><col style="width:17%"></colgroup>
+    <thead><tr><th>품목</th><th>공급사</th><th>요청 인상</th><th>근거 인상</th><th>판정</th><th>초과액</th></tr></thead><tbody>
+    ${top.length?top.map(({r,o})=>`<tr><td>${esc(r.name||'(품목명 없음)')}<small>${esc(r.code)}</small></td><td class="c">${esc(r.bp)}</td><td class="n">${pc(o.req)}</td><td class="n">${pc(o.justPct)}</td><td class="c">${vt(o)}</td><td class="n">${f0(o.save)}</td></tr>`).join(''):`<tr><td colspan="6" class="c">근거 단가를 넘는 요청이 없습니다.</td></tr>`}
+    </tbody></table></div>
+    <div class="sec"><h2>5. 공급사별 현황 <span>초과액 상위 ${bpList.length}곳</span></h2>
+    <table><colgroup><col style="width:31%"><col style="width:13%"><col style="width:17%"><col style="width:19%"><col style="width:20%"></colgroup>
+    <thead><tr><th>공급사</th><th>품목 수</th><th>평균 요청 인상</th><th>과다 / 협상</th><th>초과액</th></tr></thead><tbody>
+    ${bpList.map(([k,B])=>`<tr><td>${esc(k)}</td><td class="n">${B.n}</td><td class="n">${pc(avg(B.req))}</td><td class="c">${B.bad} / ${B.warn}</td><td class="n">${f0(B.over)}</td></tr>`).join('')}
+    </tbody></table></div>
+  </div></div>`);
+  /* 2. 품목별 검토표 */
   const PER=19, tp=Math.ceil(sorted.length/PER);
   for(let p=0;p<tp;p++){ const part=sorted.slice(p*PER,(p+1)*PER);
-    pages.push(head(`전체 품목 검토표 <span style="font-size:12px;color:#7d7894;font-weight:400">${p*PER+1}–${p*PER+part.length} / ${sorted.length} · 판정 심각도순</span>`)+`
-    <table><colgroup><col style="width:3%"><col style="width:17%"><col style="width:10%"><col style="width:10%"><col style="width:8.5%"><col style="width:8.5%"><col style="width:6.5%"><col style="width:9%"><col style="width:6.5%"><col style="width:8.5%"><col style="width:6.5%"><col style="width:8.5%"></colgroup>
-    <thead><tr><th class="n">#</th><th>품목</th><th>BP</th><th>원재료</th><th class="n">기존 단가</th><th class="n">요청 단가</th><th class="n">요청 인상</th><th class="n">원재료 시세</th><th class="n">인건비</th><th class="n">근거 단가</th><th class="n">근거 대비</th><th>판정</th></tr></thead><tbody>
-    ${part.map(({r,i,o})=>`<tr><td class="n">${i+1}</td><td><b>${esc(r.name||'(품목명 없음)')}</b><small>${esc(r.code)}</small></td><td>${esc(r.bp)}</td><td>${esc(matName(r))}</td>
-      <td class="n">${f0(o.P0)}<small>${esc(dot(r.oldYm))}</small></td><td class="n">${f0(o.P1)}<small>${esc(dot(r.newYm))}</small></td><td class="n ${o.req>0?'up':o.req<0?'dn':''}">${pc(o.req)}</td>
-      <td class="n">${o.mv&&ok(o.mv.pct)?`<span class="${o.mv.pct>0?'up':'dn'}">${pc(o.mv.pct)}</span><small>${esc(o.mv.src)}</small>`:'<small>시세 없음</small>'}</td><td class="n">${pc(o.lb.pct)}</td>
-      <td class="n">${f0(o.just)}<small>${pc(o.justPct)}</small></td><td class="n ${o.gap>0?'up':''}"><b>${pc(o.gap)}</b></td><td>${vb(o)}</td></tr>`).join('')}
+    pages.push(head(`6. 품목별 검토표 (${p*PER+1}–${p*PER+part.length} / ${sorted.length})`)+`
+    <table class="lt"><colgroup><col style="width:3.5%"><col style="width:16%"><col style="width:9%"><col style="width:13%"><col style="width:8%"><col style="width:8%"><col style="width:6.5%"><col style="width:8%"><col style="width:6%"><col style="width:8.5%"><col style="width:6.5%"><col style="width:6.5%"></colgroup>
+    <thead><tr><th>No.</th><th>품목</th><th>공급사</th><th>원재료</th><th>기존 단가</th><th>요청 단가</th><th>요청 인상</th><th>원재료 시세</th><th>인건비</th><th>근거 단가</th><th>근거 대비</th><th>판정</th></tr></thead><tbody>
+    ${part.map(({r,i,o})=>`<tr><td class="c">${i+1}</td><td><b>${esc(r.name||'(품목명 없음)')}</b><small>${esc(r.code)}</small></td><td class="c">${esc(r.bp)}</td><td>${esc(matName(r))}</td>
+      <td class="n">${f0(o.P0)}<small class="b">${esc(dot(r.oldYm))}</small></td><td class="n">${f0(o.P1)}<small class="b">${esc(dot(r.newYm))}</small></td><td class="n">${pc(o.req)}</td>
+      <td class="n">${o.mv&&ok(o.mv.pct)?pc(o.mv.pct):'—'}</td><td class="n">${pc(o.lb.pct)}</td>
+      <td class="n">${f0(o.just)}</td><td class="n ${o.gap>cfg.over/100?'hi':''}">${pc(o.gap)}</td><td class="c">${vt(o)}</td></tr>`).join('')}
     </tbody></table>`);
-  }
-  /* 3. 품목별 상세 (과다 요청·협상 검토) */
-  const flag=sorted.filter(x=>x.o.cls==='bad'||x.o.cls==='warn'), MAXD=40, shown=flag.slice(0,MAXD);
-  for(let p=0;p<shown.length;p+=2){
-    pages.push(head(`협상 대상 품목 상세 <span style="font-size:12px;color:#7d7894;font-weight:400">${p+1}–${Math.min(p+2,shown.length)} / ${flag.length}${flag.length>MAXD?` (상위 ${MAXD}건만 수록)`:''}</span>`)+`<div class="dets">${shown.slice(p,p+2).map(({r,i,o})=>{
-      const target=ok(o.just)?o.just*(1+cfg.tol/100):NaN, q=ok(o.qty)?o.qty:NaN;
-      const mv=o.mv||{};
-      return `<div class="card"><div class="top"><div><div class="nm">${esc(r.name||'(품목명 없음)')}</div><div class="cd">#${i+1} · ${esc(r.code)} · ${esc(r.bp)} · ${esc(matName(r))}${ok(q)?` · 연 ${f0(q)}개`:''}</div></div>${vb(o)}</div>
-      <div class="fig"><div><small>기존 단가 · ${esc(dot(r.oldYm))}</small><b>${f0(o.P0)}</b></div><div><small>요청 단가 · ${esc(dot(r.newYm))}</small><b class="up">${f0(o.P1)}</b><small>${pc(o.req)}</small></div>
-        <div><small>근거 단가</small><b>${f0(o.just)}</b><small>${pc(o.justPct)}</small></div><div><small>근거 대비</small><b class="up">${pc(o.gap)}</b><small>초과 ${f0(o.P1-o.just)}원/개</small></div></div>
-      <h4>원가 항목별 검토</h4>
-      <table><colgroup><col style="width:22%"><col style="width:15%"><col style="width:13%"><col style="width:15%"><col style="width:15%"><col style="width:20%"></colgroup>
-      <thead><tr><th>항목</th><th class="n">기존 금액</th><th class="n">인정 변동</th><th class="n">인정 증가액</th><th class="n">요청 금액</th><th>근거</th></tr></thead><tbody>
-      ${o.lines.map(l=>`<tr><td><b>${esc(l.label)}</b></td><td class="n">${f0(l.base)}</td><td class="n ${l.pct>0?'up':''}">${pc(l.pct)}</td><td class="n">${f0(l.delta)}</td><td class="n ${l.flag?'up':''}">${ok(l.req)?f0(l.req):'—'}${ok(l.reqPct)?`<small>${pc(l.reqPct)}</small>`:''}</td><td title="${esc(l.how)}"><small style="color:#5c5872;font-size:10px;white-space:normal;max-height:24px">${esc(l.how)}</small></td></tr>`).join('')}
-      </tbody></table>
-      ${o.hasBreak?'':`<div class="note" style="margin-top:4px">원가표 미입력 → 기본 비중(원재료 ${ok(num(r.rawShare))?num(r.rawShare):cfg.rawShare}% · 인건비 ${ok(num(r.laborShare))?num(r.laborShare):cfg.laborShare}%)으로 추정</div>`}
-      <div class="note" style="margin-top:8px"><b style="color:#1d1b26">원재료 시세</b> ${ok(mv.pct)?`${esc(mv.src)} ${f2(mv.a)} → ${f2(mv.b)} ${esc(mv.unit||'')} (${pc(mv.native)}${mv.krw?`, 원화 환산 ${pc(mv.pct)}`:''})`:esc(mv.why||'자료 없음')}<br><b style="color:#1d1b26">인건비</b> ${esc(o.lb.src)} (${pc(o.lb.pct)})</div>
-      ${o.flags.length?`<ul class="fl">${o.flags.slice(0,3).map(f=>`<li>${esc(f)}</li>`).join('')}</ul>`:''}
-      <div class="pt"><b>협상 포인트</b><br>요청 단가 ${f0(o.P1)}원은 근거 단가 ${f0(o.just)}원보다 ${pc(o.gap)} 높습니다. 목표 단가 <b>${f0(target)}원 이하</b>(근거 +${cfg.tol}%)를 제시하세요.${o.save?` 연간 초과액 ${f0(o.save)}원.`:''}${o.lines.filter(l=>l.flag).length?` 특히 ${o.lines.filter(l=>l.flag).map(l=>l.label).join('·')} 요청 인상률이 근거보다 큽니다.`:''}</div>
-      ${r.note?`<div class="note" style="margin-top:6px">메모: ${esc(r.note)}</div>`:''}</div>`; }).join('')}</div>`);
   }
   /* 그리기 */
   const st=document.createElement('style'); st.textContent=RPT_CSS; const box=document.createElement('div'); box.className='prr';
-  box.innerHTML=pages.map((h,i)=>`<div class="pg">${h}<div class="ft"><span>PSK Material Intelligence Board · 단가 인상 검토 보고서 · 시세 출처: Investing·LME·SHFE·KOMIS·SMM·Acerinox 월평균</span><span>${i+1} / ${pages.length}</span></div></div>`).join('');
+  box.innerHTML=pages.map((h,i)=>`<div class="pg">${h}<div class="ft"><span>단가 인상 검토 보고서</span><span>- ${i+1} / ${pages.length} -</span></div></div>`).join('');
   document.head.appendChild(st); document.body.appendChild(box);
   try{
     if(document.fonts?.ready) await document.fonts.ready;
