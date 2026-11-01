@@ -24,11 +24,21 @@ const MATS=[
   {id:'br', name:'브렌트유 (플라스틱 원가)', cur:'USD', unit:'$/bbl', perKg:false, srcs:[['data','pl',v=>v,'Investing']]},
   {id:'custom', name:'직접 입력 (DB에 없음)', cur:'', unit:'', srcs:[]},
 ];
+/* 합금시세 탭의 합금(원소 구성비 GUESS × 원소 시세, 10년) */
+const AL=window.PSK_ALLOY;
+if(AL){ const at=MATS.length-1;
+  MATS.splice(at,0,...AL.FAM.map(f=>({id:'x_'+f.id, name:'합금 · '+f.names.join(' / '), grp:'alloy', cur:'USD', unit:'$/t', srcs:[['alloy',f.id,v=>v,'합금시세(GUESS)']]}))); }
 const MAT=Object.fromEntries(MATS.map(m=>[m.id,m]));
+const nk=v=>String(v??'').toLowerCase().replace(/[\s()·_\-\/.]/g,'');
 const ALIAS={'구리':'cu','동':'cu','copper':'cu','cu':'cu','알루미늄':'al','aluminum':'al','aluminium':'al','al':'al','니켈':'ni','nickel':'ni','ni':'ni',
-  '철강':'st','강판':'st','열연':'st','steel':'st','hrc':'st','철광석':'io','ironore':'io','sus304':'ss','스테인리스':'ss','스테인레스':'ss','stainless':'ss','sus':'ss',
-  'sus316':'s316','sus316l':'s316','316l':'s316','알루미나':'ao','alumina':'ao','석영':'qz','쿼츠':'qz','quartz':'qz','고순도석영':'qz','아연':'zn','zinc':'zn','납':'pb','lead':'pb',
+  '철강':'st','강판':'st','열연':'st','steel':'st','hrc':'st','철광석':'io','ironore':'io','shfe304':'ss','스테인리스':'x_ss304','스테인레스':'x_ss304','stainless':'x_ss304','sus316할증료':'s316','316할증료':'s316',
+  'sus316':'x_ss316','sus316l':'x_ss316','316l':'x_ss316','sts316':'x_ss316','sts316l':'x_ss316','sts304':'x_ss304','sus304':'x_ss304','ss304':'x_ss304','sus':'x_ss304','sus303':'x_sus303','sts303':'x_sus303',
+  'a5052':'x_a5052','al5052':'x_a5052','5052':'x_a5052','al5083':'x_a5083','a5083':'x_a5083','5083':'x_a5083','al6061':'x_a6061','a6061':'x_a6061','6061':'x_a6061','al6061t6':'x_a6061','a6061t6':'x_a6061','al6061t651':'x_a6061','a6061t651':'x_a6061',
+  'c1020':'x_c1020','c1020p':'x_c1020','무산소동':'x_c1020','ofc':'x_c1020','brass':'x_brass','황동':'x_brass','c3604':'x_brass','c4250':'x_c4250','copperalloy':'x_cual','구리합금':'x_cual','동합금':'x_cual',
+  'ss400':'x_ss400','inconel':'x_in625','인코넬':'x_in625','inconel625':'x_in625','hastelloy':'x_c276','hastelloyc276':'x_c276','c276':'x_c276','하스텔로이':'x_c276','알루미나':'ao','alumina':'ao','석영':'qz','쿼츠':'qz','quartz':'qz','고순도석영':'qz','아연':'zn','zinc':'zn','납':'pb','lead':'pb',
   '주석':'sn','tin':'sn','브렌트유':'br','플라스틱':'br','수지':'br','brent':'br','직접입력':'custom','기타':'custom','custom':'custom'};
+/* 합금시세 탭의 이름(SS316, A6061-T651 …)은 그대로 인식 */
+if(AL) AL.FAM.forEach(f=>f.names.forEach(n=>{ ALIAS[nk(n)]='x_'+f.id; }));
 const CATS=[['raw','원재료비'],['labor','인건비(노무비)'],['proc','가공·외주비'],['surf','표면처리·세정'],['util','경비(전력·유틸리티)'],['pack','포장비'],['logi','운송·물류비'],['admin','일반관리비'],['profit','이윤'],['etc','기타']];
 /* 최저임금위원회 고시 시간급 */
 const MW={2018:7530,2019:8350,2020:8590,2021:8720,2022:9160,2023:9620,2024:9860,2025:10030,2026:10320,2027:10700};
@@ -56,8 +66,9 @@ function ym(v){
   const m2=String(v).trim().match(/^(\d{4})(\d{2})/); if(m2) return `${m2[1]}-${m2[2]}`;
   return '';
 }
-const matId=v=>{ const k=String(v??'').toLowerCase().replace(/[\s()·_\-]/g,''); if(!k) return ''; if(MAT[k]) return k; if(ALIAS[k]) return ALIAS[k];
-  const hit=Object.keys(ALIAS).find(a=>k.includes(a)); return hit?ALIAS[hit]:'custom'; };
+const matId=v=>{ const k=nk(v); if(!k) return ''; if(MAT[k]) return k; if(ALIAS[k]&&MAT[ALIAS[k]]) return ALIAS[k];
+  const byName=MATS.find(m=>nk(m.name)===k); if(byName) return byName.id;
+  const hit=Object.keys(ALIAS).sort((a,b)=>b.length-a.length).find(a=>k.includes(a)&&MAT[ALIAS[a]]); return hit?ALIAS[hit]:'custom'; };
 const blank=()=>({code:'',name:'',bp:'',mat:'cu',matName:'',oldYm:'',oldPrice:'',newYm:nowYm(),newPrice:'',qty:'',fx:'Y',rawShare:'',laborShare:'',
   idxOld:'',idxNew:'',laborPct:'',weight:'',yield:'',costs:{},basis:{},note:''});
 
@@ -65,6 +76,7 @@ const blank=()=>({code:'',name:'',bp:'',mat:'cu',matName:'',oldYm:'',oldPrice:''
 function series(kind,key){
   if(kind==='data'){ const h=DB.data?.history?.[key]; return h&&Array.isArray(h.avg)?{m0:h.m0,avg:h.avg}:null; }
   if(kind==='lme'){ const h=DB.lme?.series?.[key]; return h?{m0:h.m0,avg:h.avg}:null; }
+  if(kind==='alloy'){ const D=AL?.data(); const f=AL?.FAM.find(x=>x.id===key); if(!D||!f) return null; return {m0:D.months[0], avg:AL.seriesOf(f).map(p=>Number.isFinite(p.usd)?p.usd:null)}; }
   if(kind==='sus'){ const r=DB.sus?.rows; if(!r?.length) return null; const m0=r[0].m, map=Object.fromEntries(r.map(x=>[x.m,x[key]]));
     const out=[]; let [y,m]=m0.split('-').map(Number); const last=r[r.length-1].m;
     while(`${y}-${String(m).padStart(2,'0')}`<=last){ out.push(map[`${y}-${String(m).padStart(2,'0')}`]??null); m++; if(m>12){m=1;y++;} }
@@ -83,7 +95,9 @@ function at(s,mm){
   return {v:NaN, why:'해당 시점 시세 없음'};
 }
 const FXKEY={USD:'fx',CNY:'cnykrw',EUR:'eurkrw'};
-function fxAt(cur,mm){ const k=FXKEY[cur]; if(!k) return {v:1}; return at(series('data',k),mm); }
+function fxAt(cur,mm,kind){ if(kind==='alloy'&&cur==='USD'){ const D=AL?.data(); if(D) return at({m0:D.months[0],avg:D.fx},mm); }
+  const k=FXKEY[cur]; if(!k) return {v:1}; const r=at(series('data',k),mm);
+  if(!ok(r.v)&&cur==='USD'){ const D=AL?.data(); if(D) return at({m0:D.months[0],avg:D.fx},mm); } return r; }
 
 /* 원재료 시세 변동: 두 시점을 모두 가진 소스를 우선 사용 */
 function matMove(r){
@@ -94,11 +108,12 @@ function matMove(r){
     const s=series(kind,key); if(!s) continue;
     const A=at(s,r.oldYm), B=at(s,r.newYm); if(!ok(A.v)||!ok(B.v)) continue;
     const a=conv(A.v), b=conv(B.v); let pct=b/a-1, krw=false, fxNote='';
-    if(r.fx!=='N' && m.cur){ const FA=fxAt(m.cur,r.oldYm), FB=fxAt(m.cur,r.newYm);
+    if(r.fx!=='N' && m.cur){ const FA=fxAt(m.cur,r.oldYm,kind), FB=fxAt(m.cur,r.newYm,kind);
       if(ok(FA.v)&&ok(FB.v)){ pct=(b*FB.v)/(a*FA.v)-1; krw=true; } else fxNote='환율 자료 없음 → 외화 기준'; }
     const notes=[A.near&&`기존 ${A.why}`, B.near&&`신규 ${B.why}`, fxNote].filter(Boolean);
     const perKg=m.perKg===false?null:(v,F)=>v/1000*(F||1);
-    const FA=fxAt(m.cur,r.oldYm).v, FB=fxAt(m.cur,r.newYm).v;
+    const FA=fxAt(m.cur,r.oldYm,kind).v, FB=fxAt(m.cur,r.newYm,kind).v;
+    if(kind==='alloy') notes.push('합금 구성비는 GUESS(합금시세 탭에서 수정 가능)');
     return {pct, native:b/a-1, a, b, unit:m.unit, src:label, krw, notes,
       kgA: perKg&&ok(FA)?perKg(a,FA):NaN, kgB: perKg&&ok(FB)?perKg(b,FB):NaN};
   }
@@ -146,7 +161,7 @@ function calc(r){
   /* 판정 */
   let v='', cls='';
   if(!ok(P0)||!ok(P1)){ v='입력 필요'; cls='na'; }
-  else if(!matOK&&r.mat!=='custom'&&!hasBreak&&!(ok(num(r.rawShare))&&num(r.rawShare)===0)){ v='시세 확인'; cls='na'; }
+  else if(!matOK&&!hasBreak&&!(ok(num(r.rawShare))&&num(r.rawShare)===0)){ v='시세 확인'; cls='na'; }
   else if(out.req<=0){ v='인하·동결'; cls='good'; }
   else if(out.gap<=cfg.tol/100){ v='적정'; cls='good'; }
   else if(out.gap<=cfg.over/100){ v='협상 검토'; cls='warn'; }
@@ -286,7 +301,10 @@ function field(k,label,val,type='text',extra=''){ return `<label${extra}>${label
 function renderDetail(){
   const box=$p('#pr-det'); if(sel<0||!rows[sel]){ box.innerHTML=''; return; }
   const r=rows[sel], o=calc(r), mv=o.mv;
-  const matOpts=MATS.map(m=>`<option value="${m.id}"${m.id===r.mat?' selected':''}>${esc(m.name)}</option>`).join('');
+  const opt=m=>`<option value="${m.id}"${m.id===r.mat?' selected':''}>${esc(m.name.replace(/^합금 · /,''))}</option>`;
+  const matOpts=`<optgroup label="원자재 시세">${MATS.filter(m=>!m.grp&&m.id!=='custom').map(opt).join('')}</optgroup>`+
+    (MATS.some(m=>m.grp==='alloy')?`<optgroup label="합금시세 (원소 구성비 GUESS × 원소 시세, 10년)">${MATS.filter(m=>m.grp==='alloy').map(opt).join('')}</optgroup>`:'')+
+    `<optgroup label="기타">${opt(MAT.custom)}</optgroup>`;
   const mkt = r.mat==='custom'
     ? `DB에 없는 원재료입니다. 기존·신규 견적월의 시세(또는 지수)를 직접 넣으세요. ${ok(mv?.pct)?`→ 변동 <b>${pc(mv.pct)}</b>`:''}`
     : mv&&ok(mv.pct)
@@ -430,6 +448,7 @@ async function loadDB(){
   const [d,l,s]=await Promise.all([get('data.json'),get('lme_kna.json'),get('sus316.json')]);
   if(!d){ try{ const e=JSON.parse(document.getElementById('snap')?.textContent||'{}'); if(e.history) DB.data=e; }catch(e){} } else DB.data=d;
   DB.lme=l; DB.sus=s;
+  try{ await AL?.ready; }catch(e){}
   const n=MATS.filter(m=>m.srcs.some(([k,key])=>series(k,key))).length;
   $p('#pr-dbnote').textContent=DB.data?`시세 DB 연결됨 · 원재료 ${n}종 · ${DB.data.prices?.finishedAt||''} 기준`:'시세 DB를 불러오지 못했습니다';
   renderAll();

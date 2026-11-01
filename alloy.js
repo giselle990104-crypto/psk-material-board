@@ -176,5 +176,7 @@ function exportXls(){
   else { const csv='﻿'+aoa.map(r=>r.map(v=>/[",\n]/.test(String(v))?'"'+String(v).replace(/"/g,'""')+'"':v).join(',')).join('\r\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download=name.replace('.xlsx','.csv'); a.click(); }
 }
 render();
-fetch('alloy.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{ if(j&&j.months){ D=j; render(); } else $a('#al-upd').textContent='합금 시세 데이터를 불러오지 못했습니다.'; }).catch(()=>{ $a('#al-upd').textContent='합금 시세 데이터를 불러오지 못했습니다.'; });
+/* 다른 화면(단가 인상 검토)에서 같은 계산을 쓰도록 공개 */
+const ready=fetch('alloy.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{ if(j&&j.months){ D=j; render(); } else $a('#al-upd').textContent='합금 시세 데이터를 불러오지 못했습니다.'; return D; }).catch(()=>{ $a('#al-upd').textContent='합금 시세 데이터를 불러오지 못했습니다.'; return null; });
+window.PSK_ALLOY={FAM, comp, seriesOf, data:()=>D, ready};
 })();
