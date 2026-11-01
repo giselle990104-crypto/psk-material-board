@@ -21,11 +21,12 @@ jobs:
       - run: python scripts/update_data.py
       - run: python scripts/update_sus316.py || echo 'sus316 skipped'
       - run: python scripts/update_alloy.py || echo 'alloy skipped'
+      - run: python scripts/update_costs.py --force || echo 'costs skipped'
       - name: Commit data.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data.json sus316.json quartz.json alloy.json 2>/dev/null || git add data.json
+          git add data.json sus316.json quartz.json alloy.json costs.json 2>/dev/null || git add data.json
           git diff --cached --quiet && { echo "no change"; exit 0; }
           git commit -m "Update data.json ($(TZ=Asia/Seoul date '+%-m/%-d %H:%M') KST)"
           for i in 1 2 3; do git pull --rebase -X theirs origin main && git push origin HEAD:main && exit 0; sleep 5; done
