@@ -37,7 +37,7 @@ function reviewPrices(){ try{ const r=JSON.parse(localStorage.getItem('psk-pr-v2
 /* 계산 */
 function calc(){
   const rv=S.useReview?reviewPrices():{};
-  const lines=S.bom.map(b=>{
+  const lines=S.bom.map((b,bi)=>{
     const k=key(b.mat); let o=num(b.old), n=num(b.new), src='BOM';
     const P=S.price[k];
     if(!ok(o)&&P&&ok(P.o)){ o=P.o; src='단가표'; }
@@ -48,7 +48,7 @@ function calc(){
     const qty=num(b.qty);
     const d=ok(o)&&ok(n)?n-o:NaN;
     const eff=ymOf(b.eff)||S.eff[k]||(P&&P.eff)||'';
-    return {...b, k, eq:key(b.eq), qty, o, n, d, src, eff, share:shareOf(eff), up:ok(d)&&d>0, down:ok(d)&&d<0, miss:!ok(o)||!ok(qty)};
+    return {...b, bi, k, eq:key(b.eq), qty, o, n, d, src, eff, share:shareOf(eff), up:ok(d)&&d>0, down:ok(d)&&d<0, miss:!ok(o)||!ok(qty)};
   });
   const eqs={};
   lines.forEach(l=>{ const e=eqs[l.eq]||(eqs[l.eq]={eq:l.eq, name:'', lines:[], old:0, now:0, dEff:0, up:0, down:0, miss:0});
@@ -91,6 +91,16 @@ css.textContent=`
 #lab-equip .eq-note{font-size:12px;color:var(--ink-3);line-height:1.65}
 #lab-equip .eq-filter{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 8px;align-items:center}
 #lab-equip .eq-filter input[type=search]{padding:7px 9px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);font:inherit;font-size:13px;min-width:220px}
+#lab-equip .eq-add{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:12px;margin:0 0 14px}
+#lab-equip .eq-add summary{cursor:pointer;font-weight:600;font-size:14px}
+#lab-equip .eq-add .g{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:10px}
+#lab-equip .eq-add label{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--ink-3)}
+#lab-equip .eq-add input{padding:7px 8px;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--ink);font:inherit;font-size:13px;min-width:0}
+#lab-equip .eq-add .act{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+#lab-equip .eq-t input.nw{width:90px}
+#lab-equip .eq-t .x{border:0;background:none;color:var(--ink-3);cursor:pointer;font-size:14px;padding:0 4px}
+#lab-equip .eq-t .x:hover{color:var(--up)}
+@media(max-width:900px){#lab-equip .eq-add .g{grid-template-columns:repeat(2,minmax(0,1fr))}}
 #lab-equip .eq-empty{padding:26px;text-align:center;color:var(--ink-3)}
 @media(max-width:900px){#lab-equip .eq-sum{grid-template-columns:repeat(2,minmax(0,1fr))}}
 `;
@@ -110,6 +120,22 @@ pane.innerHTML=`
   <span class="sp"></span>
   <button class="btn" type="button" data-a="clear">전체 삭제</button>
 </div>
+<details class="eq-add" id="eq-add"><summary>직접 입력 (엑셀 없이 한 줄씩 추가)</summary>
+<p class="eq-note" style="margin:8px 0 0">장비 1대에 들어가는 자재를 한 줄씩 넣으세요. 같은 장비코드·자재코드를 다시 넣으면 그 줄이 고쳐집니다. 적용 시점을 비우면 연간 전체 적용.</p>
+<div class="g">
+<label>장비코드 *<input name="eq" list="eq-eqs" placeholder="A100" autocomplete="off"></label>
+<label>장비명<input name="eqName" placeholder="SUPRA A"></label>
+<label>자재코드 *<input name="mat" placeholder="QZ-01" autocomplete="off"></label>
+<label>자재명<input name="matName" placeholder="석영 링"></label>
+<label>분류<input name="cat" placeholder="석영"></label>
+<label>소요량(대당) *<input name="qty" inputmode="decimal" placeholder="1"></label>
+<label>기존 단가 *<input name="old" inputmode="decimal" placeholder="820000"></label>
+<label>신규 단가<input name="new" inputmode="decimal" placeholder="910000"></label>
+<label>단가 적용 시점<input name="eff" inputmode="decimal" placeholder="YYYY.MM"></label>
+<label>연간 생산계획(대)<input name="plan" inputmode="decimal" placeholder="24"></label>
+</div>
+<div class="act"><button class="btn primary" type="button" data-a="add">추가</button><button class="btn" type="button" data-a="addclr">입력칸 비우기</button><span class="eq-note" id="eq-addmsg"></span></div>
+<datalist id="eq-eqs"></datalist></details>
 <p class="eq-note" id="eq-msg"></p>
 <div class="eq-sum" id="eq-sum"></div>
 <h3>장비별 원가 영향</h3>
@@ -142,12 +168,13 @@ function render(){
     <td class="n">${f0(e.old)}</td><td class="n">${f0(e.now)}</td><td class="n ${e.delta>0?'up':e.delta<0?'down':''}"><b>${f0(e.delta)}</b></td><td class="n">${pc(e.pct)}</td>
     <td class="n"><input type="number" min="0" step="1" data-plan="${esc(e.eq)}" value="${ok(e.plan)?e.plan:''}" placeholder="입력"></td>
     <td class="n ${e.annual>0?'up':''}"><b>${ok(e.annual)?won(e.annual)+'원':'—'}</b>${ok(e.annual)&&Math.round(e.annual)!==Math.round(e.annualFull)?`<small>전체 적용 시 ${won(e.annualFull)}원</small>`:''}</td></tr>`).join('')
-    :`<tr><td colspan="9" class="eq-empty">${S.bom.length?'검색 결과가 없습니다.':'아직 BOM이 없습니다. "엑셀 양식 받기"로 양식을 받아 BOM·단가·생산계획 시트를 채운 뒤 "엑셀 올리기"를 누르세요.'}</td></tr>`;
+    :`<tr><td colspan="9" class="eq-empty">${S.bom.length?'검색 결과가 없습니다.':'아직 BOM이 없습니다. 위 "직접 입력"으로 한 줄씩 넣거나, "엑셀 양식 받기"로 양식을 받아 BOM·단가·생산계획 시트를 채운 뒤 "엑셀 올리기"를 누르세요.'}</td></tr>`;
   const tot=R.mats.reduce((a,m)=>a+Math.abs(m.annual),0);
   const effTxt=ym=>{ const s=shareOf(ym); return ym?`${Math.round(s*12)}개월 반영`:'연간 전체'; };
   $e('#eq-mat').innerHTML=R.mats.length?R.mats.slice(0,50).map((m,i)=>`<tr><td class="n">${i+1}</td><td><b>${esc(m.k)}</b><small>${esc(m.name)}</small></td><td>${esc(m.cat)}</td><td class="n">${m.eqs.size}</td>
     <td class="n">${f1(m.o)}</td><td class="n">${f1(m.n)}</td><td class="n ${m.n>m.o?'up':'down'}">${pc(m.n/m.o-1)}</td><td class="n">${f0(m.perUnit)}</td><td class="n"><input class="ym" type="text" inputmode="decimal" placeholder="YYYY.MM" data-eff="${esc(m.k)}" value="${esc(S.eff[m.k]||m.eff||'')}"><small>${effTxt(S.eff[m.k]||m.eff)}</small></td><td class="n">${won(m.annualFull)}원</td><td class="n"><b>${won(m.annual)}원</b>${m.noPlan?`<small>계획 없는 장비 ${m.noPlan}</small>`:''}</td><td class="n">${tot?(Math.abs(m.annual)/tot*100).toFixed(1)+'%':'—'}</td></tr>`).join('')
     :`<tr><td colspan="12" class="eq-empty">단가가 바뀐 자재가 없습니다.</td></tr>`;
+  const dl=$e('#eq-eqs'); if(dl) dl.innerHTML=R.eqs.map(e=>`<option value="${esc(e.eq)}">${esc(e.name)}</option>`).join('');
   renderDet(R);
 }
 function renderDet(R){
@@ -155,18 +182,21 @@ function renderDet(R){
   const cats={}; e.lines.forEach(l=>{ const c=l.cat||'(분류 없음)'; (cats[c]=cats[c]||[]).push(l); });
   const rows=Object.entries(cats).sort((a,b)=>b[1].reduce((s,l)=>s+(ok(l.d)?l.qty*l.d:0),0)-a[1].reduce((s,l)=>s+(ok(l.d)?l.qty*l.d:0),0)).map(([c,ls])=>{
     const up=ls.filter(l=>l.up).length, o=ls.reduce((s,l)=>s+(l.miss?0:l.qty*l.o),0), n=ls.reduce((s,l)=>s+(l.miss?0:l.qty*l.n),0);
-    return `<tr class="sub"><td>${esc(c)}</td><td class="n">${ls.length}종 중 ${up}종 인상</td><td></td><td></td><td></td><td class="n">${f0(o)}</td><td class="n">${f0(n)}</td><td class="n ${n>o?'up':''}">${f0(n-o)}</td><td></td><td class="n">${ok(e.plan)?won(ls.reduce((s,l)=>s+(l.miss?0:l.qty*l.d*l.share),0)*e.plan)+'원':'—'}</td></tr>`+
-      ls.sort((a,b)=>(b.qty*(b.d||0))-(a.qty*(a.d||0))).map(l=>`<tr><td><b>${esc(l.k)}</b><small>${esc(l.matName||'')}</small></td><td class="n">${f1(l.qty)} ${esc(l.unit||'')}</td><td class="n">${f1(l.o)}</td><td class="n">${f1(l.n)}</td>
-        <td class="n ${l.up?'up':l.down?'down':''}">${l.miss?'<span class="tag miss">단가·소요량 없음</span>':pc(l.n/l.o-1)}<small>${esc(l.src)}</small></td><td class="n">${f0(l.qty*l.o)}</td><td class="n">${f0(l.qty*l.n)}</td><td class="n ${l.up?'up':''}">${l.miss?'—':f0(l.qty*l.d)}</td><td class="n">${l.d?(l.eff||'연간 전체'):''}</td><td class="n">${!l.miss&&ok(e.plan)?won(l.qty*l.d*e.plan*l.share)+'원':'—'}</td></tr>`).join('');
+    return `<tr class="sub"><td>${esc(c)}</td><td class="n">${ls.length}종 중 ${up}종 인상</td><td></td><td></td><td></td><td class="n">${f0(o)}</td><td class="n">${f0(n)}</td><td class="n ${n>o?'up':''}">${f0(n-o)}</td><td></td><td class="n">${ok(e.plan)?won(ls.reduce((s,l)=>s+(l.miss?0:l.qty*l.d*l.share),0)*e.plan)+'원':'—'}</td><td></td></tr>`+
+      ls.sort((a,b)=>(b.qty*(b.d||0))-(a.qty*(a.d||0))).map(l=>`<tr><td><b>${esc(l.k)}</b><small>${esc(l.matName||'')}</small></td><td class="n">${f1(l.qty)} ${esc(l.unit||'')}</td><td class="n">${f1(l.o)}</td><td class="n"><input class="nw" inputmode="decimal" data-lnew="${l.bi}" value="${ok(l.n)&&l.n!==l.o?l.n:''}" placeholder="${ok(l.o)?f1(l.o):'입력'}"></td>
+        <td class="n ${l.up?'up':l.down?'down':''}">${l.miss?'<span class="tag miss">단가·소요량 없음</span>':pc(l.n/l.o-1)}<small>${esc(l.src)}</small></td><td class="n">${f0(l.qty*l.o)}</td><td class="n">${f0(l.qty*l.n)}</td><td class="n ${l.up?'up':''}">${l.miss?'—':f0(l.qty*l.d)}</td><td class="n"><input class="ym" type="text" inputmode="decimal" placeholder="연간 전체" data-leff="${l.bi}" value="${esc(l.eff)}"></td><td class="n">${!l.miss&&ok(e.plan)?won(l.qty*l.d*e.plan*l.share)+'원':'—'}</td><td><button class="x" type="button" data-del="${l.bi}" title="이 줄 삭제" aria-label="이 줄 삭제">✕</button></td></tr>`).join('');
   }).join('');
   box.innerHTML=`<h3>${esc(e.eq)} ${esc(e.name)} · BOM 상세 <button class="btn" type="button" data-a="close" style="padding:2px 10px;font-size:12px;margin-left:6px">닫기</button></h3>
-  <p class="eq-note">BOM ${e.lines.length}종 중 <b class="up">${e.up}종 인상</b> → 장비 1대 <b>${f0(e.old)}원 → ${f0(e.now)}원 (${f0(e.delta)}원, ${pc(e.pct)})</b>${ok(e.plan)?` · 연 ${f0(e.plan)}대 생산 시 <b class="up">${won(e.annual)}원</b>${Math.round(e.annual)!==Math.round(e.annualFull)?` (적용 시점 반영, 연간 전체 적용 시 ${won(e.annualFull)}원)`:''}`:' · 생산계획을 넣으면 연간 영향액이 계산됩니다'}</p>
-  <div class="eq-wrap"><table class="eq-t"><thead><tr><th>분류 / 자재</th><th>소요량</th><th>기존 단가</th><th>신규 단가</th><th>인상률·단가 출처</th><th>기존 금액/대</th><th>신규 금액/대</th><th>상승액/대</th><th>적용 시점</th><th>연간 영향</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  <p class="eq-note">신규 단가·적용 시점 칸은 바로 고칠 수 있어요(Enter 또는 칸 밖 클릭).</p><p class="eq-note">BOM ${e.lines.length}종 중 <b class="up">${e.up}종 인상</b> → 장비 1대 <b>${f0(e.old)}원 → ${f0(e.now)}원 (${f0(e.delta)}원, ${pc(e.pct)})</b>${ok(e.plan)?` · 연 ${f0(e.plan)}대 생산 시 <b class="up">${won(e.annual)}원</b>${Math.round(e.annual)!==Math.round(e.annualFull)?` (적용 시점 반영, 연간 전체 적용 시 ${won(e.annualFull)}원)`:''}`:' · 생산계획을 넣으면 연간 영향액이 계산됩니다'}</p>
+  <div class="eq-wrap"><table class="eq-t"><thead><tr><th>분류 / 자재</th><th>소요량</th><th>기존 단가</th><th>신규 단가</th><th>인상률·단가 출처</th><th>기존 금액/대</th><th>신규 금액/대</th><th>상승액/대</th><th>적용 시점</th><th>연간 영향</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 pane.addEventListener('click',e=>{
   if(e.target.closest('input')) return;
   const tr=e.target.closest('#eq-body tr[data-e]'); if(tr){ sel=tr.dataset.e===sel?'':tr.dataset.e; render(); if(sel) $e('#eq-det').scrollIntoView({behavior:'smooth',block:'start'}); return; }
   const a=e.target.dataset.a;
+  if(e.target.dataset.del!==undefined){ const i=+e.target.dataset.del, b=S.bom[i]; if(b&&window.confirm(`${b.eq} · ${b.mat} 줄을 삭제할까요?`)){ S.bom.splice(i,1); save(); render(); } return; }
+  if(a==='add') addManual();
+  if(a==='addclr') pane.querySelectorAll('#eq-add input').forEach(i=>i.value='');
   if(a==='close'){ sel=''; render(); }
   if(a==='tpl') template();
   if(a==='out') exportOut();
@@ -174,14 +204,40 @@ pane.addEventListener('click',e=>{
 });
 pane.addEventListener('change',e=>{
   if(e.target.dataset.plan!==undefined){ const v=num(e.target.value); if(ok(v)) S.plan[e.target.dataset.plan]=v; else delete S.plan[e.target.dataset.plan]; save(); render(); }
+  if(e.target.dataset.leff!==undefined){ const b=S.bom[+e.target.dataset.leff], v=e.target.value.trim(), ym=ymOf(v); if(!b) return;
+    if(v&&!ym){ $e('#eq-msg').textContent='적용 시점은 YYYY.MM 형식으로 넣어 주세요. 예) 2026.11'; render(); return; }
+    b.eff=ym; if(!ym){ delete S.eff[key(b.mat)]; if(S.price[key(b.mat)]) delete S.price[key(b.mat)].eff; } save(); render(); return; }
+  if(e.target.dataset.lnew!==undefined){ const b=S.bom[+e.target.dataset.lnew], v=num(e.target.value); if(!b) return;
+    if(ok(v)) b.new=v; else { b.new=''; const P=S.price[key(b.mat)]; if(P&&e.target.value.trim()==='') P.n=P.o; } save(); render(); return; }
   if(e.target.dataset.eff!==undefined){ const k=e.target.dataset.eff, v=e.target.value.trim(), ym=ymOf(v);
     if(v&&!ym){ $e('#eq-msg').textContent='적용 시점은 YYYY.MM 형식으로 넣어 주세요. 예) 2026.11'; e.target.value=S.eff[k]||''; return; }
-    if(ym) S.eff[k]=ym; else { delete S.eff[k]; if(S.price[k]) delete S.price[k].eff; } save(); render(); }
+    if(ym) S.eff[k]=ym; else { delete S.eff[k]; if(S.price[k]) delete S.price[k].eff; } S.bom.forEach(b=>{ if(key(b.mat)===k) b.eff=''; }); save(); render(); }
   if(e.target.dataset.a==='yr'){ const y=num(e.target.value); if(ok(y)&&y>1990&&y<2100){ S.year=y; save(); } e.target.value=S.year; render(); }
   if(e.target.dataset.a==='rv'){ S.useReview=e.target.checked; save(); render(); }
   if(e.target.dataset.a==='up'){ const f=e.target.files?.[0]; if(f) upload(f); e.target.value=''; }
 });
 $e('#eq-q').addEventListener('input',e=>{ q=e.target.value.trim().toLowerCase(); render(); });
+
+/* 직접 입력 */
+function addManual(){
+  const F={}; pane.querySelectorAll('#eq-add input').forEach(i=>F[i.name]=i.value.trim());
+  const m=$e('#eq-addmsg'), eq=key(F.eq), mat=key(F.mat), qty=num(F.qty), o=num(F.old), n=num(F.new), ym=ymOf(F.eff), plan=num(F.plan);
+  if(!eq||!mat) return m.textContent='장비코드와 자재코드를 넣어 주세요.';
+  if(!ok(qty)||qty<=0) return m.textContent='소요량을 숫자로 넣어 주세요.';
+  if(!ok(o)) return m.textContent='기존 단가를 숫자로 넣어 주세요.';
+  if(F.new&&!ok(n)) return m.textContent='신규 단가는 숫자로 넣어 주세요.';
+  if(F.eff&&!ym) return m.textContent='적용 시점은 YYYY.MM 형식으로 넣어 주세요. 예) 2026.11';
+  const prev=S.bom.find(b=>b.eq===eq&&key(b.mat)===mat), eqName=F.eqName||(S.bom.find(b=>b.eq===eq)?.eqName)||'';
+  const row={eq, eqName, mat, matName:F.matName||prev?.matName||'', cat:F.cat||prev?.cat||'', qty, unit:prev?.unit||'EA', old:o, new:ok(n)?n:'', eff:ym};
+  if(prev) Object.assign(prev,row); else S.bom.push(row);
+  if(F.eqName) S.bom.forEach(b=>{ if(b.eq===eq) b.eqName=F.eqName; });
+  if(ok(plan)) S.plan[eq]=plan;
+  save(); render();
+  m.textContent=`${prev?'고침':'추가'}: ${eq} · ${mat}${ok(n)&&n!==o?` (${f0(o)} → ${f0(n)}원${ym?`, ${ym} 적용`:''})`:''}`;
+  ['mat','matName','cat','qty','old','new','eff'].forEach(k=>{ const i=pane.querySelector(`#eq-add input[name="${k}"]`); if(i) i.value=''; });
+  pane.querySelector('#eq-add input[name="mat"]').focus();
+}
+pane.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.closest('#eq-add')){ e.preventDefault(); addManual(); } });
 
 /* 엑셀 */
 const N=h=>String(h??'').replace(/[\s()\/·_\-:.]/g,'').toLowerCase();
