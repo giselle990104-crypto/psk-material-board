@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T08:20+09:00",
+  "updatedAt": "2026-11-02T17:50+09:00",
   "timezone": "Asia/Seoul",
   "source": "Google News RSS",
   "status": "ok",
@@ -78,6 +78,13 @@
     {
       "date": "2026-10-30",
       "category": "철강",
+      "title": "Q4 2026 Metals Update - CME Group",
+      "source": "CME Group",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQd3lqeVRrNWJUTlk0eGJmSmhVcDNyQXRTZlRILVlyMkx3ZUdxSkJpdnV4X3Fsb1lPbmYzdzlSaThabEdpcmxzWE1QNUZONGRoM3NldjhzcXBQcHIwd0E2MnN5cVNTbjdJMVNuYk9BNVdNWjZScG54RFlscDBfWGVYZHhROA?oc=5"
+    },
+    {
+      "date": "2026-10-30",
+      "category": "철강",
       "title": "European hot-rolled coil prices move in opposite directions amid limited supply and weak demand - Металлургпром",
       "source": "Металлургпром",
       "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOa0VZd05xVkZLSmM0ZDNnSkY3OTk4V3l3N1pqSG9uQUdHT1FNS0pmdjFxZ191N25kX3d5V3JWUHdyRUNickpvaFota3dwNU4wdUdGU2I5NDVKMGxycm9xM1RMQ3dRNHNGYU1nT0FFa2pmRnhKMnNmN3JYV1hxVGI2UFhXVmNzUG5CMWpDMHRSTHR0dGtzbXZkZGY2Uks3aFZxZ3hiRjVqUFNjU2F5UEpESkZvOWVYb0twME80WndralhkWW1wa3lQWW9RNXF2OVdoX21OU3hvbjRUX0hlUjhlZNIB8gFBVV95cUxNUmlpeERxbjlBM1BydUJiMFNZZGN5LVVPNGR6VkptOF9ydTlZZklObnhVbDNUUUFqbHBfa1hwLWxmTlU4bEFGR1liRUNkbjlFX2x5TmhtOVU5a3AwNXk0S3UwZzN1LUEyQU9FWDNPQzh4YW5KSmZsaFR2OC1tTVpTQmh6ZHh6b1U5aXQzemhDMEpRT0ZvYnltenM1YzB1WUttSk5tazF5c2p0V2V4VGN0bFRRODl0VnBCdlNmV2xTMjZUcWN2SzItcFNrbHd6NDljcFp4STgycU9pYjNycUpOZWxob2tSUXRjS2hmNDltYURndw?oc=5"
@@ -88,13 +95,6 @@
       "title": "Korean Won: Crédit Agricole Sees USD/KRW At 1,270 In 2027 - Exchange Rates UK",
       "source": "Exchange Rates UK",
       "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOcFBnTlZRaFRJanhRLXU2Y212ZE5kYlZiNUNicHlVWUpUVUx0eUt4a25vclFaNGxoVzVuTFBNTWlhMkhvWFExMndxWndkRTBkSUpYbGdpeWZSWWQxS3JaV0dxalctZWRtV2ZQRk82TEdEbUxZYy1vYmtDWm4wVVhTUHlSN1IzdlhZc1VGbFlIRUgxYnhyVlcydnpaOTNKdXA2Q2Z3WDRsUlpfa2ZRWk1OQ3BoTFZwSGc?oc=5"
-    },
-    {
-      "date": "2026-10-30",
-      "category": "철강",
-      "title": "Q4 2026 Metals Update - CME Group",
-      "source": "CME Group",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQd3lqeVRrNWJUTlk0eGJmSmhVcDNyQXRTZlRILVlyMkx3ZUdxSkJpdnV4X3Fsb1lPbmYzdzlSaThabEdpcmxzWE1QNUZONGRoM3NldjhzcXBQcHIwd0E2MnN5cVNTbjdJMVNuYk9BNVdNWjZScG54RFlscDBfWGVYZHhROA?oc=5"
     },
     {
       "date": "2026-10-30",
@@ -112,10 +112,17 @@
     },
     {
       "date": "2026-10-29",
+      "category": "구리",
+      "title": "Copper’s AI-fuelled boom gets a reality check - Financial Times",
+      "source": "Financial Times",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQbW5PUDVDbjZlV3Nnb1o4Z0xhM0pPMTlOZndIYkU1TlFXX3VSajZOSk9PT1prSkVlbmtwOVQ0ZHNmWTdlTUxSMVhxQjlXOVJRbHprQ0huTFFual9jREhjQWwyTHYzMVI0SUpvWnA5MjhmdGxQMV9DRWJVYXExYVpRamcwelk?oc=5"
+    },
+    {
+      "date": "2026-10-29",
       "category": "철강",
-      "title": "Nucor raises weekly HRC spot prices amid supply constraints - Yieh Corp.",
-      "source": "Yieh Corp.",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNaF8wT09UUlYtSDI1TVUzZVl1dVBUamVGMUdpdlhpTDlzeEZ4ajNmcmFGQ1MyLWNLeFRwMktOMV9WdDRJUmJpNUdXcU5nUkR1eElfQTBvb0Y2LVFSWEVUNVBsWUR1OFFFd1NwWk96LVB3ZFZlVmRCTW5SeUc3em5fWWtfZnVxZ2ZzQ3hTWVM5ZkZtVThaY1E?oc=5"
+      "title": "European HRC Mills Defend Price Hikes Despite Weak Demand - News and Statistics - IndexBox",
+      "source": "IndexBox",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOYTVVTGQtTWtsWTlMXzVhNHM0N1FwczNXS3MzeHc1UHI1S0k2OW1lSkw1ODd6Z1B6cFViVVVrUmNkWjlIQkxSZWdCYjAxOHVrMU8yLXFWQmJseFB2N202NkJvdkJxcjFfRGZ4WmllSF9MYjJhak0wVGxuTXBDeVpYRHQybDVVRXFhb0ZmZVp1dV9TUlVuU19r?oc=5"
     },
     {
       "date": "2026-10-29",
@@ -169,9 +176,9 @@
     {
       "date": "2026-10-29",
       "category": "철강",
-      "title": "European HRC Mills Defend Price Hikes Despite Weak Demand - News and Statistics - IndexBox",
-      "source": "IndexBox",
-      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOYTVVTGQtTWtsWTlMXzVhNHM0N1FwczNXS3MzeHc1UHI1S0k2OW1lSkw1ODd6Z1B6cFViVVVrUmNkWjlIQkxSZWdCYjAxOHVrMU8yLXFWQmJseFB2N202NkJvdkJxcjFfRGZ4WmllSF9MYjJhak0wVGxuTXBDeVpYRHQybDVVRXFhb0ZmZVp1dV9TUlVuU19r?oc=5"
+      "title": "Nucor raises weekly HRC spot prices amid supply constraints - Yieh Corp.",
+      "source": "Yieh Corp.",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNaF8wT09UUlYtSDI1TVUzZVl1dVBUamVGMUdpdlhpTDlzeEZ4ajNmcmFGQ1MyLWNLeFRwMktOMV9WdDRJUmJpNUdXcU5nUkR1eElfQTBvb0Y2LVFSWEVUNVBsWUR1OFFFd1NwWk96LVB3ZFZlVmRCTW5SeUc3em5fWWtfZnVxZ2ZzQ3hTWVM5ZkZtVThaY1E?oc=5"
     },
     {
       "date": "2026-10-29",
@@ -253,9 +260,9 @@
     {
       "date": "2026-10-27",
       "category": "알루미늄",
-      "title": "50% US Aluminum Tariff Risks Backfiring as Canada Turns to Europe - Crux Investor",
-      "source": "Crux Investor",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxObW9CdDNKMEZxYkNFXzAwRjFNUXRrYXlkWHdHUU5nc3JtZ1haeFRCM1V1SjJrRXN2VVdxRWJlS0FWTl9hWWg5UDc5cDV6cVBkQ19wOS0wOUNuOUt1Ti1jSHlWRVQ5c2prU1FxcmlMekZRdUFEY1N5ZE5fbHhUSlJPSVEtVmdIRmdocTI4X1NKeUU1aFdTQnVFc2tURExETFpS?oc=5"
+      "title": "America Needs Canada’s Aluminum. Trump’s Tariff Exposed Just How Badly. - WSJ",
+      "source": "WSJ",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5jbzVnMndsNlQxclpucDhubXk1UlpfVVNoc2s0RVUtbS0ycmw4bURxZ25DV2lSZ01iUVVxOEVwc09GTVpLM3JOa2prei1vWS13aXhkWTFwb1JzNnpUS0NxZjJTLU83LTQzd3FqN2FteXdsbmtI?oc=5"
     },
     {
       "date": "2026-10-27",
@@ -263,6 +270,13 @@
       "title": "Nucor Profit Beats Estimates as Higher Steel Prices Lift Results - Bloomberg.com",
       "source": "Bloomberg.com",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQQzNpQ0NmYkNLOUdmc3JpTzBqQ0JuRS1GUzAxMjhlWnpmSVdnMFBqbG13NWRicWRveVcxZzVERmlHMHZ6Q1VBX1MyajdWazBLSE91bDczeDA4ZTBqS1ZJZjA0eXhNRERQOUZfNWFJZ21KS3pSYkNDeWRSRm9reV9oaU0wZFQ3aWhGZmdVLVlpQnlDb3lNdkZTWmFnUGttZGdUNFdsd01hdnk2TFFBOFR4ZzdQaXcwZw?oc=5"
+    },
+    {
+      "date": "2026-10-27",
+      "category": "알루미늄",
+      "title": "50% US Aluminum Tariff Risks Backfiring as Canada Turns to Europe - Crux Investor",
+      "source": "Crux Investor",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxObW9CdDNKMEZxYkNFXzAwRjFNUXRrYXlkWHdHUU5nc3JtZ1haeFRCM1V1SjJrRXN2VVdxRWJlS0FWTl9hWWg5UDc5cDV6cVBkQ19wOS0wOUNuOUt1Ti1jSHlWRVQ5c2prU1FxcmlMekZRdUFEY1N5ZE5fbHhUSlJPSVEtVmdIRmdocTI4X1NKeUU1aFdTQnVFc2tURExETFpS?oc=5"
     },
     {
       "date": "2026-10-27",
@@ -315,6 +329,13 @@
     },
     {
       "date": "2026-10-26",
+      "category": "반도체",
+      "title": "Hidden semiconductor supply chain risks are starting to emerge - Sourceability",
+      "source": "Sourceability",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNWGRraUtQV2xhOWNnb1hmWGlsUWZFalVKZlJTbVBwS24yam9rd3dhWWZ5RFhfZmw0SFlvMlZmMXo4QzRPYWFHRDZaNjdNTnYzY2hURHBMN1NSWmVSVHNfZEdVcllsd2NKalgwbzJYUmpndERPaGFDaUJHampFdHVLazREM3lYSU5VWEgwMHhFX0cxUDVVUGRpbg?oc=5"
+    },
+    {
+      "date": "2026-10-26",
       "category": "구리",
       "title": "COMMENTARY: Quantum copper steals the show at LME Week - Reuters",
       "source": "Reuters",
@@ -333,13 +354,6 @@
       "title": "South Korea's Won Nominal Effective Exchange Rate Hits 94.83, Two-Year High as USD-KRW Enters 1,310 Range - BigGo Finance",
       "source": "BigGo Finance",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBzVHBYVUlWc3M4SUdLTTJaaFZ1N3pKZnRrZjB3SWlfZ0w1Z3dHNHMxUzh5WXNoaEJRUUh1cXl0YWRleC0tQTEzdGUxcF9oM25LRDY5eThkNDVEelZJN3ZjMW5XRDFtekxiSjhxWDJCT3FMeGtWbEE?oc=5"
-    },
-    {
-      "date": "2026-10-26",
-      "category": "반도체",
-      "title": "Hidden semiconductor supply chain risks are starting to emerge - Sourceability",
-      "source": "Sourceability",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNWGRraUtQV2xhOWNnb1hmWGlsUWZFalVKZlJTbVBwS24yam9rd3dhWWZ5RFhfZmw0SFlvMlZmMXo4QzRPYWFHRDZaNjdNTnYzY2hURHBMN1NSWmVSVHNfZEdVcllsd2NKalgwbzJYUmpndERPaGFDaUJHampFdHVLazREM3lYSU5VWEgwMHhFX0cxUDVVUGRpbg?oc=5"
     },
     {
       "date": "2026-10-26",
@@ -838,7 +852,7 @@
       "headlines": [
         "Copper Prices in 2026: Will Mine Shortages Sustain the AI-Driven Rally? - CarbonCredits.com",
         "Copper Prices Today | Current Live Spot Price of Copper Per Pound - SD Bullion",
-        "Base metals outlooks diverge as supply concerns dominate: LME Week - Fastmarkets"
+        "Copper’s AI-fuelled boom gets a reality check - Financial Times"
       ]
     },
     {
@@ -861,8 +875,8 @@
       "category": "철강",
       "headlines": [
         "U.S. Midwest Domestic Hot-Rolled Coil Steel (CRU) Index Overview - CME Group",
-        "European hot-rolled coil prices move in opposite directions amid limited supply and weak demand - Металлургпром",
-        "Q4 2026 Metals Update - CME Group"
+        "Q4 2026 Metals Update - CME Group",
+        "European hot-rolled coil prices move in opposite directions amid limited supply and weak demand - Металлургпром"
       ]
     },
     {
