@@ -1143,7 +1143,7 @@ if(STANDALONE){
       updMsg('최신 시세를 가져오는 중… (보통 1~3분)',true);
       await sleep(4000);
       try{ const c=await rpc('board_update_result',{p_token:TOKEN,p_req:r.req}); if(c&&c.done&&c.status!==204){ updMsg(`업데이트를 시작하지 못했습니다 (GitHub ${c.status||c.error||'오류'}). 관리자에게 GitHub 토큰 확인을 요청해 주세요. 시세는 30분마다 자동으로도 업데이트됩니다.`); return; } }catch(e){}
-      for(let i=0;i<24;i++){ await sleep(10000); const j=await fetchSnap(); if(j&&j.prices&&j.prices.finishedAt&&j.prices.finishedAt!==before){ applySnap(j); updMsg(`업데이트 완료 · ${SNAP_AT} 기준 데이터`); return; } }
+      for(let i=0;i<24;i++){ await sleep(10000); const j=await fetchSnap(); if(j&&j.prices&&j.prices.finishedAt&&j.prices.finishedAt!==before){ applySnap(j); reloadData(); updMsg(`업데이트 완료 · ${SNAP_AT} 기준 데이터`); return; } }
       updMsg('업데이트가 조금 늦어지고 있습니다. 잠시 뒤 화면이 자동으로 새 데이터를 불러옵니다.');
     }catch(e){
       if(/not_configured|Could not find the function/.test(e?.code||'')){ reloadData(); updMsg(AUTO_NOTE+' 방금 최신 데이터를 다시 불러왔습니다.'); }
@@ -1283,7 +1283,9 @@ const tabs=$('trendTabs');
 function showTrend(k){
   curTrend=k;
   [...tabs.children].forEach(b=>b.setAttribute('aria-pressed', b.dataset.k===k));
-  if(!TREND[k].s.length){ $('trendChart').innerHTML='<p class="note" style="padding:40px 0;text-align:center">데이터를 불러오는 중입니다.</p>'; $('trendNote').textContent=TREND[k].note; return; }
+  if(!TREND[k].s.length){ const src=k==='s316'?'sus':['zn','pb','sn'].includes(k)?'lme':'data', fail=(window.LOAD_FAIL||{})[src];
+    $('trendChart').innerHTML=fail?`<p class="note" style="padding:40px 0;text-align:center">이 품목 자료(${src==='sus'?'sus316.json':src==='lme'?'lme_kna.json':'data.json'})를 불러오지 못했습니다. 인터넷 연결을 확인한 뒤 <button type="button" class="btn" onclick="reloadData();this.closest('p').textContent='다시 불러오는 중…'">다시 불러오기</button></p>`:'<p class="note" style="padding:40px 0;text-align:center">데이터를 불러오는 중입니다.</p>';
+    $('trendNote').textContent=TREND[k].note; return; }
   $('trendChart').innerHTML=trendHTML(k); $('trendNote').textContent=TREND[k].note;
   const t=TREND[k], pts=t.s.filter(inRange);
   const chg = pts.length>1 ? ((pts[pts.length-1].v/pts[0].v-1)*100) : null;
@@ -2142,9 +2144,12 @@ function applySnap(j){ if(!j) return; if(j.history) applyHistory(j.history); if(
   if(STANDALONE && $('barSt')){ $('barSt').textContent=`${SNAP_AT||''} 기준 데이터`; } }
 (function applySnapshot(){ try{ applySnap(JSON.parse(document.getElementById('snap').textContent||'{}')); }catch(e){ console.warn('snapshot',e); }
   reloadData(); if(STANDALONE) setInterval(reloadData, 10*60*1000); })();
-function reloadData(){ if(STANDALONE && location.protocol.startsWith('http')){ fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applySnap).catch(()=>{});
-  fetch('sus316.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applySus).catch(()=>{});
-  fetch('lme_kna.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applyLme).catch(()=>{}); } }
+/* 자료 파일 불러오기: 실패하면 2초·6초 뒤 다시 시도, 끝내 실패하면 화면에 "다시 불러오기" 표시 */
+window.LOAD_FAIL={};
+async function getJSON(name,tries=3){ for(let i=0;i<tries;i++){ try{ const r=await fetch(name+'?t='+Date.now(),{cache:'no-store'}); if(r.ok) return await r.json(); }catch(e){} if(i<tries-1) await new Promise(res=>setTimeout(res,i?6000:2000)); } throw Error(name); }
+function reloadData(){ if(STANDALONE && location.protocol.startsWith('http')){
+  [['data','data.json',applySnap],['sus','sus316.json',applySus],['lme','lme_kna.json',applyLme]].forEach(([id,f,fn])=>{
+    getJSON(f).then(j=>{ LOAD_FAIL[id]=false; fn(j); }).catch(()=>{ LOAD_FAIL[id]=true; try{ if(!TREND[curTrend].s.length) showTrend(curTrend); }catch(e){} }); }); } }
 function applyLme(j){ if(!j||!j.series) return; const S=j.series, mk=k=>S[k]?seriesFrom(S[k].avg, S[k].m0, v=>v, 'LME 공식가'):[];
   ['cu','ni','al'].forEach(k=>{ if(S[k]){ TREND[k].s2=mk(k); } });
   ['zn','pb','sn'].forEach(k=>{ if(S[k]) TREND[k].s=mk(k); });
