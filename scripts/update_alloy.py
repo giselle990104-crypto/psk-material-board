@@ -66,11 +66,29 @@ def investing_monthly(pid, conv=lambda v: v):
         time.sleep(0.5)
     return {k: conv(sum(v) / len(v)) for k, v in g.items()}
 
+def from_old(k):
+    """이전 alloy.json 값을 새 월 목록에 맞춰 옮김(없는 달은 직전 값)."""
+    e = old.get("elements", {}).get(k)
+    if not e or not old.get("months"): return None
+    mp = dict(zip(old["months"], e["usd"]))
+    vals = [mp.get(mm) for mm in months]
+    if sum(v is not None for v in vals) == 0: return None
+    first = next(v for v in vals if v is not None); last = first; filled = []
+    for v in vals:
+        last = v if v is not None else last; filled.append(last)
+    return {**e, "usd": filled, "src": e["src"].replace(" (이전 값 유지)", "") + " (이전 값 유지)"}
+def old_count(k):
+    e = old.get("elements", {}).get(k)
+    return sum(v is not None for v in e["usd"]) if e else 0
+
 out = {"day": now.strftime("%Y-%m-%d"), "updatedAt": now.strftime("%-m/%-d %H:%M"), "months": months, "unit": "USD/t (순원소 기준)", "elements": {}, "fx": []}
 for k, (nm, g, code, cr, mult, desc) in EL.items():
     try:
         data, info = komis(g, code, cr)
         vals = [round(data[mm] * mult, 2) if mm in data else None for mm in months]
+        n = sum(v is not None for v in vals)
+        if n == 0 or n < old_count(k) * 0.5:
+            raise ValueError(f"KOMIS 응답이 비었거나 부족함 ({n}개월)")
         # 앞쪽 빈 달은 첫 값으로 채움(망간 등), 중간 빈 달은 직전 값으로
         first = next((v for v in vals if v is not None), None); last = first; filled = []
         for v in vals:
@@ -80,7 +98,8 @@ for k, (nm, g, code, cr, mult, desc) in EL.items():
         print("ok", k, out["elements"][k]["from"], filled[-1])
     except Exception as e:
         print("ERR", k, repr(e), file=sys.stderr)
-        if old.get("elements", {}).get(k): out["elements"][k] = old["elements"][k]
+        kept = from_old(k)
+        if kept: out["elements"][k] = kept
 def sina_monthly(sym):
     url = "https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var%20_x=/InnerFuturesNewService.getDailyKLine"
     r = s.get(url, params={"symbol": sym}, headers={"Referer": "https://finance.sina.com.cn/"}, timeout=30)
@@ -104,7 +123,8 @@ try:
     print("ok fe", out["elements"]["fe"]["usd"][-1], "fx", out["fx"][-1])
 except Exception as e:
     print("ERR fe/fx", repr(e), file=sys.stderr)
-    if old.get("elements", {}).get("fe"): out["elements"]["fe"] = old["elements"]["fe"]
+    kept = from_old("fe")
+    if kept: out["elements"]["fe"] = kept
     if old.get("fx"): out["fx"] = old["fx"]
 # 환율이 아직 없는 마지막 달(월초 등)은 뺌
 while out["fx"] and out["fx"][-1] is None:

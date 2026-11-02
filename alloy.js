@@ -136,7 +136,7 @@ function render(){
     <div><small>5년 전 대비</small><b class="${(last?.[key]/y5?.[key]-1)>0?'up':'down'}">${pc(last?.[key]/y5?.[key]-1)}</b><small>${esc(y5?.m||'')} ${fmtV(y5?.[key])}</small></div>
     <div><small>기간 최고 / 최저</small><b>${fmtV(hi?.[key])}</b><small>${esc(hi?.m||'')} 최고 · ${esc(lo?.m||'')} 최저 ${fmtV(lo?.[key])}</small></div>`;
   const pts=vis.map(p=>({d:p.m+'-15', v:Math.round(key==='usd'?p.usd:p.krw*100)/(key==='usd'?1:100), n:`${curName} ${p.m.replace('-','.')} · $${f0(p.usd)}/t · ${f0(p.krw)}원/kg`}));
-  try{ $a('#al-chart').innerHTML = pts.length>1 && typeof lineChart==='function' ? lineChart(pts,{unit:key==='usd'?' $/t':' 원/kg', yFmt:v=>key==='usd'?f0(v):f0(v)}) : '<p class="al-note">데이터를 불러오는 중입니다.</p>'; }catch(e){ $a('#al-chart').textContent='차트를 그리지 못했습니다.'; }
+  try{ $a('#al-chart').innerHTML = pts.length>1 && typeof lineChart==='function' ? lineChart(pts,{unit:key==='usd'?' $/t':' 원/kg', yFmt:v=>key==='usd'?f0(v):f0(v)}) : `<p class="al-note">${typeof lineChart!=='function'?'데이터를 불러오는 중입니다.':'이 합금에 들어가는 원소 중 시세가 비어 있는 것이 있어 계산하지 못했습니다. 다음 자동 업데이트(하루 1회) 때 다시 채워집니다.'}</p>`; }catch(e){ $a('#al-chart').textContent='차트를 그리지 못했습니다.'; }
   $a('#al-cnote').textContent=`${f.names.join(' · ')} 원소 가치 월평균 (${unit==='usd'?'USD/t':'추정 원/kg, 각 달 환율 적용'}) · ${vis[0]?.m||''} ~ ${last?.m||''}`;
   /* 구성비 표 */
   const {pct,bal}=comp(f); const i=s.length-1;
