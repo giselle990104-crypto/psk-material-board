@@ -1,10 +1,31 @@
 {
-  "updatedAt": "2026-11-03T17:48+09:00",
+  "updatedAt": "2026-11-04T08:27+09:00",
   "timezone": "Asia/Seoul",
   "source": "Google News RSS",
   "status": "ok",
   "errors": [],
   "items": [
+    {
+      "date": "2026-11-04",
+      "category": "구리",
+      "title": "Copper Prices Today | Current Live Spot Price of Copper Per Pound - SD Bullion",
+      "source": "SD Bullion",
+      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1kOTlLN2J1VTU0RWJIVF9SWXV5U3I4bk1sOWNVUXg1X28tV2ZDNzNMU0hvRGltcEU0eTVyd2t5X3JlMEkxYWp1VFVR?oc=5"
+    },
+    {
+      "date": "2026-11-04",
+      "category": "반도체",
+      "title": "TechInsights Acquires IC Knowledge LLC - TechInsights",
+      "source": "TechInsights",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQS1FYeURrQWx1ay1aUXVtR1JIQWxvY1gyd1hXTXQyTEZLcm04VEVzWXRablNaWXBGRTdUdEFXdmhWYXlDMy1WdExBS1p5dGF2ajE1S1FMcjgzUUdIUXV2UG5WclRjRnVLNmd1cW5GQkNZd1ZwYU42OGN3MDgza3Uxc3V5aVUwTE1i?oc=5"
+    },
+    {
+      "date": "2026-11-04",
+      "category": "반도체",
+      "title": "BASF Invests In Semiconductor Supply for China’s Nanjing Hub - Manufacturing Digital",
+      "source": "Manufacturing Digital",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPM3pSWDdhWmdBUGh2aWlyOHplWjk2dWlfQ0h6VkdiN21WdUw2MW5BRGxzY3QxaWRYZ3pTNTgzelJQbzQyaC0zS1JxVXc0RXRnTVpxeWRlTVM1TEFGbzl0YUpBalp1STlOMGo1VGVZUF96SzRKNmk4eUxPQURSZi1WTjdKbEJYcHJzSUMycDhYQURDY2Q4OGlYQUNXc0NKYV9LTUQw?oc=5"
+    },
     {
       "date": "2026-11-03",
       "category": "니켈",
@@ -14,10 +35,31 @@
     },
     {
       "date": "2026-11-03",
+      "category": "니켈",
+      "title": "LME Week 2026: Fastmarkets Review - Fastmarkets",
+      "source": "Fastmarkets",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBWQlFFRDMtSHBDYXRIakZlWmZSRUNiTXUwSEdMTkwwYmZ0eVFEb2NVa25mX2cyQUtIcTRaV3M1M1R6V2Vhd1N1c2hzbTR1M0RKUDV1Skh0QjVxWEpLUGpCbmpJWTJ5YWVwd3hRLXpZc3QxSFZSenNHOVpn?oc=5"
+    },
+    {
+      "date": "2026-11-03",
+      "category": "알루미늄",
+      "title": "LME Aluminium Slips While Energy Costs and Smelter Margins Remain in Focus - kalkine.ca",
+      "source": "kalkine.ca",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOTy1zRjhjM2FLUGdPRnBESnh3bmdzNjZaWVpBTU9kdXdkbXp2dHFaei01cEZCX0RSSVdueE1BcHUzalFqdzRWR1lqY2NHYXhJYzZ6ZmgtUzBNY24zZFppLTZLYVM2SmhBNWVPSWZnQTVXSXRUekxTWnAxajhMM0lrTU9oWHZna0tJaVFxYVRsbWZCX1k0UjNySkJHMGROX1ExYXo4MGU1S1hFNEgtVjk5NQ?oc=5"
+    },
+    {
+      "date": "2026-11-03",
       "category": "철강",
       "title": "[SMM Steel] European HRC: Mills Probe Higher Target Prices, Supply Tightness Battles Downstream Slump - Shanghai Metals Market",
       "source": "Shanghai Metals Market",
       "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQTFd1cF9aSnRrOENhaFBub0xQNjd5Yk80VHVyZ0VsLUM2VVVCZll6dHROczRaOGNDbGhIcWRwUEwwTFlmZDU2Uy1HRFM2dkN5LU05eVlndDRyY1MxWDNpeVlrRjhYZW9HMUR5ZzFRX21fZTV6S0tTS1lnRnFvTG44R0ZZNGdKY1NsVTV2ek9RMGcwTTdUOVd0cDNPYm9FenR1S2t4MHJfWWkwSUFRRm5zbVNvdXBEbXptMUF1MVJ4LWY1M3JPXzY3aDF5VVJvOWYyTkNZM01QYjRRQkpZWXc?oc=5"
+    },
+    {
+      "date": "2026-11-03",
+      "category": "환율",
+      "title": "South Korean Won: Moderate appreciation with two-way risks – OCBC - FXStreet",
+      "source": "FXStreet",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNc2EwNlVXWmRQOUVNWGtHMzFoSjE0RXRoUVctNjlKakx6NkQ2VjcyQ045Y2dBRlBYQ0d0T0diSFlPdzlzVkRNaE9MUjZpcmZyT3FaN2NZWHgwQllDbHg1TnRyYWd5d1R3bVFvd3JnMG1Xb3NFVHE1Y0h6aVRyTDlxRHREZC1EanNmVHlzVm9qbVU3ZHAzSV93dlhsT2NiQ3dvRFN5aEZYZWs?oc=5"
     },
     {
       "date": "2026-11-03",
@@ -41,11 +83,25 @@
       "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxORlJqcmh2UFB4b2JfSXhESk5Ya0ttemxDa2R6VXVaRF9DWmFvVmNIeFFLdW40bnhzalRJWDNWNEgxOFUxVUVlMlAycXRKaWpqQ1UwQ2dEVTVIYkt6ZDFOTHFkVTVjdXdMSnl0Uk44N2RCSzA3aHFCVjhEMEVHYXQ1bWM2VDI3VDliUXpfU1cyMjU5aGhNX3FyQ0FsNDMxMjYxZFlxOVZsNHgzX1cwN0xEVFppUQ?oc=5"
     },
     {
+      "date": "2026-11-02",
+      "category": "환율",
+      "title": "South Korean Won Falls as Overseas Dollar Demand Persists - TradingView",
+      "source": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNVDZmb0ZNRWFMOWdTaUdoOTJpOWRqNnVQa2ExcGRIdHlld3lWZWFSbXg4elcyRXVSaGpSRUxyRDhucC1wdEI4ZUxqZ0N3WkwtYXgwejFyUXNRcl9fNHN2OVU1OFFaaDRLdG16Zm1UQ3pPQUVabXZ6eGw5RTBnNkVYcHg3T01JTG40Z2VUdHg5QXp3cUV6UHdLTUxrR0tEakljYlVWQmFaR0I5MkIt?oc=5"
+    },
+    {
       "date": "2026-11-01",
-      "category": "반도체",
-      "title": "Globalization Is Not Ending. The Rules Are Changing... - semivision",
-      "source": "semivision",
-      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPV0JBV0hjNEZHMmFOWnloTWNWOVgzelVvRVNJVS1TOW9ldkJyY2U3bEVXRFBNTlBXNXdkb2F2b3VJbHVDR1ZHaUhvZHBMNDdhOEEzRWFMeEk0aFJjenItSy1yOGtXRkRLUDY0cWxoMlFfQ0kwb2tVeHg2aXZHWHdsTUtDa3Y?oc=5"
+      "category": "알루미늄",
+      "title": "Carbon Anodes Market To 2035: Aluminum Smelting Demand Supports Forward Growth - News and Statistics - IndexBox",
+      "source": "IndexBox",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPZ0xtdl9DY0xCaDM5WGhWcEVQUmNfby0tMDhtOEVXLWVjUTdvd05lenlmNDZSUWREMl9udExuc08wVlZ0NFljUVhVQUpNTTkyYXdDYWt1MXpzQXliMGlhSXdtTWh2UENYWkMtYUxtTVBpcTBWY0ZqQUdtdzNHakZCamhzeEhJOVNrT1NNNEdJZGcyQTlZN1o1QmdybjVjeGp6OWI1NXZGeVpsNGRBUjFLUEcwc1RpWFpXR0Q0UTBNcw?oc=5"
+    },
+    {
+      "date": "2026-11-01",
+      "category": "환율",
+      "title": "APR Q3 2026 slides: record revenue hit amid FX margin pressure - Investing.com",
+      "source": "Investing.com",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPOVRvbnZPQWh3NmhCSEZwdHU0QkxrUV85RVBwblFYTUExckVRYXdYMUFIX2VrYU9CZU9iX0x2cHV3RGh6bWlqb241UFo5ZHBTSGtjRGwxZzFLRV9KVklnT3o0a3RRZFRvcXdmNGJsUllsak1kZWZMTXZLSW16T0hjb01EY2RQcFZFanFzWHpZOHdUbkQ3QTBhNXNOVVFuZ3BXWDBqSlRLZTNZU2pGQWtBbFRkNHp3eXREM0E?oc=5"
     },
     {
       "date": "2026-11-01",
@@ -56,10 +112,24 @@
     },
     {
       "date": "2026-11-01",
-      "category": "알루미늄",
-      "title": "Carbon Anodes Market To 2035: Aluminum Smelting Demand Supports Forward Growth - News and Statistics - IndexBox",
-      "source": "IndexBox",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPZ0xtdl9DY0xCaDM5WGhWcEVQUmNfby0tMDhtOEVXLWVjUTdvd05lenlmNDZSUWREMl9udExuc08wVlZ0NFljUVhVQUpNTTkyYXdDYWt1MXpzQXliMGlhSXdtTWh2UENYWkMtYUxtTVBpcTBWY0ZqQUdtdzNHakZCamhzeEhJOVNrT1NNNEdJZGcyQTlZN1o1QmdybjVjeGp6OWI1NXZGeVpsNGRBUjFLUEcwc1RpWFpXR0Q0UTBNcw?oc=5"
+      "category": "반도체",
+      "title": "Intel EMIB Yield Challenges and CSP Capital Spending: Structural Shifts in the AI Advanced Packaging Supply Chain - semivision",
+      "source": "semivision",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQbWNUWjk5Z1FjMW55bTUyMFhZS3Y3XzFjbG05bVY2bHR1Wlh0c3lBTnJPWXd1NU45VVpIbzV6ZkVvVElRU3c3VHNzcko2VnRqZ2RpckFuTFJjRlRVQTkzRnpnTDF1X0JIV2Fta1pWSnhob0l5SnRxZ2NZaUpobFVSblNn?oc=5"
+    },
+    {
+      "date": "2026-11-01",
+      "category": "반도체",
+      "title": "Globalization Is Not Ending. The Rules Are Changing... - semivision",
+      "source": "semivision",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPV0JBV0hjNEZHMmFOWnloTWNWOVgzelVvRVNJVS1TOW9ldkJyY2U3bEVXRFBNTlBXNXdkb2F2b3VJbHVDR1ZHaUhvZHBMNDdhOEEzRWFMeEk0aFJjenItSy1yOGtXRkRLUDY0cWxoMlFfQ0kwb2tVeHg2aXZHWHdsTUtDa3Y?oc=5"
+    },
+    {
+      "date": "2026-10-31",
+      "category": "구리",
+      "title": "Copper price set for first monthly loss since June as AI spending worries weigh - Kitco",
+      "source": "Kitco",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOSGF3UFNaeGM0UEtsN3NzYTFTQUQyb2JRZVBpZkNmRFozYllkQWFsLXhWRnBwQzRrN29mbHpnQ1czV0F3NlBZUTJYLVR1bGJZMjVUSV96MzRrbTJQVGQwd1I1V2gxazlPbHhqQ0paR21zX3JJaU5kSzVnREpGMnVkZGxqRUp3TTVVc1ZWeGRuRk9yTWNNVHRiTkJWYnRwWm1BMzNjRTVWdlhpSG1TdC12aTVLenZTeHlj?oc=5"
     },
     {
       "date": "2026-10-31",
@@ -112,13 +182,6 @@
     },
     {
       "date": "2026-10-30",
-      "category": "알루미늄",
-      "title": "Securing an American Aluminum Supply Chain: Why Downstream Tariff Coverage Is Essential - Coalition For A Prosperous America",
-      "source": "Coalition For A Prosperous America",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOaEZFMHd6ekxxV0x0Q05KMW0zR19QV251QW9GTTZscDBnYjZnZ05ERTA4RGpRUGd1bTlmLUx5YktEWGtvQzFOWF82X2pfdWFSckJvSWpWR2xTdUpUQjUtekRtdy1VbHM0eEtuMVFwT0Y1MmxDQmFVb2lxbUNhUlZKRlBfYW55WUNpQmpoODJLb21Ud2M0aFVWR0J4T1hHZ2VXNTNibWJ0TWVjRGF6bXZwREdUX2t1OHha?oc=5"
-    },
-    {
-      "date": "2026-10-30",
       "category": "철강",
       "title": "Q4 2026 Metals Update - CME Group",
       "source": "CME Group",
@@ -140,6 +203,13 @@
     },
     {
       "date": "2026-10-30",
+      "category": "알루미늄",
+      "title": "Securing an American Aluminum Supply Chain: Why Downstream Tariff Coverage Is Essential - Coalition For A Prosperous America",
+      "source": "Coalition For A Prosperous America",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOaEZFMHd6ekxxV0x0Q05KMW0zR19QV251QW9GTTZscDBnYjZnZ05ERTA4RGpRUGd1bTlmLUx5YktEWGtvQzFOWF82X2pfdWFSckJvSWpWR2xTdUpUQjUtekRtdy1VbHM0eEtuMVFwT0Y1MmxDQmFVb2lxbUNhUlZKRlBfYW55WUNpQmpoODJLb21Ud2M0aFVWR0J4T1hHZ2VXNTNibWJ0TWVjRGF6bXZwREdUX2t1OHha?oc=5"
+    },
+    {
+      "date": "2026-10-30",
       "category": "환율",
       "title": "South Korean Won: Equity strength fails to lift KRW against US Dollar – OCBC - FXStreet",
       "source": "FXStreet",
@@ -148,9 +218,9 @@
     {
       "date": "2026-10-29",
       "category": "구리",
-      "title": "Copper Prices Today | Current Live Spot Price of Copper Per Pound - SD Bullion",
-      "source": "SD Bullion",
-      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1kOTlLN2J1VTU0RWJIVF9SWXV5U3I4bk1sOWNVUXg1X28tV2ZDNzNMU0hvRGltcEU0eTVyd2t5X3JlMEkxYWp1VFVR?oc=5"
+      "title": "Copper’s AI-fuelled boom gets a reality check - Financial Times",
+      "source": "Financial Times",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQbW5PUDVDbjZlV3Nnb1o4Z0xhM0pPMTlOZndIYkU1TlFXX3VSajZOSk9PT1prSkVlbmtwOVQ0ZHNmWTdlTUxSMVhxQjlXOVJRbHprQ0huTFFual9jREhjQWwyTHYzMVI0SUpvWnA5MjhmdGxQMV9DRWJVYXExYVpRamcwelk?oc=5"
     },
     {
       "date": "2026-10-29",
@@ -158,13 +228,6 @@
       "title": "US copper stockpiles conceal growing global supply crunch - Mining.com",
       "source": "Mining.com",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPaHV3LThGSVpqMmM1NDBRbmV2OEdFZEFLaGxmaTdTSWl6Qy1TUHE5S1NvMzJzVmZidnJJdEQyNm1iSjRMdjNPam84N1hYY29jUE9rUkJjT19JREZKdlRIbUdEMlFHRVhRclJHNnR0WUNHejdGRDIwVnpwNXNPdEUwTW80d3lLRUlQ?oc=5"
-    },
-    {
-      "date": "2026-10-29",
-      "category": "구리",
-      "title": "Copper’s AI-fuelled boom gets a reality check - Financial Times",
-      "source": "Financial Times",
-      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQbW5PUDVDbjZlV3Nnb1o4Z0xhM0pPMTlOZndIYkU1TlFXX3VSajZOSk9PT1prSkVlbmtwOVQ0ZHNmWTdlTUxSMVhxQjlXOVJRbHprQ0huTFFual9jREhjQWwyTHYzMVI0SUpvWnA5MjhmdGxQMV9DRWJVYXExYVpRamcwelk?oc=5"
     },
     {
       "date": "2026-10-29",
@@ -193,13 +256,6 @@
       "title": "South Korean Won Recovers on Dollar Weakness - TradingView",
       "source": "TradingView",
       "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNSWNFWjVUelhjN2I3S1JzM1FSMV9YMmVhVDJRLV9FcVhyZl9tZ29iTmtYakhONHVWYTFMSHBIUG83MEx0SlVNNm9OcHIwcm9NRHhPYTFOcVNfX1RtMGNYTzlaMmhyVW9uNTlvODFZaWVjbkRsWV9Qa19DbU95aTRhRHpyR3FXclEta1dLQ1ZTMS0za2hEcFkwWThUUQ?oc=5"
-    },
-    {
-      "date": "2026-10-29",
-      "category": "반도체",
-      "title": "TechInsights Acquires IC Knowledge LLC - TechInsights",
-      "source": "TechInsights",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQS1FYeURrQWx1ay1aUXVtR1JIQWxvY1gyd1hXTXQyTEZLcm04VEVzWXRablNaWXBGRTdUdEFXdmhWYXlDMy1WdExBS1p5dGF2ajE1S1FMcjgzUUdIUXV2UG5WclRjRnVLNmd1cW5GQkNZd1ZwYU42OGN3MDgza3Uxc3V5aVUwTE1i?oc=5"
     },
     {
       "date": "2026-10-29",
@@ -256,6 +312,13 @@
       "title": "$4b Oklahoma aluminum smelter’s civil works penciled in for Q2 2027 as Inola ballot looms - AL Circle",
       "source": "AL Circle",
       "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNSzNjVm9ieGdzd0w5dzZrMlJqT1AzSFpSaWNjbkI5d2FYNUlmSUYyc2lvVUZ4bUJOemt2QWpyYzE5aVMxSF92VEhrN2FoZ09FRzN3Tm9XYUQ1NS1uazhZVDcxQkEtQmE0ZFhuVmdRMGhiN2JlTHRIU183S2hkWlNNMGZubm0yWUpWNXJ2bERqZDVJdnJnZ1RmRnlBVmRJcklIaUVUbV8tZThyaGktZUZMNldqYXVNblFFNFVyZW1GY1doZw?oc=5"
+    },
+    {
+      "date": "2026-10-28",
+      "category": "알루미늄",
+      "title": "Hydro reports record high aluminium production in Norway - Aluminium International Today",
+      "source": "Aluminium International Today",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQcXN0S2F4NlhDYXk1U1ZjTlFka2dDVHdDWGp0LTBNUVdaYTNlSHBHZGhKS09GdjJ5OWhsbW5BUWk2ZVp2YkZzWGgxRkZ4UmZsOXZzZkwwWEc1MXRkVHIxQUJ1MW5lQlJ0TjB3OVJLZVhEZE9JWUlCTzNmdWpCLTI2anJ5MVprbGZ0cXJNb3RxbVpEQQ?oc=5"
     },
     {
       "date": "2026-10-28",
@@ -920,25 +983,25 @@
     {
       "category": "구리",
       "headlines": [
-        "Copper Prices in 2026: Will Mine Shortages Sustain the AI-Driven Rally? - CarbonCredits.com",
         "Copper Prices Today | Current Live Spot Price of Copper Per Pound - SD Bullion",
-        "US copper stockpiles conceal growing global supply crunch - Mining.com"
+        "Copper price set for first monthly loss since June as AI spending worries weigh - Kitco",
+        "Copper Prices in 2026: Will Mine Shortages Sustain the AI-Driven Rally? - CarbonCredits.com"
       ]
     },
     {
       "category": "니켈",
       "headlines": [
         "Global nickel oversupply reaches 750,000 tons! Indonesia releases signal of further cuts to nickel ore quotas in 2027 - ChemNet News",
-        "LME nickel prices fall 3% w-o-w amid weak demand, uncertainty over Indonesian supply cuts - BigMint",
-        "Nickel Surplus Hangs on Jakarta’s 2027 Quota as Miners Seek Double the Cap - Crux Investor"
+        "LME Week 2026: Fastmarkets Review - Fastmarkets",
+        "LME nickel prices fall 3% w-o-w amid weak demand, uncertainty over Indonesian supply cuts - BigMint"
       ]
     },
     {
       "category": "알루미늄",
       "headlines": [
+        "LME Aluminium Slips While Energy Costs and Smelter Margins Remain in Focus - kalkine.ca",
         "U.S. Aluminum Output Lowest Since 1950 as Congress Weighs Options - Legis1",
-        "Carbon Anodes Market To 2035: Aluminum Smelting Demand Supports Forward Growth - News and Statistics - IndexBox",
-        "U.S. Aluminum Manufacturing: Industry Trends and Policy Options - EveryCRSReport.com"
+        "Carbon Anodes Market To 2035: Aluminum Smelting Demand Supports Forward Growth - News and Statistics - IndexBox"
       ]
     },
     {
@@ -960,17 +1023,17 @@
     {
       "category": "환율",
       "headlines": [
-        "Foreign investors dump semiconductor stocks: Approximately KRW 4 trillion worth of Samsung and SK Hynix shares sold off last week - Moomoo",
-        "Korean Won: Crédit Agricole Sees USD/KRW At 1,270 In 2027 - Exchange Rates UK",
-        "South Korean Won: Equity strength fails to lift KRW against US Dollar – OCBC - FXStreet"
+        "South Korean Won: Moderate appreciation with two-way risks – OCBC - FXStreet",
+        "South Korean Won Falls as Overseas Dollar Demand Persists - TradingView",
+        "APR Q3 2026 slides: record revenue hit amid FX margin pressure - Investing.com"
       ]
     },
     {
       "category": "반도체",
       "headlines": [
-        "Fusion Needs Semiconductors - Brownstone Research",
-        "Globalization Is Not Ending. The Rules Are Changing... - semivision",
-        "SK hynix hosts first Partners Day in Japan to strengthen chip supply chain - The Korea Herald"
+        "TechInsights Acquires IC Knowledge LLC - TechInsights",
+        "BASF Invests In Semiconductor Supply for China’s Nanjing Hub - Manufacturing Digital",
+        "Fusion Needs Semiconductors - Brownstone Research"
       ]
     }
   ],
