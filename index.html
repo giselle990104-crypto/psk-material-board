@@ -851,11 +851,11 @@ footer a{color:var(--ink-2)}
 })();
 
 </script>
-<script src="./alloy.js?v=20261104-1"></script>
-<script src="./costs.js?v=20261104-1"></script>
-<script src="./lab.js"></script>
-<script src="./lab-price-review.js?v=20261104-1"></script>
-<script src="./lab-equip.js?v=20261104-1"></script>
+<script src="./alloy.js?v=20261104-2"></script>
+<script src="./costs.js?v=20261104-2"></script>
+<script src="./lab.js?v=20261104-2"></script>
+<script src="./lab-price-review.js?v=20261104-2"></script>
+<script src="./lab-equip.js?v=20261104-2"></script>
 <script>
 const STANDALONE=!window.claude;
 let KRW = 1323.1;
@@ -878,7 +878,7 @@ function showPane(id){
   side.querySelectorAll('button[data-id]').forEach(b=>b.setAttribute('aria-selected', b.dataset.id===id));
   const i=SECS.findIndex(s=>s.id===id); $('headNo').textContent= id==='dashboard' ? 'Dashboard' : SECS[i].classList.contains('lab-pane') ? 'Lab' : String(i).padStart(2,'0'); $('headTitle').textContent=SECS[i].dataset.label; $('headDesc').textContent=SECS[i].dataset.desc||'';
   handle.setAttribute('aria-label',`섹션 메뉴 열기 (현재 ${SECS[i].dataset.label})`);
-  try{ localStorage.setItem('psk-mi-tab', id); }catch(e){}
+  try{ localStorage.setItem('mib-tab', id); }catch(e){}
 }
 document.getElementById('brandHome').addEventListener('click',()=>{showPane('dashboard');setDrawer(false);window.scrollTo({top:0,behavior:'smooth'});});
 function showRequest(){
@@ -896,7 +896,7 @@ side.addEventListener('keydown',e=>{
   e.preventDefault(); bs[(i+(e.key==='ArrowDown'?1:-1)+bs.length)%bs.length].focus();
 });
 document.addEventListener('click',e=>{ if(side.classList.contains('open') && !e.target.closest('#side,#tabHandle')) setDrawer(false); });
-(()=>{ const h=location.hash.slice(1); let t=null; try{ t=localStorage.getItem('psk-mi-tab'); }catch(e){}
+(()=>{ const h=location.hash.slice(1); let t=null; try{ t=localStorage.getItem('mib-tab'); }catch(e){}
   showPane(SECS.some(s=>s.id===h)?h:'dashboard'); })();
 
 /* ---------- 1. tiles ---------- */
@@ -1602,8 +1602,8 @@ function renderBP(sel){
     </article>`).join('');
 }
 $('bpSel').innerHTML = BP.map(b=>`<option value="${b.k}">${b.n}</option>`).join('') + '<option value="all">전체 보기</option>';
-$('bpSel').onchange=e=>{ renderBP(e.target.value); try{ localStorage.setItem('psk-mi-bp', e.target.value); }catch(_){} };
-(()=>{ let v='cu'; try{ v=localStorage.getItem('psk-mi-bp')||'cu'; }catch(e){} if(![...$('bpSel').options].some(o=>o.value===v)) v='cu'; $('bpSel').value=v; renderBP(v); })();
+$('bpSel').onchange=e=>{ renderBP(e.target.value); try{ localStorage.setItem('mib-bp', e.target.value); }catch(_){} };
+(()=>{ let v='cu'; try{ v=localStorage.getItem('mib-bp')||'cu'; }catch(e){} if(![...$('bpSel').options].some(o=>o.value===v)) v='cu'; $('bpSel').value=v; renderBP(v); })();
 
 /* ---------- PDF picker ---------- */
 const picker=$('picker'), status=$('pdfStatus');
@@ -1807,7 +1807,7 @@ $('makePdf').onclick=async()=>{
 };
 
 /* ---------- 로그인 · 계정 ---------- */
-const SKEY='psk-mi-session';
+const SKEY='mib-session';
 let ME=null, authDb=null, authUser=null, gateMode='login', IS_OWNER=false, PENDING=null;
 const enc=new TextEncoder();
 const hexOf=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
@@ -1836,7 +1836,7 @@ function setGateMode(m){
 function showGate(){ $('app').hidden=true; $('gate').hidden=false; closePops(); startGlobe(); setTimeout(()=>{ if(!$('gId').disabled) $('gId').focus(); },50); }
 function enterApp(){ $('gate').hidden=true; $('app').hidden=false; stopGlobe(); renderAcct(); }
 const SB_URL='https://bmheoocphdomdvhmskee.supabase.co', SB_KEY='sb_publishable_63Jy7CW2uHLy8vtdqX6k2w_4gh_tlv-';
-let TOKEN=null; const TKEY='psk-mi-token';
+let TOKEN=null; const TKEY='mib-token';
 const sbSaveToken=t=>{ try{ t?localStorage.setItem(TKEY,t):localStorage.removeItem(TKEY); }catch(e){} };
 const sbLoadToken=()=>{ try{ return localStorage.getItem(TKEY); }catch(e){ return null; } };
 async function rpc(fn,args){
@@ -2168,7 +2168,7 @@ initAuth();
 </script>
 
 <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
-<script src="./trend-export.js?v=20261104-1"></script>
-<script src="./news-filter.js?v=20261026-2"></script>
+<script src="./trend-export.js?v=20261104-2"></script>
+<script src="./news-filter.js?v=20261104-2"></script>
 </body>
 </html>

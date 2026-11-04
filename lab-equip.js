@@ -4,7 +4,7 @@
 (()=>{
 'use strict';
 const root=document.getElementById('panes'); if(!root||document.getElementById('lab-equip')) return;
-const LS='psk-equip-v1';
+const LS='mib-equip-v1';
 let S={bom:[],price:{},plan:{},eff:{},year:new Date().getFullYear(),useReview:true}, sel='', q='';
 try{ const x=JSON.parse(localStorage.getItem(LS)||'null'); if(x&&Array.isArray(x.bom)) S={...S,...x}; }catch(e){}
 if(!S.eff) S.eff={}; if(!S.year) S.year=new Date().getFullYear();
@@ -32,7 +32,7 @@ function ymOf(v){
 function shareOf(ym){ if(!ym) return 1; const [y,m]=ym.split('.').map(Number), Y=+S.year; if(y<Y) return 1; if(y>Y) return 0; return (13-m)/12; }
 
 /* 단가 인상 검토 목록(같은 브라우저)의 품목코드 → 기존/요청 단가 */
-function reviewPrices(){ try{ const r=JSON.parse(localStorage.getItem('psk-pr-v2')||'null'); const m={}; (r?.rows||[]).forEach(x=>{ const k=key(x.code); if(k&&ok(num(x.oldPrice))) m[k]={o:num(x.oldPrice), n:ok(num(x.newPrice))?num(x.newPrice):num(x.oldPrice), src:'단가 인상 검토'}; }); return m; }catch(e){ return {}; } }
+function reviewPrices(){ try{ const r=JSON.parse(localStorage.getItem('mib-pr-v2')||'null'); const m={}; (r?.rows||[]).forEach(x=>{ const k=key(x.code); if(k&&ok(num(x.oldPrice))) m[k]={o:num(x.oldPrice), n:ok(num(x.newPrice))?num(x.newPrice):num(x.oldPrice), src:'단가 인상 검토'}; }); return m; }catch(e){ return {}; } }
 
 /* 계산 */
 function calc(){
@@ -288,7 +288,7 @@ function exportOut(){
   const d=new Date(); XLSX.writeFile(wb,`장비별원가영향_${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}.xlsx`);
 }
 /* 다른 탭에서 단가 인상 검토 목록이 바뀌면 다시 계산 */
-window.addEventListener('storage',e=>{ if(e.key==='psk-pr-v2'&&S.useReview) render(); });
+window.addEventListener('storage',e=>{ if(e.key==='mib-pr-v2'&&S.useReview) render(); });
 document.addEventListener('click',e=>{ if(e.target.closest?.('#side button[data-id="lab-equip"]')) setTimeout(render,0); });
 render();
 })();

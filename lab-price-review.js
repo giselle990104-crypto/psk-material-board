@@ -25,7 +25,7 @@ const MATS=[
   {id:'custom', name:'직접 입력 (DB에 없음)', cur:'', unit:'', srcs:[]},
 ];
 /* 합금시세 탭의 합금(원소 구성비 GUESS × 원소 시세, 10년) */
-const AL=window.PSK_ALLOY;
+const AL=window.MIB_ALLOY;
 if(AL){ const at=MATS.length-1;
   MATS.splice(at,0,...AL.FAM.map(f=>({id:'x_'+f.id, name:'합금 · '+f.names.join(' / '), grp:'alloy', cur:'USD', unit:'$/t', srcs:[['alloy',f.id,v=>v,'합금시세(GUESS)']]}))); }
 const MAT=Object.fromEntries(MATS.map(m=>[m.id,m]));
@@ -42,7 +42,7 @@ if(AL) AL.FAM.forEach(f=>f.names.forEach(n=>{ ALIAS[nk(n)]='x_'+f.id; }));
 const CATS=[['raw','원재료비'],['labor','인건비(노무비)'],['proc','가공·외주비'],['surf','표면처리·세정'],['util','경비(전력·유틸리티)'],['pack','포장비'],['logi','운송·물류비'],['admin','일반관리비'],['profit','이윤'],['etc','기타']];
 /* 최저임금위원회 고시 시간급 */
 const MW={2018:7530,2019:8350,2020:8590,2021:8720,2022:9160,2023:9620,2024:9860,2025:10030,2026:10320,2027:10700};
-const LS='psk-pr-v2';
+const LS='mib-pr-v2';
 const DEF={tol:2, over:5, rawShare:40, laborShare:20};
 
 /* ---------- 상태 ---------- */
@@ -122,7 +122,7 @@ function matMove(r){
 }
 function laborMove(r){
   const o=num(r.laborPct); if(ok(o)) return {pct:o/100, src:'직접 입력'};
-  if(r.weld==='Y'){ const C=window.PSK_COSTS, A=C?.wageAt('weld',r.oldYm), B=C?.wageAt('weld',r.newYm);
+  if(r.weld==='Y'){ const C=window.MIB_COSTS, A=C?.wageAt('weld',r.oldYm), B=C?.wageAt('weld',r.newYm);
     if(A&&B) return {pct:B.v/A.v-1, src:`용접공 노임단가 ${dot(A.d)} ${A.v.toLocaleString('ko-KR')}원 → ${dot(B.d)} ${B.v.toLocaleString('ko-KR')}원`, weld:true};
     const ya=+String(r.oldYm).slice(0,4), yb=+String(r.newYm).slice(0,4);
     if(MW[ya]&&MW[yb]) return {pct:MW[yb]/MW[ya]-1, src:`용접공 노임단가는 2019.01부터 있어 최저임금 ${ya}→${yb}로 대신 계산`, weld:true};

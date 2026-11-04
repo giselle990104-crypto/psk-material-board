@@ -26,7 +26,7 @@ const WAGES=[
   pts:[['2020-11',23.00],['2021-01',23.14],['2022-01',23.27],['2023-01',24.00],['2024-01',24.32],['2025-01',24.48],['2026-01',24.59]], next:'2020.11 이전에는 최저임금 제도 없음'},
 ];
 /* 다른 화면(단가 인상 검토)에서 쓰도록 공개: 해당 월에 적용 중인 임금 */
-window.PSK_COSTS={WAGES, wageAt:(id,ym)=>{ const w=WAGES.find(x=>x.id===id); if(!w||!ym) return null; let v=null, d=null; for(const [m,x] of w.pts) if(m<=ym){ v=x; d=m; } return v==null?null:{v,d,unit:w.unit,name:w.name}; }};
+window.MIB_COSTS={WAGES, wageAt:(id,ym)=>{ const w=WAGES.find(x=>x.id===id); if(!w||!ym) return null; let v=null, d=null; for(const [m,x] of w.pts) if(m<=ym){ v=x; d=m; } return v==null?null:{v,d,unit:w.unit,name:w.name}; }};
 const KR_ELEC={2015:107.41,2016:107.11,2017:107.41,2018:106.46,2019:106.56,2020:107.35,2021:105.48,2022:118.66,2023:153.71,2024:168.17,2025:181.9};
 const KR_SMP={2016:76.91,2017:81.39,2018:94.64,2019:90.09,2020:68.52,2021:93.98,2022:196.04,2023:167.0,2024:128.33,2025:112.73};
 const CATS=[['labor','인건비'],['energy','에너지(전력)'],['logi','물류비'],['fuel','유류비']];

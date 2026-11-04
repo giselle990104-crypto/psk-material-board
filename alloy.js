@@ -22,7 +22,7 @@ const FAM=[
  {id:'in625', grp:'니켈합금', names:['INCONEL'], std:'GUESS: Inconel 625 · Ni ≥58, Cr 20–23, Mo 8–10, Nb 3.15–4.15, Fe ≤5', comp:{ni:'bal',cr:21.5,mo:9.0,nb:3.65,fe:4.0}, conf:'낮음', note:'Inconel 종류가 없어 625로 가정. 600(Ni72·Cr15.5·Fe8)·718(Ni52.5·Cr19·Fe18.5·Nb5.1·Mo3)이면 바꿔 주세요'},
  {id:'c276', grp:'니켈합금', names:['HASTELLOY C-276'], std:'Hastelloy C-276 · Mo 15–17, Cr 14.5–16.5, Fe 4–7, W 3–4.5, Co ≤2.5, Ni 잔부', comp:{ni:'bal',mo:16,cr:15.5,fe:5.5,w:3.75,co:1.25,mn:0.5}, conf:'중간', note:'공칭 범위의 중간값'},
 ];
-const LS='psk-alloy-comp-v1';
+const LS='mib-alloy-comp-v1';
 let custom={}; try{ custom=JSON.parse(localStorage.getItem(LS)||'{}')||{}; }catch(e){}
 const saveC=()=>{ try{ localStorage.setItem(LS,JSON.stringify(custom)); }catch(e){} };
 let D=null, cur='a6061', curName='AL6061', unit='usd', span=120;
@@ -178,5 +178,5 @@ function exportXls(){
 render();
 /* 다른 화면(단가 인상 검토)에서 같은 계산을 쓰도록 공개 */
 const ready=fetch('alloy.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{ if(j&&j.months){ D=j; render(); } else $a('#al-upd').textContent='합금 시세 데이터를 불러오지 못했습니다.'; return D; }).catch(()=>{ $a('#al-upd').textContent='합금 시세 데이터를 불러오지 못했습니다.'; return null; });
-window.PSK_ALLOY={FAM, comp, seriesOf, data:()=>D, ready};
+window.MIB_ALLOY={FAM, comp, seriesOf, data:()=>D, ready};
 })();
