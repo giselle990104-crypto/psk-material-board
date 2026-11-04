@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-04T17:46+09:00",
+  "updatedAt": "2026-11-05T08:28+09:00",
   "timezone": "Asia/Seoul",
   "source": "Google News RSS",
   "status": "ok",
@@ -22,9 +22,9 @@
     {
       "date": "2026-11-04",
       "category": "환율",
-      "title": "Won Slips to 1,344 Per Dollar as U.S. Midterm Uncertainty Lifts Safe-Haven Bid - BigGo Finance",
-      "source": "BigGo Finance",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9jZ1hhdnIxb2ZmUWdSTmVRd01LZUpWdnJ2QUFWeWNuUnk5Y0ZfYUh4XzQzbnZkQ3Z2YVRscnlaRWZoaDdBSURsZVE3c1hpQUpHUWxIRjc1T21qVW45RVFTQ1dYVktqa2RmTVRsMU53R2w3VFV6Mmc?oc=5"
+      "title": "USD/KRW (KRW=X) interactive chart - Yahoo Finance Singapore",
+      "source": "Yahoo Finance Singapore",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE44YVZpSVJaS3JsV0NGV3VQbUVMSkVNemJFNWpVdzBuUVJPdUwtVnRvTzAyQm1xazRMajk0MlB6bGdUUFQtY3JXMVBiQV9uMHlTemlxZGtrNXlkY2RVMmc?oc=5"
     },
     {
       "date": "2026-11-04",
@@ -41,6 +41,20 @@
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPM3pSWDdhWmdBUGh2aWlyOHplWjk2dWlfQ0h6VkdiN21WdUw2MW5BRGxzY3QxaWRYZ3pTNTgzelJQbzQyaC0zS1JxVXc0RXRnTVpxeWRlTVM1TEFGbzl0YUpBalp1STlOMGo1VGVZUF96SzRKNmk4eUxPQURSZi1WTjdKbEJYcHJzSUMycDhYQURDY2Q4OGlYQUNXc0NKYV9LTUQw?oc=5"
     },
     {
+      "date": "2026-11-04",
+      "category": "반도체",
+      "title": "The Section 48D Gravy Train Should End - The Unseen and The Unsaid",
+      "source": "The Unseen and The Unsaid",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBpcms3TXJYN1lFT3dDd0dyVjVhM0M5dWdKZHk1SnE0VHprMDRPVGhmQVZrVXRqenB3NWhzZ3YxVWxCU2hKV3pyTDR2bXE4bkN0MXR2c1Nsa0gxcGs2WWdWQnhQaWxUNldmQU82X2l0bzJXRUs0Z1hlbVRqZHFZZXc?oc=5"
+    },
+    {
+      "date": "2026-11-04",
+      "category": "환율",
+      "title": "Won Slips to 1,344 Per Dollar as U.S. Midterm Uncertainty Lifts Safe-Haven Bid - BigGo Finance",
+      "source": "BigGo Finance",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9jZ1hhdnIxb2ZmUWdSTmVRd01LZUpWdnJ2QUFWeWNuUnk5Y0ZfYUh4XzQzbnZkQ3Z2YVRscnlaRWZoaDdBSURsZVE3c1hpQUpHUWxIRjc1T21qVW45RVFTQ1dYVktqa2RmTVRsMU53R2w3VFV6Mmc?oc=5"
+    },
+    {
       "date": "2026-11-03",
       "category": "니켈",
       "title": "LME Week 2026: Fastmarkets Review - Fastmarkets",
@@ -50,16 +64,16 @@
     {
       "date": "2026-11-03",
       "category": "알루미늄",
-      "title": "The Aluminum Industry’s New Tariff Study Argues Against Itself - Cato Institute",
-      "source": "Cato Institute",
-      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQc21kTjJyR2xQeVpMTHJEcV9hbmlXOXFHZW9GeVhySnI4ZDBERTJSUGVTd3RDV3NuS3ZDUWlDZEVpWHBxT0h3YUh2YlFheGE2WlNyX2J1ZWV0WDN6Y0JqU3NuRlY2NXl3RWFRR3VlVGNNbjJQTGpCZlo0d3g5TWVwS0JGUUJjX1NST3pV?oc=5"
+      "title": "LME Aluminium Slips While Energy Costs and Smelter Margins Remain in Focus - kalkine.ca",
+      "source": "kalkine.ca",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOTy1zRjhjM2FLUGdPRnBESnh3bmdzNjZaWVpBTU9kdXdkbXp2dHFaei01cEZCX0RSSVdueE1BcHUzalFqdzRWR1lqY2NHYXhJYzZ6ZmgtUzBNY24zZFppLTZLYVM2SmhBNWVPSWZnQTVXSXRUekxTWnAxajhMM0lrTU9oWHZna0tJaVFxYVRsbWZCX1k0UjNySkJHMGROX1ExYXo4MGU1S1hFNEgtVjk5NQ?oc=5"
     },
     {
       "date": "2026-11-03",
       "category": "철강",
       "title": "[SMM Steel] European HRC: Mills Probe Higher Target Prices, Supply Tightness Battles Downstream Slump - Shanghai Metals Market",
       "source": "Shanghai Metals Market",
-      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQTFd1cF9aSnRrOENhaFBub0xQNjd5Yk80VHVyZ0VsLUM2VVVCZll6dHROczRaOGNDbGhIcWRwUEwwTFlmZDU2Uy1HRFM2dkN5LU05eVlndDRyY1MxWDNpeVlrRjhYZW9HMUR5ZzFRX21fZTV6S0tTS1lnRnFvTG44R0ZZNGdKY1NsVTV2ek9RMGcwTTdUOVd0cDNPYm9FenR1S2t4MHJfWWkwSUFRRm5zbVNvdXBEbXptMUF1MVJ4LWY1M3JPXzY3aDF5VVJvOWYyTkNZM01QYjRRQkpZWXc?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQREVkQ0ptZ2k5YWNzVDJZbk1sUXZYVFhGZUtnRk9Bd0RkWktyRmVtZnBTc1JZWWVhVVdHSnlsSVByUVJkRFNJdHVUWkRFWEVvelJMQ1VLdTVNT2kxWnY0MWZCWFcwY29jcnhCUEFscXFNNnNSTURiMGxjWTFkUVRES19lcUtSMnlGbWJScV9IVldrb0h6WjJLRE1yalcxbWhXWTZvTnQxY0pyQ2hNT0dIR1pRU0psV0xaRGQzVDdwVUIxN2lEMlA1dXl5YWxhZzRseVRoQ0g3Wng5dw?oc=5"
     },
     {
       "date": "2026-11-03",
@@ -70,17 +84,17 @@
     },
     {
       "date": "2026-11-03",
+      "category": "알루미늄",
+      "title": "The Aluminum Industry’s New Tariff Study Argues Against Itself - Cato Institute",
+      "source": "Cato Institute",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQc21kTjJyR2xQeVpMTHJEcV9hbmlXOXFHZW9GeVhySnI4ZDBERTJSUGVTd3RDV3NuS3ZDUWlDZEVpWHBxT0h3YUh2YlFheGE2WlNyX2J1ZWV0WDN6Y0JqU3NuRlY2NXl3RWFRR3VlVGNNbjJQTGpCZlo0d3g5TWVwS0JGUUJjX1NST3pV?oc=5"
+    },
+    {
+      "date": "2026-11-03",
       "category": "니켈",
       "title": "Global nickel oversupply reaches 750,000 tons! Indonesia releases signal of further cuts to nickel ore quotas in 2027 - ChemNet News",
       "source": "ChemNet News",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5sVFpIYlUtVVNhR29yMEhOVjhaVkFROUZSMG8taTQ2cDBBb0RMb3hoSnY3QnZVMGR0U0ZEWG80elpLVF9ISlZoeGhaRHpzTk5nOVE?oc=5"
-    },
-    {
-      "date": "2026-11-03",
-      "category": "알루미늄",
-      "title": "LME Aluminium Slips While Energy Costs and Smelter Margins Remain in Focus - kalkine.ca",
-      "source": "kalkine.ca",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOTy1zRjhjM2FLUGdPRnBESnh3bmdzNjZaWVpBTU9kdXdkbXp2dHFaei01cEZCX0RSSVdueE1BcHUzalFqdzRWR1lqY2NHYXhJYzZ6ZmgtUzBNY24zZFppLTZLYVM2SmhBNWVPSWZnQTVXSXRUekxTWnAxajhMM0lrTU9oWHZna0tJaVFxYVRsbWZCX1k0UjNySkJHMGROX1ExYXo4MGU1S1hFNEgtVjk5NQ?oc=5"
     },
     {
       "date": "2026-11-03",
@@ -119,17 +133,17 @@
     },
     {
       "date": "2026-11-02",
-      "category": "반도체",
-      "title": "China Offers 330,000 Square Meters to Attract Korean Semiconductor Suppliers - THE ELEC, Korea Electronics Industry Media",
-      "source": "THE ELEC, Korea Electronics Industry Media",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9QYTN2VV9rYVFVVXE4SUViVDRCWUtZN3dxeFZLNzAza0JtVHljaGZPcVBSUmltdzMyZXVOMDZqMFUzTlpVR0Q1TXFtVlc3WFFJV0hPcFp3NGQzNmljVlNvT1o2SHV3TGc?oc=5"
-    },
-    {
-      "date": "2026-11-02",
       "category": "환율",
       "title": "South Korean Won Falls as Overseas Dollar Demand Persists - TradingView",
       "source": "TradingView",
       "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNVDZmb0ZNRWFMOWdTaUdoOTJpOWRqNnVQa2ExcGRIdHlld3lWZWFSbXg4elcyRXVSaGpSRUxyRDhucC1wdEI4ZUxqZ0N3WkwtYXgwejFyUXNRcl9fNHN2OVU1OFFaaDRLdG16Zm1UQ3pPQUVabXZ6eGw5RTBnNkVYcHg3T01JTG40Z2VUdHg5QXp3cUV6UHdLTUxrR0tEakljYlVWQmFaR0I5MkIt?oc=5"
+    },
+    {
+      "date": "2026-11-02",
+      "category": "반도체",
+      "title": "China Offers 330,000 Square Meters to Attract Korean Semiconductor Suppliers - THE ELEC, Korea Electronics Industry Media",
+      "source": "THE ELEC, Korea Electronics Industry Media",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9QYTN2VV9rYVFVVXE4SUViVDRCWUtZN3dxeFZLNzAza0JtVHljaGZPcVBSUmltdzMyZXVOMDZqMFUzTlpVR0Q1TXFtVlc3WFFJV0hPcFp3NGQzNmljVlNvT1o2SHV3TGc?oc=5"
     },
     {
       "date": "2026-11-01",
@@ -168,6 +182,20 @@
     },
     {
       "date": "2026-10-31",
+      "category": "니켈",
+      "title": "LME nickel prices fall 3% w-o-w amid weak demand, uncertainty over Indonesian supply cuts - BigMint",
+      "source": "BigMint",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNUjBKUm1STXJBLUloOTZHT0pVWkU5ekhNMnpNbTVNTU9ZZkJNRVBDU2ExMGZ5NDZfcmRtQjNadFJWS2Z2Q0F0NGRGRWVyNjNtMUFfRFNUTGRWNENOdjV6SHJiOHZXUDgzRjF6NXVBTFRLUmk5ZXJnRnNwM281a2pDTl92ejlVdi1rLVZPM1pNS0JpM1hicjlUeDdaenRnQ2hOMmxVWUZCbzRnZGZSVEhkZ05pNkpMUXMtcGxZZnNLNGFLQ1lxcUVYNEkzZnVvQQ?oc=5"
+    },
+    {
+      "date": "2026-10-31",
+      "category": "알루미늄",
+      "title": "Aluminium bears may be getting it wrong as prices target $3,625 in 2027 - AL Circle",
+      "source": "AL Circle",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPYXpwenRrSUVNVFU2YkZDUmlnRm5XNTlyUmxTUUtYbkdDaXFPbjNURzk0M0xHMkJJNlFFMU5YMEx4R1A2d0ItYXVNR21DdF9GNW51V0c4UnFCMEhaRnQwNnlFQ1BkOFhEYm11cUlpSm5oeDBaYkYzRFlZRXR0Vkk3ZU5TUWg4cmlPT3VLVXlEeG1sYmg5bGsyY2JMNnB2NVBETjZ4R01RSm1uNnM?oc=5"
+    },
+    {
+      "date": "2026-10-31",
       "category": "구리",
       "title": "Copper price set for first monthly loss since June as AI spending worries weigh - Kitco",
       "source": "Kitco",
@@ -179,13 +207,6 @@
       "title": "Foreign investors dump semiconductor stocks: Approximately KRW 4 trillion worth of Samsung and SK Hynix shares sold off last week - Moomoo",
       "source": "Moomoo",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOMnVSNHVuNnUyWXMzNlpRUEJjVmpaVWRMZnRpaTYwY0RVMVNyNXo1dkJtOVZyNkxldU5xVEQ5TzdCQWw3UksyOHRkOGFialJyczJETzJmY0tZeXdDVFNLR1JVWmRIX1k3cS1WQmxneHVaSzZUbWhteXdVblJJalRFaTJ1S3lWTzNxOXVXSk5PUTZ0cFlNRnpsa2t2Q1hKdEJ3bEFLN3pvVGdzOXE0MHpmeFpWN1BYUURQR0tCNg?oc=5"
-    },
-    {
-      "date": "2026-10-31",
-      "category": "니켈",
-      "title": "LME nickel prices fall 3% w-o-w amid weak demand, uncertainty over Indonesian supply cuts - BigMint",
-      "source": "BigMint",
-      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNUjBKUm1STXJBLUloOTZHT0pVWkU5ekhNMnpNbTVNTU9ZZkJNRVBDU2ExMGZ5NDZfcmRtQjNadFJWS2Z2Q0F0NGRGRWVyNjNtMUFfRFNUTGRWNENOdjV6SHJiOHZXUDgzRjF6NXVBTFRLUmk5ZXJnRnNwM281a2pDTl92ejlVdi1rLVZPM1pNS0JpM1hicjlUeDdaenRnQ2hOMmxVWUZCbzRnZGZSVEhkZ05pNkpMUXMtcGxZZnNLNGFLQ1lxcUVYNEkzZnVvQQ?oc=5"
     },
     {
       "date": "2026-10-31",
@@ -280,6 +301,13 @@
     },
     {
       "date": "2026-10-29",
+      "category": "알루미늄",
+      "title": "Vedanta Aluminium more than doubles profit; cost cuts in focus to drive earnings - The Economic Times",
+      "source": "The Economic Times",
+      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNMy1vY01OcmZBSHZjbVlEdWRzdTBfRl9YZlZ1S3VyYXpPWFRlellGWUxMYUN2ZnZwSTY3aUlRV3VwM0JvN0hnQU1aZm0zNTJfMG1XcXFZamt6cUVDNUNIaWo1VTB5QUs1ZjhobW9kY2p4YUlWT2ZfT2tFMUxqN2xNX3FPMzdMVVJSaTlvZEFmb1BBUGEtYmZybU9xS1JQdldHRmtPTlpLdXk5VVJDMzJ5YUhCZVBGTi1VSEZMQzBfT3FjLW1LemVva2k0TVFNamU3Z0FhbmlLYWZCbGs4M0xmazE3ZklyQTI5b2JLbFpn0gHzAUFVX3lxTE1GYmR0eWNIMlhRaDVZbWctcHYyVmIyX25OWEhUX3pLQzVKNHdRN1hZVVhKaFItRDRGMVUxUDZLUDQ1RmxQQURCeFRTQTBvWlFZcUxuRXVZdDhUeG1DbWR0b0J2NndVZDY3clptNV9sSGxYRW1qTGQ1cFdueHJXZGs1ckpGNmhFOHpsbU1nQ1FVZmVZUk1BMTZYTk9hLUZISUIwaFRqZm93ejlScGh6WnhqM3F6dmtHeTYxQ1l0VC10V0cxeHZxT1FxTXczNFA5TEhkQ2Z5UzlZUGF5MzVVNDlUVXZ2UHZ5TUwxRWNwYVVQeTNLdw?oc=5"
+    },
+    {
+      "date": "2026-10-29",
       "category": "철강",
       "title": "European HRC Mills Defend Price Hikes Despite Weak Demand - News and Statistics - IndexBox",
       "source": "IndexBox",
@@ -298,6 +326,13 @@
       "title": "Dollar Deposits Hit Four-Year High in South Korea - 조선일보",
       "source": "조선일보",
       "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQcWFlVVdqMEowOFh1T3djSjh2b1pUa2VlckRjNmVva1ZLemxrY19nem9ocFlva0VSUk4tZFJYbkhNVzZxMDYzdnJ4bGhRMS1QTWliUEl5X3JKc0ZQU2syZFlHQUtDdzJFRWFPa0QzcGNQaXFoVkpzUDViRE53eDV1NE0tVmQyWldXWEVES3BR?oc=5"
+    },
+    {
+      "date": "2026-10-29",
+      "category": "반도체",
+      "title": "Top 3 AI Chip Stocks With P E Under 43 - Yahoo Finance",
+      "source": "Yahoo Finance",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQenlfY0RRT3B3Znd1VDBfLU05SEhQdDlKRjNHa19JQ3lndjZOZU9vVHhtTXlEdEpTanluNDBNU1plNDJvXzcwNmJHT2RfeDIyX282Tl9EbXlaZGl4Zmc5WGRtQWRUNWNXNWlLaS1rajBjZm9yNUh3Y2hZd1dfQjV0c042LXJDNDZnU2FXNQ?oc=5"
     },
     {
       "date": "2026-10-29",
@@ -1062,8 +1097,8 @@
     {
       "category": "알루미늄",
       "headlines": [
-        "The Aluminum Industry’s New Tariff Study Argues Against Itself - Cato Institute",
         "LME Aluminium Slips While Energy Costs and Smelter Margins Remain in Focus - kalkine.ca",
+        "The Aluminum Industry’s New Tariff Study Argues Against Itself - Cato Institute",
         "U.S. Aluminum Output Lowest Since 1950 as Congress Weighs Options - Legis1"
       ]
     },
@@ -1086,9 +1121,9 @@
     {
       "category": "환율",
       "headlines": [
+        "USD/KRW (KRW=X) interactive chart - Yahoo Finance Singapore",
         "Won Slips to 1,344 Per Dollar as U.S. Midterm Uncertainty Lifts Safe-Haven Bid - BigGo Finance",
-        "South Korean Won: Moderate appreciation with two-way risks – OCBC - FXStreet",
-        "South Korean Won Falls as Overseas Dollar Demand Persists - TradingView"
+        "South Korean Won: Moderate appreciation with two-way risks – OCBC - FXStreet"
       ]
     },
     {
@@ -1096,7 +1131,7 @@
       "headlines": [
         "TechInsights Acquires IC Knowledge LLC - TechInsights",
         "BASF Invests In Semiconductor Supply for China’s Nanjing Hub - Manufacturing Digital",
-        "Fusion Needs Semiconductors - Brownstone Research"
+        "The Section 48D Gravy Train Should End - The Unseen and The Unsaid"
       ]
     }
   ],
