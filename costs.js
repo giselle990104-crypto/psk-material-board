@@ -179,7 +179,7 @@ function exportXls(){
   ['USD','JPY','CHF','MYR','VND'].forEach(c=>{ head.push(`${c}/KRW`); cols.push(D.fx[c]||[]); });
   const aoa=[head,...D.months.map((m,i)=>[m,...cols.map(c=>c[i]==null?'':+(+c[i]).toFixed(4))])];
   const src=[['지표','분류','단위','출처','비고'],...IND.map(s=>[s.name,(CATS.find(c=>c[0]===s.cat)||[])[1],s.unit,s.src,s.note||''])];
-  const name=`PSK_원료외추세_${D.months[0]}_${D.months[D.months.length-1]}.xlsx`;
+  const name=`원료외추세_${D.months[0]}_${D.months[D.months.length-1]}.xlsx`;
   if(typeof XLSX!=='undefined'){ const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(aoa),'월별'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(src),'출처'); XLSX.writeFile(wb,name); }
   else { const csv='﻿'+aoa.map(r=>r.map(v=>/[",\n]/.test(String(v))?'"'+String(v).replace(/"/g,'""')+'"':v).join(',')).join('\r\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download=name.replace('.xlsx','.csv'); a.click(); }
 }

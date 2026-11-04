@@ -276,7 +276,7 @@ function template(){
   const plan=[['장비코드','연간 생산계획'],['EX-A100',24]];
   const how=[['작성 방법'],['· BOM 시트: 한 줄에 장비 1대에 들어가는 자재 1종. 필수 장비코드·자재코드·소요량'],['· 단가는 BOM 시트의 기존/신규 단가에 넣거나, 자재별로 "단가" 시트에 한 번만 넣어도 됩니다(BOM 칸이 우선)'],['· 신규 단가를 비우면 변동 없음으로 봅니다'],['· 적용 시점(YYYY.MM): 신규 단가가 적용되는 달. 그달부터 연말까지만 영향액에 반영(예: 2026.11 → 2/12). 비우면 연간 전체 적용. BOM 시트에 "적용 시점" 열을 추가해 줄별로 넣어도 됩니다'],['· 단가가 둘 다 없으면 "단가 인상 검토" 목록의 같은 품목코드 단가를 씁니다(체크 시)'],['· 생산계획 시트: 장비코드별 연간 생산 대수'],['· EX-로 시작하는 예시 줄은 올릴 때 무시됩니다']];
   const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(bom),'BOM'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(price),'단가'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(plan),'생산계획'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(how),'작성방법');
-  XLSX.writeFile(wb,'PSK_장비별원가영향_양식.xlsx');
+  XLSX.writeFile(wb,'장비별원가영향_양식.xlsx');
 }
 function exportOut(){
   if(typeof XLSX==='undefined'){ $e('#eq-msg').textContent='엑셀 라이브러리를 불러오지 못했습니다.'; return; }
@@ -285,7 +285,7 @@ function exportOut(){
   const s2=[['장비코드','분류','자재코드','자재명','소요량','단위','기존 단가','신규 단가','인상률(%)','단가 출처','기존 금액/대','신규 금액/대','상승액/대','적용 시점','적용 개월','연간 영향액']].concat(R.lines.map(l=>{ const p=R.eqs.find(e=>e.eq===l.eq)?.plan; return [l.eq,l.cat,l.k,l.matName,ok(l.qty)?l.qty:'',l.unit,ok(l.o)?l.o:'',ok(l.n)?l.n:'',ok(l.o)&&ok(l.n)?+((l.n/l.o-1)*100).toFixed(2):'',l.miss?'단가·소요량 없음':l.src,l.miss?'':Math.round(l.qty*l.o),l.miss?'':Math.round(l.qty*l.n),l.miss?'':Math.round(l.qty*l.d),l.eff||'연간 전체',Math.round(l.share*12),!l.miss&&ok(p)?Math.round(l.qty*l.d*p*l.share):'']; }));
   const s3=[['순위','자재코드','자재명','분류','사용 장비 수','기존 단가','신규 단가','인상률(%)','장비 1대씩 합계 상승','적용 시점','연간 전체 적용 시','연간 영향액(적용 시점 반영)']].concat(R.mats.map((m,i)=>[i+1,m.k,m.name,m.cat,m.eqs.size,m.o,m.n,+((m.n/m.o-1)*100).toFixed(2),Math.round(m.perUnit),S.eff[m.k]||m.eff||'연간 전체',Math.round(m.annualFull),Math.round(m.annual)]));
   const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(s1),'장비별 요약'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(s2),'BOM 상세'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(s3),'자재 영향 순위');
-  const d=new Date(); XLSX.writeFile(wb,`PSK_장비별원가영향_${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}.xlsx`);
+  const d=new Date(); XLSX.writeFile(wb,`장비별원가영향_${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}.xlsx`);
 }
 /* 다른 탭에서 단가 인상 검토 목록이 바뀌면 다시 계산 */
 window.addEventListener('storage',e=>{ if(e.key==='psk-pr-v2'&&S.useReview) render(); });

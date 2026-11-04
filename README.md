@@ -1,4 +1,4 @@
-# PSK Material Intelligence Board
+# Material Intelligence Board
 
 원자재 시세 확인 및 동향 정리 보드 (GitHub Pages 공개판)
 

@@ -171,7 +171,7 @@ function exportXls(){
   const aoa=[head, ...D.months.map((m,i)=>[m, D.fx[i], ...cols.flatMap(s=>[ok(s[i].usd)?Math.round(s[i].usd):'', ok(s[i].krw)?+s[i].krw.toFixed(1):''])])];
   const compSheet=[['합금(이름)','계열','규격·가정','GUESS 신뢰도','구성비 wt% (사용값)','비고'],...FAM.map(f=>{ const {pct}=comp(f); return [f.names.join(', '),f.grp,f.std,f.conf,Object.entries(pct).map(([k,p])=>`${k.toUpperCase()} ${p.toFixed(2)}`).join(' · '),f.note]; })];
   const srcSheet=[['원소','시세 기준','자료 시작'],...Object.entries(D.elements).map(([k,e])=>[EL[k]||k,e.src,e.from])];
-  const name=`PSK_합금시세_${D.months[0]}_${D.months[D.months.length-1]}.xlsx`;
+  const name=`합금시세_${D.months[0]}_${D.months[D.months.length-1]}.xlsx`;
   if(typeof XLSX!=='undefined'){ const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(aoa),'월별 합금시세'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(compSheet),'구성비(GUESS)'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(srcSheet),'원소 시세 출처'); XLSX.writeFile(wb,name); }
   else { const csv='﻿'+aoa.map(r=>r.map(v=>/[",\n]/.test(String(v))?'"'+String(v).replace(/"/g,'""')+'"':v).join(',')).join('\r\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download=name.replace('.xlsx','.csv'); a.click(); }
 }

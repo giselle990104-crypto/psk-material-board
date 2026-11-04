@@ -31,7 +31,7 @@ function makeRows(){
 function saveCSV(out){
  const cols=['연월','원자재','월평균 가격','단위','데이터 상태'];
  const csv=[cols.join(','),...out.rows.map(r=>cols.map(k=>{let v=r[k]??'';return '"'+String(v).replace(/"/g,'""')+'"';}).join(','))].join('\r\n');
- const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='PSK_'+out.series.label+'_'+out.start+'_'+out.end+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);
+ const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=out.series.label+'_'+out.start+'_'+out.end+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);
 }
 document.getElementById('trendExportExcel').addEventListener('click',()=>{
  try{
@@ -42,7 +42,7 @@ document.getElementById('trendExportExcel').addEventListener('click',()=>{
  const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'월별 시세');
  const info=XLSX.utils.aoa_to_sheet([['원자재',out.series.label],['조회 기간',out.start+' ~ '+out.end],['보유 데이터',out.available+' / '+out.rows.length+'개월'],['원래 데이터 설명',out.series.note],['주의사항','미확보한 과거 시세는 공란으로 두었습니다. 임의 추정값이 아닙니다.']]);
  XLSX.utils.book_append_sheet(wb,info,'데이터 안내');
- XLSX.writeFile(wb,'PSK_'+out.series.label+'_'+out.start+'_'+out.end+'.xlsx');
+ XLSX.writeFile(wb,out.series.label+'_'+out.start+'_'+out.end+'.xlsx');
  status('엑셀 다운로드 완료 · 실제 월평균 '+out.available+'개월 / 조회 범위 '+out.rows.length+'개월');
  }catch(e){status('다운로드 오류: '+e.message);}
 });

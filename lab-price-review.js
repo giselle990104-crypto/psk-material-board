@@ -410,8 +410,8 @@ function template(){
   const aoa=[head,...[ex1,ex2].map(r=>COLS.map(([k])=>cellVal(r,k)))];
   const mats=[['원재료(이 이름 그대로 쓰기)','단위','DB 출처','비고'],...MATS.map(m=>[m.name,m.unit,m.srcs.map(s=>s[3]).join(' / ')||'직접 입력', m.id==='custom'?'"원재료명(직접입력)"과 기존월/신규월 시세 칸을 채우세요':''])];
   const how=[['작성 방법'],['· 한 줄에 한 품목. 필수: 품목명, 원재료, 기존 견적월, 기존 단가, 신규 견적월, 요청 단가'],['· 견적월은 2025.10처럼 YYYY.MM (2025-10이나 날짜를 넣어도 인식합니다)'],['· 용접 필요(Y/N): Y면 인건비 변동을 용접공 노임단가(대한건설협회)로, N이면 최저임금으로 계산합니다'],['· 원재료는 "원재료목록" 시트의 이름이나 구리·SUS316L·석영처럼 써도 인식합니다. 목록에 없으면 원재료명과 기존/신규월 시세(직접입력)를 채우세요'],['· 원가 항목(기존/요청 원재료비·인건비…)은 원가표가 있을 때만 채우세요. 없으면 원재료·인건비 비중(%)으로 추정합니다'],['· 인건비 변동률을 비우면 최저임금 인상률을 씁니다'],['· 예시 두 줄은 지우고 쓰세요']];
-  if(libReady()){ const wb=XLSX.utils.book_new(); const ws=XLSX.utils.aoa_to_sheet(aoa); ws['!cols']=head.map(h=>({wch:Math.max(10,h.length*2)})); XLSX.utils.book_append_sheet(wb,ws,'검토목록'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(mats),'원재료목록'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(how),'작성방법'); XLSX.writeFile(wb,'PSK_단가인상검토_양식.xlsx'); }
-  else download('PSK_단가인상검토_양식.csv',new Blob([toCSV(aoa)],{type:'text/csv;charset=utf-8'}));
+  if(libReady()){ const wb=XLSX.utils.book_new(); const ws=XLSX.utils.aoa_to_sheet(aoa); ws['!cols']=head.map(h=>({wch:Math.max(10,h.length*2)})); XLSX.utils.book_append_sheet(wb,ws,'검토목록'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(mats),'원재료목록'); XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(how),'작성방법'); XLSX.writeFile(wb,'단가인상검토_양식.xlsx'); }
+  else download('단가인상검토_양식.csv',new Blob([toCSV(aoa)],{type:'text/csv;charset=utf-8'}));
 }
 function parseCSV(t){ const out=[]; let row=[],cur='',q=false; for(let i=0;i<t.length;i++){ const c=t[i]; if(q){ if(c==='"'){ if(t[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=c; } else if(c==='"') q=true; else if(c===','){row.push(cur);cur='';} else if(c==='\n'){row.push(cur.replace(/\r$/,''));out.push(row);row=[];cur='';} else cur+=c; } if(cur||row.length){row.push(cur);out.push(row);} return out; }
 async function upload(file){
@@ -442,9 +442,9 @@ function exportOut(){
     return COLS.map(([k])=>cellVal(r,k)).concat([pr(o.req),mv.src||mv.why||'',ok(mv.a)?+mv.a.toFixed(2):'',ok(mv.b)?+mv.b.toFixed(2):'',mv.unit||'',pr(mv.pct),pr(o.lb.pct),ok(o.just)?Math.round(o.just):'',pr(o.justPct),ok(o.P1)&&ok(o.just)?Math.round(o.P1-o.just):'',pr(o.gap),o.v,o.save?Math.round(o.save):'',o.flags.join(' / ')]); })];
   const d=new Date(), stamp=`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
   if(libReady()){ const wb=XLSX.utils.book_new(); const ws=XLSX.utils.aoa_to_sheet(aoa); ws['!cols']=head.map(h=>({wch:Math.max(10,Math.min(28,h.length*2))})); XLSX.utils.book_append_sheet(wb,ws,'검토결과');
-    XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([['판정 기준'],[`적정: 근거 단가 대비 +${cfg.tol}% 이하`],[`협상 검토: +${cfg.tol}~${cfg.over}%`],[`과다 요청: +${cfg.over}% 초과`],[`원가표 없을 때 기본 비중: 원재료 ${cfg.rawShare}% · 인건비 ${cfg.laborShare}%`],['근거 단가 = 기존 단가 + 원재료비×시세 변동률 + 인건비×인건비 변동률 (+직접 지정 항목)'],['시세: PSK Material Intelligence Board DB 월평균 (Investing·LME·SHFE·KOMIS·SMM·Acerinox)']]),'기준');
-    XLSX.writeFile(wb,`PSK_단가인상검토_결과_${stamp}.xlsx`); }
-  else download(`PSK_단가인상검토_결과_${stamp}.csv`,new Blob([toCSV(aoa)],{type:'text/csv;charset=utf-8'}));
+    XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([['판정 기준'],[`적정: 근거 단가 대비 +${cfg.tol}% 이하`],[`협상 검토: +${cfg.tol}~${cfg.over}%`],[`과다 요청: +${cfg.over}% 초과`],[`원가표 없을 때 기본 비중: 원재료 ${cfg.rawShare}% · 인건비 ${cfg.laborShare}%`],['근거 단가 = 기존 단가 + 원재료비×시세 변동률 + 인건비×인건비 변동률 (+직접 지정 항목)'],['시세: Material Intelligence Board DB 월평균 (Investing·LME·SHFE·KOMIS·SMM·Acerinox)']]),'기준');
+    XLSX.writeFile(wb,`단가인상검토_결과_${stamp}.xlsx`); }
+  else download(`단가인상검토_결과_${stamp}.csv`,new Blob([toCSV(aoa)],{type:'text/csv;charset=utf-8'}));
 }
 const won=v=>{ if(!ok(v)) return '—'; const a=Math.abs(v); return a>=1e8?(v/1e8).toFixed(2)+'억':a>=1e4?Math.round(v/1e4).toLocaleString('ko-KR')+'만':f0(v); };
 /* ---------- 검토 보고서 PDF (A4 가로) ---------- */
@@ -556,7 +556,7 @@ async function makePdf(){
     for(let i=0;i<els.length;i++){ msg.textContent=`보고서 그리는 중… ${i+1}/${els.length}쪽`;
       const c=await html2canvas(els[i],{scale:1.7,backgroundColor:'#ffffff',logging:false,width:1123,height:794,windowWidth:1123});
       if(i) pdf.addPage('a4','landscape'); pdf.addImage(c.toDataURL('image/jpeg',0.86),'JPEG',0,0,297,210); }
-    pdf.save(`PSK_Price_Review_Report_${ymd.replace(/\./g,'')}.pdf`);
+    pdf.save(`Price_Review_Report_${ymd.replace(/\./g,'')}.pdf`);
     msg.textContent=`검토 보고서 PDF를 저장했습니다 (${els.length}쪽).`;
   }finally{ box.remove(); st.remove(); btn.disabled=false; }
 }

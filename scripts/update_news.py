@@ -26,7 +26,7 @@ OUT=ROOT/"news.json"
 def collect(group,search):
     query=urllib.parse.urlencode({"q":search+" when:7d","hl":"en-US","gl":"US","ceid":"US:en"})
     url="https://news.google.com/rss/search?"+query
-    req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 (compatible; PSK-Material-Board/1.0)"})
+    req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 (compatible; Material-Board/1.0)"})
     with urllib.request.urlopen(req,timeout=22) as response:
         xml=response.read(1200000)
     root=ET.fromstring(xml)

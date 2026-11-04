@@ -1,4 +1,4 @@
-/* PSK Dashboard add-on. Load immediately before the existing inline application script. */
+/* Dashboard add-on. Load immediately before the existing inline application script. */
 (() => {
   'use strict';
   const main = document.querySelector('#panes');

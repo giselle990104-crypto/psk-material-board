@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>PSK Material Intelligence Board</title>
-<meta name="description" content="원자재 시세 확인 및 동향 정리 · PSK Material Intelligence Board">
+<title>Material Intelligence Board</title>
+<meta name="description" content="원자재 시세 확인 및 동향 정리 · Material Intelligence Board">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap">
 <style>
@@ -372,8 +372,8 @@ footer a{color:var(--ink-2)}
   <canvas id="globe" aria-hidden="true"></canvas>
   <div class="gate-in">
     <div class="gate-copy">
-      <div class="k">PSK · Global Procurement Intelligence</div>
-      <h1>PSK Material<br><span>Intelligence Board</span></h1>
+      <div class="k">Global Procurement Intelligence</div>
+      <h1>Material<br><span>Intelligence Board</span></h1>
       <p>LME·COMEX 원자재와 주요 통화 환율을 한 곳에서 확인하고,<br>구매 의사결정을 돕습니다.</p>
       <div class="gate-tick"><span>Cu</span><span>Ni</span><span>Al</span><span>HRC</span><span>Brent</span><span>USD/KRW</span><span>EUR/KRW</span><span>JPY/KRW</span></div>
     </div>
@@ -398,7 +398,7 @@ footer a{color:var(--ink-2)}
 
 <header class="bar">
   <div class="wrap">
-    <div class="brand"><button id="brandHome" type="button" class="brand-home" aria-label="PSK Material Intelligence Board — Dashboard로 이동"><b>PSK <span>Material</span> Intelligence Board</b></button><small class="tagline">원자재 시세 확인 및 동향 정리</small></div>
+    <div class="brand"><button id="brandHome" type="button" class="brand-home" aria-label="Material Intelligence Board — Dashboard로 이동"><b><span>Material</span> Intelligence Board</b></button><small class="tagline">원자재 시세 확인 및 동향 정리</small></div>
     <div class="right no-pdf">
       <div class="r-top"><span class="hello" id="hello"></span>
         <div class="acct-wrap" style="position:relative">
@@ -417,7 +417,7 @@ footer a{color:var(--ink-2)}
       <button class="btn" id="topUpd" type="button" title="원자재·환율 현재가와 최근 5년 월평균을 Investing에서 다시 가져옵니다">업데이트</button>
       <button class="btn primary" id="openExport" type="button" aria-expanded="false" aria-controls="picker">PDF 추출</button>
       <div class="picker" id="picker" hidden role="dialog" aria-label="PDF에 넣을 정보 선택">
-        <h3>PSK Material Report</h3>
+        <h3>Material Report</h3>
         <p>체크한 정보로 A4 보고서를 만듭니다.</p>
         <div class="links"><button type="button" id="selAll">전체 선택</button><button type="button" id="selNone">전체 해제</button></div>
         <div id="pickList"></div>
@@ -688,7 +688,7 @@ footer a{color:var(--ink-2)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-/* PSK Dashboard add-on. Load immediately before the existing inline application script. */
+/* Dashboard add-on. Load immediately before the existing inline application script. */
 (() => {
   'use strict';
   const main = document.querySelector('#panes');
@@ -851,11 +851,11 @@ footer a{color:var(--ink-2)}
 })();
 
 </script>
-<script src="./alloy.js?v=20261103-1"></script>
-<script src="./costs.js?v=20261101-2"></script>
+<script src="./alloy.js?v=20261104-1"></script>
+<script src="./costs.js?v=20261104-1"></script>
 <script src="./lab.js"></script>
-<script src="./lab-price-review.js?v=20261101-4"></script>
-<script src="./lab-equip.js?v=20261101-3"></script>
+<script src="./lab-price-review.js?v=20261104-1"></script>
+<script src="./lab-equip.js?v=20261104-1"></script>
 <script>
 const STANDALONE=!window.claude;
 let KRW = 1323.1;
@@ -1023,7 +1023,7 @@ $('updAll').onclick=()=>{ UPD_ITEMS.forEach(i=>updSel.add(i.id)); renderUpdList(
 $('updNone').onclick=()=>{ updSel.clear(); renderUpdList(); };
 $('updCopy').onclick=async()=>{
   const names=UPD_ITEMS.filter(i=>updSel.has(i.id)).map(i=>i.name).join(', ');
-  const txt=`PSK Material Intelligence 대시보드에서 ${names} 시세를 Investing.com 최신값으로 업데이트하고, 바뀐 시세에 맞춰 AI 뉴스요약·시장분석·BP 질문도 갱신해줘.`;
+  const txt=`Material Intelligence 대시보드에서 ${names} 시세를 Investing.com 최신값으로 업데이트하고, 바뀐 시세에 맞춰 AI 뉴스요약·시장분석·BP 질문도 갱신해줘.`;
   try{ await navigator.clipboard.writeText(txt); $('updNote').textContent='요청문을 복사했습니다. Claude 대화창에 붙여 넣어 보내세요.'; }
   catch(e){ $('updNote').textContent='복사가 막혀 있어 요청문을 여기에 표시합니다: '+txt; }
 };
@@ -1514,7 +1514,7 @@ $('impList').innerHTML = IMP.map(i=>`
     const px=TILES.map(t=>{ const L=LIVE[t.id];
       return L ? `${t.name}: ${t.refOnly?t.refName+' ':''}${L.price}${t.lb?' $/lb':''} (Investing ${L.asOf||''}${L.chg!=null?', '+L.chg+'%':''})`
                : `${t.name}: ${t.px} ${t.unit} (${t.sub})`; }).join('\n');
-    const prompt=`너는 반도체 장비 제조사 PSK의 원자재 구매 애널리스트다. 아래 가격과 뉴스만 근거로, "${focus}" 관점에서 한국어로 요약하라.
+    const prompt=`너는 반도체 장비 제조사의 원자재 구매 애널리스트다. 아래 가격과 뉴스만 근거로, "${focus}" 관점에서 한국어로 요약하라.
 형식: 원자재별(구리, 니켈, 알루미늄, 철강, 플라스틱, 환율) 한 줄씩 "• 품목 — 내용" 형태, 마지막에 "→ 이번 주 구매 액션:" 한 줄. 과장 없이 간결하게, 숫자는 주어진 것만 사용. 마크다운 굵게 표시는 쓰지 마라.
 
 [가격]
@@ -1699,7 +1699,7 @@ function buildReport(sel){
   const order=['prices','trend','fx','news','ai','analysis','implication','bp'].filter(k=>sel.secs.has(k));
   let no=0; const H=(k,small='')=>`<h2><i>${String(++no).padStart(2,'0')}</i>${names[k]}${small?`<small>${small}</small>`:''}</h2>`;
   const blocks=[];
-  blocks.push(`<div class="cover"><div class="k">PSK · Procurement Intelligence</div><h1>PSK <span>Material Report</span></h1><p>원자재 시세 확인 및 동향 정리</p>
+  blocks.push(`<div class="cover"><div class="k">Procurement Intelligence</div><h1>Material <span>Report</span></h1><p>원자재 시세 확인 및 동향 정리</p>
     <div class="meta"><div><span>기준일</span><b>${ymd}</b></div><div><span>작성</span><b>${esc0(ME?.name||'-')}</b></div><div><span>데이터</span><b>Investing.com 외</b></div><div><span>포함 항목</span><b>${order.length}개</b></div></div></div>`);
   for(const k of order){
     if(k==='prices'){
@@ -1783,21 +1783,21 @@ $('makePdf').onclick=async()=>{
       g.drawImage(canvas,0,Math.floor(a*SC),canvas.width,Math.ceil(h*SC),0,0,part.width,part.height);
       const y0 = i? topPx*mmPerPx : 0;
       pdf.addImage(part.toDataURL('image/jpeg',0.92),'JPEG',0,y0,PW,h*mmPerPx);
-      if(i){ pdf.setDrawColor(107,63,196); pdf.setLineWidth(0.4); pdf.line(10.6,8,PW-10.6,8); pdf.setFontSize(8); pdf.setTextColor(107,63,196); pdf.text('PSK Material Report',10.6,6.4); }
+      if(i){ pdf.setDrawColor(107,63,196); pdf.setLineWidth(0.4); pdf.line(10.6,8,PW-10.6,8); pdf.setFontSize(8); pdf.setTextColor(107,63,196); pdf.text('Material Report',10.6,6.4); }
     });
     const n=pdf.getNumberOfPages(), ymd=new Date().toISOString().slice(0,10);
-    for(let p=1;p<=n;p++){ pdf.setPage(p); pdf.setFontSize(8); pdf.setTextColor(125,120,148); pdf.text(`PSK Material Report  |  ${ymd}  |  ${p} / ${n}`, PW/2, PH-6, {align:'center'}); }
+    for(let p=1;p<=n;p++){ pdf.setPage(p); pdf.setFontSize(8); pdf.setTextColor(125,120,148); pdf.text(`Material Report  |  ${ymd}  |  ${p} / ${n}`, PW/2, PH-6, {align:'center'}); }
     const blob=pdf.output('blob');
     if(!downloads){
       const d0=new Date(), f0=`${d0.getFullYear()}${String(d0.getMonth()+1).padStart(2,'0')}${String(d0.getDate()).padStart(2,'0')}`;
-      const url=URL.createObjectURL(blob), a=document.createElement('a'); a.href=url; a.download=`PSK_Material_Report_${f0}.pdf`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),8000);
-      status.textContent=`PSK Material Report를 저장했습니다 (${secs.size}개 항목, ${n}쪽).`; return;
+      const url=URL.createObjectURL(blob), a=document.createElement('a'); a.href=url; a.download=`Material_Report_${f0}.pdf`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),8000);
+      status.textContent=`Material Report를 저장했습니다 (${secs.size}개 항목, ${n}쪽).`; return;
     }
     status.textContent='저장 확인 창을 확인해 주세요.';
     try{
       const d=new Date(), f=`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
-      await downloads.save({filename:`PSK_Material_Report_${f}.pdf`, data:blob});
-      status.textContent=`PSK Material Report를 저장했습니다 (${secs.size}개 항목, ${n}쪽).`;
+      await downloads.save({filename:`Material_Report_${f}.pdf`, data:blob});
+      status.textContent=`Material Report를 저장했습니다 (${secs.size}개 항목, ${n}쪽).`;
     }catch(e){
       status.textContent = e.code==='declined' ? '저장을 취소했습니다.' : e.code==='rate_limited' ? '이미 저장 창이 열려 있습니다. 잠시 후 다시 시도하세요.' : '이 화면에서는 파일을 저장할 수 없습니다.';
     }
@@ -2168,7 +2168,7 @@ initAuth();
 </script>
 
 <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
-<script src="./trend-export.js?v=20261028-1"></script>
+<script src="./trend-export.js?v=20261104-1"></script>
 <script src="./news-filter.js?v=20261026-2"></script>
 </body>
 </html>
