@@ -1,16 +1,44 @@
 {
-  "updatedAt": "2026-11-09T08:21+09:00",
+  "updatedAt": "2026-11-09T17:56+09:00",
   "timezone": "Asia/Seoul",
   "source": "Google News RSS",
   "status": "ok",
   "errors": [],
   "items": [
     {
+      "date": "2026-11-09",
+      "category": "환율",
+      "title": "Dollar Strengthens on US Jobs Surprise; Won-Dollar Exchange Rate Enters 1,358 Range - BigGo Finance",
+      "source": "BigGo Finance",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8xY2QyWERLdk5GUzBVN0FHaVJ5cGxsVXZZV1J2NndmMGFCZi1uQl85Rmc1cG1RQk9Kb3VVbG9NYU9ET19NOFNPRWdXUFRJdF8teVQ4aVc4QVFxcGg2QXgzTGRFcjE1djJvamZYZ196c3pzSG1PMEE?oc=5"
+    },
+    {
+      "date": "2026-11-09",
+      "category": "반도체",
+      "title": "US Semiconductor Expansion Hinges on Fab Efficiency, Supply Chain Coordination - EE Times Asia",
+      "source": "EE Times Asia",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQdjBUNGo0N0VwYkR2bnRnb3hKWDNmcENLRnRZSUNwYUttRm1pOTFacWUxQUtBYWZiVGFJendGcFVVVEZ5R2NQNEJvcWNmSHZzQVgxVkVRNlhTaURlTVJlWkNNS2dLYWZUR25tNHd0QWdPVEk5QjU0NWJzeVZaM1hWclc4bmRZNlFlT08wc1g3R21ldFNIWjlJa0xfMDNSZjNzM1QweQ?oc=5"
+    },
+    {
       "date": "2026-11-08",
       "category": "구리",
       "title": "Copper Price Today: Per Tonne and Per Kilo, the Record High and What Drives It - CryptoTicker.io",
       "source": "CryptoTicker.io",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBpS0E5Zkg1UE0wQnRCTTUxdkNnR0ozalZaYlJsWHVIRVpRZERUOFNxMndOWU10NW11Z2pOdXp0R01ZWGdXclZlZ1FlbkhLaEdBQkE?oc=5"
+    },
+    {
+      "date": "2026-11-08",
+      "category": "알루미늄",
+      "title": "Alcoa Corporation (AA) Stock Price, News, Quote & History - Yahoo! Finance Canada",
+      "source": "Yahoo! Finance Canada",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE05MjhuVUo3bWtjanM2S2wyNERsTmJBaW02MHM5d3U0STllQUh3RTZVMkdHenRZTkdkNEtNR2prYjBlUG1IV2V3c3NwOFpDemM?oc=5"
+    },
+    {
+      "date": "2026-11-08",
+      "category": "알루미늄",
+      "title": "Hindalco flags coal shortage, expects 5% rise in aluminium production costs - Business Standard",
+      "source": "Business Standard",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOMTVsTzhRY2NMZHFfZXg0X2djYkxXbW5ZVjZGTWNVNDgyV0VDVW5vSEc2aWsyNGxVczBjOWI3dmRFWTE3Y1NTbXE1cUpQQmxkN2pzeGVfcUY2ckQ1b25JQTZLNWdGRzQ0cGdiZnhSS0NvaGZlNzRVU0d3WFZ4WTRnWEQwcGtVenhYV25oRDdfZjlVTmhST0U2WmE3bkU4cElUaGZNN1hEYnc2RjQwVkl2bHNJWnNMM21DbGY3UmpwYWZONTVWVU9ENmhMNEtnYXFuNHBISUJjU05Yd9IB3wFBVV95cUxQSENxSWV1ZjM2NGNPdXRDUk9oMnp1OTJHelBBbDdCYTk2UHlyRlNUN09YYl85dEEzYl9xYlRDWm9aZWt1b2JJYzJHU2FDUHEtWFExVmhfRXliWThEekdxUDNOZGViWGpJTGZ6T1AtNmRYVXQ2SzNtT1NvMWRtcy11U1VtRUY1eW82NlUyY1RaWmxrQ0xBZFdVOEJoWUUydEJzRkdGakMwVXplRy1KSjA4ZFV4M3laYUUxajVOaVk3QmZ3UWJQVVUwODFJQ2tpTnV3VU5RQVhuOXNlNzMwMXo4?oc=5"
     },
     {
       "date": "2026-11-08",
@@ -35,10 +63,52 @@
     },
     {
       "date": "2026-11-06",
+      "category": "구리",
+      "title": "Metals Market Prices, Data, and Analysis - S&P Global",
+      "source": "S&P Global",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE45QVFtX0JSdkIwcHNnTjFTS0pMUHJIM0V2N2ZzMDRWbnJoM1FEdUtoTHpIQ0ZiRmtaanRpQmxKcWNZSUpYTzE0YUNDNkNTc0xpY3A3ZVNLUzBrWWFzWW5VSA?oc=5"
+    },
+    {
+      "date": "2026-11-06",
+      "category": "니켈",
+      "title": "Securing Buyers Can Help Nickel Projects Attract Funding Despite a Global Surplus - Crux Investor",
+      "source": "Crux Investor",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOeVZpeG1Jbk4tYjhVQWU1NEthYmoyU281RklYdmduYkxoZmFzU010cFB1TkRVM0ZTb3pwQ0llRDhFMTUyd0g3WHF6YXJqM2dZS00zelFWQ1JOUUZoNXFqLUhhUHJVc3AyOG83YWdjamx3aHJ2MDBqR1FOVmVTVW1Kek9ybDVvZUhFSFN0R2dGMzQ2UC1FSHoyRFo2bHdGS1VvaTI3d2NhcWthOHRsSXJOQS1nNUJTQ2s?oc=5"
+    },
+    {
+      "date": "2026-11-06",
       "category": "니켈",
       "title": "LME Nickel Surges Above $16,300 as Indonesia Tightens Oversight of the Supply Chain - kalkine.ca",
       "source": "kalkine.ca",
       "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNLTNKckNTZ2c5Rmo0MjFULVVhWGs3azR3MW1ENk1FNWVNdzlmbi1TdXFZYzdkeEFvejU1VE40TzFBZWNBRjNFZHV1WG1iWVhnTHZsdnlrSkxEUU52ckpvb3Vhb1hEbkVFcDNwazlrR3R0Y1E5MU4yRUE3TlBPUVJsZmUtY3Yxa2R2dUk1UDBBOUhGdXdoektkT094SC15U1lNUVRzX3ZHY3d1QXRxbVMwTWdGLXZBdXMyVkE?oc=5"
+    },
+    {
+      "date": "2026-11-06",
+      "category": "철강",
+      "title": "CSC announces domestic prices to rise next month - Taipei Times",
+      "source": "Taipei Times",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5Fb25obUhlV2JuMXV1QmFYTDdCMG52SVh3N201RVlmcUdSVWVWMnZ3MEx3SmpHZmFvZVpmczlzMV9MWXh1czZXWGRfdjV5WGxPLVhjazExSS1QUFNTQ2FwVDJOaUtnUEduOGhFZ3lmLWZYZXBtM2c?oc=5"
+    },
+    {
+      "date": "2026-11-06",
+      "category": "환율",
+      "title": "BofA’s Piron Sees Won, Taiwan Dollar as Buys After AI Rout - Bloomberg.com",
+      "source": "Bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNUFFHRkp0aTRfTnpYN3lobENqN2lZS09VYTRhWVJFR0lsV1hNd3I2QmNxTk1uS0dMR2NOaVU2LXd6Ri16eG5mUFNQRmdMaEFzTndwSWFwQnpGTVNiQ2xPa19jWHl2VzE4S3BZMjYyXzBGaExTNmpPaHNHcGRvWm56R3dmaDJsSVhWQ0JyWVFuV2tKNG5rbW9yUXBFWEU5N0NDRlMwWkVyNTRlSjlIMTI1dw?oc=5"
+    },
+    {
+      "date": "2026-11-06",
+      "category": "환율",
+      "title": "Won daily: Dollar closes at 1,356.6 won, above 1,350 - www.tokenpost.com",
+      "source": "www.tokenpost.com",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1kV094Sm9BVjl4RmlCTThacUhrY2VUVkVUWGZsX3VsdV9UX3ZzdS1wM2sxS1VuNWY3Z0hfUDRNUmpwaTZZZ3RiX3Ftc2xIOHQtZkhLWmM0c1Nydw?oc=5"
+    },
+    {
+      "date": "2026-11-06",
+      "category": "반도체",
+      "title": "How Global Semiconductor Supply Chains Are Reshaping Electronics Manufacturing - Global Trade Magazine",
+      "source": "Global Trade Magazine",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPYkxCRkVHVlE2eXNfbjlZZDVtZXlZSHRPVnRKZVBhOHMwTHpseXZzMmlOVEltS2hGNGtHdmdVVFlqdmRTX0JvY1BrejJyalR2MkltOFFCRGxhWFByZXQxc3Jzd1lZMTdSLUE2OTBnMDFSb1czTWZmT1IzNUVUUDBKSi1OZGFJdlJBWVNub0UwLTJWNXN6WExSTjZZWjFwVWJWcy13X3dMVUlBQ3E4V0w0?oc=5"
     },
     {
       "date": "2026-11-06",
@@ -56,38 +126,10 @@
     },
     {
       "date": "2026-11-06",
-      "category": "철강",
-      "title": "CSC announces domestic prices to rise next month - Taipei Times",
-      "source": "Taipei Times",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5Fb25obUhlV2JuMXV1QmFYTDdCMG52SVh3N201RVlmcUdSVWVWMnZ3MEx3SmpHZmFvZVpmczlzMV9MWXh1czZXWGRfdjV5WGxPLVhjazExSS1QUFNTQ2FwVDJOaUtnUEduOGhFZ3lmLWZYZXBtM2c?oc=5"
-    },
-    {
-      "date": "2026-11-06",
-      "category": "환율",
-      "title": "Won daily: Dollar closes at 1,356.6 won, above 1,350 - www.tokenpost.com",
-      "source": "www.tokenpost.com",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1kV094Sm9BVjl4RmlCTThacUhrY2VUVkVUWGZsX3VsdV9UX3ZzdS1wM2sxS1VuNWY3Z0hfUDRNUmpwaTZZZ3RiX3Ftc2xIOHQtZkhLWmM0c1Nydw?oc=5"
-    },
-    {
-      "date": "2026-11-06",
       "category": "환율",
       "title": "Global stock markets tumble after Democrats' US midterm election victory - The Jerusalem Post",
       "source": "The Jerusalem Post",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4wX3FZMTNlaDQ5VHVlYjAwa3J1bzJxdkpoN3liT01YYW1LNjR6WEFfMmF0SVdYX3liVUR0amJhUXYtTkJNYk5NMVU4ZjJXZGhwRWEwWnR6aGZ6QUNnak1WNjI4cXR1Z0tvMllrRw?oc=5"
-    },
-    {
-      "date": "2026-11-06",
-      "category": "반도체",
-      "title": "How Global Semiconductor Supply Chains Are Reshaping Electronics Manufacturing - Global Trade Magazine",
-      "source": "Global Trade Magazine",
-      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPYkxCRkVHVlE2eXNfbjlZZDVtZXlZSHRPVnRKZVBhOHMwTHpseXZzMmlOVEltS2hGNGtHdmdVVFlqdmRTX0JvY1BrejJyalR2MkltOFFCRGxhWFByZXQxc3Jzd1lZMTdSLUE2OTBnMDFSb1czTWZmT1IzNUVUUDBKSi1OZGFJdlJBWVNub0UwLTJWNXN6WExSTjZZWjFwVWJWcy13X3dMVUlBQ3E4V0w0?oc=5"
-    },
-    {
-      "date": "2026-11-06",
-      "category": "알루미늄",
-      "title": "Alcoa Corporation (AA) Stock Price, News, Quote & History - Yahoo! Finance Canada",
-      "source": "Yahoo! Finance Canada",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE05MjhuVUo3bWtjanM2S2wyNERsTmJBaW02MHM5d3U0STllQUh3RTZVMkdHenRZTkdkNEtNR2prYjBlUG1IV2V3c3NwOFpDemM?oc=5"
     },
     {
       "date": "2026-11-06",
@@ -109,6 +151,13 @@
       "title": "Nickel Climbs As Indonesia Targets A Key Ore Trader - Finimize",
       "source": "Finimize",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFB1YnN0Qkx4OEFQZThsMGpFb3RremxxcENkQjIyTVllOElsb0NoRVFXTEVTZHgyaGtlYWtIQWtyMGdPTHVsNWNNTHNjenF4VEdXRk9IQW11aVExR0dlTWIxQklZdkYwaDUxOVFYSy1yQzNaaUpiQkVpRENubk10dEU?oc=5"
+    },
+    {
+      "date": "2026-11-05",
+      "category": "알루미늄",
+      "title": "Power cost of EUR 600 vs EUR 1,800 per tonne: How electricity prices are reshaping Europe’s aluminium industry - AL Circle",
+      "source": "AL Circle",
+      "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNblQtRlEzYWx3MnZlejNFQkMzNGxnYUc4Q1lHYkszb3piUnVnZ1FUQ3Z4WkRBQzc4eUZfSVpHV3U3WllmSTVOamdHZ3ZmSy1MSlVzclFyemFYOWUteERBTzZMcVRfTWVvaUM2WG1hNTEzWTdJNlhzcXVRenotQXN4cDMtZXZGQWxnQ2lybUVaci1oZDVKOGg5Q1pvaHlnU3B5OHY5UVp0ZVRxRVRQMVUzTEVsU2I1czdNQlUxZEtyNVdfY1Fqa3RUTmRmM1Bic2JoUlBEODZwUjdvQ3hpWmpsNk5neGpLRnlnZ1Nv?oc=5"
     },
     {
       "date": "2026-11-05",
@@ -161,20 +210,6 @@
     },
     {
       "date": "2026-11-04",
-      "category": "알루미늄",
-      "title": "Global primary aluminium output rebounds 2.1% in Q3 2026 despite September slump - Is supply deficit easing? - AL Circle",
-      "source": "AL Circle",
-      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQamNkUF94YVlJRWFWU1MtNXoyWHVIcUZwTzg0dXZ4bGNXMHJfRjBMUTBoamU1Zno2bHZuWlBvVjZpcExJM1pfczY1WUlfQlgzSDdpaTIwcEhVUHp4NVlkVTl6cXpIcHg4dnA1TmFfYVFrUVkwWjBhbXlqaDlGRjJTRjhjUHpFV1NlaHQ1UHVtaHFSSHU2aU45b1JfTzhDODVfaDBtcFotQTlpdEhjQzU3MDJma1YxY2dBVG9WZ2tzZ1BobWF3d2pHYmY0N0JDeGF3eDl3S21IbTU?oc=5"
-    },
-    {
-      "date": "2026-11-04",
-      "category": "알루미늄",
-      "title": "Recycled Aluminium Manufacturing Plant Setup in India - IMARC Group",
-      "source": "IMARC Group",
-      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPTTdQUjZqTUIzRS01dXhQX2NyemNGTTlGMnJGbEhLZVJFQ3REVVd5TjFicUoxVHpYVGFYRlRnTUlqT0tqS0JyVzFXcS1nbHliVWgyZHBWOC1ySHVnRm1NNFZ5NnNPY0VzMFA2ZDNfdXFPMmdzUUpUbEMzbmVfN1VZemQzd2VyUWNQNUxEVVN4d013aTJ1?oc=5"
-    },
-    {
-      "date": "2026-11-04",
       "category": "환율",
       "title": "Korean won to strengthen against dollar following Democrats' midterm sweep - The Korea Times",
       "source": "The Korea Times",
@@ -190,16 +225,30 @@
     {
       "date": "2026-11-04",
       "category": "반도체",
-      "title": "“The More the U.S. Restricts, the More China Invests”: CXMT Completes Prototype Validation for 4F²-Based Sixth-Generation DRAM, Accelerating Self-Sufficiency in Materials, Parts and Equipment - https://economy.ac/",
-      "source": "https://economy.ac/",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1NbFQ3cGx5ekZDdnhjQ1VoQ25xa3MtajN0Z2JuQjVoeE9JMHJ0TE5uNmRrVFRycndtN1poTm83ZEVwaURtVEJRRlRub2xfQ05mU0tSbndHQQ?oc=5"
+      "title": "7 Best Semiconductor Stocks for 2026 | Investing - U.S. News - Money",
+      "source": "U.S. News - Money",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPdVlocTJ6U2RLbGpQUnpwLWxwSjQ4ZlI3cjR5U204TDlkakhISEo5d3ItaGFVQ1VSdk1UdXBFc1JGYnVqT1ZoN2RKQUREM3dxeDRYbzF5Rl9XeHl6WXZzWWNkY1NRS0pvd0RDYVVLbFRTNHdzR2xyZXpaam1naEc3Y3dR?oc=5"
+    },
+    {
+      "date": "2026-11-04",
+      "category": "알루미늄",
+      "title": "Global primary aluminium output rebounds 2.1% in Q3 2026 despite September slump - Is supply deficit easing? - AL Circle",
+      "source": "AL Circle",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQamNkUF94YVlJRWFWU1MtNXoyWHVIcUZwTzg0dXZ4bGNXMHJfRjBMUTBoamU1Zno2bHZuWlBvVjZpcExJM1pfczY1WUlfQlgzSDdpaTIwcEhVUHp4NVlkVTl6cXpIcHg4dnA1TmFfYVFrUVkwWjBhbXlqaDlGRjJTRjhjUHpFV1NlaHQ1UHVtaHFSSHU2aU45b1JfTzhDODVfaDBtcFotQTlpdEhjQzU3MDJma1YxY2dBVG9WZ2tzZ1BobWF3d2pHYmY0N0JDeGF3eDl3S21IbTU?oc=5"
+    },
+    {
+      "date": "2026-11-04",
+      "category": "알루미늄",
+      "title": "Recycled Aluminium Manufacturing Plant Setup in India - IMARC Group",
+      "source": "IMARC Group",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPTTdQUjZqTUIzRS01dXhQX2NyemNGTTlGMnJGbEhLZVJFQ3REVVd5TjFicUoxVHpYVGFYRlRnTUlqT0tqS0JyVzFXcS1nbHliVWgyZHBWOC1ySHVnRm1NNFZ5NnNPY0VzMFA2ZDNfdXFPMmdzUUpUbEMzbmVfN1VZemQzd2VyUWNQNUxEVVN4d013aTJ1?oc=5"
     },
     {
       "date": "2026-11-04",
       "category": "반도체",
-      "title": "7 Best Semiconductor Stocks for 2026 | Investing - U.S. News - Money",
-      "source": "U.S. News - Money",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPdVlocTJ6U2RLbGpQUnpwLWxwSjQ4ZlI3cjR5U204TDlkakhISEo5d3ItaGFVQ1VSdk1UdXBFc1JGYnVqT1ZoN2RKQUREM3dxeDRYbzF5Rl9XeHl6WXZzWWNkY1NRS0pvd0RDYVVLbFRTNHdzR2xyZXpaam1naEc3Y3dR?oc=5"
+      "title": "“The More the U.S. Restricts, the More China Invests”: CXMT Completes Prototype Validation for 4F²-Based Sixth-Generation DRAM, Accelerating Self-Sufficiency in Materials, Parts and Equipment - https://economy.ac/",
+      "source": "https://economy.ac/",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1NbFQ3cGx5ekZDdnhjQ1VoQ25xa3MtajN0Z2JuQjVoeE9JMHJ0TE5uNmRrVFRycndtN1poTm83ZEVwaURtVEJRRlRub2xfQ05mU0tSbndHQQ?oc=5"
     },
     {
       "date": "2026-11-04",
@@ -252,13 +301,6 @@
     },
     {
       "date": "2026-11-03",
-      "category": "구리",
-      "title": "Copper slides below $14K as tech stock selloff clouds demand outlook - TradingView",
-      "source": "TradingView",
-      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOblJiUUwtY0Q3WVUxTFlVYk5oa05aTUs0QndwU2R6cC1Dbmo5MENyNEZwUlJ3ZjZWeU9FdXM4WUlIbkFrQlQtSDgySnR1SE9MWXN2b1JtTzZKVVpaYkRiT1E0NTR5OHJ6bDFQTXdTYlRZd09YcTVGd0dKX0E4bXF5c092V3RxaHFtRUZBYnRqZlRJOTBHRmlCVmNadEsyZUNuNTVjU3hSV0tUbDg1SXF6X3JwOXU4U1ZaOVgzNFU4dERXRm8zakx1Q0dB?oc=5"
-    },
-    {
-      "date": "2026-11-03",
       "category": "니켈",
       "title": "LME Week 2026: Fastmarkets Review - Fastmarkets",
       "source": "Fastmarkets",
@@ -284,6 +326,13 @@
       "title": "Will Taranto’s Hot-End Closure Leave Italy’s Flat Steel Supply Permanently Short? - ChemAnalyst",
       "source": "ChemAnalyst",
       "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNMEdCLVVER0w0TFA0MkRKYnVfNXdUMFRfSENrTVpTNU9qemwzWWdwRVlHcklJejdNUzlHSkN6ZzNKNUZFRk9lRUZROU12MmR3MFRkQnRXTmxKRERQcDAxV2RnckR4dS1aVHdZcHREVlBKbmY1SXBNOGFJaTE1UWZRWHlkMG5vdlVibTEwZzNHM2FnM2xIcDR1cFlwc0dDNjdCZlVtMndUN01SQ3hobEdONU90OWI3OWdKRi04?oc=5"
+    },
+    {
+      "date": "2026-11-03",
+      "category": "구리",
+      "title": "Copper slides below $14K as tech stock selloff clouds demand outlook - TradingView",
+      "source": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOblJiUUwtY0Q3WVUxTFlVYk5oa05aTUs0QndwU2R6cC1Dbmo5MENyNEZwUlJ3ZjZWeU9FdXM4WUlIbkFrQlQtSDgySnR1SE9MWXN2b1JtTzZKVVpaYkRiT1E0NTR5OHJ6bDFQTXdTYlRZd09YcTVGd0dKX0E4bXF5c092V3RxaHFtRUZBYnRqZlRJOTBHRmlCVmNadEsyZUNuNTVjU3hSV0tUbDg1SXF6X3JwOXU4U1ZaOVgzNFU4dERXRm8zakx1Q0dB?oc=5"
     },
     {
       "date": "2026-11-03",
@@ -1349,23 +1398,23 @@
       "headlines": [
         "Copper Price Today: Per Tonne and Per Kilo, the Record High and What Drives It - CryptoTicker.io",
         "Copper Price Set for Biggest Weekly Drop Since March, Supply Tightness Provides Support - NAI500",
-        "How The AI Stock Selloff Is Hurting Copper Price - Yahoo Finance"
+        "Metals Market Prices, Data, and Analysis - S&P Global"
       ]
     },
     {
       "category": "니켈",
       "headlines": [
+        "Securing Buyers Can Help Nickel Projects Attract Funding Despite a Global Surplus - Crux Investor",
         "LME Nickel Surges Above $16,300 as Indonesia Tightens Oversight of the Supply Chain - kalkine.ca",
-        "Nickel prices jump 3.8% as Indonesia cracks down on mining - IDNFinancials",
-        "Nickel Climbs As Indonesia Targets A Key Ore Trader - Finimize"
+        "Nickel prices jump 3.8% as Indonesia cracks down on mining - IDNFinancials"
       ]
     },
     {
       "category": "알루미늄",
       "headlines": [
-        "South32 maintains June 2027 timeline for Alcoa's acquisition of aluminium assets - AL Circle",
         "Alcoa Corporation (AA) Stock Price, News, Quote & History - Yahoo! Finance Canada",
-        "Nalco's ₹30,000 cr brownfield aluminium smelter expansion gathers pace - Business Standard"
+        "Hindalco flags coal shortage, expects 5% rise in aluminium production costs - Business Standard",
+        "South32 maintains June 2027 timeline for Alcoa's acquisition of aluminium assets - AL Circle"
       ]
     },
     {
@@ -1387,17 +1436,17 @@
     {
       "category": "환율",
       "headlines": [
+        "Dollar Strengthens on US Jobs Surprise; Won-Dollar Exchange Rate Enters 1,358 Range - BigGo Finance",
         "USD/KRW (KRW=X) live rate, chart and news - Yahoo Finance Australia",
-        "Won daily: Dollar closes at 1,356.6 won, above 1,350 - www.tokenpost.com",
-        "Global stock markets tumble after Democrats' US midterm election victory - The Jerusalem Post"
+        "BofA’s Piron Sees Won, Taiwan Dollar as Buys After AI Rout - Bloomberg.com"
       ]
     },
     {
       "category": "반도체",
       "headlines": [
+        "US Semiconductor Expansion Hinges on Fab Efficiency, Supply Chain Coordination - EE Times Asia",
         "Trinity Fab, Built on SK hynix’s Production Expertise, to Open Next October - THE ELEC, Korea Electronics Industry Media",
-        "How Global Semiconductor Supply Chains Are Reshaping Electronics Manufacturing - Global Trade Magazine",
-        "TechInsights Acquires IC Knowledge LLC - TechInsights"
+        "How Global Semiconductor Supply Chains Are Reshaping Electronics Manufacturing - Global Trade Magazine"
       ]
     }
   ],
