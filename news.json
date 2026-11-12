@@ -1,16 +1,37 @@
 {
-  "updatedAt": "2026-11-12T08:37+09:00",
+  "updatedAt": "2026-11-12T17:49+09:00",
   "timezone": "Asia/Seoul",
   "source": "Google News RSS",
   "status": "ok",
   "errors": [],
   "items": [
     {
-      "date": "2026-11-11",
-      "category": "알루미늄",
-      "title": "Century Aluminum prepares for next phase of $4B Oklahoma smelter, targets 2030 production - AL Circle",
-      "source": "AL Circle",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOMkpydnpBVlMzTDdnX1BPLUIzVGpmLU82UmloTXdiWmd2VXFQTWlXU09oS3lQdHREUFU0X3lOek5UTWhkTW1rNjlrMXRxc0o5WTVZeUt0TWJGVG1MY2ZwV21ST2tGenhDUUV0cjZjRVBPQ2I3LXZsbmEyU3hYa2g2dktnMElhS2dKMEs0MC1fdkRQNHRLal9XSVFfN04xd1NQV05vN3N6dG45OXhaY0RrRFZoeWpzaU5RUGNGMkVvX0lmdw?oc=5"
+      "date": "2026-11-12",
+      "category": "철강",
+      "title": "[SMM Sheets & Plates Daily Review] Hot-rolled coil prices to consolidate in the short term - Shanghai Metals Market",
+      "source": "Shanghai Metals Market",
+      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQVERjVEZZZjN6a085ZkFUYXhzek1TSVBFQU9DanRlYWZkc295alNOZGJSdU5rd090WU5MZnNLcjlWM3lBNHM2aUthQ2FmYWw0TTZhczZjSm5CU3pjSF9EajNGNEc5ZkVQT3RMeWlIMG9mVnVVM0s3eFNQVnJ2bkUySFBPamFvTV9tQjJDZTdlTFFjWlRCaTZlQzFsSDhwYThGblhnX1lDcURIN09nN0hEV0pRNmZaQWpwOEJKa3J2dVh4eTNwQ0lHNldfUzVabDZjNXg1S2YyQXI4ZXhMNVIyenJvc3g2SHNFN1ZfWFVDbHYtZms?oc=5"
+    },
+    {
+      "date": "2026-11-12",
+      "category": "철강",
+      "title": "Turkish Habaş’s production halt tightens HRC supply and supports European prices - Yieh Corp.",
+      "source": "Yieh Corp.",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPdTAxemRZcnVZYnhsSUxIVlF0bU9PUGhqemRNUjV0R2k5T0pBd1JDcHVXTm1YMDJnTW90N0pIX29WNWZqcUdsc282R3FtNHZGeXRLaWJ3Y19BeEdnQVlIT1R1NTN5QjhWbTF0aHM2ZldzczFuUXlIMS04QkJ3VkRyUTgxNXJ1c3c1TEUza184aXBZRU9RMWxZMU5nb1lpN0M3WEVUc3ZNMHlCajBoY2FQRQ?oc=5"
+    },
+    {
+      "date": "2026-11-12",
+      "category": "환율",
+      "title": "Asia FX holds losses as dollar hits 19-mth high; yen nears 160 - Investing.com",
+      "source": "Investing.com",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPbHFoNURLU2VRX0NxQ2NVQXBUUlVlQ0Z5NExUT0dVSWpDSmdjVFUzNW41WVdHOENFdGlqRE1hX3dMaDVlYVBnQzBWS2Zla04zQXhGN0JYSXZQUkhEdkZLY0dkdG1FWEN2TU5FMDg4WlpQLUlMQ281T3FQMEI1WDRIb0lwa1hqMndtMHFUeVNwV2hDRy1XM1FGTWZtQUtYNG9BSm1ESkI4b1FMSGxiUmNJ?oc=5"
+    },
+    {
+      "date": "2026-11-12",
+      "category": "환율",
+      "title": "Black Desert Drives Pearl Abyss' Q3 Revenue - Inven Global",
+      "source": "Inven Global",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNUjZnVGdCRzNST1JnUmtKYmtYeXRITnN6NEpEV3B1QmxkVFE3bks3WWgtYnkzb1hKdkFkajBlR2ZlcmJ6R1dIRU81aEsxUkhrMmNwSkdPcVdzVlpNaHgtYzR5US0wOGZuOFdGSlY3bUNiZkwzZzdHdGdHeEFEV1V6Zl9DcTdOeWR3SVkwVHNR?oc=5"
     },
     {
       "date": "2026-11-11",
@@ -31,7 +52,7 @@
       "category": "알루미늄",
       "title": "Coal power offers “no chance to compete,” says Rio Tinto, as smelters go all-in on renewables - Renew Economy",
       "source": "Renew Economy",
-      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQZXlMcm5jV2pfd29tempFdmU5RVdCUUF6RmlTY09vWkFQaXVIUGVYZXJ4UjQzM3BhV3dzWVYwemhKaDV1YjlORVhLcEg5d2xxY3B2QmpIMTM2dDY3UGRYVW4tUVd1aDc3ZnZ5YWZYNnJlTWQtYXBrOHdMaWlySzN4Z3dMSHhsWjN6M01Gd2E2bFM5MmFZVmlvRzZuakpuNFBZeXptUW8yck1nTzRBZ2VvOWZINDdsLS1KcGZtRTk1YnFwQ0ItNk9UMnVYNVB6U2JEaEZiUUxR0gHWAUFVX3lxTFBleUxybmNXal93b216akV2ZTlFV0JRQXpGaVNjT29aQVBpdUhQZVhlcnhSNDMzcGFXd3NZVjB6aEpoNXViOU5FWEtwSDl3bHFjcHZCakgxMzZ0NjdQZFhVbi1RV3VoNzdmdnlhZlg2cmVNZC1hcGs4d0xpaXJLM3hnd0xIeGxaM3ozTUZ3YTZsUzkyYVlWaW9HNm5qSm40UFl5em1RbzJyTWdPNEFnZW85Zkg0N2wtLUpwZm1FOTVicXBDQi02T1QydVg1UHpTYkRoRmJRTFE?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQY0YzaW9QZW53bE1sZFRhYzlIN3VYOTFaS2dENDF3THR2X2NHeld2Vnd6QkV4akR4WEZmZF93Mk93djNwV1g4dWszVVB2RkRsM2ZCRk00WFlUWHZPNlRqUkR6Z2l4MklEeGcza0tzMHVwaXJTNVR0a0R0TXVlT3pya0pmbDNOT3pyRVRxQ2lkaU5VR0ZOLUJReGI2ZVpHZHVvVGFKdlIzUDVnVm1famZjUlFDdlJVZEhQc1U2RGY2MEJhMWozUmFTSUllT244OC1U0gHWAUFVX3lxTFBleUxybmNXal93b216akV2ZTlFV0JRQXpGaVNjT29aQVBpdUhQZVhlcnhSNDMzcGFXd3NZVjB6aEpoNXViOU5FWEtwSDl3bHFjcHZCakgxMzZ0NjdQZFhVbi1RV3VoNzdmdnlhZlg2cmVNZC1hcGs4d0xpaXJLM3hnd0xIeGxaM3ozTUZ3YTZsUzkyYVlWaW9HNm5qSm40UFl5em1RbzJyTWdPNEFnZW85Zkg0N2wtLUpwZm1FOTVicXBDQi02T1QydVg1UHpTYkRoRmJRTFE?oc=5"
     },
     {
       "date": "2026-11-11",
@@ -60,6 +81,13 @@
       "title": "The Next AI Chip Shortage May Be the Machines That Make HBM - 24/7 Wall St.",
       "source": "24/7 Wall St.",
       "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOdV9xZWZKTTFZMnZDWUJFQ090VEtxOW41am1BVnU4bzhGSGdabmRwQ3NscERsMzVwcENURWxPRzZqQlZQUVRRcHpLSGQ4NHVwRXRJQTU1NXE2SjdVMjBZV25aNFQtZDAwTWNrY3VDT1lXX3pib3RnUUNOc2lQeVlQd2NBSW1xUXZkNnFSRWpRcDM2d2ZtOTZUOUxkSEo3bmNBMnhjN2lB?oc=5"
+    },
+    {
+      "date": "2026-11-11",
+      "category": "알루미늄",
+      "title": "Century Aluminum prepares for next phase of $4B Oklahoma smelter, targets 2030 production - AL Circle",
+      "source": "AL Circle",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOMkpydnpBVlMzTDdnX1BPLUIzVGpmLU82UmloTXdiWmd2VXFQTWlXU09oS3lQdHREUFU0X3lOek5UTWhkTW1rNjlrMXRxc0o5WTVZeUt0TWJGVG1MY2ZwV21ST2tGenhDUUV0cjZjRVBPQ2I3LXZsbmEyU3hYa2g2dktnMElhS2dKMEs0MC1fdkRQNHRLal9XSVFfN04xd1NQV05vN3N6dG45OXhaY0RrRFZoeWpzaU5RUGNGMkVvX0lmdw?oc=5"
     },
     {
       "date": "2026-11-11",
@@ -98,6 +126,20 @@
     },
     {
       "date": "2026-11-10",
+      "category": "니켈",
+      "title": "LME Aluminum Inventories Plunge to Lowest Since 1990; Cash Premium Surges to $92 a Ton - BigGo Finance",
+      "source": "BigGo Finance",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5KM25ya0xTc3JJaXR4UEVnN2xPb2tmajNFR01PYVc5MDBRN1RReU5kcWdGaGMzdTFDZC1rLVlMM2N1ZDRBVGVUQ0JHNl83ZWdpN1FvRjNTMVV6VXJ6NC0wY3UtdDNmZFRsYlRsTm01V1JMVkhjN2c?oc=5"
+    },
+    {
+      "date": "2026-11-10",
+      "category": "알루미늄",
+      "title": "WEEKLY: China's alumina prices stabilise on supply risks, but weak demand caps gains - AL Circle",
+      "source": "AL Circle",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQaU5ISWFndmd1ZUU2SThvRWlYemtmeEd0VkU2NEQ3WUhaRDBJMmx1a201cGtfOUNGTGpXSkp4REI1T1ZvNExRYUZ3dG9GTm85a3FCR2drMk9KWWhYck1fU2NHYnZJeFlPTF9kMVFpbmhFRF85Q3VRQ1lka2I5Mk5ZZV96VENucE5mb2FuZGpPRC0yV08yczcwRUhjNEtHSmdLM2xlN2NxeGlHOGJIUlNwQUFBbTRncVpWdmF1SWxLeFk1Y3hCWndVMzZQWXpqZw?oc=5"
+    },
+    {
+      "date": "2026-11-10",
       "category": "철강",
       "title": "China cut steel exports by 2.3% y/y in 10 months - GMK Center",
       "source": "GMK Center",
@@ -132,25 +174,11 @@
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOZ1J5aUR3WVZ6cGlGQVBYeEVyVk5QVkdBcmlwbTM2c09fTFBkN3BEY2JNN29XeWVtZzRRVFdGOXhUZ2ZYUVRyVHAzNENWNmZOSmlGNFZhOF80X2szWkZzYVZ6TzI5TVdNcTNta1IyX09wUlViTk84Xy1MUmRhUWwwLWJ1US1qWUl1cDVpdFVUeWNTTzlvWGtOdWlRXy1LX0VfaUFDNjQ1RVh2RTB2V2ZGN1Y3eThmZVFVbUdlaA?oc=5"
     },
     {
-      "date": "2026-11-10",
-      "category": "알루미늄",
-      "title": "WEEKLY: China's alumina prices stabilise on supply risks, but weak demand caps gains - AL Circle",
-      "source": "AL Circle",
-      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQaU5ISWFndmd1ZUU2SThvRWlYemtmeEd0VkU2NEQ3WUhaRDBJMmx1a201cGtfOUNGTGpXSkp4REI1T1ZvNExRYUZ3dG9GTm85a3FCR2drMk9KWWhYck1fU2NHYnZJeFlPTF9kMVFpbmhFRF85Q3VRQ1lka2I5Mk5ZZV96VENucE5mb2FuZGpPRC0yV08yczcwRUhjNEtHSmdLM2xlN2NxeGlHOGJIUlNwQUFBbTRncVpWdmF1SWxLeFk1Y3hCWndVMzZQWXpqZw?oc=5"
-    },
-    {
       "date": "2026-11-09",
       "category": "알루미늄",
       "title": "Aluminum Prices Set For Decline As Supply Improves With Smelters Back In Operation - BusinessToday Malaysia",
       "source": "BusinessToday Malaysia",
-      "url": "https://news.google.com/rss/articles/CBMi7gJBVV95cUxPSFotRzNJSnB5Y3c5WjN0SHQ3VTVpN1p5Zk5mRENpdDRXbG0wVm1kM1JDZjY5UGpERUJFYXRaWkZyMFY5R2ZSQ21rQ1JaM2NBOEFaZmx2VjdWMWdub0t5bnVRM3ZpaXM2V2dJNDd5VWptdFZud0Y1Q092OEEtLVBDM1JlTjFJTVhRRzVXcmFtN2NXZl9qV1RCYmxzbmF4Z0dZZ0ZPTWxxc2pTeU5DV24wSXMxUkpoQVJpR0NmamlUclV6SVdvd1RseHZUTmdjOVEzcVJwazFvanRoeEZ2dXFMNkVQb0tWNGUtVmIxMnN2UHNWWk1Ld1NaZXpaOVpham1aaVNsYmdqaG1KLW5DZ2V1c3Qxd25sX1ZVU0RqZ1Uwei1kVnltNkJNeUxtaTdpQjQ1NDc4YnhTVGhXMU1qb1VsbHZUbEJjdWxJOV82cTRmajBSa1lZY3ZrMS1Za2lKRHJZeDFRbld6dldDcWc0a2c?oc=5"
-    },
-    {
-      "date": "2026-11-09",
-      "category": "환율",
-      "title": "Korean won strengthens on dollar sales, risk-taking mood - The Korea Times",
-      "source": "The Korea Times",
-      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPZjNLVEV6V0JZVW9WeXJuSDBuLWRDX0hUMGxqMEU4S0NZdWJpMEtHVi03ai11V1B5Ql8zcncxVVFBbFdqbVJ2WnhOcUFzcVlpQVpEcUVkZ2htRWZMWjJIY0dJeF80LS0xOXlzM3lFSWNfaWVLY0tnMDh1UzJOUEk4LV8zY2RaY3R6QmxiRmFLdl9mUXdsNUl2d3QwcWdYN2JYTmk0NVpZNFdoa1hN0gGyAUFVX3lxTE5yRzNpaDB5bS1RVHlQTW1oV3BaaE9OWHhSVXdrTUF0N2t0TmJkbXdxcmFUaVQ3eFVzTGppbnA5LUY3VTlhR0Nady01QUNWYzY0TFFTMWExQldGVzcwNkdpRE5Ob1dDYzhGUVZzZWs0VC1WOVp1RXdnazlKVGwzVlBpV29VczRoZ29NbldOZk5HTmNXT3I0LVhmZUh3VWRPZWJMeG1Rc2NqN1pQOXQyTFdLcVE?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPNXFWR3BnZ29OTXQ3X3R5S1U0ZGkzZWVYQjNPbzdleDl0TWxEcWZOS2JiU255V2xBamRmamFDLWg5QmRHbDFOOTBFTjlFRjM4bVAtSTVyX2Z1a0pZbFAyaFIxNWJwc2IyVG9kc0RaN2g0OVQ5WllyemYyb0N4T3RPMzRMUWxIZ0dLNTBxMFY5SlplTE1kVDlSbnluU1lrWVNkdS1xaHRfcWZGNHN4anJJYU5EdURMaGd4Y1lMLUY0ODlsaFI4dUE?oc=5"
     },
     {
       "date": "2026-11-09",
@@ -158,6 +186,13 @@
       "title": "US Semiconductor Expansion Hinges on Fab Efficiency, Supply Chain Coordination - EE Times Asia",
       "source": "EE Times Asia",
       "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQdjBUNGo0N0VwYkR2bnRnb3hKWDNmcENLRnRZSUNwYUttRm1pOTFacWUxQUtBYWZiVGFJendGcFVVVEZ5R2NQNEJvcWNmSHZzQVgxVkVRNlhTaURlTVJlWkNNS2dLYWZUR25tNHd0QWdPVEk5QjU0NWJzeVZaM1hWclc4bmRZNlFlT08wc1g3R21ldFNIWjlJa0xfMDNSZjNzM1QweQ?oc=5"
+    },
+    {
+      "date": "2026-11-09",
+      "category": "환율",
+      "title": "Korean won strengthens on dollar sales, risk-taking mood - The Korea Times",
+      "source": "The Korea Times",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPZjNLVEV6V0JZVW9WeXJuSDBuLWRDX0hUMGxqMEU4S0NZdWJpMEtHVi03ai11V1B5Ql8zcncxVVFBbFdqbVJ2WnhOcUFzcVlpQVpEcUVkZ2htRWZMWjJIY0dJeF80LS0xOXlzM3lFSWNfaWVLY0tnMDh1UzJOUEk4LV8zY2RaY3R6QmxiRmFLdl9mUXdsNUl2d3QwcWdYN2JYTmk0NVpZNFdoa1hN0gGyAUFVX3lxTE5yRzNpaDB5bS1RVHlQTW1oV3BaaE9OWHhSVXdrTUF0N2t0TmJkbXdxcmFUaVQ3eFVzTGppbnA5LUY3VTlhR0Nady01QUNWYzY0TFFTMWExQldGVzcwNkdpRE5Ob1dDYzhGUVZzZWs0VC1WOVp1RXdnazlKVGwzVlBpV29VczRoZ29NbldOZk5HTmNXT3I0LVhmZUh3VWRPZWJMeG1Rc2NqN1pQOXQyTFdLcVE?oc=5"
     },
     {
       "date": "2026-11-09",
@@ -218,6 +253,13 @@
     {
       "date": "2026-11-07",
       "category": "구리",
+      "title": "Copper faces further slide after US vote: pricing outlook for mine planners - Geomechanics.io",
+      "source": "Geomechanics.io",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxONWpLYnlrd1NBRm5KNXd0cjZwT1FSNEZXcnVya01uRXlnOElPZjJuU19wbG1GMnhmTjRfVnpMREVkT2FOUW0zWHJ1S2xCT1BtNEhnNUZZZkQyT3piRHJvSGZqVFdpaFRyRUN2TUJXcEJFTUlJeHN6LUdPQ2VQVWtQR29mZ2Jpc21KZGd1Ny13VWdCMnY1cWtlMFVkV0VGT2dlR0VGMll0WEJQX3RERGlKb2ZkQVVyUQ?oc=5"
+    },
+    {
+      "date": "2026-11-07",
+      "category": "구리",
       "title": "Copper Price Set for Biggest Weekly Drop Since March, Supply Tightness Provides Support - NAI500",
       "source": "NAI500",
       "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPc09tQXR3S2gxQ1NLdFRORnNicTREREZNaVdEU0Z1TFdmUVpPRy1nY0d4TEI5Yk9kcDd1XzVPcXZ2c2ZvelZjWmh2c3VxVi1Sakxmazd5Um9MdkN1dnRTb3dlNXFyMzZSa0M4MlhaOWtXcDEyNEZmSTYzTEttUnVsSkNzdGZNMXVGTmVsYi1vd29XWENpaVBrcjZBZ3R1MDhEOE1OWUhIdnpZRzRwX28tbWU3QWtwTzdZbWZtU1ZB?oc=5"
@@ -228,6 +270,13 @@
       "title": "USD/KRW (KRW=X) live rate, chart and news - Yahoo Finance Australia",
       "source": "Yahoo Finance Australia",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE80ZW80c2VIQ1h5d1B4ZHpsTmZ6RHhNVnY1bVQzLWdtdmctd3UwMjNONFpXckRjQmdBSUJxSk42ZGZGRmx2QXktTEx0eklqX3Z0Rmg0NXdn?oc=5"
+    },
+    {
+      "date": "2026-11-06",
+      "category": "구리",
+      "title": "Copper drops to lowest since July on AI slowdown fears, tariff doubts - TradingView",
+      "source": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPS2FSQVZNZWlHa0tTUmlxcG5XTV9HeHFjdmdDdEZvdTA4RUtPbGxCWFlPNjgwRjBodDZGTjZZZVJqaVVQNWJ4TFRJT2NlS05GTENLTHF6MUVqQ1lGVS1OVEJpTVlma3dOblRJbDVrV1BUV0FjZER4Qk0xbXg4NzI1dzF1Yi1XQzNQS3hXSkV6TlZaMWtKMEdaUVc5T1ZXR2pnY2xWRFVaVjF0Qmt2aXVIeExqLThZQ1F1Wm1hYTNMSC1IMVpLMXBGN0hB?oc=5"
     },
     {
       "date": "2026-11-06",
@@ -245,20 +294,6 @@
     },
     {
       "date": "2026-11-06",
-      "category": "니켈",
-      "title": "Nickel prices jump 3.8% as Indonesia cracks down on mining - IDNFinancials",
-      "source": "IDNFinancials",
-      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQRVpkTkdYVEJzTGlfRGYyVEkwNkluT3ZFTHp5Z0YyRzlDRTlSV0ZZbEk5R0FMcC15WGx1Z2lzWTNrbFFuYXFqeExXY09jMEg1UGJzcXRGaGs0R1pMVVhhQlBqdGVVeE9IeE9LOHlmVmhkaDFqeWJJeDBwVFA0QUFRaTE4ZFBGTVNCbnJuR2QwaW9feWdjYUp1SmpwQkxjTFU?oc=5"
-    },
-    {
-      "date": "2026-11-06",
-      "category": "철강",
-      "title": "[SMM Analysis]Off-season Characteristics Deepen,November Coil Prices Expected to Continue Moving Sideways at Low Levels - Shanghai Metals Market",
-      "source": "Shanghai Metals Market",
-      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQUFBObWNJM0Z5WE9ZNUdzNlRmYVZudEVQeUF6STR4N05wRG1odXFmcmp5bl8wYzdqV2QzeEszVjJMUU1TaUFtaF9JNTdVYjdrMHJOTFRNTzdGTE9IOHUzVnB0dmViaDBaRVI4b1FBVXhkWGFhVkdmTXhMcWNWZk1kWkRNaTVjWVZCR1ZQckZ6UzI2MmNDRmZpc1gtNmR0Z1R2N2ZQaU85Y1pYR2xEc3JzMnVDNjN5ZHNmM0RNLWFwRVVvdjNiNXpGZGRud3JaSTZaMzA4R3lCX25jNVZRSC0yT0dncjhCLUI0N25JTzYwRnNUbnM?oc=5"
-    },
-    {
-      "date": "2026-11-06",
       "category": "반도체",
       "title": "How Global Semiconductor Supply Chains Are Reshaping Electronics Manufacturing - Global Trade Magazine",
       "source": "Global Trade Magazine",
@@ -270,6 +305,20 @@
       "title": "AI Memory Supply Chain Is Still Lagging Demand - TechInsights",
       "source": "TechInsights",
       "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBydGNmU0I1QmpSRE5qNF9ablR5QmVhcEdoZEY2d21tUEl4YzhSLTlJUDY3dzg4c3NqR2lvT3RxempSY2h6VmI2cW41VFJKdWNWV1ZMelpPR2JMMkwzbUQ3NERaN242bzhtSkRmbFJuU0hRemJrNFJxN0hlcGliUQ?oc=5"
+    },
+    {
+      "date": "2026-11-06",
+      "category": "니켈",
+      "title": "Nickel prices jump 3.8% as Indonesia cracks down on mining - IDNFinancials",
+      "source": "IDNFinancials",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQRVpkTkdYVEJzTGlfRGYyVEkwNkluT3ZFTHp5Z0YyRzlDRTlSV0ZZbEk5R0FMcC15WGx1Z2lzWTNrbFFuYXFqeExXY09jMEg1UGJzcXRGaGs0R1pMVVhhQlBqdGVVeE9IeE9LOHlmVmhkaDFqeWJJeDBwVFA0QUFRaTE4ZFBGTVNCbnJuR2QwaW9feWdjYUp1SmpwQkxjTFU?oc=5"
+    },
+    {
+      "date": "2026-11-06",
+      "category": "철강",
+      "title": "[SMM Analysis]Off-season Characteristics Deepen,November Coil Prices Expected to Continue Moving Sideways at Low Levels - Shanghai Metals Market",
+      "source": "Shanghai Metals Market",
+      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQUFBObWNJM0Z5WE9ZNUdzNlRmYVZudEVQeUF6STR4N05wRG1odXFmcmp5bl8wYzdqV2QzeEszVjJMUU1TaUFtaF9JNTdVYjdrMHJOTFRNTzdGTE9IOHUzVnB0dmViaDBaRVI4b1FBVXhkWGFhVkdmTXhMcWNWZk1kWkRNaTVjWVZCR1ZQckZ6UzI2MmNDRmZpc1gtNmR0Z1R2N2ZQaU85Y1pYR2xEc3JzMnVDNjN5ZHNmM0RNLWFwRVVvdjNiNXpGZGRud3JaSTZaMzA4R3lCX25jNVZRSC0yT0dncjhCLUI0N25JTzYwRnNUbnM?oc=5"
     },
     {
       "date": "2026-11-06",
@@ -336,17 +385,17 @@
     },
     {
       "date": "2026-11-05",
-      "category": "구리",
-      "title": "Copper price rebounds as tightness offsets tariff and AI fears - Mining.com.au",
-      "source": "Mining.com.au",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQV2RWcW1lLTRBVS0zc3VWRzNWbkh1czZOamZ1WlEybHkwRzlsZ0pyUFhTZ1pTR0wta3RkOHpLQUhnQlp6RU5nQXVibHQ0N1hWODIwMURQQTVld3Z1aFExZ1hRTzFoRXhWT2FvVHZETEdTUUl3WlJTX2N3VkNGOW84R0hGU0RTZw?oc=5"
-    },
-    {
-      "date": "2026-11-05",
       "category": "철강",
       "title": "Hot-rolled coil buyers fear supply cuts as ADI prepares to shut down - Металлургпром",
       "source": "Металлургпром",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPSHNYeXktdWpyaGpfbU1zdncxRy00b3lSRzBXWFgwd1JVYl9SVGRMRmEtTm9WbHQ5MG5lUm42Z290TUNULXdZV2hKeVhIbHR1dW5BLWFoeE5McUtIUC0yTldJTkFZVTQ0NXFFQXRxbmZIUE14cGp6aWFuaVNvRTZFWFJOb2JmRUtJeF9rSlJBbDQ4LXdUV2IzZkpid3I5Ty1xX1dIV3l2TkR6V2pkeGlkeTlNblFLT3UwenJjRtIBzgFBVV95cUxNVFNGdjdSc2JxaTV4cExYSWNMbDlQZnNIN0xXaHl5ZDRON3lOTzEtNzdtNlFrRXJOR0JBdnVzSlFsbmVBR3ZOUlhXX0lveXZmOHhRcTl0djRrRVlwS2dyRzVqY2l4SnZURHBVcDk4aUtVcUxVZVJkbW1JbjBNUXBOb292QVJ2YjRIbnl3SjF1TVhtdmJMc1BpNDBwZFNMRmtmdy1QNDBtanptZzNRcGk5TVF6OXNMdHRmVEx0clFaTGJlV2dNajlaMWltRW5UZw?oc=5"
+    },
+    {
+      "date": "2026-11-05",
+      "category": "구리",
+      "title": "Copper price rebounds as tightness offsets tariff and AI fears - Mining.com.au",
+      "source": "Mining.com.au",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQV2RWcW1lLTRBVS0zc3VWRzNWbkh1czZOamZ1WlEybHkwRzlsZ0pyUFhTZ1pTR0wta3RkOHpLQUhnQlp6RU5nQXVibHQ0N1hWODIwMURQQTVld3Z1aFExZ1hRTzFoRXhWT2FvVHZETEdTUUl3WlJTX2N3VkNGOW84R0hGU0RTZw?oc=5"
     },
     {
       "date": "2026-11-05",
@@ -1644,23 +1693,23 @@
       "headlines": [
         "LME nickel & NPI prices rebound on Indonesian ore quota restriction plans - Yieh Corp.",
         "Aluminum faces severe squeeze as London market awaits new supply - Mining.com",
-        "Securing Buyers Can Help Nickel Projects Attract Funding Despite a Global Surplus - Crux Investor"
+        "LME Aluminum Inventories Plunge to Lowest Since 1990; Cash Premium Surges to $92 a Ton - BigGo Finance"
       ]
     },
     {
       "category": "알루미늄",
       "headlines": [
-        "Century Aluminum prepares for next phase of $4B Oklahoma smelter, targets 2030 production - AL Circle",
         "Alba Discloses its Financial Results for the Third Quarter and 9 Months of 2026 - Aluminium Bahrain (Alba)",
-        "Alba profit plunges as war disrupts aluminium production - Arabian Gulf Business Insight | AGBI"
+        "Alba profit plunges as war disrupts aluminium production - Arabian Gulf Business Insight | AGBI",
+        "Coal power offers “no chance to compete,” says Rio Tinto, as smelters go all-in on renewables - Renew Economy"
       ]
     },
     {
       "category": "철강",
       "headlines": [
-        "SMU Price Ranges rise on tight supply, no signs of a year-end slowdown - Steel Market Update",
-        "MEPS Details Assumptions Behind Five-Year Steel Price Forecasts - News and Statistics - IndexBox",
-        "China cut steel exports by 2.3% y/y in 10 months - GMK Center"
+        "[SMM Sheets & Plates Daily Review] Hot-rolled coil prices to consolidate in the short term - Shanghai Metals Market",
+        "Turkish Habaş’s production halt tightens HRC supply and supports European prices - Yieh Corp.",
+        "SMU Price Ranges rise on tight supply, no signs of a year-end slowdown - Steel Market Update"
       ]
     },
     {
@@ -1674,9 +1723,9 @@
     {
       "category": "환율",
       "headlines": [
-        "Will USD/KRW hold above ₩1,327 support amid semiconductor optimism? - Traders Union",
-        "TD Sees AI Equity Shift Pushing USD/KRW Toward 1400 - TradingPedia",
-        "USD/KRW: AI-linked reversal toward 1400 – TD Securities - FXStreet"
+        "Asia FX holds losses as dollar hits 19-mth high; yen nears 160 - Investing.com",
+        "Black Desert Drives Pearl Abyss' Q3 Revenue - Inven Global",
+        "Will USD/KRW hold above ₩1,327 support amid semiconductor optimism? - Traders Union"
       ]
     },
     {
