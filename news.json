@@ -1,10 +1,24 @@
 {
-  "updatedAt": "2026-11-17T17:49+09:00",
+  "updatedAt": "2026-11-18T08:36+09:00",
   "timezone": "Asia/Seoul",
   "source": "Google News RSS",
   "status": "ok",
   "errors": [],
   "items": [
+    {
+      "date": "2026-11-18",
+      "category": "철강",
+      "title": "Nucor upgraded to Outperform at Morgan Stanley on cash flow outlook - TradingView",
+      "source": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQLWRlWkFadU1VSDl6ejVZR1huMDBzZHRJSC0tRUxlbUdTNEVqSFpseW9CbHNheWhJUHNYNFVadV9kRzc3dHpOSlBnZlIwa0cta1BaeE9JaXNWdmhrYkJpcFJZNmJHRHJ6RDl3QVdoSHNTdzdoQ2J4bTZtYkhHU2c2SG5tREpySGxSaHJlc1ZtaDI3VkVjcGprb3ZodXgzUmUyMWxfM1JTV3ZRbE1ibURxUC05aWUwNHlHQ01mMFk0NkhHZEpkTHAyZkd3?oc=5"
+    },
+    {
+      "date": "2026-11-17",
+      "category": "니켈",
+      "title": "Aluminum Trades $275 Above Futures as Surplus Stays Undeliverable - Crux Investor",
+      "source": "Crux Investor",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPWHBUWGdhamlwa1htb3doeXNFaEhHZmc2Mmw2X1hOYjVMdEc0SEJXdENFVU9VTWZMWm9MSGMyQW4tWjR2NFNNT1h2YXcyY3dIV0pYODRtSEt1LTJJWnM4ZXpDZktvSGlJOVNvUkM1Z0dkV285SGFvMU5QVzNfTEFydzhGeDc1ZUxSRXJ5Y25NNmFXejJEUUU3UmJ2SjVqQ05q?oc=5"
+    },
     {
       "date": "2026-11-17",
       "category": "니켈",
@@ -14,10 +28,31 @@
     },
     {
       "date": "2026-11-17",
+      "category": "알루미늄",
+      "title": "Idle since 2020, Rio Tinto’s Tiwai Point aluminium smelter Line 4 eyes 2027 comeback - AL Circle",
+      "source": "AL Circle",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPZG1YckRkS0o1SWtiMm1nb0pjaFcwODNCVU9JdG54MEZoZ3dCc3dkdDRIWnR5NDRXb1FGeUZQZHE5enVSWXlQM1JGaGhqSkMyS0UyZ3RPNkZudGJTcTVvOGt0VjVSZlBvUnFzYUtoQ2VELTdJNGU1TXRCTmxkUE5QZVZySUNGRThCQVlkRjI0aTdMeTJCR191YlBNZmZodFpaNFRZdWplMnJ5aXoxZUs1eWhjc3VsNFlSTllj?oc=5"
+    },
+    {
+      "date": "2026-11-17",
       "category": "환율",
       "title": "EXEC: Misto Holding Sees Q3 Results Earn Boost from DD Fila Sales Gains in Korea - SGB Media Online",
       "source": "SGB Media Online",
       "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOTzZzWW5xa1JxdDItM2dFcVNiYUxfRVFIOUp2U1JxWktoUV85Nlc1M2ZwcFB2OUtPanBWb3BiWjMyR3FtUE80cVpoaXpNNFAtVG5ENGZHMWM3Y0U4RGc4OHo5SXlvUlgzT3BBdDBjb1FFVnJwOVBPT1JYek9UUXJKTHBZVjlLZDZXZ21iSDdDVDR5aWJaZFNyM3NEdlAtYkxISGUxXw?oc=5"
+    },
+    {
+      "date": "2026-11-17",
+      "category": "반도체",
+      "title": "AI Infrastructure Boom Creates Compelling Growth Opportunities Across Semiconductor Supply Chain - The Globe and Mail",
+      "source": "The Globe and Mail",
+      "url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNSFRlRnJtckdTbmZuc2Nydkt4RU5QUFhXNXRfUW0xYTVnOEJWREQza29EREtiYWUySkRJUF9ZeEtDaS0ySXZSUWFja0Iwa2dTTEhhRGVZbTM4dFZLVWNhaTYwbUp3V19zY04wSVFXRkl4UFlQZ1JRM01pbEcwSHBhNWswaFdBX3h4bm1mQVR1THFtREQzME1fY1J0RmYtejVGa2Nsc21JYzV5Z250d0I2eUpIa2lvUmJIZjFrT2t0b2tLRkI1cTBSWUhzNFZZWFpKMGEwRnVSOWpiUDhKSTlGY3gyQkVGbjF6YVIxMDNQR1EzRnB1bnlZMmYyLWhkc1FXbUtiT0NOUE41ckw3TFE?oc=5"
+    },
+    {
+      "date": "2026-11-17",
+      "category": "반도체",
+      "title": "Applied Materials to Double Equipment Output by 2028 on AI Chip Demand - THE ELEC, Korea Electronics Industry Media",
+      "source": "THE ELEC, Korea Electronics Industry Media",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9GcUJ3V0NrdThIZEtXMUpQei1RVjVpSDVSS2Yzc0tmV2FvMDVVRzJtR1FkS2QwX0pHbXBKQmp4bGpONzBsWWZ6M3JTc3ZZXzVlQXZDVlZ2bnRPY2RSbE8tbHdIdDlINjQ?oc=5"
     },
     {
       "date": "2026-11-17",
@@ -49,20 +84,6 @@
     },
     {
       "date": "2026-11-16",
-      "category": "철강",
-      "title": "Corinth Pipeworks to use ArcelorMittal's XCarb® steel in European pipeline project - SteelOrbis",
-      "source": "SteelOrbis",
-      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQWnFBRnFLM3B5QWNxN1VrZDczSlRnd2FUdEthUElxVHZ4dnVKV09vVzhad0JLNnRHVkNmMWlqY3IzNW5CSVF2WURnblNPUlVwVmxFamNHNEl2Q1JmVEQ4bE1uV0JRSnRPWWFoX3RDaGVhQVdXRkhzbm5YakNVQXhXNlU0YWg5dWNCb3loekNnVVY1WjFqNGxWYzNpaUgtNzdiOFpYQlI2NE5BYlF5SEpwXzlqZXRUQ0trY2hLempFV2MxSncteHBsWnFCX2w1RzdFamgtbnlvOEJoUQ?oc=5"
-    },
-    {
-      "date": "2026-11-16",
-      "category": "플라스틱",
-      "title": "Petrochemical News - Global polymer prices show signs of easing after sharp gains; buyers resist further increases - Polymerupdate",
-      "source": "Polymerupdate",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5McVZoeDNfQW50NDdxTmZhbzVpeDM5V0ZSRVhJRmVNMHY2Rzl3S09VNEJvSkZMWV9hRnVWS2VrQ2dxU3UyOU1fSkp5TElxZDBDOVhRRHBrYU1RN0hQTU1F?oc=5"
-    },
-    {
-      "date": "2026-11-16",
       "category": "환율",
       "title": "South Korean Won: Tech sentiment keeps KRW volatile against US Dollar – OCBC - FXStreet",
       "source": "FXStreet",
@@ -81,6 +102,20 @@
       "title": "SK hynix commits $1.05B to strengthen semiconductor supply chain (SKHY:NASDAQ) - Seeking Alpha",
       "source": "Seeking Alpha",
       "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQeFUtS2VmVF9WNGpjWUh4cDJpVmY0S09CeHpXempSOHlHYlJCcXRhd0lYdFU3SGoyM3BSOWtyZnlRRDZqNXQ2RzFUaGFsYWdpbXl0Xzh6eGU4VlNPbFRyclJaQUJOem9BZjdyc29aWDlEdXp3SF9rLU1zcHhrc3czemZGUXpoQkhzNHg2Nk40MzN3SGFsczZQbUhTRzBCcGU5Znc?oc=5"
+    },
+    {
+      "date": "2026-11-16",
+      "category": "철강",
+      "title": "Corinth Pipeworks to use ArcelorMittal's XCarb® steel in European pipeline project - SteelOrbis",
+      "source": "SteelOrbis",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQWnFBRnFLM3B5QWNxN1VrZDczSlRnd2FUdEthUElxVHZ4dnVKV09vVzhad0JLNnRHVkNmMWlqY3IzNW5CSVF2WURnblNPUlVwVmxFamNHNEl2Q1JmVEQ4bE1uV0JRSnRPWWFoX3RDaGVhQVdXRkhzbm5YakNVQXhXNlU0YWg5dWNCb3loekNnVVY1WjFqNGxWYzNpaUgtNzdiOFpYQlI2NE5BYlF5SEpwXzlqZXRUQ0trY2hLempFV2MxSncteHBsWnFCX2w1RzdFamgtbnlvOEJoUQ?oc=5"
+    },
+    {
+      "date": "2026-11-16",
+      "category": "플라스틱",
+      "title": "Petrochemical News - Global polymer prices show signs of easing after sharp gains; buyers resist further increases - Polymerupdate",
+      "source": "Polymerupdate",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5McVZoeDNfQW50NDdxTmZhbzVpeDM5V0ZSRVhJRmVNMHY2Rzl3S09VNEJvSkZMWV9hRnVWS2VrQ2dxU3UyOU1fSkp5TElxZDBDOVhRRHBrYU1RN0hQTU1F?oc=5"
     },
     {
       "date": "2026-11-16",
@@ -169,16 +204,23 @@
     {
       "date": "2026-11-13",
       "category": "구리",
-      "title": "Goldman Sachs Projects Copper Prices at $15,600 per Tonne by December 2027 Amid Supply Constraints - Yahoo Finance UK",
-      "source": "Yahoo Finance UK",
-      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPeXJSbGNvX1VybHAxcTVTNUpqZ3F0WlNGaGRlVUs4OXhOenZUb3pTN2tJWFdKQXNOQWZyVjk4UmpDQ1A0OVdfN0VsaGVmaDc1NGVRbXU3TVJSdTgteTQ3LUFKWk8yaTdhd1VtdEdSdHZlT2NuTnd3RUpFREpMNmc0aFo0RXRBUU1paGFheGNB?oc=5"
+      "title": "Border States Commodity Update — November 2026 - the Electrical Distributor magazine",
+      "source": "the Electrical Distributor magazine",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5BVEZSUnlReDd6VUdzNGEwU0FnVWhUa0pyQ0VQZ19jX1UyR0RuMGJzdXN2S3gtZkx3dzFlbDVKcVJPVko0Z3M2bDJ5WGtPTDh4LWRHQUZ1M2VienZ1bG1RU1M0TkJxZXBOOUJ5SlEyY1MwQQ?oc=5"
     },
     {
       "date": "2026-11-13",
       "category": "구리",
-      "title": "Border States Commodity Update — November 2026 - the Electrical Distributor magazine",
-      "source": "the Electrical Distributor magazine",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5BVEZSUnlReDd6VUdzNGEwU0FnVWhUa0pyQ0VQZ19jX1UyR0RuMGJzdXN2S3gtZkx3dzFlbDVKcVJPVko0Z3M2bDJ5WGtPTDh4LWRHQUZ1M2VienZ1bG1RU1M0TkJxZXBOOUJ5SlEyY1MwQQ?oc=5"
+      "title": "USGS Sees Silver Mine Capacity Rising About 4% Through 2030 - GoldSilver",
+      "source": "GoldSilver",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNTGZtWkctQkFadW1MVVpDWjdaSmUtaWVieU9YQWdNQWRPZUpTd1BxZnhpUnE2ZjU3cUZBWjQ4NkNiakVFOGFLV1NKZTJjQV85T1FJdzBWMWlXUXRCdjRZN05FVkZIdThMQ201VGxkU3U1TzU2N09hUE9zRXBiMEloXzhYOWJVRUh6YlA4cA?oc=5"
+    },
+    {
+      "date": "2026-11-13",
+      "category": "구리",
+      "title": "Goldman Sachs Projects Copper Prices at $15,600 per Tonne by December 2027 Amid Supply Constraints - Yahoo Finance UK",
+      "source": "Yahoo Finance UK",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPeXJSbGNvX1VybHAxcTVTNUpqZ3F0WlNGaGRlVUs4OXhOenZUb3pTN2tJWFdKQXNOQWZyVjk4UmpDQ1A0OVdfN0VsaGVmaDc1NGVRbXU3TVJSdTgteTQ3LUFKWk8yaTdhd1VtdEdSdHZlT2NuTnd3RUpFREpMNmc0aFo0RXRBUU1paGFheGNB?oc=5"
     },
     {
       "date": "2026-11-13",
@@ -210,6 +252,13 @@
     },
     {
       "date": "2026-11-12",
+      "category": "알루미늄",
+      "title": "Rio Tinto backs its green aluminium to see off Indonesian supply surge - AFR",
+      "source": "AFR",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPNmh1Um82NmJKS1NqYmk4alp2enZScWlkaXBNd2JmMUFvdGVqQVNLQW42YmQzMkw0T0tFcmFncTRWVDV3NDNVbDBVSE81TWRnN3FfaDhvVmFVNG5paUQ2VWZUblZVSWJMN0d2b3c5b3lQdmU0c0E3OFdLQXF6NDFuSGNCeE5LMmZxVEhuQ3pmbml1TnZVcEFISUVjZjJhYUJOYW52b0xpeFUyb2IzTG9QVVEyQXFiRE5uczM5dlBtbndoS0FzUVZmNHln?oc=5"
+    },
+    {
+      "date": "2026-11-12",
       "category": "철강",
       "title": "European HRC Prices Climb: Mills Raise Offers for Q1 2027 - News and Statistics - IndexBox",
       "source": "IndexBox",
@@ -224,6 +273,20 @@
     },
     {
       "date": "2026-11-12",
+      "category": "철강",
+      "title": "Turkish Habaş’s production halt tightens HRC supply and supports European prices - Yieh Corp.",
+      "source": "Yieh Corp.",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPdTAxemRZcnVZYnhsSUxIVlF0bU9PUGhqemRNUjV0R2k5T0pBd1JDcHVXTm1YMDJnTW90N0pIX29WNWZqcUdsc282R3FtNHZGeXRLaWJ3Y19BeEdnQVlIT1R1NTN5QjhWbTF0aHM2ZldzczFuUXlIMS04QkJ3VkRyUTgxNXJ1c3c1TEUza184aXBZRU9RMWxZMU5nb1lpN0M3WEVUc3ZNMHlCajBoY2FQRQ?oc=5"
+    },
+    {
+      "date": "2026-11-12",
+      "category": "환율",
+      "title": "South Korean Won Price (KRW/USD) Today | Live Price, Market Cap & Chart - Binance",
+      "source": "Binance",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBrXzZRbkROVV9CR2FDUDJsSElHbTByMUloSEFtMlgySlE4dm5laWUzcFprMDB3R0JBN1Q3UENtSzdjNmVtTEpwSE9ueG5QaFE0bTZvdlJNaVllZ0tSWEpoN25n?oc=5"
+    },
+    {
+      "date": "2026-11-12",
       "category": "니켈",
       "title": "Nickel tests a new supply-demand balance as LME prices stay around $16,000 - kalkine.ca",
       "source": "kalkine.ca",
@@ -231,24 +294,10 @@
     },
     {
       "date": "2026-11-12",
-      "category": "알루미늄",
-      "title": "Rio Tinto backs its green aluminium to see off Indonesian supply surge - AFR",
-      "source": "AFR",
-      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPNmh1Um82NmJKS1NqYmk4alp2enZScWlkaXBNd2JmMUFvdGVqQVNLQW42YmQzMkw0T0tFcmFncTRWVDV3NDNVbDBVSE81TWRnN3FfaDhvVmFVNG5paUQ2VWZUblZVSWJMN0d2b3c5b3lQdmU0c0E3OFdLQXF6NDFuSGNCeE5LMmZxVEhuQ3pmbml1TnZVcEFISUVjZjJhYUJOYW52b0xpeFUyb2IzTG9QVVEyQXFiRE5uczM5dlBtbndoS0FzUVZmNHln?oc=5"
-    },
-    {
-      "date": "2026-11-12",
       "category": "철강",
       "title": "European steel industry struggles with rising costs and weak demand - SteelRadar",
       "source": "SteelRadar",
       "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOSTI2dU9MRkR5eWdoVEdSYk4tcnpOTTA3Q0R1Y0Y4VU93VzhQRy00RUJCblJNTjhCS0ZRZUtZaHVlZ2RNWWkzRWNVZ1c0blgtbDR6aHJ6MFNJR05MZ2V3UGpjZ21MR05vSjlMTmxpeGJEajlCUHo2NktpaG5fUXYzQ0FmajJUb29rWEVPVVV3U013aWdZN2E4QmhlbU1uYnpOTEpFMVk0TQ?oc=5"
-    },
-    {
-      "date": "2026-11-12",
-      "category": "철강",
-      "title": "Turkish Habaş’s production halt tightens HRC supply and supports European prices - Yieh Corp.",
-      "source": "Yieh Corp.",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPdTAxemRZcnVZYnhsSUxIVlF0bU9PUGhqemRNUjV0R2k5T0pBd1JDcHVXTm1YMDJnTW90N0pIX29WNWZqcUdsc282R3FtNHZGeXRLaWJ3Y19BeEdnQVlIT1R1NTN5QjhWbTF0aHM2ZldzczFuUXlIMS04QkJ3VkRyUTgxNXJ1c3c1TEUza184aXBZRU9RMWxZMU5nb1lpN0M3WEVUc3ZNMHlCajBoY2FQRQ?oc=5"
     },
     {
       "date": "2026-11-12",
@@ -330,20 +379,6 @@
     {
       "date": "2026-11-11",
       "category": "알루미늄",
-      "title": "Century Aluminum prepares for next phase of $4B Oklahoma smelter, targets 2030 production - AL Circle",
-      "source": "AL Circle",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOMkpydnpBVlMzTDdnX1BPLUIzVGpmLU82UmloTXdiWmd2VXFQTWlXU09oS3lQdHREUFU0X3lOek5UTWhkTW1rNjlrMXRxc0o5WTVZeUt0TWJGVG1MY2ZwV21ST2tGenhDUUV0cjZjRVBPQ2I3LXZsbmEyU3hYa2g2dktnMElhS2dKMEs0MC1fdkRQNHRLal9XSVFfN04xd1NQV05vN3N6dG45OXhaY0RrRFZoeWpzaU5RUGNGMkVvX0lmdw?oc=5"
-    },
-    {
-      "date": "2026-11-11",
-      "category": "알루미늄",
-      "title": "Alba Discloses its Financial Results for the Third Quarter and 9 Months of 2026 - Aluminium Bahrain (Alba)",
-      "source": "Aluminium Bahrain (Alba)",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQbXpkc3J5WjNXMGctOUtfSGtuTmFJU3FCNTF5alZUNU41aHpoci1rM0ZuU0ZoZkszdlJZamU1b3VvUnZ3TjNVRmVEc1ltUG5sNjNncmd6czBXWDlRNUxCZENNTTRrSGxVcnptVk5vb3RNelF0WVlmVzJ2Z21nRDdtbl9RRHpQellPNVpwcXNGRE1BTGJCdm5tSnVvaElGRVpMRU5VNXpHSkpuRTY0NVdRYUcwMUJTNEFlUFE?oc=5"
-    },
-    {
-      "date": "2026-11-11",
-      "category": "알루미늄",
       "title": "Coal power offers “no chance to compete,” says Rio Tinto, as smelters go all-in on renewables - Renew Economy",
       "source": "Renew Economy",
       "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQY0YzaW9QZW53bE1sZFRhYzlIN3VYOTFaS2dENDF3THR2X2NHeld2Vnd6QkV4akR4WEZmZF93Mk93djNwV1g4dWszVVB2RkRsM2ZCRk00WFlUWHZPNlRqUkR6Z2l4MklEeGcza0tzMHVwaXJTNVR0a0R0TXVlT3pya0pmbDNOT3pyRVRxQ2lkaU5VR0ZOLUJReGI2ZVpHZHVvVGFKdlIzUDVnVm1famZjUlFDdlJVZEhQc1U2RGY2MEJhMWozUmFTSUllT244OC1U0gHWAUFVX3lxTFBleUxybmNXal93b216akV2ZTlFV0JRQXpGaVNjT29aQVBpdUhQZVhlcnhSNDMzcGFXd3NZVjB6aEpoNXViOU5FWEtwSDl3bHFjcHZCakgxMzZ0NjdQZFhVbi1RV3VoNzdmdnlhZlg2cmVNZC1hcGs4d0xpaXJLM3hnd0xIeGxaM3ozTUZ3YTZsUzkyYVlWaW9HNm5qSm40UFl5em1RbzJyTWdPNEFnZW85Zkg0N2wtLUpwZm1FOTVicXBDQi02T1QydVg1UHpTYkRoRmJRTFE?oc=5"
@@ -357,10 +392,31 @@
     },
     {
       "date": "2026-11-11",
+      "category": "환율",
+      "title": "What's driving US Dollar vs South Korean Won lower today? - Traders Union",
+      "source": "Traders Union",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxON2tYQlNyOHhSaDlkVWJFWnlsU2ZKZ1BPTm9xRlp2NVBidlZyWk9aU0lYeWJNZFRubG93WmNPSU9Mc213d0g1MHpVUWN3ektIVEZHeTBfS2p5QWlEZnAzSFEzeGpuNW8wRFpob0hHMld4UkIyUGVDVDJfbzhVbGZwbmZ4Q2pQamU5RXBiTlctSVowcDdEZEt2Vw?oc=5"
+    },
+    {
+      "date": "2026-11-11",
       "category": "반도체",
       "title": "As China Builds Its Own Chip Supply Chain, Taiwanese Suppliers Lose Their Edge｜Industry｜2026-11-11｜web only - 天下雜誌",
       "source": "天下雜誌",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5SQ29WUUFGTDZFU25HRWNTbXRmSTRNUmNSSVZzRnh5ODd6a2g0TWxjMTI2X2VmU3RmZjhpNUdSUkNqOC1sTTdSMVdlOTNyRHVkZm8ybmduSW9LRkVrb3JpMjBiV3QwX2M?oc=5"
+    },
+    {
+      "date": "2026-11-11",
+      "category": "알루미늄",
+      "title": "Century Aluminum prepares for next phase of $4B Oklahoma smelter, targets 2030 production - AL Circle",
+      "source": "AL Circle",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOMkpydnpBVlMzTDdnX1BPLUIzVGpmLU82UmloTXdiWmd2VXFQTWlXU09oS3lQdHREUFU0X3lOek5UTWhkTW1rNjlrMXRxc0o5WTVZeUt0TWJGVG1MY2ZwV21ST2tGenhDUUV0cjZjRVBPQ2I3LXZsbmEyU3hYa2g2dktnMElhS2dKMEs0MC1fdkRQNHRLal9XSVFfN04xd1NQV05vN3N6dG45OXhaY0RrRFZoeWpzaU5RUGNGMkVvX0lmdw?oc=5"
+    },
+    {
+      "date": "2026-11-11",
+      "category": "알루미늄",
+      "title": "Alba Discloses its Financial Results for the Third Quarter and 9 Months of 2026 - Aluminium Bahrain (Alba)",
+      "source": "Aluminium Bahrain (Alba)",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQbXpkc3J5WjNXMGctOUtfSGtuTmFJU3FCNTF5alZUNU41aHpoci1rM0ZuU0ZoZkszdlJZamU1b3VvUnZ3TjNVRmVEc1ltUG5sNjNncmd6czBXWDlRNUxCZENNTTRrSGxVcnptVk5vb3RNelF0WVlmVzJ2Z21nRDdtbl9RRHpQellPNVpwcXNGRE1BTGJCdm5tSnVvaElGRVpMRU5VNXpHSkpuRTY0NVdRYUcwMUJTNEFlUFE?oc=5"
     },
     {
       "date": "2026-11-11",
@@ -2042,31 +2098,31 @@
       "headlines": [
         "Copper price heads for biggest weekly drop since March on AI rout - Mining.com",
         "Goldman Sachs Forecasts Copper Prices to Reach $15,600 per Tonne by December 2027 - Yahoo Finance",
-        "Goldman Sachs Projects Copper Prices at $15,600 per Tonne by December 2027 Amid Supply Constraints - Yahoo Finance UK"
+        "Border States Commodity Update — November 2026 - the Electrical Distributor magazine"
       ]
     },
     {
       "category": "니켈",
       "headlines": [
+        "Aluminum Trades $275 Above Futures as Surplus Stays Undeliverable - Crux Investor",
         "Column: Crunch time for aluminium as buyers tap metal of last resort - Mining.com.au",
-        "Prabowo Demands 70% of Mining Revenue for the State, Indonesia Mining Controlling Stakes May Change - BigGo Finance",
-        "Nickel Market Watches Indonesia Supply and Battery Demand After the Latest LME Move - kalkine.ca"
+        "Prabowo Demands 70% of Mining Revenue for the State, Indonesia Mining Controlling Stakes May Change - BigGo Finance"
       ]
     },
     {
       "category": "알루미늄",
       "headlines": [
+        "Idle since 2020, Rio Tinto’s Tiwai Point aluminium smelter Line 4 eyes 2027 comeback - AL Circle",
         "Altana CEO Evan Smith: Tracing an iPhone Back to Its Aluminum Smelter Now Moves the Price 10-15% - BigGo Finance",
-        "More than 60% of Europe’s primary aluminium is imported through long supply chains exposed to disruption, says Maxime Vandersmissen - AL Circle",
-        "Rio Tinto backs its green aluminium to see off Indonesian supply surge - AFR"
+        "More than 60% of Europe’s primary aluminium is imported through long supply chains exposed to disruption, says Maxime Vandersmissen - AL Circle"
       ]
     },
     {
       "category": "철강",
       "headlines": [
+        "Nucor upgraded to Outperform at Morgan Stanley on cash flow outlook - TradingView",
         "Corinth Pipeworks to use ArcelorMittal's XCarb® steel in European pipeline project - SteelOrbis",
-        "Cold-Rolled Steel in Europe Rises to €940 per Tonne - Металлургпром",
-        "Is the steel market tighter now than in 2021? - The Fabricator"
+        "Cold-Rolled Steel in Europe Rises to €940 per Tonne - Металлургпром"
       ]
     },
     {
@@ -2088,9 +2144,9 @@
     {
       "category": "반도체",
       "headlines": [
-        "SK Hynix to spend $1 billion over five years to support chip suppliers - Reuters",
-        "SK hynix commits $1.05B to strengthen semiconductor supply chain (SKHY:NASDAQ) - Seeking Alpha",
-        "India roundup: India's tech ambitions accelerate as semiconductor bottlenecks and supply-chain risks mount - digitimes"
+        "AI Infrastructure Boom Creates Compelling Growth Opportunities Across Semiconductor Supply Chain - The Globe and Mail",
+        "Applied Materials to Double Equipment Output by 2028 on AI Chip Demand - THE ELEC, Korea Electronics Industry Media",
+        "SK Hynix to spend $1 billion over five years to support chip suppliers - Reuters"
       ]
     }
   ],
