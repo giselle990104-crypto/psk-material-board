@@ -1,11 +1,9 @@
 {
-  "updatedAt": "2026-11-19T08:37+09:00",
+  "updatedAt": "2026-11-19T17:52+09:00",
   "timezone": "Asia/Seoul",
   "source": "Google News RSS",
-  "status": "partial",
-  "errors": [
-    "플라스틱: HTTP Error 429: Too Many Requests"
-  ],
+  "status": "ok",
+  "errors": [],
   "items": [
     {
       "date": "2026-11-19",
@@ -29,6 +27,27 @@
       "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPTmp6ZjRjWmkzOTVGOVg4YTJDdDZLMk5lNUM2c0xEUmYyUFJkZU56aDRYMHVfc3NJRHRmNk5DdkNseUdlRUZPSXYxYzE1Q3RDM3JYcVllVGhjYVpHMEk5ZHFJSnJaY3FxNEl1UVl4UjZNbXRWaDdBR29sdndUVnBpbjViWnJDSjlwUi13X19HYlE?oc=5"
     },
     {
+      "date": "2026-11-19",
+      "category": "환율",
+      "title": "Dollar hits fresh 19-mth peak on hawkish Fed; Aussie slides after weak jobs data - Investing.com UK",
+      "source": "Investing.com UK",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQYVN2NnNLZHE4WXIwbnJsMmtOeXhqdms0Z1lDNVQ5WENnOF9KeFJGX2tqZDJYblUwc25VTkk2aU0zVVplaVltb2Nia2s0WkdhclhaeEJ2Y1NldkgzZ1VJYjAtbGE2OG15RHJyV3MyaXBvWWwtWVFSVUFtU0hBbTllMi1HUWJWNXJ1cy1tVGhwWHlIdWdOU0UwTVRmOUdpdEc4NVdOYnhseUtoNEl4VEF2U3RtbXltVXJwNWJhdjBQTGFRelFXdWc?oc=5"
+    },
+    {
+      "date": "2026-11-19",
+      "category": "환율",
+      "title": "Nepal Rastra Bank Sets Today's Exchange Rates - Ratopati",
+      "source": "Ratopati",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQeWwzMVUtQWJidkVIdmREcEMwd29GSXp6U1RfN2l6aGRkLTFBRU9UZlZrS1FDUmk0cWNTTTY3TnZyMzg2NGs1ZmhDUmZMNC1yLUIyTGdCemdiN1pnRFE1U3NURUtBN3NNX2p0dTRyamlYaDQ0OUFxSDdsN3JrSm04SFhoTHpveWtnMHl2S0lHcw?oc=5"
+    },
+    {
+      "date": "2026-11-18",
+      "category": "구리",
+      "title": "Copper price falls to lowest since July as tech weakness saps risk appetite - Mining.com",
+      "source": "Mining.com",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPamZuUVEzcTlHMndPOU8xbzhya1RiUU53YmlyQ2U1ckF6NXNmTklYZld1bUJqelVMMUVGQTJVdEZhdnhYRFJjekN5WENqN0NxR29UcmxZNC03VTZHNFg4UzN4bGZwRmN1LUx4WXU4OWQzUS1GeWhoUExsaHJJSlR2bjB1U1ZfcGM5VU4xM05WLUt3eUhGMkloMlFJRGV0ZWZtbjgxSDln?oc=5"
+    },
+    {
       "date": "2026-11-18",
       "category": "니켈",
       "title": "Indonesia production cut expectations heat up, SHFE nickel night session rises over 3% - Shanghai Metals Market",
@@ -45,30 +64,9 @@
     {
       "date": "2026-11-18",
       "category": "알루미늄",
-      "title": "Alcoa Corporation (AA) Stock Price, News, Quote & History - Yahoo! Finance Canada",
-      "source": "Yahoo! Finance Canada",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE05MjhuVUo3bWtjanM2S2wyNERsTmJBaW02MHM5d3U0STllQUh3RTZVMkdHenRZTkdkNEtNR2prYjBlUG1IV2V3c3NwOFpDemM?oc=5"
-    },
-    {
-      "date": "2026-11-18",
-      "category": "알루미늄",
       "title": "The Opportunity in Aluminium - Fat Tail Daily",
       "source": "Fat Tail Daily",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE0xd2pUU2pYUnpHWk02TWZrUzJxUFdic0VSWDNXVGlxUTdKT0tCTzdxR0c4WFY1SHdiSGctckFHN3V0UGE1UFJGdnpQcndZejRRbG44U05TNzRHbVM1NnM2ODl1YTVlQldPN3RLSWc0UE52aTBBbGc?oc=5"
-    },
-    {
-      "date": "2026-11-18",
-      "category": "철강",
-      "title": "Nucor upgraded to Outperform at Morgan Stanley on cash flow outlook - TradingView",
-      "source": "TradingView",
-      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQLWRlWkFadU1VSDl6ejVZR1huMDBzZHRJSC0tRUxlbUdTNEVqSFpseW9CbHNheWhJUHNYNFVadV9kRzc3dHpOSlBnZlIwa0cta1BaeE9JaXNWdmhrYkJpcFJZNmJHRHJ6RDl3QVdoSHNTdzdoQ2J4bTZtYkhHU2c2SG5tREpySGxSaHJlc1ZtaDI3VkVjcGprb3ZodXgzUmUyMWxfM1JTV3ZRbE1ibURxUC05aWUwNHlHQ01mMFk0NkhHZEpkTHAyZkd3?oc=5"
-    },
-    {
-      "date": "2026-11-18",
-      "category": "환율",
-      "title": "Won strengthens to 1,333 per dollar - Chosunbiz",
-      "source": "Chosunbiz",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE44U19sd19QWU5uRWRiMExoRC1CSjVURC1XWm1kQlQ4Z2xwYk9iYXU0aEo2TFRaRE5lSldUMF9KdmpfNUZ1RFJ6Zy1EeWtmbjU4czJkTmFtVkRXUWRCakxqc3JzR0JJTTV3OUtmNURzNUs1ZHRVUnFERFVnb2N4OU3SAZMBQVVfeXFMTjJLeEh0Qy05dmNFUWd4bmJjOEM0WGZZcVFvYmprSWlJMVRyOTdxbHJZa01oWVd6ZTZhQ0p0elB5aGxmNlhhQ0xrVDB4OGt4V0NyWmV2azd4VU5DeUdqY2FkZ1ZUYlkwejFqVkcxUjF5R0ladk1mLTVfQmRxd1ppVEVOcFJxUmpnVW1BbHpya19meDRv?oc=5"
     },
     {
       "date": "2026-11-18",
@@ -83,6 +81,27 @@
       "title": "No Gas, No Chips: The Hidden Supply Risk Beneath the Fab - Institute for Supply Management (ISM)",
       "source": "Institute for Supply Management (ISM)",
       "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxNR1lUdndSLWRMYVpfZGtjZkdMLTlWdHJZY0g4QUZkZUlXR2dTTjNxN1U3VXdLUlJRLUNyd0p1NG5jaXpESVltWGE4UnFlOEpuTEZrS2RNR2VDMWxfT0RnMVVQRWl5ZUx0OXN3UzEzRWVnN014cHBOd19mWnRoS01uNWRScFYyUUpOLVJHamhZekY4MXZZQkVFc3htWldXZVc2TnQ5QmJtaXMzVlJCTUV1UFFfV1h2S0Uyb3lXbGdraEd2VWxQMkR4LWRmMG5nS1l1RlpycEdySEhRc2tOdVdfbW02czl4YkN5bl8zZTJqYTZOS3J6NEtvNnYwMkY2OGpNYnAyeWI3TXc3bHh2ZVQ5dFg1dw?oc=5"
+    },
+    {
+      "date": "2026-11-18",
+      "category": "알루미늄",
+      "title": "Alcoa Corporation (AA) Stock Price, News, Quote & History - Yahoo! Finance Canada",
+      "source": "Yahoo! Finance Canada",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE05MjhuVUo3bWtjanM2S2wyNERsTmJBaW02MHM5d3U0STllQUh3RTZVMkdHenRZTkdkNEtNR2prYjBlUG1IV2V3c3NwOFpDemM?oc=5"
+    },
+    {
+      "date": "2026-11-18",
+      "category": "철강",
+      "title": "Nucor upgraded to Outperform at Morgan Stanley on cash flow outlook - TradingView",
+      "source": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQLWRlWkFadU1VSDl6ejVZR1huMDBzZHRJSC0tRUxlbUdTNEVqSFpseW9CbHNheWhJUHNYNFVadV9kRzc3dHpOSlBnZlIwa0cta1BaeE9JaXNWdmhrYkJpcFJZNmJHRHJ6RDl3QVdoSHNTdzdoQ2J4bTZtYkhHU2c2SG5tREpySGxSaHJlc1ZtaDI3VkVjcGprb3ZodXgzUmUyMWxfM1JTV3ZRbE1ibURxUC05aWUwNHlHQ01mMFk0NkhHZEpkTHAyZkd3?oc=5"
+    },
+    {
+      "date": "2026-11-18",
+      "category": "환율",
+      "title": "Won strengthens to 1,333 per dollar - Chosunbiz",
+      "source": "Chosunbiz",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE44U19sd19QWU5uRWRiMExoRC1CSjVURC1XWm1kQlQ4Z2xwYk9iYXU0aEo2TFRaRE5lSldUMF9KdmpfNUZ1RFJ6Zy1EeWtmbjU4czJkTmFtVkRXUWRCakxqc3JzR0JJTTV3OUtmNURzNUs1ZHRVUnFERFVnb2N4OU3SAZMBQVVfeXFMTjJLeEh0Qy05dmNFUWd4bmJjOEM0WGZZcVFvYmprSWlJMVRyOTdxbHJZa01oWVd6ZTZhQ0p0elB5aGxmNlhhQ0xrVDB4OGt4V0NyWmV2azd4VU5DeUdqY2FkZ1ZUYlkwejFqVkcxUjF5R0ladk1mLTVfQmRxd1ppVEVOcFJxUmpnVW1BbHpya19meDRv?oc=5"
     },
     {
       "date": "2026-11-18",
@@ -107,17 +126,24 @@
     },
     {
       "date": "2026-11-17",
-      "category": "환율",
-      "title": "Dollar Hits 19-Month High Again, Won-Dollar Exchange Rate Rises to High 1,330 Won Range - news.sbs.co.kr",
-      "source": "news.sbs.co.kr",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1zaEE3cWlNamVkLUVrRDRfQjNZNnRZSlR6dDA2bWQ3TjZWeFIzaXVNVUE3RW9aOVVjaDRfaXNMOG1tdVljcGYwNFVPa0wyeG02UnNNb0lPX2xlcXBNdkJGQzR3c0QzQQ?oc=5"
+      "category": "철강",
+      "title": "Nucor has once again raised its hot-rolled coil price by $15/t - GMK Center",
+      "source": "GMK Center",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNZ2FSVFgwRF9MTU5kdHZmcVFlLU0zcE5ZLU1WWlpPbTdjWlpXaGlldFJ0NXFEUHZwSUZNMkRPZVBqU0dtWVRDbmw2R3Z5Y2dicWV5MkNTMVhRcEtwTzNjOXJJNHRjQTZrLVdOcDNEcFQ2YVp5eUpCdDhIRG12bWN6SnZLcEhQdXc5OGFsOEpueDdzVDDSAZgBQVVfeXFMTmpyRy0yUlVKS1FWc3pwdkJPd2JpMDVtcWFrUXpQQ0QzRmZLVG5mRXlRZ2dqMjdnZHNHdHBqRW1GMXBIZ1k2OTEwVFJQcDZpLTlYaWJJTWthMmlkdTRrVl9pajZRbW44ejBsVE54U1VoRnFoUU1wUEZmVDlqbFdUVWZNNG1Qd2NQRncwN2lkZ3Z6RmdIamxqVTQ?oc=5"
+    },
+    {
+      "date": "2026-11-17",
+      "category": "철강",
+      "title": "Indonesia reviews AD duties on hot-rolled steel from Kazakhstan, Belarus - Shanghai Metals Market",
+      "source": "Shanghai Metals Market",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNY08ycHJEamMzT0VvS2hhemVTN3ltVU5YcXp3YkxmbkZMRTBfdTVKR0ZTcjlyWVZCcXlTVi1KSEVRUmFaNThLTTVwc1JkS3RuTGZGZWg5cFVRQUNndDJmdGMwNWNRYkJPV1BvS1RXTkJ6d1pwQzFHbnpIVzVvbDNLZ2tGME9rYjFaTUtSWFNTbEIwZXVMMjV6TE8tQ21CTTZrbUdNYWFqRm1tQUtCbERYcEpnRUhlVmFpU2JucVMtTVp6ZUJjSlNmTEo3eFV4S0RaT3BiODU0bVJ6QTU1TlR3SFJlYw?oc=5"
     },
     {
       "date": "2026-11-17",
       "category": "환율",
-      "title": "Foreign Exchange Rates Nov 17, 2026 - BusinessToday Malaysia",
-      "source": "BusinessToday Malaysia",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPeEplcFV3cFpEbmtZRnlCX0h5dWMwOEJmRnR0c2pxTE1UTDA0NjBDTlFXa1lpRFl3SFNQQ01EREYzdHpud1FQenVSTFlnclgxbGIyd25rTFJqNXdSZUIzXzNSdzVpNi04VGpSWUF5R0s1SF9BZ1R5T3R2NUlGaHJHMC11U0c3UQ?oc=5"
+      "title": "Dollar Hits 19-Month High Again, Won-Dollar Exchange Rate Rises to High 1,330 Won Range - news.sbs.co.kr",
+      "source": "news.sbs.co.kr",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1NS0NvR2lNcHJnNlBTVUJ5UWJGT2FyQXhDZWhQcUZJWEdUZmFJRlYtdEl6d2JxYTZGbnl2T3Y0aU5Kbi13YUM1QVRNLWlPRkwwZkk0cG9qWWhiSXFfU3pqTkRydmwyMjd4emhaS2Rn?oc=5"
     },
     {
       "date": "2026-11-17",
@@ -125,6 +151,13 @@
       "title": "Applied Materials to Double Equipment Output by 2028 on AI Chip Demand - THE ELEC, Korea Electronics Industry Media",
       "source": "THE ELEC, Korea Electronics Industry Media",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9GcUJ3V0NrdThIZEtXMUpQei1RVjVpSDVSS2Yzc0tmV2FvMDVVRzJtR1FkS2QwX0pHbXBKQmp4bGpONzBsWWZ6M3JTc3ZZXzVlQXZDVlZ2bnRPY2RSbE8tbHdIdDlINjQ?oc=5"
+    },
+    {
+      "date": "2026-11-17",
+      "category": "환율",
+      "title": "Foreign Exchange Rates Nov 17, 2026 - BusinessToday Malaysia",
+      "source": "BusinessToday Malaysia",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPeEplcFV3cFpEbmtZRnlCX0h5dWMwOEJmRnR0c2pxTE1UTDA0NjBDTlFXa1lpRFl3SFNQQ01EREYzdHpud1FQenVSTFlnclgxbGIyd25rTFJqNXdSZUIzXzNSdzVpNi04VGpSWUF5R0s1SF9BZ1R5T3R2NUlGaHJHMC11U0c3UQ?oc=5"
     },
     {
       "date": "2026-11-17",
@@ -170,6 +203,27 @@
     },
     {
       "date": "2026-11-16",
+      "category": "알루미늄",
+      "title": "More than 60% of Europe’s primary aluminium is imported through long supply chains exposed to disruption, says Maxime Vandersmissen - AL Circle",
+      "source": "AL Circle",
+      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOYXVUaEpxd2M0TUNHU1ZLUGNPd0plMGtTejduUnRCQThOc09oek5MdVY1M0RDMjdSZUVIRFVZam5vR05mVE1ZOEFyTXFwXzhCNG50eFpmd1NnQTl6Tm1pekJqNHlfRDgyQjNTcFN6MHZQUGI0Rzg0R2VhZFdYOTVfU19kNzdvOVZCaW5qb2JhS0thQS1UOWZSQkJSWkJmUVgzZGQxbDM2b3pZS1I3UDFlNE96Wk8tUVhKM1BzYTFLamFzOGphLUpjRjlDZjRZZXQ3M3hfM0w4S2ltTXRtRmp6dzBmdW5ZbWdoWXcwcmZtSUxjV3pueF84?oc=5"
+    },
+    {
+      "date": "2026-11-16",
+      "category": "알루미늄",
+      "title": "Aluminium Prices Drop As EGA Restarts 61% Of Al Taweelah Smelter Reduction Cells By Kedia Advisory - Investing.com India",
+      "source": "Investing.com India",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQNmpuV3BxcXh1b1VKNnNFTHRDRklycnIxRUlkazRaR2JIR19sekprNXpITHhLZzQ4a3JlazFkb3dQMHB0ZFJpdzdEYUxUZ0ZFWDJFWkhpM1ZXajVYZ0tNdkc0cmx6VnlHVnhqdzF6X3E0N3NreWMtd01DN21yUGtXWTdISDY2ai1zQXRrYkRWMDNaNXdsc0liS0VpcEFSWEh3MEd1NzFxOTRiWWh0SGNyM0xEdXRaSVBxSEItRTliOG1xUGVHZVlLSkpUbUJKOTA?oc=5"
+    },
+    {
+      "date": "2026-11-16",
+      "category": "플라스틱",
+      "title": "Petrochemical News - Global polymer prices show signs of easing after sharp gains; buyers resist further increases - Polymerupdate",
+      "source": "Polymerupdate",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5McVZoeDNfQW50NDdxTmZhbzVpeDM5V0ZSRVhJRmVNMHY2Rzl3S09VNEJvSkZMWV9hRnVWS2VrQ2dxU3UyOU1fSkp5TElxZDBDOVhRRHBrYU1RN0hQTU1F?oc=5"
+    },
+    {
+      "date": "2026-11-16",
       "category": "환율",
       "title": "South Korean Won: Tech sentiment keeps KRW volatile against US Dollar – OCBC - FXStreet",
       "source": "FXStreet",
@@ -198,24 +252,10 @@
     },
     {
       "date": "2026-11-16",
-      "category": "알루미늄",
-      "title": "More than 60% of Europe’s primary aluminium is imported through long supply chains exposed to disruption, says Maxime Vandersmissen - AL Circle",
-      "source": "AL Circle",
-      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOYXVUaEpxd2M0TUNHU1ZLUGNPd0plMGtTejduUnRCQThOc09oek5MdVY1M0RDMjdSZUVIRFVZam5vR05mVE1ZOEFyTXFwXzhCNG50eFpmd1NnQTl6Tm1pekJqNHlfRDgyQjNTcFN6MHZQUGI0Rzg0R2VhZFdYOTVfU19kNzdvOVZCaW5qb2JhS0thQS1UOWZSQkJSWkJmUVgzZGQxbDM2b3pZS1I3UDFlNE96Wk8tUVhKM1BzYTFLamFzOGphLUpjRjlDZjRZZXQ3M3hfM0w4S2ltTXRtRmp6dzBmdW5ZbWdoWXcwcmZtSUxjV3pueF84?oc=5"
-    },
-    {
-      "date": "2026-11-16",
       "category": "철강",
       "title": "Corinth Pipeworks to use ArcelorMittal's XCarb® steel in European pipeline project - SteelOrbis",
       "source": "SteelOrbis",
       "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQWnFBRnFLM3B5QWNxN1VrZDczSlRnd2FUdEthUElxVHZ4dnVKV09vVzhad0JLNnRHVkNmMWlqY3IzNW5CSVF2WURnblNPUlVwVmxFamNHNEl2Q1JmVEQ4bE1uV0JRSnRPWWFoX3RDaGVhQVdXRkhzbm5YakNVQXhXNlU0YWg5dWNCb3loekNnVVY1WjFqNGxWYzNpaUgtNzdiOFpYQlI2NE5BYlF5SEpwXzlqZXRUQ0trY2hLempFV2MxSncteHBsWnFCX2w1RzdFamgtbnlvOEJoUQ?oc=5"
-    },
-    {
-      "date": "2026-11-16",
-      "category": "플라스틱",
-      "title": "Petrochemical News - Global polymer prices show signs of easing after sharp gains; buyers resist further increases - Polymerupdate",
-      "source": "Polymerupdate",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5McVZoeDNfQW50NDdxTmZhbzVpeDM5V0ZSRVhJRmVNMHY2Rzl3S09VNEJvSkZMWV9hRnVWS2VrQ2dxU3UyOU1fSkp5TElxZDBDOVhRRHBrYU1RN0hQTU1F?oc=5"
     },
     {
       "date": "2026-11-16",
@@ -254,17 +294,24 @@
     },
     {
       "date": "2026-11-14",
-      "category": "구리",
-      "title": "Copper price heads for biggest weekly drop since March on AI rout - Mining.com",
-      "source": "Mining.com",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOTjhBQTdQUHZRQV9rOTVLcnNVU2szY2tEZ2tqeWdWVlhpU2RBWUw4U0w5SHBfR2l6R0xtcW1aN1dzYkdsRlp0Y0ktM1I3bUlkTWhiUk93XzItTnlJUHpMZmJxNkRWSnExU0FfTUhGQTBwQnUyQjNSQ28wSC04cDh3Nm1SSHNQWHNySjFIaEYxUEZZM0Q4b0JKeg?oc=5"
-    },
-    {
-      "date": "2026-11-14",
       "category": "철강",
       "title": "Is the steel market tighter now than in 2021? - The Fabricator",
       "source": "The Fabricator",
       "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOOWZtVUEtOXN6XzR1WlIxMEVZWGVoNVctSEhObGNtWUZYRXl0bUthcTRDTjIzM2I1T3k3RlFSb1dhQWRkQTA4aF9fcks1YUgwemw4alRKN3Fia0duT2FrdmdpSUlFczJlT3NjTEVyZU9BWGl1clYza1loVTlxaE5XRUtfTDE4WFlHQmpSRlRKV29xQ00wZHZfWjdkR183NGpaLTNfMi1uNEd1VkFBU2c?oc=5"
+    },
+    {
+      "date": "2026-11-14",
+      "category": "반도체",
+      "title": "AI Memory Supply Chain Is Still Lagging Demand - TechInsights",
+      "source": "TechInsights",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBydGNmU0I1QmpSRE5qNF9ablR5QmVhcEdoZEY2d21tUEl4YzhSLTlJUDY3dzg4c3NqR2lvT3RxempSY2h6VmI2cW41VFJKdWNWV1ZMelpPR2JMMkwzbUQ3NERaN242bzhtSkRmbFJuU0hRemJrNFJxN0hlcGliUQ?oc=5"
+    },
+    {
+      "date": "2026-11-14",
+      "category": "구리",
+      "title": "Copper price heads for biggest weekly drop since March on AI rout - Mining.com",
+      "source": "Mining.com",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOTjhBQTdQUHZRQV9rOTVLcnNVU2szY2tEZ2tqeWdWVlhpU2RBWUw4U0w5SHBfR2l6R0xtcW1aN1dzYkdsRlp0Y0ktM1I3bUlkTWhiUk93XzItTnlJUHpMZmJxNkRWSnExU0FfTUhGQTBwQnUyQjNSQ28wSC04cDh3Nm1SSHNQWHNySjFIaEYxUEZZM0Q4b0JKeg?oc=5"
     },
     {
       "date": "2026-11-14",
@@ -353,6 +400,20 @@
     {
       "date": "2026-11-12",
       "category": "니켈",
+      "title": "London Aluminum Market Faces Biggest Supply Squeeze in Decades - Bloomberg",
+      "source": "Bloomberg",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPdkxZYlhkQ1FLR1QzbnkzYlp0aWhULUI5ZFFFbUs0WjlFdXItZHh1OWxpNF9oeWptVjI2emhPYUhDVDN5aHdLR0ZoaVQwVGhsQXY2Y1JjTW45TUI2RTNNam1vVmtVTTBnRXJtX1YwcW5IRFVuLVQ1emZxTHJXSU56S1FvODl0ZDlpVWJkbE1rc1E1aXBLdW4wekY3bkNpajZfMXRMTGlnb0cxd3AzNlJGay1tYw?oc=5"
+    },
+    {
+      "date": "2026-11-12",
+      "category": "철강",
+      "title": "European HRC Prices Climb: Mills Raise Offers for Q1 2027 - News and Statistics - IndexBox",
+      "source": "IndexBox",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNN25Kc2E0WnhhYjVkcHVFRUJIVEhXWkJIV0d1WG1XM0hnZTlLaVhZVk45M3dkU2tzZml2cVNyQjU0MXJJRkdNZ0N4YkFyTDRwdTUzMzRhLTdDSVN6N3lYWHBtRm9QSlgtMTE4Y2hnVUE5RlBIVTg2VXlUSDlNSjhoM1JmdlVtb19kX0doZU5sT2I4Q1VwNGdubE01aGFjT05WOHRiUGxDQ2NWX2s?oc=5"
+    },
+    {
+      "date": "2026-11-12",
+      "category": "니켈",
       "title": "Nickel tests a new supply-demand balance as LME prices stay around $16,000 - kalkine.ca",
       "source": "kalkine.ca",
       "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPX204WWhEYkpjQ0JIRGpYT1FjM0ZmaUg1QlFXVkpXSUFIeFVTVWJkbVV4R19kMEZ1UDVRZWczRUdTMEVDZTMweDhmZW1iT1BKdDlvTmk5Xzk4T0xmd05lWjJ6ZmJtMVNsempNMlRremtWcUtVa1YwYkZOa2hJTTVtcWxTUFVhY1ZBVmhFU3RQaVoybk9jSk5EU3dWR0JyQnZnRHljMEFiYlRyUU9GZEE?oc=5"
@@ -363,13 +424,6 @@
       "title": "Storvik wins Alcoa contract for automated anode rod repair at Norway Smelter - AL Circle",
       "source": "AL Circle",
       "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNc2Rqb1RCeTFyTlNyNEgxYU9UckJKS2xfcV9LeXU2WFk3WHFuWWRXUUhlVzRnYTVZSWduVkRobWE5Z2J0cDhMUTd2bmZKWnhNWXF6MzZsYl9YOTFXRnVsNGFRRVhGSG9Gcm1uRXhUVEtCYVo3VmxHa3BBYTI2LVhCbGZIbVg5blB0NFJwcFQ5SDZkcGZDZmFrRjRjY3ZQUV9oN2JpdUdpWDkySFhsb2VXLWtJUQ?oc=5"
-    },
-    {
-      "date": "2026-11-12",
-      "category": "철강",
-      "title": "European HRC Prices Climb: Mills Raise Offers for Q1 2027 - News and Statistics - IndexBox",
-      "source": "IndexBox",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNN25Kc2E0WnhhYjVkcHVFRUJIVEhXWkJIV0d1WG1XM0hnZTlLaVhZVk45M3dkU2tzZml2cVNyQjU0MXJJRkdNZ0N4YkFyTDRwdTUzMzRhLTdDSVN6N3lYWHBtRm9QSlgtMTE4Y2hnVUE5RlBIVTg2VXlUSDlNSjhoM1JmdlVtb19kX0doZU5sT2I4Q1VwNGdubE01aGFjT05WOHRiUGxDQ2NWX2s?oc=5"
     },
     {
       "date": "2026-11-12",
@@ -825,13 +879,6 @@
       "title": "Nickel prices jump 3.8% as Indonesia cracks down on mining - IDNFinancials",
       "source": "IDNFinancials",
       "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQRVpkTkdYVEJzTGlfRGYyVEkwNkluT3ZFTHp5Z0YyRzlDRTlSV0ZZbEk5R0FMcC15WGx1Z2lzWTNrbFFuYXFqeExXY09jMEg1UGJzcXRGaGs0R1pMVVhhQlBqdGVVeE9IeE9LOHlmVmhkaDFqeWJJeDBwVFA0QUFRaTE4ZFBGTVNCbnJuR2QwaW9feWdjYUp1SmpwQkxjTFU?oc=5"
-    },
-    {
-      "date": "2026-11-06",
-      "category": "반도체",
-      "title": "AI Memory Supply Chain Is Still Lagging Demand - TechInsights",
-      "source": "TechInsights",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBydGNmU0I1QmpSRE5qNF9ablR5QmVhcEdoZEY2d21tUEl4YzhSLTlJUDY3dzg4c3NqR2lvT3RxempSY2h6VmI2cW41VFJKdWNWV1ZMelpPR2JMMkwzbUQ3NERaN242bzhtSkRmbFJuU0hRemJrNFJxN0hlcGliUQ?oc=5"
     },
     {
       "date": "2026-11-06",
@@ -2198,7 +2245,7 @@
       "headlines": [
         "Copper Price Drop Ignores Ore Shortage as China Smelting Nears its Limit - Crux Investor",
         "Copper stocks fall as LME prices plunge to seven-month low - Proactive financial news",
-        "Red Hot Metal: China's Role In The Global Copper Supply Chain - Seeking Alpha"
+        "Copper price falls to lowest since July as tech weakness saps risk appetite - Mining.com"
       ]
     },
     {
@@ -2212,8 +2259,8 @@
     {
       "category": "알루미늄",
       "headlines": [
-        "Alcoa Corporation (AA) Stock Price, News, Quote & History - Yahoo! Finance Canada",
         "The Opportunity in Aluminium - Fat Tail Daily",
+        "Alcoa Corporation (AA) Stock Price, News, Quote & History - Yahoo! Finance Canada",
         "Idle since 2020, Rio Tinto’s Tiwai Point aluminium smelter Line 4 eyes 2027 comeback - AL Circle"
       ]
     },
@@ -2221,8 +2268,8 @@
       "category": "철강",
       "headlines": [
         "Nucor upgraded to Outperform at Morgan Stanley on cash flow outlook - TradingView",
-        "Corinth Pipeworks to use ArcelorMittal's XCarb® steel in European pipeline project - SteelOrbis",
-        "Cold-Rolled Steel in Europe Rises to €940 per Tonne - Металлургпром"
+        "Nucor has once again raised its hot-rolled coil price by $15/t - GMK Center",
+        "Indonesia reviews AD duties on hot-rolled steel from Kazakhstan, Belarus - Shanghai Metals Market"
       ]
     },
     {
@@ -2237,8 +2284,8 @@
       "category": "환율",
       "headlines": [
         "How adidas and ITA Airways are automating FX workflows - flow – Deutsche Bank",
-        "Won strengthens to 1,333 per dollar - Chosunbiz",
-        "Dollar Hits 19-Month High Again, Won-Dollar Exchange Rate Rises to High 1,330 Won Range - news.sbs.co.kr"
+        "Dollar hits fresh 19-mth peak on hawkish Fed; Aussie slides after weak jobs data - Investing.com UK",
+        "Nepal Rastra Bank Sets Today's Exchange Rates - Ratopati"
       ]
     },
     {
