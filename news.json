@@ -1,10 +1,38 @@
 {
-  "updatedAt": "2026-11-19T17:52+09:00",
+  "updatedAt": "2026-11-20T08:30+09:00",
   "timezone": "Asia/Seoul",
   "source": "Google News RSS",
   "status": "ok",
   "errors": [],
   "items": [
+    {
+      "date": "2026-11-20",
+      "category": "구리",
+      "title": "UBS Calls Copper Slump a Reset, Not a Demand Breakdown, With LME Support at $12,000 - BigGo Finance",
+      "source": "BigGo Finance",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE01aWt3X19qcU9pX29DT2pnRFlfc1NFY3ZISGdqc1VlZmIwSkRsT2lpRkpjZTVLMGR3bWVfZXBVNThTU2hPbExMMHFzVVJPeDNxN1l3R1hQdE9YVHNId19yTTRJRTljeGtLNTVhV1lnRmdYNUZCanc?oc=5"
+    },
+    {
+      "date": "2026-11-20",
+      "category": "니켈",
+      "title": "Indonesia’s Quota Cuts and State-Share Plans Make Nickel Supply Less Certain - Crux Investor",
+      "source": "Crux Investor",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPeEFLQWs4YVVHYVdCUWVwWm1NS2pGdklja2xZOWVYMkNSNGNPN003d0N6eW02TFE2Y1RYbDFmUlFnWS02ak0tc0FhejhNdm5aUDZJX3ItUTl0NThsMFVfWGEwaGY4U1BrblZDU1lYVGNTbVIwWFhGTHdtNWRrR0h1LXVHdGE2cGtVekJ1R0k5LTNydFpyc0VFeTFCV3BrcTlOelB6LU1JcUJvN05zY0ZB?oc=5"
+    },
+    {
+      "date": "2026-11-20",
+      "category": "환율",
+      "title": "BTC to KRW: Bitcoin Price in South Korean Won - CoinGecko",
+      "source": "CoinGecko",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE44YjVOeDFhVEVRRlVuclpKaGlIS3dtSjN6TFRncnlGSTh5Q2RwNTY1bzlCc3RHeEdNQzZLdElxWVpWR0FZdi1GNGJyaTNwOXFHbDBXTXhRTzRadw?oc=5"
+    },
+    {
+      "date": "2026-11-20",
+      "category": "환율",
+      "title": "Atlantis USD Price, USDA Price, Live Charts, and Marketcap - Coinbase",
+      "source": "Coinbase",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPM0lkOU1RR0Nfbi00T0VWV2FxbVVZdGV0NjVCX0k4ckFVYWdGS0k0ZE9xYk4zSXNZU1BNQlNyWF9vV1M1RXlhTEFCM1Vfamt0WUJIYWpfeTROQlRKa1VQY1ZDVEVoa1BEWENKZ2xydFFsTnp1MmdxNF82TVBqMlZxZHhKVEk3U3ZLS0NQTW5aZFQxTHU1X0Q0UWhaS3RqUQ?oc=5"
+    },
     {
       "date": "2026-11-19",
       "category": "구리",
@@ -14,10 +42,17 @@
     },
     {
       "date": "2026-11-19",
-      "category": "구리",
-      "title": "Copper stocks fall as LME prices plunge to seven-month low - Proactive financial news",
-      "source": "Proactive financial news",
-      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQOEZFSXBSektJUG9NU1hVSWVkZkVPMXFrZXdOYVEwYUJDZV9yTDUzZlpnV3F0LS1zbWdjcmNuRGNySmNmQzNDMUFBbnB6MmNidDFTR0lVV05naVdLdVlzaDlYc0k4c05WQ3NNVnpKZ21JZUFGN2U2SGJWekFWclNKa2Q4NXdOazdJTFV0d0tHeFZyU2l1a0JReDQzZHNyQmFvU1NHRjhIeWZCcnhSNWJ6Qk5FWlp2Ty10RVFGZHpZOW1jS1QxTHg1NQ?oc=5"
+      "category": "철강",
+      "title": "Coil Steel Prices Rise in Northern Europe, While Italian Buyers Reject New Levels - Металлургпром",
+      "source": "Металлургпром",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNbDdsdHQwUVgyLW9Xa0IzVmI1UmNrOGhLLXc1QlpqQXB6MHp1ZmMtYUZ0QVVRRHdhNmpxZ3R1cVJ1TGhfamwzTlJZWkw5U1NZLV8zeTlENmdmTURjNVZKRXZfZzExTmFXMnlGNC1SQ29FOTBPamhVQkxkY1FWaHFlNHRqX2FwOUtxVVNjUjB1RUgwYVNqd3ZBYzNoRFdmX25qZ3VYNjlDOHY0cUdtMTlOcWx0YUJMTnBSWC1TRG5SeXozcjZMUXZmd3U5OUfSAd4BQVVfeXFMUHNnZi16dU1FaTBvZTVGaWNQQ3JSTEV1dVpNY3pRVXhFeERSNzFvS0FFMnVua2RfUnZFODhwUlRkaTNCbUJIOXV6LXZHdWNKMDltaUhrNjhCaTN4aWktcXJVd2Y1dEQ2MmlWVFhHaDl2ZUdQTlR2QV9DeXRyZG1pVURXZXpNdjMyR1hYMGdvMDB4NUUydkdDazBPamxXZDdSQ01iQVM1eTc2SUEyLU1QRjRhRnNQUm9VcGtQc0t3ZUZaSGdwLXF2cy1aX29DSFBzVTJfRFY5NlNpR3F6RjdB?oc=5"
+    },
+    {
+      "date": "2026-11-19",
+      "category": "철강",
+      "title": "Here's Why You Should Retain Steel Dynamics Stock in Your Portfolio - TradingView",
+      "source": "TradingView",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOQjI0YXExZFl0RUN6RVdYUjNBbmp1Nm9wcm9JM3dMMG83eWg5SmYxaTduRW9FUmpJekt6X3dnaURkUUdRNEV0OWE4b1lsT05rUjRyYTlLTG9oUlo4RWh1RXRYellRSzFlRy1GQ01VbGV0S0MxT09RQVBCY0ktTFlWQlNRbjZ2T0hUeDUtY0lOSjdGM1kyWGlHMFZzOEJ4ODRLMHAtS2lpN0hjS0xrR3pFTy0xVzBNblBjcUtmcFBYWEM?oc=5"
     },
     {
       "date": "2026-11-19",
@@ -25,6 +60,13 @@
       "title": "How adidas and ITA Airways are automating FX workflows - flow – Deutsche Bank",
       "source": "flow – Deutsche Bank",
       "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPTmp6ZjRjWmkzOTVGOVg4YTJDdDZLMk5lNUM2c0xEUmYyUFJkZU56aDRYMHVfc3NJRHRmNk5DdkNseUdlRUZPSXYxYzE1Q3RDM3JYcVllVGhjYVpHMEk5ZHFJSnJaY3FxNEl1UVl4UjZNbXRWaDdBR29sdndUVnBpbjViWnJDSjlwUi13X19HYlE?oc=5"
+    },
+    {
+      "date": "2026-11-19",
+      "category": "구리",
+      "title": "Copper stocks fall as LME prices plunge to seven-month low - Proactive financial news",
+      "source": "Proactive financial news",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQOEZFSXBSektJUG9NU1hVSWVkZkVPMXFrZXdOYVEwYUJDZV9yTDUzZlpnV3F0LS1zbWdjcmNuRGNySmNmQzNDMUFBbnB6MmNidDFTR0lVV05naVdLdVlzaDlYc0k4c05WQ3NNVnpKZ21JZUFGN2U2SGJWekFWclNKa2Q4NXdOazdJTFV0d0tHeFZyU2l1a0JReDQzZHNyQmFvU1NHRjhIeWZCcnhSNWJ6Qk5FWlp2Ty10RVFGZHpZOW1jS1QxTHg1NQ?oc=5"
     },
     {
       "date": "2026-11-19",
@@ -43,6 +85,13 @@
     {
       "date": "2026-11-18",
       "category": "구리",
+      "title": "Red Hot Metal: China's Role In The Global Copper Supply Chain - Seeking Alpha",
+      "source": "Seeking Alpha",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQelFVa3loeWtuOTY5TllPcGJBTHZRSVM3a2xWUFpqYkdUbFJJdFp3Y1YyNHRkNVBIZUhrSFhFWDI4TWlfa3B4Q0E1WmxDbUJPeTdUSnBUTzJPa3lUdjJMNzFRNy1pMkFTdjBjUXBXSzRBN01PZEMzYVN2Mm9BeTZyczdvZ1N4dndmWTF5UXJlMFMtMHBva0s1dDM1RWpObXYwMHRjN0d5NEtvXzQtSE5LdFZTZXA?oc=5"
+    },
+    {
+      "date": "2026-11-18",
+      "category": "구리",
       "title": "Copper price falls to lowest since July as tech weakness saps risk appetite - Mining.com",
       "source": "Mining.com",
       "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPamZuUVEzcTlHMndPOU8xbzhya1RiUU53YmlyQ2U1ckF6NXNmTklYZld1bUJqelVMMUVGQTJVdEZhdnhYRFJjekN5WENqN0NxR29UcmxZNC03VTZHNFg4UzN4bGZwRmN1LUx4WXU4OWQzUS1GeWhoUExsaHJJSlR2bjB1U1ZfcGM5VU4xM05WLUt3eUhGMkloMlFJRGV0ZWZtbjgxSDln?oc=5"
@@ -50,16 +99,16 @@
     {
       "date": "2026-11-18",
       "category": "니켈",
-      "title": "Indonesia production cut expectations heat up, SHFE nickel night session rises over 3% - Shanghai Metals Market",
-      "source": "Shanghai Metals Market",
-      "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxONUd5a3pLMV9VYXFHa2NEUGk2VjhFSnh5WGNnODJMSXlXdzZCS0U4a19SMGNjZUhHUVlLa3RhTmxaZHlNRDBVUGxhaFFGejdRclJOMnVFM1VYcGZZNVg4S1hKNG5wand4NnBuX3BYa0VKR1VVam9ORWxfTXNjRDJyeGhjVVlTY1ZVRkVVRXVsM3BVWUdJYVpqTWRwUUJsT25tN3BYeU5oM0haQ2t4VXZCcnYxX1A1WWN4cC1VcHBZM29CZFlaamxTdFFIcUREMnVwbmo4Qm1Ncy01akFtdTJqT3ZLU05COVRXT1VXd2tzRG5XLXZC?oc=5"
+      "title": "LME nickel futures surge to two-month high above $16,400 - Yieh Corp.",
+      "source": "Yieh Corp.",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPaGk2RFdmTkpUem8weVo2V1NPQ3RMLUUyZ3VrTmEtNG9OVDBrUUozNmIzSGxvcGFPbmVLenN3RTJ1Vk84MlBHX19lSEtUUHhlSHY5VEJfMmxHSWFaYm1LMzA0cmY3dlNEZm1ZZ1laSENlOWpMTjk1M1dRT0w2N3FDZkpjZzEwUVNRbldySzROOA?oc=5"
     },
     {
       "date": "2026-11-18",
       "category": "니켈",
-      "title": "LME nickel futures surge to two-month high above $16,400 - Yieh Corp.",
-      "source": "Yieh Corp.",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPaGk2RFdmTkpUem8weVo2V1NPQ3RMLUUyZ3VrTmEtNG9OVDBrUUozNmIzSGxvcGFPbmVLenN3RTJ1Vk84MlBHX19lSEtUUHhlSHY5VEJfMmxHSWFaYm1LMzA0cmY3dlNEZm1ZZ1laSENlOWpMTjk1M1dRT0w2N3FDZkpjZzEwUVNRbldySzROOA?oc=5"
+      "title": "Indonesia production cut expectations heat up, SHFE nickel night session rises over 3% - Shanghai Metals Market",
+      "source": "Shanghai Metals Market",
+      "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxONUd5a3pLMV9VYXFHa2NEUGk2VjhFSnh5WGNnODJMSXlXdzZCS0U4a19SMGNjZUhHUVlLa3RhTmxaZHlNRDBVUGxhaFFGejdRclJOMnVFM1VYcGZZNVg4S1hKNG5wand4NnBuX3BYa0VKR1VVam9ORWxfTXNjRDJyeGhjVVlTY1ZVRkVVRXVsM3BVWUdJYVpqTWRwUUJsT25tN3BYeU5oM0haQ2t4VXZCcnYxX1A1WWN4cC1VcHBZM29CZFlaamxTdFFIcUREMnVwbmo4Qm1Ncy01akFtdTJqT3ZLU05COVRXT1VXd2tzRG5XLXZC?oc=5"
     },
     {
       "date": "2026-11-18",
@@ -104,20 +153,6 @@
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE44U19sd19QWU5uRWRiMExoRC1CSjVURC1XWm1kQlQ4Z2xwYk9iYXU0aEo2TFRaRE5lSldUMF9KdmpfNUZ1RFJ6Zy1EeWtmbjU4czJkTmFtVkRXUWRCakxqc3JzR0JJTTV3OUtmNURzNUs1ZHRVUnFERFVnb2N4OU3SAZMBQVVfeXFMTjJLeEh0Qy05dmNFUWd4bmJjOEM0WGZZcVFvYmprSWlJMVRyOTdxbHJZa01oWVd6ZTZhQ0p0elB5aGxmNlhhQ0xrVDB4OGt4V0NyWmV2azd4VU5DeUdqY2FkZ1ZUYlkwejFqVkcxUjF5R0ladk1mLTVfQmRxd1ppVEVOcFJxUmpnVW1BbHpya19meDRv?oc=5"
     },
     {
-      "date": "2026-11-18",
-      "category": "구리",
-      "title": "Red Hot Metal: China's Role In The Global Copper Supply Chain - Seeking Alpha",
-      "source": "Seeking Alpha",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQelFVa3loeWtuOTY5TllPcGJBTHZRSVM3a2xWUFpqYkdUbFJJdFp3Y1YyNHRkNVBIZUhrSFhFWDI4TWlfa3B4Q0E1WmxDbUJPeTdUSnBUTzJPa3lUdjJMNzFRNy1pMkFTdjBjUXBXSzRBN01PZEMzYVN2Mm9BeTZyczdvZ1N4dndmWTF5UXJlMFMtMHBva0s1dDM1RWpObXYwMHRjN0d5NEtvXzQtSE5LdFZTZXA?oc=5"
-    },
-    {
-      "date": "2026-11-17",
-      "category": "니켈",
-      "title": "Aluminum Trades $275 Above Futures as Surplus Stays Undeliverable - Crux Investor",
-      "source": "Crux Investor",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPWHBUWGdhamlwa1htb3doeXNFaEhHZmc2Mmw2X1hOYjVMdEc0SEJXdENFVU9VTWZMWm9MSGMyQW4tWjR2NFNNT1h2YXcyY3dIV0pYODRtSEt1LTJJWnM4ZXpDZktvSGlJOVNvUkM1Z0dkV285SGFvMU5QVzNfTEFydzhGeDc1ZUxSRXJ5Y25NNmFXejJEUUU3UmJ2SjVqQ05q?oc=5"
-    },
-    {
       "date": "2026-11-17",
       "category": "알루미늄",
       "title": "Idle since 2020, Rio Tinto’s Tiwai Point aluminium smelter Line 4 eyes 2027 comeback - AL Circle",
@@ -134,9 +169,9 @@
     {
       "date": "2026-11-17",
       "category": "철강",
-      "title": "Indonesia reviews AD duties on hot-rolled steel from Kazakhstan, Belarus - Shanghai Metals Market",
-      "source": "Shanghai Metals Market",
-      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNY08ycHJEamMzT0VvS2hhemVTN3ltVU5YcXp3YkxmbkZMRTBfdTVKR0ZTcjlyWVZCcXlTVi1KSEVRUmFaNThLTTVwc1JkS3RuTGZGZWg5cFVRQUNndDJmdGMwNWNRYkJPV1BvS1RXTkJ6d1pwQzFHbnpIVzVvbDNLZ2tGME9rYjFaTUtSWFNTbEIwZXVMMjV6TE8tQ21CTTZrbUdNYWFqRm1tQUtCbERYcEpnRUhlVmFpU2JucVMtTVp6ZUJjSlNmTEo3eFV4S0RaT3BiODU0bVJ6QTU1TlR3SFJlYw?oc=5"
+      "title": "Nucor Posts 18th Straight Weekly HRC Price Hike to $1,310/t - News and Statistics - IndexBox",
+      "source": "IndexBox",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOTUFtek9ZT2NzTy1JWFNFaW8tUm9JV1hMQndYUDlidWZqS0UtZUtGVFV4LWNDMFdVZHFLNnlvbUdGOURZTnN3Mlp5cW9yZXRRblo3TjIxZzVoeS1CN3pVaXpfUExiV0R0aVQyQ25kckZ2ajNIVkEybU1MX1hsbnJpWmh3WEFwbDdYTm9wdFdzS1dmVGtNaVduUW5pdnZTZXF4?oc=5"
     },
     {
       "date": "2026-11-17",
@@ -144,6 +179,20 @@
       "title": "Dollar Hits 19-Month High Again, Won-Dollar Exchange Rate Rises to High 1,330 Won Range - news.sbs.co.kr",
       "source": "news.sbs.co.kr",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1NS0NvR2lNcHJnNlBTVUJ5UWJGT2FyQXhDZWhQcUZJWEdUZmFJRlYtdEl6d2JxYTZGbnl2T3Y0aU5Kbi13YUM1QVRNLWlPRkwwZkk0cG9qWWhiSXFfU3pqTkRydmwyMjd4emhaS2Rn?oc=5"
+    },
+    {
+      "date": "2026-11-17",
+      "category": "니켈",
+      "title": "Aluminum Trades $275 Above Futures as Surplus Stays Undeliverable - Crux Investor",
+      "source": "Crux Investor",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPWHBUWGdhamlwa1htb3doeXNFaEhHZmc2Mmw2X1hOYjVMdEc0SEJXdENFVU9VTWZMWm9MSGMyQW4tWjR2NFNNT1h2YXcyY3dIV0pYODRtSEt1LTJJWnM4ZXpDZktvSGlJOVNvUkM1Z0dkV285SGFvMU5QVzNfTEFydzhGeDc1ZUxSRXJ5Y25NNmFXejJEUUU3UmJ2SjVqQ05q?oc=5"
+    },
+    {
+      "date": "2026-11-17",
+      "category": "철강",
+      "title": "Indonesia reviews AD duties on hot-rolled steel from Kazakhstan, Belarus - Shanghai Metals Market",
+      "source": "Shanghai Metals Market",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNY08ycHJEamMzT0VvS2hhemVTN3ltVU5YcXp3YkxmbkZMRTBfdTVKR0ZTcjlyWVZCcXlTVi1KSEVRUmFaNThLTTVwc1JkS3RuTGZGZWg5cFVRQUNndDJmdGMwNWNRYkJPV1BvS1RXTkJ6d1pwQzFHbnpIVzVvbDNLZ2tGME9rYjFaTUtSWFNTbEIwZXVMMjV6TE8tQ21CTTZrbUdNYWFqRm1tQUtCbERYcEpnRUhlVmFpU2JucVMtTVp6ZUJjSlNmTEo3eFV4S0RaT3BiODU0bVJ6QTU1TlR3SFJlYw?oc=5"
     },
     {
       "date": "2026-11-17",
@@ -239,6 +288,13 @@
     {
       "date": "2026-11-16",
       "category": "반도체",
+      "title": "A*STAR and Applied Materials announce new joint lab for semiconductor equipment and local supply chain development - Singapore Economic Development Board (EDB)",
+      "source": "Singapore Economic Development Board (EDB)",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOUWtub0w3Y0ZOQzVSTFRWQnF6VXVyRW5PRFZQVkpnbGZDdFNOdjFFZGIxTTlnQ3pqMnlGX3pQR25xZ0MtdElOUjBzSVJVS3FMOGNHaHV1aHRBSEdzdG1wOGExLS04bHlyaENOMXlNSjFEVG8wMjlPNzhUWE9EQWlzNzhRR0J5RUlHUVQtak04cUVoamJfZUxNbWxVVlRmeTJKVlRTNkNLdU85XzQ3R1hqQlZqdWVHQURNYUx6VXd4WXVQYkpvT3ZVOE9PelJMMTEwYWxkRXNlVVBIZEFNaXYyYmFEQWxJR1BpQkE?oc=5"
+    },
+    {
+      "date": "2026-11-16",
+      "category": "반도체",
       "title": "SK hynix commits $1.05B to strengthen semiconductor supply chain (SKHY:NASDAQ) - Seeking Alpha",
       "source": "Seeking Alpha",
       "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQeFUtS2VmVF9WNGpjWUh4cDJpVmY0S09CeHpXempSOHlHYlJCcXRhd0lYdFU3SGoyM3BSOWtyZnlRRDZqNXQ2RzFUaGFsYWdpbXl0Xzh6eGU4VlNPbFRyclJaQUJOem9BZjdyc29aWDlEdXp3SF9rLU1zcHhrc3czemZGUXpoQkhzNHg2Nk40MzN3SGFsczZQbUhTRzBCcGU5Znc?oc=5"
@@ -294,6 +350,13 @@
     },
     {
       "date": "2026-11-14",
+      "category": "니켈",
+      "title": "Nickel Market Watches Indonesia Supply and Battery Demand After the Latest LME Move - kalkine.ca",
+      "source": "kalkine.ca",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOU3g1QXZTMjZCQkIwYzBUOWZnRURBSWM2Tk5DNUpVWmxMU0xENEJkY2M1YU9BTkJfRy1CeFNpeXJ6aVAwZDd2cG1TUExqejZHcXJyU3pGZU1lcnpBa0V5cDRkTWduZUtVMjFkaV9NVkM0SWJJM0ktb3VoVVRHRkZfMkVKZW5TMDJfVXgxclNZZlFybEp4cC1Jbm1keFNBOXpsRzQzZmVhWWFxaXEyOU5naUpHSE82UTNFMmNMcA?oc=5"
+    },
+    {
+      "date": "2026-11-14",
       "category": "철강",
       "title": "Is the steel market tighter now than in 2021? - The Fabricator",
       "source": "The Fabricator",
@@ -312,13 +375,6 @@
       "title": "Copper price heads for biggest weekly drop since March on AI rout - Mining.com",
       "source": "Mining.com",
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOTjhBQTdQUHZRQV9rOTVLcnNVU2szY2tEZ2tqeWdWVlhpU2RBWUw4U0w5SHBfR2l6R0xtcW1aN1dzYkdsRlp0Y0ktM1I3bUlkTWhiUk93XzItTnlJUHpMZmJxNkRWSnExU0FfTUhGQTBwQnUyQjNSQ28wSC04cDh3Nm1SSHNQWHNySjFIaEYxUEZZM0Q4b0JKeg?oc=5"
-    },
-    {
-      "date": "2026-11-14",
-      "category": "니켈",
-      "title": "Nickel Market Watches Indonesia Supply and Battery Demand After the Latest LME Move - kalkine.ca",
-      "source": "kalkine.ca",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOU3g1QXZTMjZCQkIwYzBUOWZnRURBSWM2Tk5DNUpVWmxMU0xENEJkY2M1YU9BTkJfRy1CeFNpeXJ6aVAwZDd2cG1TUExqejZHcXJyU3pGZU1lcnpBa0V5cDRkTWduZUtVMjFkaV9NVkM0SWJJM0ktb3VoVVRHRkZfMkVKZW5TMDJfVXgxclNZZlFybEp4cC1Jbm1keFNBOXpsRzQzZmVhWWFxaXEyOU5naUpHSE82UTNFMmNMcA?oc=5"
     },
     {
       "date": "2026-11-14",
@@ -350,17 +406,17 @@
     },
     {
       "date": "2026-11-13",
-      "category": "구리",
-      "title": "Border States Commodity Update — November 2026 - the Electrical Distributor magazine",
-      "source": "the Electrical Distributor magazine",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5BVEZSUnlReDd6VUdzNGEwU0FnVWhUa0pyQ0VQZ19jX1UyR0RuMGJzdXN2S3gtZkx3dzFlbDVKcVJPVko0Z3M2bDJ5WGtPTDh4LWRHQUZ1M2VienZ1bG1RU1M0TkJxZXBOOUJ5SlEyY1MwQQ?oc=5"
-    },
-    {
-      "date": "2026-11-13",
       "category": "니켈",
       "title": "Indonesia Nickel Quota News Drives Nickel Price Rebound - Sunsirs",
       "source": "Sunsirs",
       "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5sa2tZQmNVY01DQlRrVTlpcHZrWjlMZ1ZEd3E1R0szQ3FPdUZUMFhyRW1OUzQ4UEw3ZDdKVnJQeWV6MFFsNERVTkpObjRMZXVidGU1NnVQdGdfV3g1WlE?oc=5"
+    },
+    {
+      "date": "2026-11-13",
+      "category": "구리",
+      "title": "Border States Commodity Update — November 2026 - the Electrical Distributor magazine",
+      "source": "the Electrical Distributor magazine",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5BVEZSUnlReDd6VUdzNGEwU0FnVWhUa0pyQ0VQZ19jX1UyR0RuMGJzdXN2S3gtZkx3dzFlbDVKcVJPVko0Z3M2bDJ5WGtPTDh4LWRHQUZ1M2VienZ1bG1RU1M0TkJxZXBOOUJ5SlEyY1MwQQ?oc=5"
     },
     {
       "date": "2026-11-13",
@@ -2243,17 +2299,17 @@
     {
       "category": "구리",
       "headlines": [
+        "UBS Calls Copper Slump a Reset, Not a Demand Breakdown, With LME Support at $12,000 - BigGo Finance",
         "Copper Price Drop Ignores Ore Shortage as China Smelting Nears its Limit - Crux Investor",
-        "Copper stocks fall as LME prices plunge to seven-month low - Proactive financial news",
-        "Copper price falls to lowest since July as tech weakness saps risk appetite - Mining.com"
+        "Copper stocks fall as LME prices plunge to seven-month low - Proactive financial news"
       ]
     },
     {
       "category": "니켈",
       "headlines": [
-        "Indonesia production cut expectations heat up, SHFE nickel night session rises over 3% - Shanghai Metals Market",
+        "Indonesia’s Quota Cuts and State-Share Plans Make Nickel Supply Less Certain - Crux Investor",
         "LME nickel futures surge to two-month high above $16,400 - Yieh Corp.",
-        "Aluminum Trades $275 Above Futures as Surplus Stays Undeliverable - Crux Investor"
+        "Indonesia production cut expectations heat up, SHFE nickel night session rises over 3% - Shanghai Metals Market"
       ]
     },
     {
@@ -2267,9 +2323,9 @@
     {
       "category": "철강",
       "headlines": [
-        "Nucor upgraded to Outperform at Morgan Stanley on cash flow outlook - TradingView",
-        "Nucor has once again raised its hot-rolled coil price by $15/t - GMK Center",
-        "Indonesia reviews AD duties on hot-rolled steel from Kazakhstan, Belarus - Shanghai Metals Market"
+        "Coil Steel Prices Rise in Northern Europe, While Italian Buyers Reject New Levels - Металлургпром",
+        "Here's Why You Should Retain Steel Dynamics Stock in Your Portfolio - TradingView",
+        "Nucor upgraded to Outperform at Morgan Stanley on cash flow outlook - TradingView"
       ]
     },
     {
@@ -2283,9 +2339,9 @@
     {
       "category": "환율",
       "headlines": [
-        "How adidas and ITA Airways are automating FX workflows - flow – Deutsche Bank",
-        "Dollar hits fresh 19-mth peak on hawkish Fed; Aussie slides after weak jobs data - Investing.com UK",
-        "Nepal Rastra Bank Sets Today's Exchange Rates - Ratopati"
+        "BTC to KRW: Bitcoin Price in South Korean Won - CoinGecko",
+        "Atlantis USD Price, USDA Price, Live Charts, and Marketcap - Coinbase",
+        "How adidas and ITA Airways are automating FX workflows - flow – Deutsche Bank"
       ]
     },
     {
