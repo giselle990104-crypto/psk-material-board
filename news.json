@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T08:36+09:00",
+  "updatedAt": "2026-11-26T17:53+09:00",
   "timezone": "Asia/Seoul",
   "source": "Google News RSS",
   "status": "ok",
@@ -22,6 +22,48 @@
     {
       "date": "2026-11-26",
       "category": "니켈",
+      "title": "Sulphur shortage threatens Indonesia’s nickel plans - Mining.com",
+      "source": "Mining.com",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE13dTVDOE9GS3hKRm5ES05laFVkYWZPR1BHUUlHODE3dGJnR3h2Vjh5alFFelFvMGJWNVNFbEl6N21yNHhPYkg5MnB5MVA5VUtOVncycE5LSGs0cUhfOHF1MEotaWNQN0FEbVBNeWhreEJZNDdpWVlRNm5EWG1SOVE?oc=5"
+    },
+    {
+      "date": "2026-11-26",
+      "category": "니켈",
+      "title": "LME Approves Indonesian Aluminium from Tsingshan, Huafon to Ease Historic Squeeze - NAI500",
+      "source": "NAI500",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOT0NUU3BfbWtMMEdDN3NIbnpLM1BMVXJYN05OaHZhSklpUTRsNWVuOTZuNjhKTG1FMGJhQ2F2ZlFmU2dqSU9iTGE0a0k2V2YyX3lTZHBBeEk1NWhvcnlHOEF6djM3UVkyRXpSaXBuTFlsenFOb1haX0x0cmdEbDdBblMtd1lqMmtXWmNCUExqVlRVYndnOGhJSC0zVXZMeWx5dmdlRFhmb1U4c1Z1T3psbXNBbw?oc=5"
+    },
+    {
+      "date": "2026-11-26",
+      "category": "알루미늄",
+      "title": "Two Chinese copper smelters blend concentrate overseas to boost supply, sources say - Mining.com",
+      "source": "Mining.com",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOOFdtWTRWSEpEMXBfMURlMHFCNUMwSC1vNTRaRGh2ZGVlUjAxRzFZemV1U3VJOHV2Rk5kb2oycURvRThlNDhDaGFkOGxYNmZoMDFTUFpEM2ctM3FKWmc4Q1A3U292UnZNX21wZm12Q3QwYUpkWVA5Wjl0T1hTQ19SSFp4czVVaUk3VGNFUW5SMU8za2I5WjdNMVFvekJ0cE16NzlzMEctRVdSR1A0T3VJ?oc=5"
+    },
+    {
+      "date": "2026-11-26",
+      "category": "철강",
+      "title": "Chinese Stainless Steel Coil Manufacturers: A Ranked Comparison - The Des Moines Register",
+      "source": "The Des Moines Register",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPQzhnU0gwOTVNOXlyam9ydG5vbUJRNEVxWjFvMmVCOVdVRFQ4Z2pxWDE5S1dKRS1VT2czLUg0b3gxaDNQTTBhR0ItSmRtWUdaNV9DOEkxMUg0ZWw4dmxfdTdXSFg3RlgtNWZwM3RvZFpLZ3l1eDA2NlQ2MFRSYU81clZxb3Q5Qk8zSm5ZdVo0N1hTVDRMZHF6el9xaVB2RzFqRU5rQzNscUx3RG94UFBBSWc3NXFfVzJHZmh4YnFxQjc4Zw?oc=5"
+    },
+    {
+      "date": "2026-11-26",
+      "category": "환율",
+      "title": "FX Daily: Korean won stands out in a harsh EM environment - ing think",
+      "source": "ing think",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOQ1VybkxoMXVpV09JTmdULVZCcUN6QkRPUl9RdklKU1JPUWp6S2pBbjdNZlFYQWdUa0dKRVdJd1Y2VUh6SkVmSlFyTXlDNTR5OHIyUlFkZVc3b2V6UUlCREJjNUlYSkQ5LS04ZlA2bEFYODNFa0p5eGwwZDJTVFlreVhSSDdwenhWSVRhaVpXRF90Zw?oc=5"
+    },
+    {
+      "date": "2026-11-26",
+      "category": "환율",
+      "title": "Asia FX: won muted after BOK hikes rates, dollar steady - Investing.com",
+      "source": "Investing.com",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPWm5XUmtiSDdkSl9BeVNwclBFTHk4WkRtVDFpN3k4VXNUYVZCSnprME13VENtS0FxVHYySU1TMkFQRXV2RkZMZXlza0x4YzkxdGVfY3AzbXliVl9jaHlRbWh2UHVUSDFPcVZLTm5yaUZoLWlJSkF4eXRHUjBYUmdidXlCYk9LSWxJaFlHNFF1RXN1QXdHTW5SeWU5YVE4NnZFVy1MZUVn?oc=5"
+    },
+    {
+      "date": "2026-11-26",
+      "category": "니켈",
       "title": "LME approves listing of Tsingshan’s Indonesian aluminum brand - Mining.com",
       "source": "Mining.com",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPVmtoSElkWW1ZcnNWOEJ2cEZzcndaalpPb1JKa1NmaDNGLWhjOVdXNVpjVTNJaEREQnNlcGR0SG1ORzJLRWxmWTJnam1YUVd1d0V3eUhmV1BTN3g5WWJINkZhaXVERGdXZmFQNUFUbHR0djZzRzZURkhjZzk3N29LZTJjQUY4VFdJMDZRc0lBZFdXZw?oc=5"
@@ -29,23 +71,16 @@
     {
       "date": "2026-11-25",
       "category": "구리",
-      "title": "LME tightens rules in response to aluminium squeeze - Mining.com",
+      "title": "Silver miners struggle to close persistent supply gap - Mining.com",
       "source": "Mining.com",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQbG9raWhIZ0tYanZoSU1tU2RNRW5KVHVISzhia1BKUUtpeE41X2xmMlM2bk1HZzk4YXRXTkswOVd2TzFvbGhUT3hZcldMWDVpQ3FZNjlFLVl5bzlfWmpIRlN2TVMwcHpsRVlGT3VaSnhyUVRuZ0VOQm9mbHNuNHhVQks2c1kyUQ?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQY1BMTlhPRlY2TW5vWWh2X1d2VlZnSVhXVjlNX0pvNXdtWXF6QmhldDVrV2hQM1RwOUlZc29zbk9RME8zU2xYMjVuZmNPd3hFVDdYLUhpUS1RZTY2bVFNTGh1SXVNMFo4dHFkZ0tjQ1ExRklYVWw4SHF0bGhMeUthQ3FoWQ?oc=5"
     },
     {
       "date": "2026-11-25",
       "category": "구리",
       "title": "Weekly Base Metal Macroeconomic Update + World Copper Conference Asia - StoneX",
       "source": "StoneX",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNVmJzaVJLZF9qWlJwSVN5aUthNzMwMkNBVzIydjFNWEhCYWZ4cTB4UXA2OWxuNllhRVNDVFB2LTJ2aUNQaHFuYk9ZVDFEYVZiNi12S3ZEQ2dLaWpGOTlncHFnMGU3N0ZKQXNQTW56NWlUT25wUkxhUmFhbGs0NWNWSjJ0d0J4bDFBSWJaYlo0OWlwTENidlF4WjFDcHd4ZV9BVzBfVzJLYmw0bmVnaDUwR1JIVUh1bURS?oc=5"
-    },
-    {
-      "date": "2026-11-25",
-      "category": "니켈",
-      "title": "Weekly Base Metal Macroeconomic Update + World Copper Conference Asia - StoneX",
-      "source": "StoneX",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNVmJzaVJLZF9qWlJwSVN5aUthNzMwMkNBVzIydjFNWEhCYWZ4cTB4UXA2OWxuNllhRVNDVFB2LTJ2aUNQaHFuYk9ZVDFEYVZiNi12S3ZEQ2dLaWpGOTlncHFnMGU3N0ZKQXNQTW56NWlUT25wUkxhUmFhbGs0NWNWSjJ0d0J4bDFBSWJaYlo0OWlwTENidlF4WjFDcHd4ZV9BVzBfVzJLYmw0bmVnaDUwR1JIVUh1bURS?oc=5"
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOWG1VaFBkbm1UNU5qUmlhWEpaV19pM1dTUnJaQkVVNk43QktNLU96OVYwSnR3eGNNUUhmRl9JUENSWm10NEt2ZUszcG9WRXJZRWVrUlFmZFNHaDk5Z0MzejBZR0VEdl9rQUxOTFlOcjl6ODBZeGh1LWlVUy1XeE1KNFhHS0l0d3loSkdrb2Q1VFJTdTdUcmRpM3QyVmYzeFV3bWZFY0YtVU1UMkxiZ2d1YllpQUZyOU1U?oc=5"
     },
     {
       "date": "2026-11-25",
@@ -84,17 +119,24 @@
     },
     {
       "date": "2026-11-25",
+      "category": "구리",
+      "title": "LME tightens rules in response to aluminium squeeze - Mining.com",
+      "source": "Mining.com",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQbG9raWhIZ0tYanZoSU1tU2RNRW5KVHVISzhia1BKUUtpeE41X2xmMlM2bk1HZzk4YXRXTkswOVd2TzFvbGhUT3hZcldMWDVpQ3FZNjlFLVl5bzlfWmpIRlN2TVMwcHpsRVlGT3VaSnhyUVRuZ0VOQm9mbHNuNHhVQks2c1kyUQ?oc=5"
+    },
+    {
+      "date": "2026-11-25",
+      "category": "니켈",
+      "title": "Weekly Base Metal Macroeconomic Update + World Copper Conference Asia - StoneX",
+      "source": "StoneX",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNVmJzaVJLZF9qWlJwSVN5aUthNzMwMkNBVzIydjFNWEhCYWZ4cTB4UXA2OWxuNllhRVNDVFB2LTJ2aUNQaHFuYk9ZVDFEYVZiNi12S3ZEQ2dLaWpGOTlncHFnMGU3N0ZKQXNQTW56NWlUT25wUkxhUmFhbGs0NWNWSjJ0d0J4bDFBSWJaYlo0OWlwTENidlF4WjFDcHd4ZV9BVzBfVzJLYmw0bmVnaDUwR1JIVUh1bURS?oc=5"
+    },
+    {
+      "date": "2026-11-25",
       "category": "철강",
       "title": "Data Center Boom Tightens US Steel Supply, Buyers Turn to Asian Imports - Shanghai Metals Market",
       "source": "Shanghai Metals Market",
       "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQVFZnWElqdlJEZnZnSk1nYlFvTGZzM1NFQkNIYXJMUjFzZVlvNktncVZiMDB5aUtXYl94aU5odUlsanJZcUZiUmYxeGpXY0VDVnFsdlFCMUpIQXFUSXZhVUliLWhORVdVaFZ0Y3BSUDFIYVo4akktZDhBdk1fWXNmTjB0ckZIR1hMMl9DU21PSk9OVXhlclJGdkduaTd1VHpvSllBWFhPcHZlY2lHS3FiRXhFcWpmb0ljN3d0Um9NaHJIdkZhcmtPYWNYZVJUMkFadGxiRE9pM0JkeUpsTFE?oc=5"
-    },
-    {
-      "date": "2026-11-25",
-      "category": "구리",
-      "title": "Silver miners struggle to close persistent supply gap - Mining.com",
-      "source": "Mining.com",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQY1BMTlhPRlY2TW5vWWh2X1d2VlZnSVhXVjlNX0pvNXdtWXF6QmhldDVrV2hQM1RwOUlZc29zbk9RME8zU2xYMjVuZmNPd3hFVDdYLUhpUS1RZTY2bVFNTGh1SXVNMFo4dHFkZ0tjQ1ExRklYVWw4SHF0bGhMeUthQ3FoWQ?oc=5"
     },
     {
       "date": "2026-11-25",
@@ -116,6 +158,20 @@
       "title": "Nucor raised its hot-rolled coil price by $20/t - GMK Center",
       "source": "GMK Center",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9TdjlzRU9pZHdVY2FzdC1tZGIyZ1gzTDBuYW9pdHVvdlU5TGxvREFlbmFfRjBjVklwOGJldFhyYU8xbXNJc2xkcnFhbXVKZ2FiaGV0Zkpka3lJa0ZGOGExN2dpWmVCdzBzM3NVYWhlVVBzNjA1TnZjbmVjdmUyTmfSAYQBQVVfeXFMTTdqT1V2RjdGN3pWc3RhV3p2WWVQeVdSejVpM3JhSFhOcTRWcUpKbEhhUGpzbjVweW4xU0o4RWtyWmpJa2QtaUdLbERUOTVvNlgtZXpWckl5WThBQWsydE1ZcndXNmMwNzhZZDNESGpVVlJZUElwUE1jaXhFT3JFZk9CdDF4?oc=5"
+    },
+    {
+      "date": "2026-11-24",
+      "category": "반도체",
+      "title": "2026 Global Semiconductor Supplier Awards - TechInsights",
+      "source": "TechInsights",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9Kc3NJR283VUNlWnN1Tkl5Sm0xM3NWNDdkb1Q2R3lILThsbHVKVzZyeVpLTEZ0R1h6cXdGM2l4N25IOEZXZXoyZWVmX0NMNkM3YWJ0dUhkZ2RkRE53Y25tV3hudGpLRDBBV0ozT1o2ek05UnJsYk1NT3JSMA?oc=5"
+    },
+    {
+      "date": "2026-11-24",
+      "category": "반도체",
+      "title": "7 Best Semiconductor ETFs to Buy Now | Investing - US News Money",
+      "source": "US News Money",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9NNDJ4SUhnVzEwWENRQ3NnbjJGVUIteElZbW1WRkR5WGxNZkNQdm8wbHJkdTVqZ0tvVk9qMnhvVnBFcmFPSHBLS0dHaU5iUGxvMXAyVFR3UmN5ZGpkUW10VWtRME9hcmVGZlRyRDExOHBTbWl1X3paVnRBVEZ1Q1k?oc=5"
     },
     {
       "date": "2026-11-24",
@@ -189,24 +245,10 @@
     },
     {
       "date": "2026-11-23",
-      "category": "구리",
-      "title": "Copper Prices Today | Current Live Spot Price of Copper Per Pound - SD Bullion",
-      "source": "SD Bullion",
-      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1kOTlLN2J1VTU0RWJIVF9SWXV5U3I4bk1sOWNVUXg1X28tV2ZDNzNMU0hvRGltcEU0eTVyd2t5X3JlMEkxYWp1VFVR?oc=5"
-    },
-    {
-      "date": "2026-11-23",
       "category": "알루미늄",
       "title": "LME aluminium cash offer price rises 1.51% to $3,184.5/t as stocks fall 0.76% on November 20 - AL Circle",
       "source": "AL Circle",
       "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQeVFDd19pRXZldTBxM0ZHOV9BSWxNeHN4NjVSeGdwR0p3QTJ5bERGNU9oZ1ZEQ0l4TUZJVlRDRXhBNlZvcFdySnhuSV9VVDdqajhMcVdmMkh3ZTZsY1JuM2hpemFneVNueThmMnVsbEwtWVNOMzlmQ2ZJSkF6N0Z3ZnU3LVdDRVlvRFQ5WWxWeUNLUnJxX2JZYmJteWp0cVZOMlVMdGlwb05HWUdpdU1VTHZfYVRyckZ3X19aQUJyX2l5S2Zx?oc=5"
-    },
-    {
-      "date": "2026-11-23",
-      "category": "플라스틱",
-      "title": "How Crude Oil Shocks Hit China’s Plastics Market Prices - Grand View Research",
-      "source": "Grand View Research",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNS0hjdmtlY0h4X3NwdF9pNnozR3dIRWpQcFdYM2RoQ2M2VGN6NE12VUN3UnkyZHJ6bVREVHJ4S2FnbExjdFdzX1E3S3RnNDJVMXprVEctUEtINXlZNEN1V3Y2QkdwRjlMTjRVNnFpNlBXWllLQS16bnNXU2pmelluM1l3LWdmblU4aEQ2cHJoaXM3elk?oc=5"
     },
     {
       "date": "2026-11-23",
@@ -218,16 +260,9 @@
     {
       "date": "2026-11-23",
       "category": "환율",
-      "title": "Ralph to South Korean Won Price Today | Live SN40 to KRW Converter & Exchange Rate - CryptoRank",
-      "source": "CryptoRank",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9UQklRMTlEVU95a01GMEFnOVFPTWtCRmt6RzhFb0ZJVGdyejVXT1ZzQU5yWmVsZlo1X2tLaU4yTU9XTlJ1SWlFd0c4NFpfUQ?oc=5"
-    },
-    {
-      "date": "2026-11-23",
-      "category": "환율",
-      "title": "PEI to KRW: Pepe Intelligence Price in South Korean Won - CoinGecko",
-      "source": "CoinGecko",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE84bFZmb3h3MTVmYVp1MlNjNTVLQkJsc1dHaDB6Ql9SMTVoYU5IVW82THFka2tvSUVWbjAxa1JINmF3WWMyN0doYkhlTU9lcWcwNVJzVnFhazk5UlB6Qi1zNjNlRk5FQTA?oc=5"
+      "title": "South Korea vows to stabilise stock market after KOSPI drops 5pc - The Standard (HK)",
+      "source": "The Standard (HK)",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQS1BxUXhqNGhUY3RiakZYOGMwVHhRWTV4eFZFMWhZVTFkTkR0ZGFCdlJCOFBCbE92SkNqNjI4T3RDWl9yNVNrUUNWenNRbXBwcGV4WmpKcElyaS1hWEtVSjRiaUdrcnVMSzZEN21QaGZXMlJXVkRYaXM5NVczbnpnOVVrcmZQaHFYTVhiQlJHY21ITHhJRXJfZk9leTgyOXlrZ2lYc3IzLUFTTlFqdDE4TG82ejNTZzNIZFE?oc=5"
     },
     {
       "date": "2026-11-23",
@@ -245,10 +280,31 @@
     },
     {
       "date": "2026-11-23",
+      "category": "구리",
+      "title": "Copper Prices Today | Current Live Spot Price of Copper Per Pound - SD Bullion",
+      "source": "SD Bullion",
+      "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1kOTlLN2J1VTU0RWJIVF9SWXV5U3I4bk1sOWNVUXg1X28tV2ZDNzNMU0hvRGltcEU0eTVyd2t5X3JlMEkxYWp1VFVR?oc=5"
+    },
+    {
+      "date": "2026-11-23",
+      "category": "플라스틱",
+      "title": "How Crude Oil Shocks Hit China’s Plastics Market Prices - Grand View Research",
+      "source": "Grand View Research",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNS0hjdmtlY0h4X3NwdF9pNnozR3dIRWpQcFdYM2RoQ2M2VGN6NE12VUN3UnkyZHJ6bVREVHJ4S2FnbExjdFdzX1E3S3RnNDJVMXprVEctUEtINXlZNEN1V3Y2QkdwRjlMTjRVNnFpNlBXWllLQS16bnNXU2pmelluM1l3LWdmblU4aEQ2cHJoaXM3elk?oc=5"
+    },
+    {
+      "date": "2026-11-23",
       "category": "환율",
-      "title": "South Korea vows to stabilise stock market after KOSPI drops 5pc - The Standard (HK)",
-      "source": "The Standard (HK)",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQS1BxUXhqNGhUY3RiakZYOGMwVHhRWTV4eFZFMWhZVTFkTkR0ZGFCdlJCOFBCbE92SkNqNjI4T3RDWl9yNVNrUUNWenNRbXBwcGV4WmpKcElyaS1hWEtVSjRiaUdrcnVMSzZEN21QaGZXMlJXVkRYaXM5NVczbnpnOVVrcmZQaHFYTVhiQlJHY21ITHhJRXJfZk9leTgyOXlrZ2lYc3IzLUFTTlFqdDE4TG82ejNTZzNIZFE?oc=5"
+      "title": "Ralph to South Korean Won Price Today | Live SN40 to KRW Converter & Exchange Rate - CryptoRank",
+      "source": "CryptoRank",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9UQklRMTlEVU95a01GMEFnOVFPTWtCRmt6RzhFb0ZJVGdyejVXT1ZzQU5yWmVsZlo1X2tLaU4yTU9XTlJ1SWlFd0c4NFpfUQ?oc=5"
+    },
+    {
+      "date": "2026-11-23",
+      "category": "환율",
+      "title": "PEI to KRW: Pepe Intelligence Price in South Korean Won - CoinGecko",
+      "source": "CoinGecko",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE84bFZmb3h3MTVmYVp1MlNjNTVLQkJsc1dHaDB6Ql9SMTVoYU5IVW82THFka2tvSUVWbjAxa1JINmF3WWMyN0doYkhlTU9lcWcwNVJzVnFhazk5UlB6Qi1zNjNlRk5FQTA?oc=5"
     },
     {
       "date": "2026-11-23",
@@ -343,17 +399,17 @@
     },
     {
       "date": "2026-11-20",
+      "category": "구리",
+      "title": "UBS Calls Copper Slump a Reset, Not a Demand Breakdown, With LME Support at $12,000 - BigGo Finance",
+      "source": "BigGo Finance",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE01aWt3X19qcU9pX29DT2pnRFlfc1NFY3ZISGdqc1VlZmIwSkRsT2lpRkpjZTVLMGR3bWVfZXBVNThTU2hPbExMMHFzVVJPeDNxN1l3R1hQdE9YVHNId19yTTRJRTljeGtLNTVhV1lnRmdYNUZCanc?oc=5"
+    },
+    {
+      "date": "2026-11-20",
       "category": "니켈",
       "title": "Indonesia’s Quota Cuts and State-Share Plans Make Nickel Supply Less Certain - Crux Investor",
       "source": "Crux Investor",
       "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPeEFLQWs4YVVHYVdCUWVwWm1NS2pGdklja2xZOWVYMkNSNGNPN003d0N6eW02TFE2Y1RYbDFmUlFnWS02ak0tc0FhejhNdm5aUDZJX3ItUTl0NThsMFVfWGEwaGY4U1BrblZDU1lYVGNTbVIwWFhGTHdtNWRrR0h1LXVHdGE2cGtVekJ1R0k5LTNydFpyc0VFeTFCV3BrcTlOelB6LU1JcUJvN05zY0ZB?oc=5"
-    },
-    {
-      "date": "2026-11-20",
-      "category": "알루미늄",
-      "title": "Commodities Update November 2026 - Westpac IQ",
-      "source": "Westpac IQ",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOMVJrVzJhMHNiQUdIU3hOckNudWxyRWNzZXF6anQ3RUhQYkxMc0tqdEJyNXBDRXU3MjFCOEI4S2dqbFAxOGliZ01oR3FVd0tDSHBjYnRlVmszRXdCbFdjRE4xNW1nTmxsSlhFZkJtazZqMllRek1LeHZycElvMXY1VkY0cDgwQQ?oc=5"
     },
     {
       "date": "2026-11-20",
@@ -364,10 +420,10 @@
     },
     {
       "date": "2026-11-20",
-      "category": "구리",
-      "title": "UBS Calls Copper Slump a Reset, Not a Demand Breakdown, With LME Support at $12,000 - BigGo Finance",
-      "source": "BigGo Finance",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE01aWt3X19qcU9pX29DT2pnRFlfc1NFY3ZISGdqc1VlZmIwSkRsT2lpRkpjZTVLMGR3bWVfZXBVNThTU2hPbExMMHFzVVJPeDNxN1l3R1hQdE9YVHNId19yTTRJRTljeGtLNTVhV1lnRmdYNUZCanc?oc=5"
+      "category": "알루미늄",
+      "title": "Commodities Update November 2026 - Westpac IQ",
+      "source": "Westpac IQ",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOMVJrVzJhMHNiQUdIU3hOckNudWxyRWNzZXF6anQ3RUhQYkxMc0tqdEJyNXBDRXU3MjFCOEI4S2dqbFAxOGliZ01oR3FVd0tDSHBjYnRlVmszRXdCbFdjRE4xNW1nTmxsSlhFZkJtazZqMllRek1LeHZycElvMXY1VkY0cDgwQQ?oc=5"
     },
     {
       "date": "2026-11-20",
@@ -490,17 +546,17 @@
     },
     {
       "date": "2026-11-19",
-      "category": "환율",
-      "title": "How adidas and ITA Airways are automating FX workflows - flow – Deutsche Bank",
-      "source": "flow – Deutsche Bank",
-      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPTmp6ZjRjWmkzOTVGOVg4YTJDdDZLMk5lNUM2c0xEUmYyUFJkZU56aDRYMHVfc3NJRHRmNk5DdkNseUdlRUZPSXYxYzE1Q3RDM3JYcVllVGhjYVpHMEk5ZHFJSnJaY3FxNEl1UVl4UjZNbXRWaDdBR29sdndUVnBpbjViWnJDSjlwUi13X19HYlE?oc=5"
-    },
-    {
-      "date": "2026-11-19",
       "category": "반도체",
       "title": "Introducing CCHP: Actively Managed Exposure To China's Semiconductor Supply Chain - Seeking Alpha",
       "source": "Seeking Alpha",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQYnNrYXFNLUdmVlhPVnVoWi04cklFVjJDQW1Dd2F2QmJobDRRNm1INHNUaXNJSmVVVHdBRzJNdVBDd2FIb2Y1UzNINnNBa0paVTI0UkVoWUs4aUw3M0VEZ0xJbElqY1Q3NU4tamFTZGFlcmFWWUpac0ZGS0pDQUdKUWFyWWpzM3dCWWxRcjN3V3h0d0FFamlZZkJSQkladHJlWFluX2g4LXZnMjZFZmlrY2Y3OGFuQ0s0eU1PRw?oc=5"
+    },
+    {
+      "date": "2026-11-19",
+      "category": "환율",
+      "title": "How adidas and ITA Airways are automating FX workflows - flow – Deutsche Bank",
+      "source": "flow – Deutsche Bank",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPTmp6ZjRjWmkzOTVGOVg4YTJDdDZLMk5lNUM2c0xEUmYyUFJkZU56aDRYMHVfc3NJRHRmNk5DdkNseUdlRUZPSXYxYzE1Q3RDM3JYcVllVGhjYVpHMEk5ZHFJSnJaY3FxNEl1UVl4UjZNbXRWaDdBR29sdndUVnBpbjViWnJDSjlwUi13X19HYlE?oc=5"
     },
     {
       "date": "2026-11-19",
@@ -2874,7 +2930,7 @@
       "category": "구리",
       "headlines": [
         "Copper Slumps Amid AI Roller Coaster But Physical Supply Remains Tight - WSJ",
-        "LME tightens rules in response to aluminium squeeze - Mining.com",
+        "Silver miners struggle to close persistent supply gap - Mining.com",
         "Weekly Base Metal Macroeconomic Update + World Copper Conference Asia - StoneX"
       ]
     },
@@ -2882,24 +2938,24 @@
       "category": "니켈",
       "headlines": [
         "Nickel Prices, Top Mining Deals, Supply and Demand: What Investors Need to Watch in 2027 - CarbonCredits.com",
-        "LME approves listing of Tsingshan’s Indonesian aluminum brand - Mining.com",
-        "Weekly Base Metal Macroeconomic Update + World Copper Conference Asia - StoneX"
+        "Sulphur shortage threatens Indonesia’s nickel plans - Mining.com",
+        "LME Approves Indonesian Aluminium from Tsingshan, Huafon to Ease Historic Squeeze - NAI500"
       ]
     },
     {
       "category": "알루미늄",
       "headlines": [
+        "Two Chinese copper smelters blend concentrate overseas to boost supply, sources say - Mining.com",
         "Oil Slips as Supply Recovers, Aluminium Squeeze Eases After LME Intervention, Copper Extends Decline - IndexBox",
-        "Aluminium supply, energy costs and manufacturing demand shape the next market phase - kalkine.ca",
-        "LME aluminium cash offer price rises 1.51% to $3,184.5/t as stocks fall 0.76% on November 20 - AL Circle"
+        "Aluminium supply, energy costs and manufacturing demand shape the next market phase - kalkine.ca"
       ]
     },
     {
       "category": "철강",
       "headlines": [
+        "Chinese Stainless Steel Coil Manufacturers: A Ranked Comparison - The Des Moines Register",
         "AI Data Centers Spark Steel Rush as U.S. Hot-Rolled Coil Prices Break $1,300 to Four-Year High - BigGo Finance",
-        "Soaring US Steel Prices Drive ‘Mad Scramble’ for Imported Tons - Bloomberg",
-        "HRC vs. busheling spread - What a difference a year makes - Steel Market Update"
+        "Soaring US Steel Prices Drive ‘Mad Scramble’ for Imported Tons - Bloomberg"
       ]
     },
     {
@@ -2913,17 +2969,17 @@
     {
       "category": "환율",
       "headlines": [
-        "EUR/USD - CME Group",
-        "CAD/KRW (CADKRW=X) Live Rate, Chart & News - Yahoo Finance - Yahoo! Finance Canada",
-        "South Korea’s central bank seen raising rates on Thursday, once more next quarter - Reuters poll By Reuters - Investing.com"
+        "FX Daily: Korean won stands out in a harsh EM environment - ing think",
+        "Asia FX: won muted after BOK hikes rates, dollar steady - Investing.com",
+        "EUR/USD - CME Group"
       ]
     },
     {
       "category": "반도체",
       "headlines": [
-        "Semiconductor Equipment and Materials: Strengthening India's Position in the Global Chip Supply Chain - IBEF",
-        "Cambridge study warns Korea’s AI supply chain power is underestimated and sovereignty unattainable - DongA Science",
-        "Semiconductor Equipment and Materials in India: Growth & Outlook - IBEF"
+        "2026 Global Semiconductor Supplier Awards - TechInsights",
+        "7 Best Semiconductor ETFs to Buy Now | Investing - US News Money",
+        "Semiconductor Equipment and Materials: Strengthening India's Position in the Global Chip Supply Chain - IBEF"
       ]
     }
   ],
